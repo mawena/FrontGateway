@@ -5,8 +5,73 @@ info:
   version: 1.0.0
 servers:
   -
-    url: 'http://localhost'
+    url: 'http://pecorator.ulrich.client'
 paths:
+  /api/auth/login:
+    post:
+      summary: 'Connecte un utilisateur'
+      operationId: connecteUnUtilisateur
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {  }
+                properties: {  }
+      tags:
+        - Authentification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: "L'email de l'utilsateur."
+                  example: admin@cofinacorp.com
+                  nullable: false
+                password:
+                  type: string
+                  description: "Le mot de passe complet de l'utilisateur."
+                  example: 'Coftg@20$*21ù!ad'
+                  nullable: false
+              required:
+                - email
+                - password
+  /api/auth/show:
+    get:
+      summary: "Affiche l'utilisateur connecté"
+      operationId: afficheLutilisateurConnect
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {  }
+                properties: {  }
+      tags:
+        - Authentification
+  /api/auth/logout:
+    delete:
+      summary: "Déconnecte l'utilisateur connecté"
+      operationId: dconnecteLutilisateurConnect
+      description: ''
+      parameters: []
+      responses:
+        204:
+          description: ''
+      tags:
+        - Authentification
   /api/user:
     get:
       summary: 'Affiche les utilisateurs'
@@ -79,7 +144,6 @@ paths:
                 properties: {  }
       tags:
         - Utilisateurs
-      security: []
     post:
       summary: 'Créer un nouvelle utilisateur'
       operationId: crerUnNouvelleUtilisateur
@@ -128,7 +192,6 @@ paths:
                   description: "L'image de l'utilisateur."
                   example: '0'
                   nullable: false
-      security: []
   '/api/user/{id}':
     get:
       summary: 'Affiche un utilsateur'
@@ -157,7 +220,6 @@ paths:
                 properties: {  }
       tags:
         - Utilisateurs
-      security: []
     put:
       summary: 'Mettre à jour un utilisateur'
       operationId: mettreJourUnUtilisateur
@@ -206,7 +268,6 @@ paths:
                   description: "L'image de l'utilisateur."
                   example: '0'
                   nullable: false
-      security: []
     delete:
       summary: 'Supprime un utilisateur'
       operationId: supprimeUnUtilisateur
@@ -223,7 +284,6 @@ paths:
                 properties: {  }
       tags:
         - Utilisateurs
-      security: []
     parameters:
       -
         in: path
@@ -266,24 +326,35 @@ paths:
                 old_password:
                   type: string
                   description: "L'ancien mot de passe de l'utilisateur."
-                  example: tenetur
+                  example: recusandae
                   nullable: false
                 new_password:
                   type: string
                   description: "Le nouveau mot de passe de l'utilisateur."
-                  example: et
+                  example: occaecati
                   nullable: false
                 new_password_confirmation:
                   type: string
                   description: "La confirmation du nouveau mot de passe de l'utilisateur."
-                  example: ex
+                  example: optio
                   nullable: false
               required:
                 - old_password
                 - new_password
                 - new_password_confirmation
-      security: []
 tags:
+  -
+    name: Authentification
+    description: "\nEndPoints pour gérer l'authentification"
   -
     name: Utilisateurs
     description: "\nEndPoints pour gérer les utilisateurs"
+components:
+  securitySchemes:
+    default:
+      type: http
+      scheme: bearer
+      description: 'You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.'
+security:
+  -
+    default: []

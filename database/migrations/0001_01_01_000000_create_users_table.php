@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('password');
 			$table->enum('profile', ['admin', 'supervisor', 'promoter']);
 			$table->boolean('activated')->default(false);
-			$table->text("picture_path");
+			$table->text("picture_path")->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
