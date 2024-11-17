@@ -34,13 +34,16 @@ class UserController extends Controller
 	{
 		if (($authorisation = Gate::inspect('viewAny', User::class))->allowed()) {
 			$list = User::query();
+			
 			$requestData = $request->all();
 			($search = $request->search) ? $list = $this->querySearch($list, ["name", "email", "profile"], $search) : null;
 			$list = $this->queryFilter($list, $requestData, "User");
-			// $list = $this->queryJSONFilter($list, $requestData, "User");
-			$connectedUser = $request->user();
 			$list = $this->queryRelationAdd($list, $requestData, "User");
-			$list = $connectedUser->profile == "cc" ? $list->where('id', $connectedUser->id) : $list;
+			
+			$connectedUser = $request->user();
+			$list = $connectedUser->profile == "supervisor" ? $list->where('profile', '<>', 'admin') : $list;
+			$list = $connectedUser->profile == "promoter" ? $list->where('profile', 'promoter') : $list;
+			
 			return $this->responseIndexOk($list, $requestData, "User");
 		} else {
 			return $this->responseError(["auth" => [$authorisation->message()]], 403);
