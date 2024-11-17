@@ -2,15 +2,11 @@
 
 namespace App\Policies;
 
+use App\Http\Traits\PermissionCheckerTrait;
 use App\Models\User;
+use Illuminate\Auth\Access\Response;
 
-class DecorPolicy
+class DecorPolicy extends BasePolicy
 {
-    /**
-     * Create a new policy instance.
-     */
-    public function __construct()
-    {
-        //
-    }
+	protected $modelName = "decor";
 }

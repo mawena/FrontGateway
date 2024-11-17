@@ -30,9 +30,9 @@
         var useCsrf = Boolean();
         var csrfUrl = "/sanctum/csrf-cookie";
     </script>
-    <script src="../docs/js/tryitout-4.38.0.js"></script>
+    <script src="../docs/js/tryitout-4.33.0.js"></script>
 
-    <script src="../docs/js/theme-default-4.38.0.js"></script>
+    <script src="../docs/js/theme-default-4.33.0.js"></script>
 
 </head>
 
@@ -79,6 +79,28 @@
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="authentification-DELETEapi-auth-logout">
                                 <a href="#authentification-DELETEapi-auth-logout">Déconnecte l'utilisateur connecté</a>
+                            </li>
+                                                                        </ul>
+                            </ul>
+                    <ul id="tocify-header-decors" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="decors">
+                    <a href="#decors">Decors</a>
+                </li>
+                                    <ul id="tocify-subheader-decors" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="decors-GETapi-decor">
+                                <a href="#decors-GETapi-decor">Affiche les decors</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="decors-GETapi-decor--id-">
+                                <a href="#decors-GETapi-decor--id-">Affiche un décor</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="decors-POSTapi-decor">
+                                <a href="#decors-POSTapi-decor">Créer un nouveau decor</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="decors-PUTapi-decor--id-">
+                                <a href="#decors-PUTapi-decor--id-">Mettre à jour un decor</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="decors-DELETEapi-decor--id-">
+                                <a href="#decors-DELETEapi-decor--id-">Supprime un decor</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -559,6 +581,892 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>Example: <code>application/json</code></p>
             </div>
                         </form>
+
+                <h1 id="decors">Decors</h1>
+
+    <p>EndPoints pour gérer les décors</p>
+
+                                <h2 id="decors-GETapi-decor">Affiche les decors</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-decor">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://pecorator.ulrich.client/api/decor?with_event=false&amp;paginate=false" \
+    --header "Authorization: Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://pecorator.ulrich.client/api/decor"
+);
+
+const params = {
+    "with_event": "false",
+    "paginate": "false",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
+
+const headers = {
+    "Authorization": "Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-decor">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-decor" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-decor"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-decor"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-decor" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-decor">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-decor" data-method="GET"
+      data-path="api/decor"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-decor', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-decor"
+                    onclick="tryItOut('GETapi-decor');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-decor"
+                    onclick="cancelTryOut('GETapi-decor');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-decor"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/decor</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-decor"
+               value="Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-decor"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-decor"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="name"                data-endpoint="GETapi-decor"
+               value=""
+               data-component="query">
+    <br>
+<p>Filtrer par nom du decor.</p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>file_path</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="file_path"                data-endpoint="GETapi-decor"
+               value=""
+               data-component="query">
+    <br>
+<p>Filtrer par chemin du decor.</p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>event_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="event_id"                data-endpoint="GETapi-decor"
+               value=""
+               data-component="query">
+    <br>
+<p>Filtrer par événement.</p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>with_event</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="with_event"                data-endpoint="GETapi-decor"
+               value="false"
+               data-component="query">
+    <br>
+<p>Afficher l'événement. Example: <code>false</code></p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>paginate</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="paginate"                data-endpoint="GETapi-decor"
+               value="false"
+               data-component="query">
+    <br>
+<p>Utiliser la pagination. Example: <code>false</code></p>
+            </div>
+                </form>
+
+                    <h2 id="decors-GETapi-decor--id-">Affiche un décor</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-decor--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://pecorator.ulrich.client/api/decor/1?with_event=false" \
+    --header "Authorization: Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://pecorator.ulrich.client/api/decor/1"
+);
+
+const params = {
+    "with_event": "false",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
+
+const headers = {
+    "Authorization": "Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-decor--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-decor--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-decor--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-decor--id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-decor--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-decor--id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-decor--id-" data-method="GET"
+      data-path="api/decor/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-decor--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-decor--id-"
+                    onclick="tryItOut('GETapi-decor--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-decor--id-"
+                    onclick="cancelTryOut('GETapi-decor--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-decor--id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/decor/{id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-decor--id-"
+               value="Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-decor--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-decor--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="GETapi-decor--id-"
+               value="1"
+               data-component="url">
+    <br>
+<p>L'ID du decor. Example: <code>1</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>with_event</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="with_event"                data-endpoint="GETapi-decor--id-"
+               value="false"
+               data-component="query">
+    <br>
+<p>Afficher l'événement. Example: <code>false</code></p>
+            </div>
+                </form>
+
+                    <h2 id="decors-POSTapi-decor">Créer un nouveau decor</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-decor">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://pecorator.ulrich.client/api/decor" \
+    --header "Authorization: Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"name\": \"first\",
+    \"file\": \"...\",
+    \"description\": \"...\",
+    \"event_id\": 1
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://pecorator.ulrich.client/api/decor"
+);
+
+const headers = {
+    "Authorization": "Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "name": "first",
+    "file": "...",
+    "description": "...",
+    "event_id": 1
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-decor">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-decor" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-decor"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-decor"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-decor" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-decor">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-decor" data-method="POST"
+      data-path="api/decor"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-decor', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-decor"
+                    onclick="tryItOut('POSTapi-decor');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-decor"
+                    onclick="cancelTryOut('POSTapi-decor');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-decor"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/decor</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-decor"
+               value="Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-decor"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-decor"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="name"                data-endpoint="POSTapi-decor"
+               value="first"
+               data-component="body">
+    <br>
+<p>Le nom du decor. Example: <code>first</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>file</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="file"                data-endpoint="POSTapi-decor"
+               value="..."
+               data-component="body">
+    <br>
+<p>Le fichier. Example: <code>...</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="description"                data-endpoint="POSTapi-decor"
+               value="..."
+               data-component="body">
+    <br>
+<p>La description. Example: <code>...</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>event_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="event_id"                data-endpoint="POSTapi-decor"
+               value="1"
+               data-component="body">
+    <br>
+<p>L'événement. Example: <code>1</code></p>
+        </div>
+        </form>
+
+                    <h2 id="decors-PUTapi-decor--id-">Mettre à jour un decor</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PUTapi-decor--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "http://pecorator.ulrich.client/api/decor/1" \
+    --header "Authorization: Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"name\": \"first\",
+    \"file\": \"...\",
+    \"description\": \"...\",
+    \"event_id\": 1
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://pecorator.ulrich.client/api/decor/1"
+);
+
+const headers = {
+    "Authorization": "Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "name": "first",
+    "file": "...",
+    "description": "...",
+    "event_id": 1
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTapi-decor--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{}</code>
+ </pre>
+    </span>
+<span id="execution-results-PUTapi-decor--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-decor--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-decor--id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PUTapi-decor--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-decor--id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PUTapi-decor--id-" data-method="PUT"
+      data-path="api/decor/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-decor--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PUTapi-decor--id-"
+                    onclick="tryItOut('PUTapi-decor--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PUTapi-decor--id-"
+                    onclick="cancelTryOut('PUTapi-decor--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PUTapi-decor--id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/decor/{id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PUTapi-decor--id-"
+               value="Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PUTapi-decor--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PUTapi-decor--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="PUTapi-decor--id-"
+               value="1"
+               data-component="url">
+    <br>
+<p>L'ID du decor. Example: <code>1</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="name"                data-endpoint="PUTapi-decor--id-"
+               value="first"
+               data-component="body">
+    <br>
+<p>Le nom du decor. Example: <code>first</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>file</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="file"                data-endpoint="PUTapi-decor--id-"
+               value="..."
+               data-component="body">
+    <br>
+<p>Le fichier. Example: <code>...</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="description"                data-endpoint="PUTapi-decor--id-"
+               value="..."
+               data-component="body">
+    <br>
+<p>La description. Example: <code>...</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>event_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="event_id"                data-endpoint="PUTapi-decor--id-"
+               value="1"
+               data-component="body">
+    <br>
+<p>L'événement. Example: <code>1</code></p>
+        </div>
+        </form>
+
+                    <h2 id="decors-DELETEapi-decor--id-">Supprime un decor</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-DELETEapi-decor--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "http://pecorator.ulrich.client/api/decor/1" \
+    --header "Authorization: Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://pecorator.ulrich.client/api/decor/1"
+);
+
+const headers = {
+    "Authorization": "Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-decor--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{}</code>
+ </pre>
+    </span>
+<span id="execution-results-DELETEapi-decor--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-decor--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-decor--id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-decor--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-decor--id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-DELETEapi-decor--id-" data-method="DELETE"
+      data-path="api/decor/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-decor--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-DELETEapi-decor--id-"
+                    onclick="tryItOut('DELETEapi-decor--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-DELETEapi-decor--id-"
+                    onclick="cancelTryOut('DELETEapi-decor--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-DELETEapi-decor--id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/decor/{id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="DELETEapi-decor--id-"
+               value="Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="DELETEapi-decor--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="DELETEapi-decor--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="DELETEapi-decor--id-"
+               value="1"
+               data-component="url">
+    <br>
+<p>L'ID du decor. Example: <code>1</code></p>
+            </div>
+                    </form>
 
                 <h1 id="utilisateurs">Utilisateurs</h1>
 
@@ -1136,9 +2044,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"old_password\": \"nisi\",
-    \"new_password\": \"dicta\",
-    \"new_password_confirmation\": \"ea\"
+    \"old_password\": \"rerum\",
+    \"new_password\": \"fuga\",
+    \"new_password_confirmation\": \"autem\"
 }"
 </code></pre></div>
 
@@ -1155,9 +2063,9 @@ const headers = {
 };
 
 let body = {
-    "old_password": "nisi",
-    "new_password": "dicta",
-    "new_password_confirmation": "ea"
+    "old_password": "rerum",
+    "new_password": "fuga",
+    "new_password_confirmation": "autem"
 };
 
 fetch(url, {
@@ -1264,10 +2172,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="old_password"                data-endpoint="PUTapi-user-update-password"
-               value="nisi"
+               value="rerum"
                data-component="body">
     <br>
-<p>L'ancien mot de passe de l'utilisateur. Example: <code>nisi</code></p>
+<p>L'ancien mot de passe de l'utilisateur. Example: <code>rerum</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>new_password</code></b>&nbsp;&nbsp;
@@ -1275,10 +2183,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="new_password"                data-endpoint="PUTapi-user-update-password"
-               value="dicta"
+               value="fuga"
                data-component="body">
     <br>
-<p>Le nouveau mot de passe de l'utilisateur. Example: <code>dicta</code></p>
+<p>Le nouveau mot de passe de l'utilisateur. Example: <code>fuga</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>new_password_confirmation</code></b>&nbsp;&nbsp;
@@ -1286,10 +2194,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="new_password_confirmation"                data-endpoint="PUTapi-user-update-password"
-               value="ea"
+               value="autem"
                data-component="body">
     <br>
-<p>La confirmation du nouveau mot de passe de l'utilisateur. Example: <code>ea</code></p>
+<p>La confirmation du nouveau mot de passe de l'utilisateur. Example: <code>autem</code></p>
         </div>
         </form>
 

@@ -35,12 +35,10 @@ paths:
                   type: string
                   description: "L'email de l'utilsateur."
                   example: admin@pecorator.com
-                  nullable: false
                 password:
                   type: string
                   description: "Le mot de passe complet de l'utilisateur."
                   example: azerty
-                  nullable: false
               required:
                 - email
                 - password
@@ -72,6 +70,209 @@ paths:
           description: ''
       tags:
         - Authentification
+  /api/decor:
+    get:
+      summary: 'Affiche les decors'
+      operationId: afficheLesDecors
+      description: ''
+      parameters:
+        -
+          in: query
+          name: name
+          description: 'Filtrer par nom du decor.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Filtrer par nom du decor.'
+            example: null
+        -
+          in: query
+          name: file_path
+          description: 'Filtrer par chemin du decor.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Filtrer par chemin du decor.'
+            example: null
+        -
+          in: query
+          name: event_id
+          description: 'Filtrer par événement.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Filtrer par événement.'
+            example: null
+        -
+          in: query
+          name: with_event
+          description: "Afficher l'événement."
+          example: 'false'
+          required: false
+          schema:
+            type: string
+            description: "Afficher l'événement."
+            example: 'false'
+        -
+          in: query
+          name: paginate
+          description: 'Utiliser la pagination.'
+          example: 'false'
+          required: false
+          schema:
+            type: string
+            description: 'Utiliser la pagination.'
+            example: 'false'
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {  }
+                properties: {  }
+      tags:
+        - Decors
+    post:
+      summary: 'Créer un nouveau decor'
+      operationId: crerUnNouveauDecor
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {  }
+                properties: {  }
+      tags:
+        - Decors
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Le nom du decor.'
+                  example: first
+                file:
+                  type: string
+                  description: 'Le fichier.'
+                  example: ...
+                description:
+                  type: string
+                  description: 'La description.'
+                  example: ...
+                event_id:
+                  type: integer
+                  description: "L'événement."
+                  example: 1
+  '/api/decor/{id}':
+    get:
+      summary: 'Affiche un décor'
+      operationId: afficheUnDcor
+      description: ''
+      parameters:
+        -
+          in: query
+          name: with_event
+          description: "Afficher l'événement."
+          example: 'false'
+          required: false
+          schema:
+            type: string
+            description: "Afficher l'événement."
+            example: 'false'
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {  }
+                properties: {  }
+      tags:
+        - Decors
+    put:
+      summary: 'Mettre à jour un decor'
+      operationId: mettreJourUnDecor
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {  }
+                properties: {  }
+      tags:
+        - Decors
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Le nom du decor.'
+                  example: first
+                file:
+                  type: string
+                  description: 'Le fichier.'
+                  example: ...
+                description:
+                  type: string
+                  description: 'La description.'
+                  example: ...
+                event_id:
+                  type: integer
+                  description: "L'événement."
+                  example: 1
+    delete:
+      summary: 'Supprime un decor'
+      operationId: supprimeUnDecor
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {  }
+                properties: {  }
+      tags:
+        - Decors
+    parameters:
+      -
+        in: path
+        name: id
+        description: "Optional parameter. L'ID du decor."
+        required: true
+        schema:
+          type: integer
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: 1
   /api/user:
     get:
       summary: 'Affiche les utilisateurs'
@@ -88,7 +289,6 @@ paths:
             type: string
             description: "Filtrer par nom de l'utilisateur."
             example: null
-            nullable: false
         -
           in: query
           name: email
@@ -99,7 +299,6 @@ paths:
             type: string
             description: "Filtrer par email de l'utilisateur."
             example: null
-            nullable: false
         -
           in: query
           name: profile
@@ -110,7 +309,6 @@ paths:
             type: string
             description: "Filtrer par profile de l'utilisateur."
             example: null
-            nullable: false
         -
           in: query
           name: with_events
@@ -121,7 +319,6 @@ paths:
             type: string
             description: 'Afficher les evenements.'
             example: 'false'
-            nullable: false
         -
           in: query
           name: paginate
@@ -132,7 +329,6 @@ paths:
             type: string
             description: 'Utiliser la pagination.'
             example: 'false'
-            nullable: false
       responses:
         200:
           description: ''
@@ -171,27 +367,22 @@ paths:
                   type: string
                   description: "Le nom de l'utilisateur."
                   example: charles.gamligo
-                  nullable: false
                 email:
                   type: string
                   description: "La valeur de l'utilisateur."
                   example: charles.gamligo@cofinacorp.com
-                  nullable: false
                 password:
                   type: string
                   description: "L'heure de l'ancement de l'utilisateur."
                   example: P@sse123
-                  nullable: false
                 profile:
                   type: string
                   description: "Le profile de l'utilisateur."
                   example: admin
-                  nullable: false
                 picture:
                   type: string
                   description: "L'image de l'utilisateur."
                   example: '0'
-                  nullable: false
   '/api/user/{id}':
     get:
       summary: 'Affiche un utilsateur'
@@ -208,7 +399,6 @@ paths:
             type: string
             description: 'Afficher les departements.'
             example: 'false'
-            nullable: false
       responses:
         200:
           description: ''
@@ -247,27 +437,22 @@ paths:
                   type: string
                   description: "Le nom de l'utilisateur."
                   example: charles.gamligo
-                  nullable: false
                 email:
                   type: string
                   description: "La valeur de l'utilisateur."
                   example: charles.gamligo@cofinacorp.com
-                  nullable: false
                 password:
                   type: string
                   description: "L'heure de l'ancement de l'utilisateur."
                   example: P@sse123
-                  nullable: false
                 profile:
                   type: string
                   description: "Le profile de l'utilisateur."
                   example: admin
-                  nullable: false
                 picture:
                   type: string
                   description: "L'image de l'utilisateur."
                   example: '0'
-                  nullable: false
     delete:
       summary: 'Supprime un utilisateur'
       operationId: supprimeUnUtilisateur
@@ -326,18 +511,15 @@ paths:
                 old_password:
                   type: string
                   description: "L'ancien mot de passe de l'utilisateur."
-                  example: nisi
-                  nullable: false
+                  example: rerum
                 new_password:
                   type: string
                   description: "Le nouveau mot de passe de l'utilisateur."
-                  example: dicta
-                  nullable: false
+                  example: fuga
                 new_password_confirmation:
                   type: string
                   description: "La confirmation du nouveau mot de passe de l'utilisateur."
-                  example: ea
-                  nullable: false
+                  example: autem
               required:
                 - old_password
                 - new_password
@@ -346,6 +528,9 @@ tags:
   -
     name: Authentification
     description: "\nEndPoints pour gérer l'authentification"
+  -
+    name: Decors
+    description: "\nEndPoints pour gérer les décors"
   -
     name: Utilisateurs
     description: "\nEndPoints pour gérer les utilisateurs"

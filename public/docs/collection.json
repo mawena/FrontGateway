@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "e4e4bdac-e410-4ad5-9825-1ea911e9e2f3",
+        "_postman_id": "9bfb3951-5484-461d-b8a5-0b76860960b3",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -113,6 +113,240 @@
                         {
                             "header": [],
                             "code": 204,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Decors",
+            "description": "\nEndPoints pour g\u00e9rer les d\u00e9cors",
+            "item": [
+                {
+                    "name": "Affiche les decors",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/decor",
+                            "query": [
+                                {
+                                    "key": "name",
+                                    "value": "",
+                                    "description": "Filtrer par nom du decor.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "file_path",
+                                    "value": "",
+                                    "description": "Filtrer par chemin du decor.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "event_id",
+                                    "value": "",
+                                    "description": "Filtrer par \u00e9v\u00e9nement.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "with_event",
+                                    "value": "false",
+                                    "description": "Afficher l'\u00e9v\u00e9nement.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "paginate",
+                                    "value": "false",
+                                    "description": "Utiliser la pagination.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/decor?name=&file_path=&event_id=&with_event=false&paginate=false"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Affiche un d\u00e9cor",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/decor\/:id",
+                            "query": [
+                                {
+                                    "key": "with_event",
+                                    "value": "false",
+                                    "description": "Afficher l'\u00e9v\u00e9nement.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/decor\/:id?with_event=false",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "L'ID du decor."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Cr\u00e9er un nouveau decor",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/decor",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/decor"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"first\",\"file\":\"...\",\"description\":\"...\",\"event_id\":1}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Mettre \u00e0 jour un decor",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/decor\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/decor\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "L'ID du decor."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"first\",\"file\":\"...\",\"description\":\"...\",\"event_id\":1}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Supprime un decor",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/decor\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/decor\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "L'ID du decor."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
                             "body": "{}",
                             "name": ""
                         }
@@ -291,7 +525,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"old_password\":\"nisi\",\"new_password\":\"dicta\",\"new_password_confirmation\":\"ea\"}"
+                            "raw": "{\"old_password\":\"rerum\",\"new_password\":\"fuga\",\"new_password_confirmation\":\"autem\"}"
                         },
                         "description": ""
                     },

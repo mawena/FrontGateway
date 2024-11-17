@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Carbon;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -52,6 +53,16 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+
+	public function toArray()
+	{
+		$data = parent::toArray();
+		$data["created_at_fr"] = Carbon::parse($data["created_at"])->format("d/m/yy H:i:s");
+		$data["updated_at_fr"] = Carbon::parse($data["updated_at"])->format("d/m/yy H:i:s");
+		$data["activated"] = (bool) $data["activated"];
+		return $data;
+	}
 
 	public function events(): HasMany{
 		return $this->hasMany(Event::class, 'user_id', 'id');
