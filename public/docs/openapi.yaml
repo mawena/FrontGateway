@@ -34,12 +34,12 @@ paths:
                 email:
                   type: string
                   description: "L'email de l'utilsateur."
-                  example: admin@cofinacorp.com
+                  example: admin@pecorator.com
                   nullable: false
                 password:
                   type: string
                   description: "Le mot de passe complet de l'utilisateur."
-                  example: 'Coftg@20$*21ù!ad'
+                  example: azerty
                   nullable: false
               required:
                 - email
@@ -326,17 +326,17 @@ paths:
                 old_password:
                   type: string
                   description: "L'ancien mot de passe de l'utilisateur."
-                  example: recusandae
+                  example: nisi
                   nullable: false
                 new_password:
                   type: string
                   description: "Le nouveau mot de passe de l'utilisateur."
-                  example: occaecati
+                  example: dicta
                   nullable: false
                 new_password_confirmation:
                   type: string
                   description: "La confirmation du nouveau mot de passe de l'utilisateur."
-                  example: optio
+                  example: ea
                   nullable: false
               required:
                 - old_password

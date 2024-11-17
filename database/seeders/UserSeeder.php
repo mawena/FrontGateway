@@ -19,9 +19,9 @@ class UserSeeder extends Seeder
         
 		$adminUser = User::create(['name' => "admin", "email" => "admin@pecorator.com", "profile" => "admin", "password" => Hash::make("azerty"), "activated" => true]);
 
-		// $plainTextToken = $adminUser->createToken("auth-token")->plainTextToken;
-		// DB::update("update personal_access_tokens set TOKEN = 'f34ac0f1237ee6854036c67e1e81fd1991375cdb2ca97b91cfc0839640f3e52f' where ID = 1");
-		// $plainTextToken = "1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed";
-		// echo "admin Token: " . $plainTextToken . "\n";
+		$plainTextToken = $adminUser->createToken("auth-token")->plainTextToken;
+		DB::update("update personal_access_tokens set TOKEN = '2c496c4d9f53a79203d3c831e639f90d5c66a02c490a11505e07d185329db631' where ID = 1");
+		$plainTextToken = "1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed";
+		echo "admin Token: " . $plainTextToken . "\n";
     }
 }

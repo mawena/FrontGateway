@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "2c3f139f-de3f-42ae-9392-2a07cf258cb9",
+        "_postman_id": "e4e4bdac-e410-4ad5-9825-1ea911e9e2f3",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -41,7 +41,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"admin@cofinacorp.com\",\"password\":\"Coftg@20$*21\u00f9!ad\"}"
+                            "raw": "{\"email\":\"admin@pecorator.com\",\"password\":\"azerty\"}"
                         },
                         "description": ""
                     },
@@ -291,7 +291,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"old_password\":\"recusandae\",\"new_password\":\"occaecati\",\"new_password_confirmation\":\"optio\"}"
+                            "raw": "{\"old_password\":\"nisi\",\"new_password\":\"dicta\",\"new_password_confirmation\":\"ea\"}"
                         },
                         "description": ""
                     },
