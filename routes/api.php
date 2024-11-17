@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\DecorController;
+use App\Http\Controllers\API\EventController;
 use App\Http\Controllers\API\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,13 @@ Route::controller(AuthController::class)->group(function () {
 			Route::delete("{id}", 'destroy')->name("destroy");
 		});
 
+		Route::prefix("event")->name("event.")->controller(EventController::class)->group(function () {
+			Route::get("/", 'index')->name("index");
+			Route::get("{id}", 'show')->name("show");
+			Route::post("/", 'store')->name("store");
+			Route::put("{id}", 'update')->name("update");
+			Route::delete("{id}", 'destroy')->name("destroy");
+		});
 		Route::prefix("decor")->name("decor.")->controller(DecorController::class)->group(function () {
 			Route::get("/", 'index')->name("index");
 			Route::get("{id}", 'show')->name("show");

@@ -273,6 +273,227 @@ paths:
           present:
             summary: 'When the value is present'
             value: 1
+  /api/event:
+    get:
+      summary: 'Affiche les événement'
+      operationId: afficheLesvnement
+      description: ''
+      parameters:
+        -
+          in: query
+          name: name
+          description: 'Filtrer par nom.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Filtrer par nom.'
+            example: null
+        -
+          in: query
+          name: start_date
+          description: 'Filtrer par date de début.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Filtrer par date de début.'
+            example: null
+        -
+          in: query
+          name: end_date
+          description: 'Filtrer par date de fin.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Filtrer par date de fin.'
+            example: null
+        -
+          in: query
+          name: user_id
+          description: 'Filtrer par promoteur.'
+          example: null
+          required: false
+          schema:
+            type: integer
+            description: 'Filtrer par promoteur.'
+            example: null
+        -
+          in: query
+          name: with_promoter
+          description: 'Afficher le promoteur.'
+          example: 'false'
+          required: false
+          schema:
+            type: string
+            description: 'Afficher le promoteur.'
+            example: 'false'
+        -
+          in: query
+          name: paginate
+          description: 'Utiliser la pagination.'
+          example: 'false'
+          required: false
+          schema:
+            type: string
+            description: 'Utiliser la pagination.'
+            example: 'false'
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {  }
+                properties: {  }
+      tags:
+        - Evenements
+    post:
+      summary: 'Créer un nouveau decor'
+      operationId: crerUnNouveauDecor
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {  }
+                properties: {  }
+      tags:
+        - Evenements
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Le nom.'
+                  example: 'Hiver Togo'
+                description:
+                  type: string
+                  description: 'La description.'
+                  example: 'Hiver Togo description'
+                start_date:
+                  type: string
+                  description: 'La date de début.'
+                  example: '2024-12-01'
+                end_date:
+                  type: string
+                  description: 'La date de fin.'
+                  example: '2025-01-01'
+                picture:
+                  type: string
+                  description: "L'image."
+                  example: ...
+  '/api/event/{id}':
+    get:
+      summary: 'Affiche un décor'
+      operationId: afficheUnDcor
+      description: ''
+      parameters:
+        -
+          in: query
+          name: with_promoter
+          description: 'Afficher le promoteur.'
+          example: 'false'
+          required: false
+          schema:
+            type: string
+            description: 'Afficher le promoteur.'
+            example: 'false'
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {  }
+                properties: {  }
+      tags:
+        - Evenements
+    put:
+      summary: 'Mettre à jour un événement'
+      operationId: mettreJourUnvnement
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {  }
+                properties: {  }
+      tags:
+        - Evenements
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Le nom.'
+                  example: 'Hiver Togo'
+                description:
+                  type: string
+                  description: 'La description.'
+                  example: 'Hiver Togo description'
+                start_date:
+                  type: string
+                  description: 'La date de début.'
+                  example: '2024-12-01'
+                end_date:
+                  type: string
+                  description: 'La date de fin.'
+                  example: '2025-01-01'
+                picture:
+                  type: string
+                  description: "L'image."
+                  example: ...
+    delete:
+      summary: 'Supprime un événement'
+      operationId: supprimeUnvnement
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {  }
+                properties: {  }
+      tags:
+        - Evenements
+    parameters:
+      -
+        in: path
+        name: id
+        description: "Optional parameter. L'événement."
+        required: true
+        schema:
+          type: integer
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: 1
   /api/user:
     get:
       summary: 'Affiche les utilisateurs'
@@ -519,15 +740,15 @@ paths:
                 old_password:
                   type: string
                   description: "L'ancien mot de passe de l'utilisateur."
-                  example: recusandae
+                  example: corrupti
                 new_password:
                   type: string
                   description: "Le nouveau mot de passe de l'utilisateur."
-                  example: optio
+                  example: ducimus
                 new_password_confirmation:
                   type: string
                   description: "La confirmation du nouveau mot de passe de l'utilisateur."
-                  example: voluptatem
+                  example: omnis
               required:
                 - old_password
                 - new_password
@@ -539,6 +760,9 @@ tags:
   -
     name: Decors
     description: "\nEndPoints pour gérer les décors"
+  -
+    name: Evenements
+    description: "\nEndPoints pour gérer les événements"
   -
     name: Utilisateurs
     description: "\nEndPoints pour gérer les utilisateurs"
