@@ -13,6 +13,9 @@ class User extends Authenticatable
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
+	protected $appends = ['ability_rules', 'profile_fr'];
+
+
     /**
      * The attributes that are mass assignable.
      *
@@ -52,5 +55,70 @@ class User extends Authenticatable
 
 	public function events(): HasMany{
 		return $this->hasMany(Event::class, 'user_id', 'id');
+	}
+
+	public function getProfileFrAttribute()
+	{
+		return [
+			'admin' => 'Administrateur',
+			'supervisor' => 'Superviseur',
+			'promoter' => 'Promoteur',
+		][$this->profile];
+	}
+
+	public function getAbilityRulesAttribute()
+	{
+		return [
+			'admin' => [
+				[
+					'action' => ['manage'],
+					'subject' => ['all'],
+				],
+			],
+			'supervisor' => [
+				[
+					'action' => ['read'],
+					'subject' => ['user']
+				],
+				[
+					'action' => ['create'],
+					'subject' => ['user']
+				],
+				[
+					'action' => ['update'],
+					'subject' => ['user']
+				],
+				[
+					'action' => ['update_password'],
+					'subject' => []
+				],
+				[
+					'action' => ['delete'],
+					'subject' => ['user']
+				],
+			],
+			'promoter' => [
+				[
+					'action' => ['read'],
+					'subject' => ['user']
+				],
+				[
+					'action' => ['create'],
+					'subject' => []
+				],
+				[
+					'action' => ['update'],
+					'subject' => ['user']
+				],
+				[
+					'action' => ['update_password'],
+					'subject' => []
+				],
+				[
+					'action' => ['delete'],
+					'subject' => ['user']
+				],
+			],
+		][$this->profile];
 	}
 }
