@@ -375,6 +375,10 @@ paths:
                   type: string
                   description: "L'heure de l'ancement de l'utilisateur."
                   example: P@sse123
+                activated:
+                  type: integer
+                  description: "L'activation."
+                  example: 0
                 profile:
                   type: string
                   description: "Le profile de l'utilisateur."
@@ -445,6 +449,10 @@ paths:
                   type: string
                   description: "L'heure de l'ancement de l'utilisateur."
                   example: P@sse123
+                activated:
+                  type: integer
+                  description: "L'activation."
+                  example: 0
                 profile:
                   type: string
                   description: "Le profile de l'utilisateur."
@@ -511,15 +519,15 @@ paths:
                 old_password:
                   type: string
                   description: "L'ancien mot de passe de l'utilisateur."
-                  example: rerum
+                  example: recusandae
                 new_password:
                   type: string
                   description: "Le nouveau mot de passe de l'utilisateur."
-                  example: fuga
+                  example: optio
                 new_password_confirmation:
                   type: string
                   description: "La confirmation du nouveau mot de passe de l'utilisateur."
-                  example: autem
+                  example: voluptatem
               required:
                 - old_password
                 - new_password

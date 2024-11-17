@@ -1845,6 +1845,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"name\": \"charles.gamligo\",
     \"email\": \"charles.gamligo@cofinacorp.com\",
     \"password\": \"P@sse123\",
+    \"activated\": 0,
     \"profile\": \"admin\",
     \"picture\": \"0\"
 }"
@@ -1866,6 +1867,7 @@ let body = {
     "name": "charles.gamligo",
     "email": "charles.gamligo@cofinacorp.com",
     "password": "P@sse123",
+    "activated": 0,
     "profile": "admin",
     "picture": "0"
 };
@@ -2002,6 +2004,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>L'heure de l'ancement de l'utilisateur. Example: <code>P@sse123</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>activated</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="activated"                data-endpoint="POSTapi-user"
+               value="0"
+               data-component="body">
+    <br>
+<p>L'activation. Example: <code>0</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>profile</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
 <i>optional</i> &nbsp;
@@ -2044,9 +2057,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"old_password\": \"rerum\",
-    \"new_password\": \"fuga\",
-    \"new_password_confirmation\": \"autem\"
+    \"old_password\": \"recusandae\",
+    \"new_password\": \"optio\",
+    \"new_password_confirmation\": \"voluptatem\"
 }"
 </code></pre></div>
 
@@ -2063,9 +2076,9 @@ const headers = {
 };
 
 let body = {
-    "old_password": "rerum",
-    "new_password": "fuga",
-    "new_password_confirmation": "autem"
+    "old_password": "recusandae",
+    "new_password": "optio",
+    "new_password_confirmation": "voluptatem"
 };
 
 fetch(url, {
@@ -2172,10 +2185,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="old_password"                data-endpoint="PUTapi-user-update-password"
-               value="rerum"
+               value="recusandae"
                data-component="body">
     <br>
-<p>L'ancien mot de passe de l'utilisateur. Example: <code>rerum</code></p>
+<p>L'ancien mot de passe de l'utilisateur. Example: <code>recusandae</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>new_password</code></b>&nbsp;&nbsp;
@@ -2183,10 +2196,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="new_password"                data-endpoint="PUTapi-user-update-password"
-               value="fuga"
+               value="optio"
                data-component="body">
     <br>
-<p>Le nouveau mot de passe de l'utilisateur. Example: <code>fuga</code></p>
+<p>Le nouveau mot de passe de l'utilisateur. Example: <code>optio</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>new_password_confirmation</code></b>&nbsp;&nbsp;
@@ -2194,10 +2207,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="new_password_confirmation"                data-endpoint="PUTapi-user-update-password"
-               value="autem"
+               value="voluptatem"
                data-component="body">
     <br>
-<p>La confirmation du nouveau mot de passe de l'utilisateur. Example: <code>autem</code></p>
+<p>La confirmation du nouveau mot de passe de l'utilisateur. Example: <code>voluptatem</code></p>
         </div>
         </form>
 
@@ -2223,6 +2236,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"name\": \"charles.gamligo\",
     \"email\": \"charles.gamligo@cofinacorp.com\",
     \"password\": \"P@sse123\",
+    \"activated\": 0,
     \"profile\": \"admin\",
     \"picture\": \"0\"
 }"
@@ -2244,6 +2258,7 @@ let body = {
     "name": "charles.gamligo",
     "email": "charles.gamligo@cofinacorp.com",
     "password": "P@sse123",
+    "activated": 0,
     "profile": "admin",
     "picture": "0"
 };
@@ -2390,6 +2405,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
                data-component="body">
     <br>
 <p>L'heure de l'ancement de l'utilisateur. Example: <code>P@sse123</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>activated</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="activated"                data-endpoint="PUTapi-user--id-"
+               value="0"
+               data-component="body">
+    <br>
+<p>L'activation. Example: <code>0</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>profile</code></b>&nbsp;&nbsp;

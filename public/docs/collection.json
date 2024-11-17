@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "9bfb3951-5484-461d-b8a5-0b76860960b3",
+        "_postman_id": "3e557064-5dbb-44bc-833e-eecf5be93ec6",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -490,7 +490,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"charles.gamligo\",\"email\":\"charles.gamligo@cofinacorp.com\",\"password\":\"P@sse123\",\"profile\":\"admin\",\"picture\":\"0\"}"
+                            "raw": "{\"name\":\"charles.gamligo\",\"email\":\"charles.gamligo@cofinacorp.com\",\"password\":\"P@sse123\",\"activated\":0,\"profile\":\"admin\",\"picture\":\"0\"}"
                         },
                         "description": ""
                     },
@@ -525,7 +525,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"old_password\":\"rerum\",\"new_password\":\"fuga\",\"new_password_confirmation\":\"autem\"}"
+                            "raw": "{\"old_password\":\"recusandae\",\"new_password\":\"optio\",\"new_password_confirmation\":\"voluptatem\"}"
                         },
                         "description": ""
                     },
@@ -568,7 +568,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"charles.gamligo\",\"email\":\"charles.gamligo@cofinacorp.com\",\"password\":\"P@sse123\",\"profile\":\"admin\",\"picture\":\"0\"}"
+                            "raw": "{\"name\":\"charles.gamligo\",\"email\":\"charles.gamligo@cofinacorp.com\",\"password\":\"P@sse123\",\"activated\":0,\"profile\":\"admin\",\"picture\":\"0\"}"
                         },
                         "description": ""
                     },
