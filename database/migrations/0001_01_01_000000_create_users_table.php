@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-			$table->enum('profile', ['super-admin', 'admin', 'organizer']);
+			$table->enum('profile', ['admin', 'supervisor', 'organizer']);
+			$table->boolean('activated')->default(false);
 			$table->text("picture_path");
             $table->rememberToken();
             $table->timestamps();
