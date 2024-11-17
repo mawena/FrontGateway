@@ -20,15 +20,15 @@ class AuthController extends Controller
 	/**
 	 * Connecte un utilisateur
 	 *
-	 * @bodyParam email			string		required	L'email de l'utilsateur.						Example: admin@cofinacorp.com
-	 * @bodyParam password		string		required	Le mot de passe complet de l'utilisateur.		Example: Coftg@20$*21ù!ad
+	 * @bodyParam email			string		required	L'email de l'utilsateur.						Example: admin@pecorator.com
+	 * @bodyParam password		string		required	Le mot de passe complet de l'utilisateur.		Example: azerty
 	 *
 	 * @response 200
 	 */
 	public function login(Request $request)
 	{
 		$validator = Validator::make($request->all(), [
-			'email' => 'required|exist:users',
+			'email' => 'required|exists:users',
 			"password" => 'required'
 		]);
 		if ($validator->fails()) {

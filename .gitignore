@@ -21,6 +21,4 @@ yarn-error.log
 /.vscode
 /.zed
 /.scribe/
-/public/docs
 /public/storage
-!public/docs/openapi.yaml
