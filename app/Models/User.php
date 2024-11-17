@@ -89,7 +89,7 @@ class User extends Authenticatable
 			'supervisor' => [
 				[
 					'action' => ['read'],
-					'subject' => ['user']
+					'subject' => ['user', 'event', 'decor']
 				],
 				[
 					'action' => ['create'],
@@ -97,37 +97,37 @@ class User extends Authenticatable
 				],
 				[
 					'action' => ['update'],
-					'subject' => ['user']
+					'subject' => ['user', 'event', 'decor']
 				],
 				[
 					'action' => ['update_password'],
-					'subject' => []
+					'subject' => ['user']
 				],
 				[
 					'action' => ['delete'],
-					'subject' => ['user']
+					'subject' => ['user', 'event', 'decor']
 				],
 			],
 			'promoter' => [
 				[
 					'action' => ['read'],
-					'subject' => ['user']
+					'subject' => ['user', 'event', 'decor']
 				],
 				[
 					'action' => ['create'],
-					'subject' => []
+					'subject' => ['event', 'decor']
 				],
 				[
 					'action' => ['update'],
-					'subject' => ['user']
+					'subject' => ['event', 'decor']
 				],
 				[
 					'action' => ['update_password'],
-					'subject' => []
+					'subject' => ['user']
 				],
 				[
 					'action' => ['delete'],
-					'subject' => ['user']
+					'subject' => ['event', 'decor']
 				],
 			],
 		][$this->profile];

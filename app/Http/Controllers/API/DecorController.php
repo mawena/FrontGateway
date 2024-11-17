@@ -88,7 +88,7 @@ class DecorController extends Controller
 			validations: [
 				"name" => "required|unique:decors",
 				"file" => "required",
-				"description" => "required|min:3",
+				"description" => "nullable",
 				"event_id" => "required|exists:events:events:id",
 			],
 			manualValidations: function ($requestData) {
@@ -96,7 +96,7 @@ class DecorController extends Controller
 				if (!$this->checkIsBase64Validated($requestData["file"], ["png"])) {
 					return ["errors" => $this->responseError(["file" => ["le fichier n'est pas une image valide"]], 400)];
 				}
-				if ($file_path = $this->saveImageFromBase64($requestData["file"], "event/$event->id/" . Str::slug($requestData["name"]) . ".png")) {
+				if ($file_path = $this->saveImageFromBase64($requestData["file"], "pictures/decors/$event->id/" . Str::slug($requestData["name"]) . ".png")) {
 					return ["data" => ["file_path" => $file_path]];
 				} else {
 					return ["errors" => $this->responseError(["file" => ["Une erreur est survenu durant l'insertion"]])];
@@ -131,7 +131,7 @@ class DecorController extends Controller
 			validations: [
 				"name" => "required|unique:decors,name," . $id,
 				"file" => "nullable|min:5",
-				"description" => "required|min:3",
+				"description" => "nullable",
 				"event_id" => "required|exists:events:events:id",
 			],
 			manualValidations: function ($requestData) {
@@ -140,7 +140,7 @@ class DecorController extends Controller
 					if (!$this->checkIsBase64Validated($requestData["file"], ["png"])) {
 						return ["errors" => $this->responseError(["file" => ["le fichier n'est pas une image valide"]], 400)];
 					}
-					if ($file_path = $this->saveImageFromBase64($requestData["file"], "event/$event->id/" . Str::slug($requestData["name"]) . ".png")) {
+					if ($file_path = $this->saveImageFromBase64($requestData["file"], "pictures/decors/$event->id/" . Str::slug($requestData["name"]) . ".png")) {
 						return ["data" => ["file_path" => $file_path]];
 					} else {
 						return ["errors" => $this->responseError(["file" => ["Une erreur est survenu durant l'insertion"]])];

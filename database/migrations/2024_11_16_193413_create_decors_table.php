@@ -14,7 +14,7 @@ return new class extends Migration {
 			$table->id();
 			$table->string('name');
 			$table->string('file_path');
-			$table->text('description');
+			$table->text('description')->nullable();
 			$table->timestamps();
 
 			$table->foreignId('event_id')->constrained()->cascadeOnDelete();

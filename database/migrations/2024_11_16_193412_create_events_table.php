@@ -13,9 +13,10 @@ return new class extends Migration {
 		Schema::create('events', function (Blueprint $table) {
 			$table->id();
 			$table->string('name');
-			$table->text('description');
+			$table->text('description')->nullable();
 			$table->dateTime('start_date');
 			$table->dateTime('end_date')->nullable();
+			$table->text("picture_path")->nullable();
 			$table->timestamps();
 
 			$table->foreignId('user_id')->constrained()->cascadeOnDelete();

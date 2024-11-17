@@ -2,9 +2,10 @@
 
 namespace App\Policies;
 
-use App\Http\Traits\PermissionCheckerTrait;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
+use Illuminate\Database\Eloquent\Model;
+use App\Http\Traits\PermissionCheckerTrait;
 
 class BasePolicy
 {
@@ -30,7 +31,7 @@ class BasePolicy
 		return $this->check(["read", "historical"], $this->modelName, $connectedUser) ? Response::allow() : Response::deny("Vous n'êtes pas autorisé à effectuer cette action");
 	}
 
-	public function view(User $connectedUser, User $decor)
+	public function view(User $connectedUser, Model $model)
 	{
 		return $this->check(["read"], $this->modelName, $connectedUser) ? Response::allow() : Response::deny("Vous n'êtes pas autorisé à effectuer cette action");
 	}
@@ -39,11 +40,11 @@ class BasePolicy
 	{
 		return $this->check(["create"], $this->modelName, $connectedUser) ? Response::allow() : Response::deny("Vous n'êtes pas autorisé à effectuer cette action");
 	}
-	public function update(User $connectedUser)
+	public function update(User $connectedUser, Model $model)
 	{
 		return $this->check(["update"], $this->modelName, $connectedUser) ? Response::allow() : Response::deny("Vous n'êtes pas autorisé à effectuer cette action");
 	}
-	public function delete(User $connectedUser)
+	public function delete(User $connectedUser, Model $model)
 	{
 		return $this->check(["delete"], $this->modelName, $connectedUser) ? Response::allow() : Response::deny("Vous n'êtes pas autorisé à effectuer cette action");
 	}

@@ -24,7 +24,6 @@ class Decor extends Model
 		$data = parent::toArray();
 		$data["created_at_fr"] = Carbon::parse($data["created_at"])->format("d/m/yy H:i:s");
 		$data["updated_at_fr"] = Carbon::parse($data["updated_at"])->format("d/m/yy H:i:s");
-		$data["activated"] = (bool) $data["activated"];
 		return $data;
 	}
 

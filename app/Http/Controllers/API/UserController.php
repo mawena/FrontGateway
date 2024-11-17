@@ -82,6 +82,7 @@ class UserController extends Controller
 	 * @bodyParam	name										string			  	Le nom de l'utilisateur.													Example: charles.gamligo
 	 * @bodyParam	email										string			  	La valeur de l'utilisateur.													Example: charles.gamligo@cofinacorp.com
 	 * @bodyParam	password									string			  	L'heure de l'ancement de l'utilisateur.										Example: P@sse123
+	 * @bodyParam	activated									integer			  	L'activation.																Example: 0
 	 * @bodyParam	profile										string		  		Le profile de l'utilisateur.												Example: admin
 	 * @bodyParam	picture										string				L'image de l'utilisateur.													Example: 0
 	 *
@@ -105,7 +106,7 @@ class UserController extends Controller
 					if (!$this->checkIsBase64Validated($requestData["file"], ["png", "jpeg", "jpg"])) {
 						return ["errors" => $this->responseError(["file" => ["le fichier n'est pas une image valide"]], 400)];
 					}
-					if ($picture_path = $this->saveImageFromBase64($requestData["file"], "users/pictures/" . Str::slug($requestData["name"]) . ".png")) {
+					if ($picture_path = $this->saveImageFromBase64($requestData["file"], "pictures/users/" . Str::slug($requestData["name"]) . ".png")) {
 						return ["data" => ["picture_path" => $picture_path]];
 					} else {
 						return ["errors" => $this->responseError(["file" => ["Une erreur est survenu durant l'insertion"]])];
@@ -114,7 +115,7 @@ class UserController extends Controller
 			},
 			beforeCreate: function ($requestData, $data) {
 				$requestData["password"] = Hash::make($requestData["password"]);
-				$requestData["picture_path"] = isset($data["picture_path"]) ? $data["picture_path"] : "users/defauts/picture.png";
+				$requestData["picture_path"] = isset($data["picture_path"]) ? $data["picture_path"] : "defaults/user.png";
 				return $requestData;
 			},
 			relations: ["with_events" => "true"]
@@ -129,6 +130,7 @@ class UserController extends Controller
 	 * @bodyParam	name										string			  	Le nom de l'utilisateur.													Example: charles.gamligo
 	 * @bodyParam	email										string			  	La valeur de l'utilisateur.													Example: charles.gamligo@cofinacorp.com
 	 * @bodyParam	password									string			  	L'heure de l'ancement de l'utilisateur.										Example: P@sse123
+	 * @bodyParam	activated									integer			  	L'activation.																Example: 0
 	 * @bodyParam	profile										string		  		Le profile de l'utilisateur.												Example: admin
 	 * @bodyParam	picture										string				L'image de l'utilisateur.													Example: 0
 	 *
@@ -154,7 +156,7 @@ class UserController extends Controller
 					if (!$this->checkIsBase64Validated($requestData["file"], ["png", "jpeg", "jpg"])) {
 						return ["errors" => $this->responseError(["file" => ["le fichier n'est pas une image valide"]], 400)];
 					}
-					if ($picture_path = $this->saveImageFromBase64($requestData["file"], "users/pictures/" . Str::slug($requestData["name"]) . ".png")) {
+					if ($picture_path = $this->saveImageFromBase64($requestData["file"], "pictures/users/" . Str::slug($requestData["name"]) . ".png")) {
 						return ["data" => ["picture_path" => $picture_path]];
 					} else {
 						return ["errors" => $this->responseError(["file" => ["Une erreur est survenu durant l'insertion"]])];
