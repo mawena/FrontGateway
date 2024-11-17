@@ -69,9 +69,9 @@ class Controller extends BaseController
 	 * @param 	array 		$validationsText	Les textes des validations à effectuer
 	 * @param 	array 		$manualValidations	Une fonction de validations manuelles
 	 * @param 	callable 	$beforeUpdate		Une fonction à appeler avant la mise à jour, params : model: le model actuel, requestData: Les données de la requête, manualValidationsReturnData: les données retournées par la validation manuelle
-	 * @param 	callable 	$afterUpdate		Une fonction à appeler après la mise à jour, params : model: le model fraichement mis à jour, manualValidationsReturnData: les données retournées par la validation manuelle, requestData: Les données de la requête
-	 * @param 	callable 	$beforeCommit		Une fonction à appeler avant le commit, params : model: le model fraichement mis à jour, manualValidationsReturnData: les données retournées par la validation manuelle, requestData: Les données de la requête
-	 * @param 	callable 	$afterCommit		Une fonction à appeler après le commit, params : model: le model fraichement mis à jour, manualValidationsReturnData: les données retournées par la validation manuelle, requestData: Les données de la requête
+	 * @param 	callable 	$afterUpdate		Une fonction à appeler après la mise à jour, params : model: le model fraichement mis à jour, requestData: Les données de la requête, manualValidationsReturnData: les données retournées par la validation manuelle
+	 * @param 	callable 	$beforeCommit		Une fonction à appeler avant le commit, params : model: le model fraichement mis à jour, requestData: Les données de la requête, manualValidationsReturnData: les données retournées par la validation manuelle
+	 * @param 	callable 	$afterCommit		Une fonction à appeler après le commit, params : model: le model fraichement mis à jour, requestData: Les données de la requête, manualValidationsReturnData: les données retournées par la validation manuelle
 	 * @param 	string	    $authName   		Le nom de la fonction de police à utiliser
 	 * @param 	array	    $relations   		Les relations à afficher lors de retour
 	 * @return \Illuminate\Http\JsonResponse
