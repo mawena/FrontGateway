@@ -16,7 +16,7 @@ return new class extends Migration {
 			$table->text('description')->nullable();
 			$table->dateTime('start_date');
 			$table->dateTime('end_date')->nullable();
-			$table->text("picture_path")->nullable();
+			$table->string("picture_path")->nullable();
 			$table->timestamps();
 
 			$table->foreignId('user_id')->constrained()->cascadeOnDelete();

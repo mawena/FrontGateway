@@ -16,6 +16,13 @@ use Illuminate\Support\Facades\Hash;
  */
 class UserController extends Controller
 {
+	protected string $modelClass = "\App\Models\User";
+
+	//store
+
+	protected array $storeRelationArray = ["with_events" => "true"];
+	protected array $updateRelationArray = ["with_events" => "true"];
+
 	/**
 	 * Affiche les utilisateurs
 	 *
@@ -32,22 +39,12 @@ class UserController extends Controller
 	 */
 	public function index(Request $request)
 	{
-		if (($authorisation = Gate::inspect('viewAny', User::class))->allowed()) {
-			$list = User::query();
-			
-			$requestData = $request->all();
-			($search = $request->search) ? $list = $this->querySearch($list, ["name", "email", "profile"], $search) : null;
-			$list = $this->queryFilter($list, $requestData, "User");
-			$list = $this->queryRelationAdd($list, $requestData, "User");
-			
-			$connectedUser = $request->user();
+		$this->indexManualFilter = function ($list, $connectedUser) {
 			$list = $connectedUser->profile == "supervisor" ? $list->where('profile', '<>', 'admin') : $list;
 			$list = $connectedUser->profile == "promoter" ? $list->where('profile', 'promoter') : $list;
-			
-			return $this->responseIndexOk($list, $requestData, "User");
-		} else {
-			return $this->responseError(["auth" => [$authorisation->message()]], 403);
-		}
+			return $list;
+		};
+		return parent::index($request);
 	}
 
 
@@ -62,18 +59,7 @@ class UserController extends Controller
 	 */
 	public function show(Request $request, int $id)
 	{
-		$model = User::find($id);
-		$requestData = $request->all();
-		if ($model) {
-			if (($authorisation = Gate::inspect('view', $model))->allowed()) {
-				$model = $this->modelRelationLoad($model, $requestData, "User");
-				return $this->responseOk(["user" => $model]);
-			} else {
-				return $this->responseError(["auth" => [$authorisation->message()]], 403);
-			}
-		} else {
-			return $this->responseError(["id" => "l'utilisateur n'existe pas"], 404);
-		}
+		return parent::show($request, $id);
 	}
 
 	/**
@@ -90,36 +76,32 @@ class UserController extends Controller
 	 */
 	public function store(Request $request)
 	{
-		return $this->modelStore(
-			modelClass: "App\Models\User",
-			requestData: $request->all(),
-			validations: [
-				'name' => 'required|unique:users',
-				'email' => 'required|unique:users',
-				"password" => "required|min:8",
-				"activated" => "required|boolean",
-				"profile" => "required|in:super-admin,admin,organiser",
-				"picture" => "nullable"
-			],
-			manualValidations: function ($requestData) {
-				if (isset($requestData["picture"])) {
-					if (!$this->checkIsBase64Validated($requestData["file"], ["png", "jpeg", "jpg"])) {
-						return ["errors" => $this->responseError(["file" => ["le fichier n'est pas une image valide"]], 400)];
-					}
-					if ($picture_path = $this->saveImageFromBase64($requestData["file"], "pictures/users/" . Str::slug($requestData["name"]) . ".png")) {
-						return ["data" => ["picture_path" => $picture_path]];
-					} else {
-						return ["errors" => $this->responseError(["file" => ["Une erreur est survenu durant l'insertion"]])];
-					}
+		$this->storeValidationArray = [
+			'name' => 'required|unique:users',
+			'email' => 'required|unique:users',
+			"password" => "required|min:8",
+			"activated" => "required|boolean",
+			"profile" => "required|in:super-admin,admin,organiser",
+			"picture" => "nullable"
+		];
+		$this->storeManualValidationsFunction = function ($requestData) {
+			if (isset($requestData["picture"])) {
+				if (!$this->checkIsBase64Validated($requestData["file"], ["png", "jpeg", "jpg"])) {
+					return ["errors" => $this->responseError(["file" => ["le fichier n'est pas une image valide"]], 400)];
 				}
-			},
-			beforeCreate: function ($requestData, $data) {
-				$requestData["password"] = Hash::make($requestData["password"]);
-				$requestData["picture_path"] = isset($data["picture_path"]) ? $data["picture_path"] : "defaults/user.png";
-				return $requestData;
-			},
-			relations: ["with_events" => "true"]
-		);
+				if ($picture_path = $this->saveImageFromBase64($requestData["file"], "pictures/users/" . Str::slug($requestData["name"]) . ".png")) {
+					return ["data" => ["picture_path" => $picture_path]];
+				} else {
+					return ["errors" => $this->responseError(["file" => ["Une erreur est survenu durant l'insertion"]])];
+				}
+			}
+		};
+		$this->storeBeforeCreateFunction = function ($requestData, $data) {
+			$requestData["password"] = Hash::make($requestData["password"]);
+			$requestData["picture_path"] = isset($data["picture_path"]) ? $data["picture_path"] : "defaults/user.png";
+			return $requestData;
+		};
+		return parent::store($request);
 	}
 
 	/**
@@ -139,47 +121,33 @@ class UserController extends Controller
 	 */
 	public function update(Request $request, int $id)
 	{
-		return $this->modelUpdate(
-			modelId: $id,
-			modelClass: "App\Models\User",
-			requestData: $request->all(),
-			validations: [
+		$this->updateGetValidationArrayFunction = function ($id) {
+			return [
 				"name" => "required|unique:users,name," . $id,
 				"email" => "required|unique:users,email," . $id,
 				"password" => "nullable|min:8",
 				"activated" => "required|boolean",
 				"profile" => "required|in:admin,supervisor,organiser",
 				"picture" => "nullable"
-			],
-			manualValidations: function ($requestData) {
-				if (isset($requestData["picture"])) {
-					if (!$this->checkIsBase64Validated($requestData["file"], ["png", "jpeg", "jpg"])) {
-						return ["errors" => $this->responseError(["file" => ["le fichier n'est pas une image valide"]], 400)];
-					}
-					if ($picture_path = $this->saveImageFromBase64($requestData["file"], "pictures/users/" . Str::slug($requestData["name"]) . ".png")) {
-						return ["data" => ["picture_path" => $picture_path]];
-					} else {
-						return ["errors" => $this->responseError(["file" => ["Une erreur est survenu durant l'insertion"]])];
-					}
-				}
-			},
-			beforeUpdate: function ($model, $requestData, $data) {
-				if (isset($requestData["password"])) {
-					$requestData["password"] = Hash::make($requestData["password"]);
-				}else{
-					unset($requestData["password"]);
-				}
+			];
+		};
+		$this->updateManualValidationsFunction = $this->storeManualValidationsFunction;
+		$this->updateBeforeUpdateFunction = function ($model, $requestData, $data) {
+			if (isset($requestData["password"])) {
+				$requestData["password"] = Hash::make($requestData["password"]);
+			} else {
+				unset($requestData["password"]);
+			}
 
-				if(isset($data["picture_path"])){
-					$requestData["picture_path"] = $data["picture_path"];
-				}else{
-					unset($requestData["picture_path"]);
-				}
+			if (isset($data["picture_path"])) {
+				$requestData["picture_path"] = $data["picture_path"];
+			} else {
+				unset($requestData["picture_path"]);
+			}
 
-				return $requestData;
-			},
-			relations: ["with_events" => "true"]
-		);
+			return $requestData;
+		};
+		return parent::update($request, $id);
 	}
 
 	/**
@@ -242,11 +210,8 @@ class UserController extends Controller
 	 *
 	 * @response 200
 	 */
-	public function destroy(int $id)
+	public function destroy(Request $request, int $id)
 	{
-		return $this->modelDelete(
-			modelId: $id,
-			modelClass: "App\Models\Script",
-		);
+		return parent::destroy($request, $id);
 	}
 }

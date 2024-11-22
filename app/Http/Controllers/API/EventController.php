@@ -91,22 +91,23 @@ class EventController extends Controller
 				"description" => "nullable",
 				"start_date" => "required|date",
 				"end_date" => "nullable|date",
-				"picture" => "nullable|date",
+				"picture" => "nullable",
 			],
 			manualValidations: function ($requestData) {
 				if (isset($requestData["picture"])) {
-					if (!$this->checkIsBase64Validated($requestData["file"], ["png", "jpeg", "jpg"])) {
-						return ["errors" => $this->responseError(["file" => ["le fichier n'est pas une image valide"]], 400)];
+					if (!$this->checkIsBase64Validated($requestData["picture"], ["png", "jpeg", "jpg"])) {
+						return ["errors" => $this->responseError(["picture" => ["le fichier n'est pas une image valide"]], 400)];
 					}
-					if ($picture_path = $this->saveImageFromBase64($requestData["file"], "pictures/events/" . Str::slug($requestData["name"]) . ".png")) {
+					if ($picture_path = $this->saveImageFromBase64($requestData["picture"], "pictures/events/" . Str::slug($requestData["name"]) . ".png")) {
 						return ["data" => ["picture_path" => $picture_path]];
 					} else {
-						return ["errors" => $this->responseError(["file" => ["Une erreur est survenu durant l'insertion"]])];
+						return ["errors" => $this->responseError(["picture" => ["Une erreur est survenu durant l'insertion"]])];
 					}
 				}
 			},
-			beforeCreate: function ($requestData, $data) {
+			beforeCreate: function ($requestData, $data) use ($request){
 				$requestData["picture_path"] = isset($data["picture_path"]) ? $data["picture_path"] : "defaults/event.png";
+				$requestData["user_id"] = $request->user()->id;
 				return $requestData;
 			},
 			relations: ["with_promoter" => "true"]
@@ -139,17 +140,17 @@ class EventController extends Controller
 				"description" => "nullable",
 				"start_date" => "required|date",
 				"end_date" => "nullable|date",
-				"picture" => "nullable|date",
+				"picture" => "nullable",
 			],
 			manualValidations: function ($requestData) {
 				if (isset($requestData["picture"])) {
-					if (!$this->checkIsBase64Validated($requestData["file"], ["png", "jpeg", "jpg"])) {
-						return ["errors" => $this->responseError(["file" => ["le fichier n'est pas une image valide"]], 400)];
+					if (!$this->checkIsBase64Validated($requestData["picture"], ["png", "jpeg", "jpg"])) {
+						return ["errors" => $this->responseError(["picture" => ["le fichier n'est pas une image valide"]], 400)];
 					}
-					if ($picture_path = $this->saveImageFromBase64($requestData["file"], "pictures/events/" . Str::slug($requestData["name"]) . ".png")) {
+					if ($picture_path = $this->saveImageFromBase64($requestData["picture"], "pictures/events/" . Str::slug($requestData["name"]) . ".png")) {
 						return ["data" => ["picture_path" => $picture_path]];
 					} else {
-						return ["errors" => $this->responseError(["file" => ["Une erreur est survenu durant l'insertion"]])];
+						return ["errors" => $this->responseError(["picture" => ["Une erreur est survenu durant l'insertion"]])];
 					}
 				}
 			},

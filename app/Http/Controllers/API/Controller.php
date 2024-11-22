@@ -2,18 +2,137 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Traits\ControllerHelperTrait;
-use App\Http\Traits\CustomResponseTrait;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Traits\CustomResponseTrait;
+use App\Http\Traits\ControllerHelperTrait;
+use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Controller extends BaseController
 {
 	use AuthorizesRequests, ValidatesRequests, CustomResponseTrait, ControllerHelperTrait;
+
+	protected string $modelName;
+	protected string $modelClass = "";
+
+	//Index, show and destroy
+	protected string $indexAbilityName = "viewAny";
+	protected $indexManualFilter = null;
+	protected array $indexSearchFieldList = [];
+
+
+	//Store
+	protected string $storeAuthName = "create";
+	protected array $storeValidationArray = [];
+	protected array $storeValidationTextArray = [];
+	protected $storeManualValidationsFunction = null;
+	protected $storeBeforeCreateFunction = null;
+	protected $storeAfterCreateFunction = null;
+	protected $storeBeforeCommitFunction = null;
+	protected $storeAfterCommitFunction = null;
+	protected array $storeRelationArray = [];
+
+	//Update
+	protected string $updateAuthName = "update";
+	protected $updateGetValidationArrayFunction = [];
+	protected array $updateValidationTextArray = [];
+	protected $updateManualValidationsFunction = null;
+	protected $updateBeforeUpdateFunction = null;
+	protected $updateAfterUpdateFunction = null;
+	protected $updateBeforeCommitFunction = null;
+	protected $updateAfterCommitFunction = null;
+	protected array $updateRelationArray = [];
+
+	public function __construct()
+	{
+		$elements = explode('\\', $this->modelClass);
+		$this->modelName = end($elements);
+	}
+
+	public function index(Request $request)
+	{
+		if (($authorisation = Gate::inspect($this->indexAbilityName, $this->modelClass))->allowed()) {
+			$list = call_user_func([$this->modelClass, 'query']);
+
+			$requestData = $request->all();
+			($search = $request->search) ? $list = $this->querySearch($list, $this->indexSearchFieldList, $search) : null;
+			$list = $this->queryFilter($list, $requestData, $this->modelName);
+			$list = $this->queryRelationAdd($list, $requestData, $this->modelName);
+
+			$connectedUser = $request->user();
+			if ($this->indexManualFilter) {
+				$list = ($this->indexManualFilter)($list, $connectedUser);
+			}
+
+			return $this->responseIndexOk($list, $requestData, $this->modelName);
+		} else {
+			return $this->responseError(["auth" => [$authorisation->message()]], 403);
+		}
+	}
+
+	public function show(Request $request, int $id)
+	{
+		$model = call_user_func_array([$this->modelClass, 'find'], [$id]);
+		$requestData = $request->all();
+		if ($model) {
+			if (($authorisation = Gate::inspect('view', $model))->allowed()) {
+				$model = $this->modelRelationLoad($model, $requestData, $this->modelName);
+				return $this->responseOk([$this->modelName => $model]);
+			} else {
+				return $this->responseError(["auth" => [$authorisation->message()]], 403);
+			}
+		} else {
+			return $this->responseError(["id" => "l'élément n'existe pas"], 404);
+		}
+	}
+
+	public function store(Request $request)
+	{
+		return $this->modelStore(
+			modelClass: $this->modelClass,
+			requestData: $request->all(),
+			validations: $this->storeValidationArray,
+			validationsText: $this->storeValidationTextArray,
+			manualValidations: $this->storeManualValidationsFunction,
+			beforeCreate: $this->storeBeforeCreateFunction,
+			afterCreate: $this->storeAfterCreateFunction,
+			beforeCommit: $this->storeBeforeCommitFunction,
+			afterCommit: $this->storeAfterCommitFunction,
+			authName: $this->storeAuthName,
+			relations: $this->storeRelationArray,
+		);
+	}
+
+	public function update(Request $request, int $id)
+	{
+		return $this->modelUpdate(
+			modelId: $id,
+			modelClass: $this->modelClass,
+			requestData: $request->all(),
+			validations: ($this->updateGetValidationArrayFunction)($id),
+			validationsText: $this->updateValidationTextArray,
+			manualValidations: $this->updateManualValidationsFunction,
+			beforeUpdate: $this->updateBeforeUpdateFunction,
+			afterUpdate: $this->updateAfterUpdateFunction,
+			beforeCommit: $this->updateBeforeCommitFunction,
+			afterCommit: $this->updateAfterCommitFunction,
+			authName: $this->updateAuthName,
+			relations: $this->updateRelationArray,
+		);
+	}
+
+	public function destroy(Request $request, int $id)
+	{
+		return $this->modelDelete(
+			modelId: $id,
+			modelClass: $this->modelClass,
+		);
+	}
+
 
 	/**
 	 * Enregistrer un model

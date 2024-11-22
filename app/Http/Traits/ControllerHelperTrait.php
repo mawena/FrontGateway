@@ -237,15 +237,17 @@ trait ControllerHelperTrait
 	 * @param 	array	$validatedTypes		Les types du fichier validés
 	 *
 	 */
-	public function saveImageFromBase64($base64, $savePath, $validatedTypes = ["jpg", "png", "jpeg", "gif"])
+	public function saveImageFromBase64($base64, $savePath, $validatedTypes = ["jpg", "png", "jpeg", "gif"], $storage_path = "./")
 	{
 		try {
+			$imageData = $base64;
 			foreach ($validatedTypes as $extention) {
-				$imageData = str_replace("data:image/$extention;base64,", '', $base64);
+				$imageData = str_replace("data:image/$extention;base64,", '', $imageData);
 			}
 			$imageData = str_replace(' ', '+', $imageData);
 			$imageData = base64_decode($imageData);
 			Storage::disk("public")->put($savePath, $imageData);
+			chmod(Storage::disk("public")->path(""), '0777');
 			return $savePath;
 		} catch (Exception $ex) {
 			return false;
