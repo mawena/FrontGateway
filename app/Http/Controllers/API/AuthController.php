@@ -51,7 +51,7 @@ class AuthController extends Controller
 	 *
 	 * @response 200
 	 */
-	public function show(Request $request)
+	public function show(Request $request, int $id)
 	{
 		return $this->responseOk($request->user());
 	}

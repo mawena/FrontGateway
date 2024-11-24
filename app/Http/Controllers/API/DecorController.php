@@ -163,7 +163,7 @@ class DecorController extends Controller
 	 *
 	 * @response 200
 	 */
-	public function destroy(int $id)
+	public function destroy(Request $request, int $id)
 	{
 		return $this->modelDelete(
 			modelId: $id,

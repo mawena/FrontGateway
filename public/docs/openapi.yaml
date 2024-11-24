@@ -282,42 +282,122 @@ paths:
         -
           in: query
           name: name
-          description: 'Filtrer par nom.'
+          description: Nom.
           example: null
           required: false
           schema:
             type: string
-            description: 'Filtrer par nom.'
+            description: Nom.
             example: null
         -
           in: query
           name: start_date
-          description: 'Filtrer par date de début.'
+          description: 'Date de début.'
           example: null
           required: false
           schema:
             type: string
-            description: 'Filtrer par date de début.'
+            description: 'Date de début.'
             example: null
         -
           in: query
           name: end_date
-          description: 'Filtrer par date de fin.'
+          description: 'Date de fin.'
           example: null
           required: false
           schema:
             type: string
-            description: 'Filtrer par date de fin.'
+            description: 'Date de fin.'
             example: null
         -
           in: query
           name: user_id
-          description: 'Filtrer par promoteur.'
+          description: Promoteur.
           example: null
           required: false
           schema:
             type: integer
-            description: 'Filtrer par promoteur.'
+            description: Promoteur.
+            example: null
+        -
+          in: query
+          name: place
+          description: Lieu.
+          example: null
+          required: false
+          schema:
+            type: string
+            description: Lieu.
+            example: null
+        -
+          in: query
+          name: type
+          description: Type.
+          example: null
+          required: false
+          schema:
+            type: string
+            description: Type.
+            example: null
+        -
+          in: query
+          name: nb_expected
+          description: 'Nombre de personne attendu.'
+          example: null
+          required: false
+          schema:
+            type: integer
+            description: 'Nombre de personne attendu.'
+            example: null
+        -
+          in: query
+          name: entrance
+          description: "Type d'entrée."
+          example: null
+          required: false
+          schema:
+            type: string
+            description: "Type d'entrée."
+            example: null
+        -
+          in: query
+          name: entry_price
+          description: "Prix d'entrée."
+          example: null
+          required: false
+          schema:
+            type: integer
+            description: "Prix d'entrée."
+            example: null
+        -
+          in: query
+          name: contact
+          description: Contact.
+          example: null
+          required: false
+          schema:
+            type: string
+            description: Contact.
+            example: null
+        -
+          in: query
+          name: description
+          description: 'Description detaillée.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Description detaillée.'
+            example: null
+        -
+          in: query
+          name: description_summary
+          description: 'Description résumé.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Description résumé.'
             example: null
         -
           in: query
@@ -375,24 +455,52 @@ paths:
               properties:
                 name:
                   type: string
-                  description: 'Le nom.'
+                  description: Nom.
                   example: 'Hiver Togo'
-                description:
-                  type: string
-                  description: 'La description.'
-                  example: 'Hiver Togo description'
                 start_date:
                   type: string
-                  description: 'La date de début.'
+                  description: 'Date de début.'
                   example: '2024-12-01'
                 end_date:
                   type: string
-                  description: 'La date de fin.'
-                  example: '2025-01-01'
-                picture:
+                  description: 'La date de début.'
+                  example: '2024-12-01'
+                user_id:
+                  type: integer
+                  description: Promoteur.
+                  example: 1
+                place:
                   type: string
-                  description: "L'image."
-                  example: ...
+                  description: Lieu.
+                  example: Lomé
+                type:
+                  type: string
+                  description: Type.
+                  example: Dance
+                nb_expected:
+                  type: integer
+                  description: 'Nombre de personne attendu.'
+                  example: 45
+                entrance:
+                  type: string
+                  description: "Type d'entrée."
+                  example: free
+                entry_price:
+                  type: integer
+                  description: "Prix d'entrée."
+                  example: null
+                contact:
+                  type: string
+                  description: Contact.
+                  example: '+228 90 90 90 90'
+                description:
+                  type: string
+                  description: 'Description detaillée.'
+                  example: 'description détaillé'
+                description_summary:
+                  type: string
+                  description: 'Description résumé.'
+                  example: 'description résumé'
   '/api/event/{id}':
     get:
       summary: 'Affiche un décor'
@@ -445,24 +553,44 @@ paths:
               properties:
                 name:
                   type: string
-                  description: 'Le nom.'
+                  description: Nom.
                   example: 'Hiver Togo'
-                description:
-                  type: string
-                  description: 'La description.'
-                  example: 'Hiver Togo description'
                 start_date:
                   type: string
-                  description: 'La date de début.'
+                  description: 'Date de début.'
                   example: '2024-12-01'
                 end_date:
                   type: string
-                  description: 'La date de fin.'
-                  example: '2025-01-01'
-                picture:
+                  description: 'La date de début.'
+                  example: '2024-12-01'
+                user_id:
+                  type: integer
+                  description: Promoteur.
+                  example: 1
+                place:
                   type: string
-                  description: "L'image."
-                  example: ...
+                  description: Lieu.
+                  example: Lomé
+                type:
+                  type: string
+                  description: Type.
+                  example: Dance
+                nb_expected:
+                  type: integer
+                  description: 'Nombre de personne attendu.'
+                  example: 45
+                entrance:
+                  type: string
+                  description: "Type d'entrée."
+                  example: free
+                entry_price:
+                  type: integer
+                  description: "Prix d'entrée."
+                  example: null
+                contact:
+                  type: string
+                  description: Contact.
+                  example: '+228 90 90 90 90'
     delete:
       summary: 'Supprime un événement'
       operationId: supprimeUnvnement
@@ -740,15 +868,15 @@ paths:
                 old_password:
                   type: string
                   description: "L'ancien mot de passe de l'utilisateur."
-                  example: corrupti
+                  example: placeat
                 new_password:
                   type: string
                   description: "Le nouveau mot de passe de l'utilisateur."
-                  example: ducimus
+                  example: quia
                 new_password_confirmation:
                   type: string
                   description: "La confirmation du nouveau mot de passe de l'utilisateur."
-                  example: omnis
+                  example: impedit
               required:
                 - old_password
                 - new_password

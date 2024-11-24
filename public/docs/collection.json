@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "ed319d3e-0f34-4515-8bfd-9fe73eb727d5",
+        "_postman_id": "13776081-9503-41b0-b00d-fb1c55b31ea0",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -368,25 +368,73 @@
                                 {
                                     "key": "name",
                                     "value": "",
-                                    "description": "Filtrer par nom.",
+                                    "description": "Nom.",
                                     "disabled": true
                                 },
                                 {
                                     "key": "start_date",
                                     "value": "",
-                                    "description": "Filtrer par date de d\u00e9but.",
+                                    "description": "Date de d\u00e9but.",
                                     "disabled": true
                                 },
                                 {
                                     "key": "end_date",
                                     "value": "",
-                                    "description": "Filtrer par date de fin.",
+                                    "description": "Date de fin.",
                                     "disabled": true
                                 },
                                 {
                                     "key": "user_id",
                                     "value": "",
-                                    "description": "Filtrer par promoteur.",
+                                    "description": "Promoteur.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "place",
+                                    "value": "",
+                                    "description": "Lieu.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "type",
+                                    "value": "",
+                                    "description": "Type.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "nb_expected",
+                                    "value": "",
+                                    "description": "Nombre de personne attendu.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "entrance",
+                                    "value": "",
+                                    "description": "Type d'entr\u00e9e.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "entry_price",
+                                    "value": "",
+                                    "description": "Prix d'entr\u00e9e.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "contact",
+                                    "value": "",
+                                    "description": "Contact.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "description",
+                                    "value": "",
+                                    "description": "Description detaill\u00e9e.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "description_summary",
+                                    "value": "",
+                                    "description": "Description r\u00e9sum\u00e9.",
                                     "disabled": true
                                 },
                                 {
@@ -402,7 +450,7 @@
                                     "disabled": false
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/event?name=&start_date=&end_date=&user_id=&with_promoter=false&paginate=false"
+                            "raw": "{{baseUrl}}\/api\/event?name=&start_date=&end_date=&user_id=&place=&type=&nb_expected=&entrance=&entry_price=&contact=&description=&description_summary=&with_promoter=false&paginate=false"
                         },
                         "method": "GET",
                         "header": [
@@ -496,7 +544,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"Hiver Togo\",\"description\":\"Hiver Togo description\",\"start_date\":\"2024-12-01\",\"end_date\":\"2025-01-01\",\"picture\":\"...\"}"
+                            "raw": "{\"name\":\"Hiver Togo\",\"start_date\":\"2024-12-01\",\"end_date\":\"2024-12-01\",\"user_id\":1,\"place\":\"Lom\u00e9\",\"type\":\"Dance\",\"nb_expected\":45,\"entrance\":\"free\",\"entry_price\":null,\"contact\":\"+228 90 90 90 90\",\"description\":\"description d\u00e9taill\u00e9\",\"description_summary\":\"description r\u00e9sum\u00e9\"}"
                         },
                         "description": ""
                     },
@@ -539,7 +587,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"Hiver Togo\",\"description\":\"Hiver Togo description\",\"start_date\":\"2024-12-01\",\"end_date\":\"2025-01-01\",\"picture\":\"...\"}"
+                            "raw": "{\"name\":\"Hiver Togo\",\"start_date\":\"2024-12-01\",\"end_date\":\"2024-12-01\",\"user_id\":1,\"place\":\"Lom\u00e9\",\"type\":\"Dance\",\"nb_expected\":45,\"entrance\":\"free\",\"entry_price\":null,\"contact\":\"+228 90 90 90 90\"}"
                         },
                         "description": ""
                     },
@@ -765,7 +813,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"old_password\":\"corrupti\",\"new_password\":\"ducimus\",\"new_password_confirmation\":\"omnis\"}"
+                            "raw": "{\"old_password\":\"placeat\",\"new_password\":\"quia\",\"new_password_confirmation\":\"impedit\"}"
                         },
                         "description": ""
                     },
