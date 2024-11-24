@@ -18,13 +18,13 @@ class Event extends Model
 		"description",
 		"start_date",
 		"end_date",
+		"user_id",
 		"place",
 		"type",
 		"nb_expected",
 		"entrance",
 		"entry_price",
 		"contact",
-		"user_id"
 	];
 
 	public function toArray()
