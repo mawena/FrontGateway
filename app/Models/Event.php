@@ -14,12 +14,17 @@ class Event extends Model
 	use HasFactory;
 
 	protected $fillable = [
-		'name',
-		'description',
-		'start_date',
-		'end_date',
-		'user_id',
-		'picture_path',
+		"name",
+		"description",
+		"start_date",
+		"end_date",
+		"place",
+		"type",
+		"nb_expected",
+		"entrance",
+		"entry_price",
+		"contact",
+		"user_id"
 	];
 
 	public function toArray()

@@ -15,10 +15,14 @@ return new class extends Migration {
 			$table->string('name');
 			$table->text('description')->nullable();
 			$table->dateTime('start_date');
-			$table->dateTime('end_date')->nullable();
-			$table->string("picture_path")->nullable();
+			$table->dateTime('end_date');
+			$table->string("place");
+			$table->string("type");
+			$table->integer("nb_expected");
+			$table->enum("entrance", ["free", "paid"]);
+			$table->float("entry_price")->nullable();
+			$table->strint("contact");
 			$table->timestamps();
-
 			$table->foreignId('user_id')->constrained()->cascadeOnDelete();
 		});
 	}

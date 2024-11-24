@@ -16,6 +16,12 @@ use Illuminate\Support\Str;
  */
 class EventController extends Controller
 {
+
+	protected string $modelClass = "\App\Models\Event";
+
+	protected array $indexSearchFieldList = ["name", "start_date", "end_date"];
+
+
 	/**
 	 * Affiche les événement
 	 *
@@ -32,17 +38,7 @@ class EventController extends Controller
 	 */
 	public function index(Request $request)
 	{
-		$requestData = $request->all();
-		if (!($authorisation = Gate::inspect('viewAny', Event::class))->allowed()) {
-			return $this->responseError(["auth" => [$authorisation->message()]], 403);
-		}
-
-		$list = Event::query();
-		($search = $request->search) ? $list = $this->querySearch($list, ["name", "start_date", "end_date"], $search) : null;
-		$list = $this->queryFilter($list, $requestData, "Event");
-		$list = $this->queryRelationAdd($list, $requestData, "Event");
-
-		return $this->responseIndexOk($list, $requestData, "Event");
+		return parent::index($request);
 	}
 
 	/**
@@ -56,18 +52,7 @@ class EventController extends Controller
 	 */
 	public function show(Request $request, $id)
 	{
-		$model = Event::find($id);
-		$requestData = $request->all();
-		if ($model) {
-			if (($authorisation = Gate::inspect('view', $model))->allowed()) {
-				$model = $this->modelRelationLoad($model, $requestData, "Event");
-				return $this->responseOk(["user" => $model]);
-			} else {
-				return $this->responseError(["auth" => [$authorisation->message()]], 403);
-			}
-		} else {
-			return $this->responseError(["id" => "l'element n'existe pas"], 404);
-		}
+		return parent::show($request, $id);
 	}
 
 	/**
@@ -77,41 +62,31 @@ class EventController extends Controller
 	 * @bodyParam  description									string					La description.															Example: Hiver Togo description
 	 * @bodyParam  start_date									string					La date de début.														Example: 2024-12-01
 	 * @bodyParam  end_date										string					La date de fin.															Example: 2025-01-01
-	 * @bodyParam  picture										string					L'image.												 				Example: ...
 	 *
 	 * @response 200
 	 */
 	public function store(Request $request)
 	{
-		return $this->modelStore(
-			modelClass: "App\Models\Event",
-			requestData: $request->all(),
-			validations: [
-				"name" => "required|min:2",
-				"description" => "nullable",
-				"start_date" => "required|date",
-				"end_date" => "nullable|date",
-				"picture" => "nullable",
-			],
-			manualValidations: function ($requestData) {
-				if (isset($requestData["picture"])) {
-					if (!$this->checkIsBase64Validated($requestData["picture"], ["png", "jpeg", "jpg"])) {
-						return ["errors" => $this->responseError(["picture" => ["le fichier n'est pas une image valide"]], 400)];
-					}
-					if ($picture_path = $this->saveImageFromBase64($requestData["picture"], "pictures/events/" . Str::slug($requestData["name"]) . ".png")) {
-						return ["data" => ["picture_path" => $picture_path]];
-					} else {
-						return ["errors" => $this->responseError(["picture" => ["Une erreur est survenu durant l'insertion"]])];
-					}
-				}
-			},
-			beforeCreate: function ($requestData, $data) use ($request){
-				$requestData["picture_path"] = isset($data["picture_path"]) ? $data["picture_path"] : "defaults/event.png";
-				$requestData["user_id"] = $request->user()->id;
-				return $requestData;
-			},
-			relations: ["with_promoter" => "true"]
-		);
+		$this->storeValidationArray = [
+			"name" => "required|min:2",
+			"description" => "nullable",
+			"start_date" => "required|date",
+			"end_date" => "nullable|date",
+			"place" => "required|min:2",
+			"type" => "required|min:2",
+			"nb_expected" => "required|number",
+			"entrance" => "required|in:free,paid",
+			"entry_price" => "nullable|number",
+			"contact" => "required|min:2",
+			"user_id" => "required|exists:users,id",
+		];
+		
+		$this->storeBeforeCreateFunction = function ($requestData, $data) use ($request) {
+			$requestData["user_id"] = $request->user()->id;
+			return $requestData;
+		};
+		$this->storeRelationArray = ["with_promoter" => "true"];
+		return parent::store($request);
 	}
 
 
@@ -131,40 +106,23 @@ class EventController extends Controller
 	 */
 	public function update(Request $request, $id)
 	{
-		return $this->modelUpdate(
-			modelId: $id,
-			modelClass: "App\Models\Event",
-			requestData: $request->all(),
-			validations: [
+		$this->updateGetValidationArrayFunction = function ($id) {
+			return [
 				"name" => "required|min:2",
 				"description" => "nullable",
 				"start_date" => "required|date",
 				"end_date" => "nullable|date",
-				"picture" => "nullable",
-			],
-			manualValidations: function ($requestData) {
-				if (isset($requestData["picture"])) {
-					if (!$this->checkIsBase64Validated($requestData["picture"], ["png", "jpeg", "jpg"])) {
-						return ["errors" => $this->responseError(["picture" => ["le fichier n'est pas une image valide"]], 400)];
-					}
-					if ($picture_path = $this->saveImageFromBase64($requestData["picture"], "pictures/events/" . Str::slug($requestData["name"]) . ".png")) {
-						return ["data" => ["picture_path" => $picture_path]];
-					} else {
-						return ["errors" => $this->responseError(["picture" => ["Une erreur est survenu durant l'insertion"]])];
-					}
-				}
-			},
-			beforeUpdate: function ($model, $requestData, $data) {
-				if(isset($data["picture_path"])){
-					$requestData["picture_path"] = $data["picture_path"];
-				}else{
-					unset($requestData["picture_path"]);
-				}
-
-				return $requestData;
-			},
-			relations: ["with_promoter" => "true"]
-		);
+				"place" => "required|min:2",
+				"type" => "required|min:2",
+				"nb_expected" => "required|number",
+				"entrance" => "required|in:free,paid",
+				"entry_price" => "nullable|number",
+				"contact" => "required|min:2",
+				"user_id" => "required|exists:users,id",
+			];
+		};
+		$this->updateRelationArray = ["with_promoter" => "true"];
+		return parent::update($request, $id);
 	}
 
 	/**
@@ -176,9 +134,6 @@ class EventController extends Controller
 	 */
 	public function destroy(Request $request, $id)
 	{
-		return $this->modelDelete(
-			modelId: $id,
-			modelClass: "App\Models\Event",
-		);
+		return parent::destroy($request, $id);
 	}
 }

@@ -18,11 +18,6 @@ class UserController extends Controller
 {
 	protected string $modelClass = "\App\Models\User";
 
-	//store
-
-	protected array $storeRelationArray = ["with_events" => "true"];
-	protected array $updateRelationArray = ["with_events" => "true"];
-
 	/**
 	 * Affiche les utilisateurs
 	 *
@@ -101,6 +96,7 @@ class UserController extends Controller
 			$requestData["picture_path"] = isset($data["picture_path"]) ? $data["picture_path"] : "defaults/user.png";
 			return $requestData;
 		};
+		$this->storeRelationArray = ["with_events" => "true"];
 		return parent::store($request);
 	}
 
@@ -147,6 +143,7 @@ class UserController extends Controller
 
 			return $requestData;
 		};
+		$this->updateRelationArray = ["with_events" => "true"];
 		return parent::update($request, $id);
 	}
 

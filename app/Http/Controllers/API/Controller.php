@@ -55,23 +55,22 @@ class Controller extends BaseController
 
 	public function index(Request $request)
 	{
-		if (($authorisation = Gate::inspect($this->indexAbilityName, $this->modelClass))->allowed()) {
-			$list = call_user_func([$this->modelClass, 'query']);
-
-			$requestData = $request->all();
-			($search = $request->search) ? $list = $this->querySearch($list, $this->indexSearchFieldList, $search) : null;
-			$list = $this->queryFilter($list, $requestData, $this->modelName);
-			$list = $this->queryRelationAdd($list, $requestData, $this->modelName);
-
-			$connectedUser = $request->user();
-			if ($this->indexManualFilter) {
-				$list = ($this->indexManualFilter)($list, $connectedUser);
-			}
-
-			return $this->responseIndexOk($list, $requestData, $this->modelName);
-		} else {
+		if (!($authorisation = Gate::inspect($this->indexAbilityName, $this->modelClass))->allowed()) {
 			return $this->responseError(["auth" => [$authorisation->message()]], 403);
 		}
+		$list = call_user_func([$this->modelClass, 'query']);
+
+		$requestData = $request->all();
+		($search = $request->search) ? $list = $this->querySearch($list, $this->indexSearchFieldList, $search) : null;
+		$list = $this->queryFilter($list, $requestData, $this->modelName);
+		$list = $this->queryRelationAdd($list, $requestData, $this->modelName);
+
+		$connectedUser = $request->user();
+		if ($this->indexManualFilter) {
+			$list = ($this->indexManualFilter)($list, $connectedUser);
+		}
+
+		return $this->responseIndexOk($list, $requestData, $this->modelName);
 	}
 
 	public function show(Request $request, int $id)
