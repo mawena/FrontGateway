@@ -35,6 +35,8 @@ class EventController extends Controller
 	 * @queryParam  entrance									string				Type d'entrée.																 No-example
 	 * @queryParam  entry_price									integer				Prix d'entrée.																 No-example
 	 * @queryParam  contact										string				Contact.																	 No-example
+	 * @queryParam  description									string				Description detaillée.														 No-example
+	 * @queryParam  description_summary							string				Description résumé.															 No-example
 	 * 
 	 * @queryParam  with_promoter								string				Afficher le promoteur.														Example: false
 	 * 
@@ -74,14 +76,14 @@ class EventController extends Controller
 	 * @bodyParam  entrance										string				Type d'entrée.																Example: free
 	 * @bodyParam  entry_price									integer				Prix d'entrée.																Example: null
 	 * @bodyParam  contact										string				Contact.																	Example: +228 90 90 90 90
-	 *
+	 * @bodyParam  description									string				Description detaillée.														Example: description détaillé
+	 * @bodyParam  description_summary							string				Description résumé.															Example: description résumé
 	 * @response 200
 	 */
 	public function store(Request $request)
 	{
 		$this->storeValidationArray = [
 			"name" => "required|min:2",
-			"description" => "nullable",
 			"start_date" => "required|date",
 			"end_date" => "nullable|date",
 			"user_id" => "required|exists:users,id",
@@ -91,6 +93,8 @@ class EventController extends Controller
 			"entrance" => "required|in:free,paid",
 			"entry_price" => "nullable|number",
 			"contact" => "required|min:2",
+			"description" => "nullable",
+			"description_summary" => "required|min:2",
 		];
 		
 		$this->storeBeforeCreateFunction = function ($requestData, $data) use ($request) {
@@ -126,7 +130,6 @@ class EventController extends Controller
 		$this->updateGetValidationArrayFunction = function ($id) {
 			return [
 				"name" => "required|min:2",
-				"description" => "nullable",
 				"start_date" => "required|date",
 				"end_date" => "nullable|date",
 				"user_id" => "required|exists:users,id",
@@ -136,6 +139,8 @@ class EventController extends Controller
 				"entrance" => "required|in:free,paid",
 				"entry_price" => "nullable|number",
 				"contact" => "required|min:2",
+				"description" => "nullable",
+				"description_summary" => "required|min:2",
 			];
 		};
 		$this->updateRelationArray = ["with_promoter" => "true"];
