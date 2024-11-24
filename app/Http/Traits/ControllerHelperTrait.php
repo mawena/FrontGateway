@@ -247,7 +247,7 @@ trait ControllerHelperTrait
 			$imageData = str_replace(' ', '+', $imageData);
 			$imageData = base64_decode($imageData);
 			Storage::disk("public")->put($savePath, $imageData);
-			chmod(Storage::disk("public")->path(""), '0777');
+			// chmod(Storage::disk("public")->path(""), '0777');
 			return $savePath;
 		} catch (Exception $ex) {
 			return false;
