@@ -160,6 +160,7 @@ class EventController extends Controller
 			];
 		};
 		$this->storeManualValidationsFunction = function ($requestData, $model) {
+			dd($model);
 			if (isset($requestData["poster"])) {
 				if (!$this->checkIsBase64Validated($requestData["poster"], ["png"])) {
 					return ["errors" => $this->responseError(["poster" => ["le fichier n'est pas une image valide"]], 400)];
@@ -172,7 +173,9 @@ class EventController extends Controller
 			}
 		};
 		$this->updateBeforeUpdateFunction = function ($model, $requestData, $data) use ($request) {
-			$requestData["poster_path"] = $data["poster_path"];
+			if(isset($requestData["poster"])){
+				$requestData["poster_path"] = $data["poster_path"];
+			}
 			return $requestData;
 		};
 		$this->updateRelationArray = ["with_promoter" => "true"];
