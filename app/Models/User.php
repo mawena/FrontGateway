@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
@@ -64,10 +65,6 @@ class User extends Authenticatable
 		return $data;
 	}
 
-	public function events(): HasMany{
-		return $this->hasMany(Event::class, 'user_id', 'id');
-	}
-
 	public function getProfileFrAttribute()
 	{
 		return [
@@ -75,6 +72,10 @@ class User extends Authenticatable
 			'supervisor' => 'Superviseur',
 			'promoter' => 'Promoteur',
 		][$this->profile];
+	}
+
+	public function promoter(): HasOne{
+		return $this->hasOne(Promoter::class, "user_id", "id");
 	}
 
 	public function getAbilityRulesAttribute()

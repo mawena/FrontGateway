@@ -6,7 +6,8 @@ use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\Controller;
-use Illuminate\Support\Facades\Gate;
+use App\Models\Promoter;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 
 /**
@@ -76,18 +77,30 @@ class UserController extends Controller
 			'email' => 'required|unique:users',
 			"password" => "required|min:8",
 			"activated" => "required|boolean",
-			"profile" => "required|in:super-admin,admin,organiser",
+			"profile" => "required|in:admin,supervisor,promoter",
 			"picture" => "nullable"
 		];
 		$this->storeManualValidationsFunction = function ($requestData) {
-			if (isset($requestData["picture"])) {
-				if (!$this->checkIsBase64Validated($requestData["file"], ["png", "jpeg", "jpg"])) {
-					return ["errors" => $this->responseError(["file" => ["le fichier n'est pas une image valide"]], 400)];
+			if ($requestData["profile"] == "promoter") {
+				$validator = Validator::make($requestData, [
+					"promoter.structure" => "required|min:2",
+					"promoter.phone_number" => "required|min:2",
+					"promoter.birth_date" => "required|date",
+					"promoter.sex" => "required|in:M,F",
+				],);
+				if ($validator->fails()) {
+					return ["errors" => $this->responseError($validator->errors(), 400)];
 				}
-				if ($picture_path = $this->saveImageFromBase64($requestData["file"], "pictures/users/" . Str::slug($requestData["name"]) . ".png")) {
+			}
+
+			if (isset($requestData["picture"])) {
+				if (!$this->checkIsBase64Validated($requestData["picture"], ["png", "jpeg", "jpg"])) {
+					return ["errors" => $this->responseError(["picture" => ["le fichier n'est pas une image valide"]], 400)];
+				}
+				if ($picture_path = $this->saveImageFromBase64($requestData["picture"], "pictures/users/" . Str::slug($requestData["name"]) . ".png")) {
 					return ["data" => ["picture_path" => $picture_path]];
 				} else {
-					return ["errors" => $this->responseError(["file" => ["Une erreur est survenu durant l'insertion"]])];
+					return ["errors" => $this->responseError(["picture" => ["Une erreur est survenu durant l'insertion"]])];
 				}
 			}
 		};
@@ -96,7 +109,14 @@ class UserController extends Controller
 			$requestData["picture_path"] = isset($data["picture_path"]) ? $data["picture_path"] : "defaults/user.png";
 			return $requestData;
 		};
-		$this->storeRelationArray = ["with_events" => "true"];
+		$this->storeBeforeCommitFunction = function ($model, $requestData) {
+			if ($requestData["profile"] == "promoter") {
+				$requestData["promoter"]["user_id"] = $model->id;
+				Promoter::create($requestData["promoter"]);
+			}
+			return $model;
+		};
+		$this->storeRelationArray = ["with_events" => "true", "with_promoter" => "true"];
 		return parent::store($request);
 	}
 
@@ -123,12 +143,36 @@ class UserController extends Controller
 				"email" => "required|unique:users,email," . $id,
 				"password" => "nullable|min:8",
 				"activated" => "required|boolean",
-				"profile" => "required|in:admin,supervisor,organiser",
+				"profile" => "required|in:admin,supervisor,promoter",
 				"picture" => "nullable"
 			];
 		};
-		$this->updateManualValidationsFunction = $this->storeManualValidationsFunction;
-		$this->updateBeforeUpdateFunction = function ($model, $requestData, $data) {
+		$this->updateManualValidationsFunction = function ($requestData, $model) {
+			if ($requestData["profile"] == "promoter") {
+				$validator = Validator::make($requestData, [
+					"promoter.structure" => "required|min:2",
+					"promoter.phone_number" => "required|min:2",
+					"promoter.birth_date" => "required|date",
+					"promoter.sex" => "required|in:M,F",
+					"promoter.user_id" => "required|exists:users,id",
+				],);
+				if ($validator->fails()) {
+					return ["errors" => $this->responseError($validator->errors(), 400)];
+				}
+			}
+
+			if (isset($requestData["picture"])) {
+				if (!$this->checkIsBase64Validated($requestData["picture"], ["png", "jpeg", "jpg"])) {
+					return ["errors" => $this->responseError(["picture" => ["le fichier n'est pas une image valide"]], 400)];
+				}
+				if ($picture_path = $this->saveImageFromBase64($requestData["picture"], "pictures/users/" . Str::slug($requestData["name"]) . ".png")) {
+					return ["data" => ["picture_path" => $picture_path]];
+				} else {
+					return ["errors" => $this->responseError(["picture" => ["Une erreur est survenu durant l'insertion"]])];
+				}
+			}
+		};
+		$this->updateBeforeUpdateFunction = function ($model, $requestData, $data) use ($request) {
 			if (isset($requestData["password"])) {
 				$requestData["password"] = Hash::make($requestData["password"]);
 			} else {
@@ -141,6 +185,14 @@ class UserController extends Controller
 				unset($requestData["picture_path"]);
 			}
 
+			if ($requestData["profile"] == "promoter") {
+				if($model->promoter){
+					$promoter = Promoter::find($model->promoter->id);
+					$promoter->update($requestData["promoter"]);
+				}else{
+					Promoter::create($requestData["promoter"]);
+				}
+			}
 			return $requestData;
 		};
 		$this->updateRelationArray = ["with_events" => "true"];
@@ -194,7 +246,7 @@ class UserController extends Controller
 				$model->tokens()->each(function ($token, $key) {
 					$token->delete();
 				});
-				// return $model;
+				return $model;
 			},
 			authName: "update_password"
 		);

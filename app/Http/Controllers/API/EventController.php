@@ -28,7 +28,7 @@ class EventController extends Controller
 	 * @queryParam  name										string				Nom.																		 No-example
 	 * @queryParam  start_date									string				Date de début.																 No-example
 	 * @queryParam  end_date									string				Date de fin.																 No-example
-	 * @queryParam  user_id										integer				Promoteur.																	 No-example
+	 * @queryParam  promoter_id									integer				Promoteur.																	 No-example
 	 * @queryParam  place										string				Lieu.																		 No-example
 	 * @queryParam  type										string				Type.																		 No-example
 	 * @queryParam  nb_expected									integer				Nombre de personne attendu.													 No-example
@@ -69,7 +69,7 @@ class EventController extends Controller
 	 * @bodyParam  name											string				Nom.																		Example: Hiver Togo
 	 * @bodyParam  start_date									string				Date de début.																Example: 2024-12-01
 	 * @bodyParam  end_date										string				La date de début.															Example: 2024-12-01
-	 * @bodyParam  user_id										integer				Promoteur.																	Example: 1
+	 * @bodyParam  promoter_id									integer				Promoteur.																	Example: 1
 	 * @bodyParam  place										string				Lieu.																		Example: Lomé
 	 * @bodyParam  type											string				Type.																		Example: Dance
 	 * @bodyParam  nb_expected									integer				Nombre de personne attendu.													Example: 45
@@ -87,7 +87,7 @@ class EventController extends Controller
 			"name" => "required|min:2",
 			"start_date" => "required|date",
 			"end_date" => "nullable|date",
-			"user_id" => "required|exists:users,id",
+			"promoter_id" => "required|exists:promoter,id",
 			"place" => "required|min:2",
 			"type" => "required|min:2",
 			"nb_expected" => "required|numeric",
@@ -110,7 +110,7 @@ class EventController extends Controller
 		};
 		$this->storeBeforeCreateFunction = function ($requestData, $data) use ($request) {
 			$requestData["poster_path"] = $data["poster_path"];
-			$requestData["user_id"] = $request->user()->id;
+			$requestData["promoter_id"] = $request->user()->id;
 			return $requestData;
 		};
 		$this->storeRelationArray = ["with_promoter" => "true"];
@@ -126,7 +126,7 @@ class EventController extends Controller
 	 * @bodyParam  name											string				Nom.																		Example: Hiver Togo
 	 * @bodyParam  start_date									string				Date de début.																Example: 2024-12-01
 	 * @bodyParam  end_date										string				La date de début.															Example: 2024-12-01
-	 * @bodyParam  user_id										integer				Promoteur.																	Example: 1
+	 * @bodyParam  promoter_id									integer				Promoteur.																	Example: 1
 	 * @bodyParam  place										string				Lieu.																		Example: Lomé
 	 * @bodyParam  type											string				Type.																		Example: Dance
 	 * @bodyParam  nb_expected									integer				Nombre de personne attendu.													Example: 45
@@ -147,7 +147,7 @@ class EventController extends Controller
 				"name" => "required|min:2",
 				"start_date" => "required|date",
 				"end_date" => "nullable|date",
-				"user_id" => "required|exists:users,id",
+				"promoter_id" => "required|exists:promoter,id",
 				"place" => "required|min:2",
 				"type" => "required|min:2",
 				"nb_expected" => "required|numeric",
@@ -159,10 +159,9 @@ class EventController extends Controller
 				"poster" => "nullable|min:2"
 			];
 		};
-		$this->storeManualValidationsFunction = function ($requestData, $model) {
-			dd($model);
+		$this->updateManualValidationsFunction = function ($requestData, $model) {
 			if (isset($requestData["poster"])) {
-				if (!$this->checkIsBase64Validated($requestData["poster"], ["png"])) {
+				if (!$this->checkIsBase64Validated($requestData["poster"], ["png", "jpeg", "jpg"])) {
 					return ["errors" => $this->responseError(["poster" => ["le fichier n'est pas une image valide"]], 400)];
 				}
 				if ($poster_path = $this->saveImageFromBase64($requestData["poster"], $model->poster_path)) {
