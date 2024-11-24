@@ -501,6 +501,10 @@ paths:
                   type: string
                   description: 'Description résumé.'
                   example: 'description résumé'
+                poster:
+                  type: string
+                  description: Affiche.
+                  example: ...
   '/api/event/{id}':
     get:
       summary: 'Affiche un décor'
@@ -591,6 +595,18 @@ paths:
                   type: string
                   description: Contact.
                   example: '+228 90 90 90 90'
+                description:
+                  type: string
+                  description: 'Description detaillée.'
+                  example: 'description détaillé'
+                description_summary:
+                  type: string
+                  description: 'Description résumé.'
+                  example: 'description résumé'
+                poster:
+                  type: string
+                  description: Affiche.
+                  example: ...
     delete:
       summary: 'Supprime un événement'
       operationId: supprimeUnvnement
@@ -868,15 +884,15 @@ paths:
                 old_password:
                   type: string
                   description: "L'ancien mot de passe de l'utilisateur."
-                  example: placeat
+                  example: sunt
                 new_password:
                   type: string
                   description: "Le nouveau mot de passe de l'utilisateur."
-                  example: quia
+                  example: dolore
                 new_password_confirmation:
                   type: string
                   description: "La confirmation du nouveau mot de passe de l'utilisateur."
-                  example: impedit
+                  example: officia
               required:
                 - old_password
                 - new_password

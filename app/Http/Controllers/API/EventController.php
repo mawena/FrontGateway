@@ -78,6 +78,7 @@ class EventController extends Controller
 	 * @bodyParam  contact										string				Contact.																	Example: +228 90 90 90 90
 	 * @bodyParam  description									string				Description detaillée.														Example: description détaillé
 	 * @bodyParam  description_summary							string				Description résumé.															Example: description résumé
+	 * @bodyParam  poster										string				Affiche.																	Example: ...
 	 * @response 200
 	 */
 	public function store(Request $request)
@@ -95,9 +96,20 @@ class EventController extends Controller
 			"contact" => "required|min:2",
 			"description" => "nullable",
 			"description_summary" => "required|min:2",
+			"poster" => "required|min:2"
 		];
-		
+		$this->storeManualValidationsFunction = function ($requestData) {
+			if (!$this->checkIsBase64Validated($requestData["poster"], ["png", "jpeg", "jpg"])) {
+				return ["errors" => $this->responseError(["poster" => ["le fichier n'est pas une image valide"]], 400)];
+			}
+			if ($poster_path = $this->saveImageFromBase64($requestData["poster"], "pictures/events/" . Str::random(10) . ".png")) {
+				return ["data" => ["poster_path" => $poster_path]];
+			} else {
+				return ["errors" => $this->responseError(["poster" => ["Une erreur est survenu durant l'insertion"]])];
+			}
+		};
 		$this->storeBeforeCreateFunction = function ($requestData, $data) use ($request) {
+			$requestData["poster_path"] = $data["poster_path"];
 			$requestData["user_id"] = $request->user()->id;
 			return $requestData;
 		};
@@ -121,6 +133,9 @@ class EventController extends Controller
 	 * @bodyParam  entrance										string				Type d'entrée.																Example: free
 	 * @bodyParam  entry_price									integer				Prix d'entrée.																Example: null
 	 * @bodyParam  contact										string				Contact.																	Example: +228 90 90 90 90
+	 * @bodyParam  description									string				Description detaillée.														Example: description détaillé
+	 * @bodyParam  description_summary							string				Description résumé.															Example: description résumé
+	 * @bodyParam  poster										string				Affiche.																	Example: ...
 	 *
 	 * @response 200
 	 *
@@ -141,7 +156,24 @@ class EventController extends Controller
 				"contact" => "required|min:2",
 				"description" => "nullable",
 				"description_summary" => "required|min:2",
+				"poster" => "nullable|min:2"
 			];
+		};
+		$this->storeManualValidationsFunction = function ($requestData, $model) {
+			if (isset($requestData["poster"])) {
+				if (!$this->checkIsBase64Validated($requestData["poster"], ["png"])) {
+					return ["errors" => $this->responseError(["poster" => ["le fichier n'est pas une image valide"]], 400)];
+				}
+				if ($poster_path = $this->saveImageFromBase64($requestData["poster"], $model->poster_path)) {
+					return ["data" => ["poster_path" => $poster_path]];
+				} else {
+					return ["errors" => $this->responseError(["poster" => ["Une erreur est survenu durant l'insertion"]])];
+				}
+			}
+		};
+		$this->updateBeforeUpdateFunction = function ($model, $requestData, $data) use ($request) {
+			$requestData["poster_path"] = $data["poster_path"];
+			return $requestData;
 		};
 		$this->updateRelationArray = ["with_promoter" => "true"];
 		return parent::update($request, $id);

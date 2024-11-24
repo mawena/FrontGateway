@@ -1974,7 +1974,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"entry_price\": null,
     \"contact\": \"+228 90 90 90 90\",
     \"description\": \"description détaillé\",
-    \"description_summary\": \"description résumé\"
+    \"description_summary\": \"description résumé\",
+    \"poster\": \"...\"
 }"
 </code></pre></div>
 
@@ -2002,7 +2003,8 @@ let body = {
     "entry_price": null,
     "contact": "+228 90 90 90 90",
     "description": "description détaillé",
-    "description_summary": "description résumé"
+    "description_summary": "description résumé",
+    "poster": "..."
 };
 
 fetch(url, {
@@ -2235,6 +2237,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Description résumé. Example: <code>description résumé</code></p>
         </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>poster</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="poster"                data-endpoint="POSTapi-event"
+               value="..."
+               data-component="body">
+    <br>
+<p>Affiche. Example: <code>...</code></p>
+        </div>
         </form>
 
                     <h2 id="evenements-PUTapi-event--id-">Mettre à jour un événement</h2>
@@ -2265,7 +2278,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"nb_expected\": 45,
     \"entrance\": \"free\",
     \"entry_price\": null,
-    \"contact\": \"+228 90 90 90 90\"
+    \"contact\": \"+228 90 90 90 90\",
+    \"description\": \"description détaillé\",
+    \"description_summary\": \"description résumé\",
+    \"poster\": \"...\"
 }"
 </code></pre></div>
 
@@ -2291,7 +2307,10 @@ let body = {
     "nb_expected": 45,
     "entrance": "free",
     "entry_price": null,
-    "contact": "+228 90 90 90 90"
+    "contact": "+228 90 90 90 90",
+    "description": "description détaillé",
+    "description_summary": "description résumé",
+    "poster": "..."
 };
 
 fetch(url, {
@@ -2513,6 +2532,39 @@ You can check the Dev Tools console for debugging information.</code></pre>
                data-component="body">
     <br>
 <p>Contact. Example: <code>+228 90 90 90 90</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="description"                data-endpoint="PUTapi-event--id-"
+               value="description détaillé"
+               data-component="body">
+    <br>
+<p>Description detaillée. Example: <code>description détaillé</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>description_summary</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="description_summary"                data-endpoint="PUTapi-event--id-"
+               value="description résumé"
+               data-component="body">
+    <br>
+<p>Description résumé. Example: <code>description résumé</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>poster</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="poster"                data-endpoint="PUTapi-event--id-"
+               value="..."
+               data-component="body">
+    <br>
+<p>Affiche. Example: <code>...</code></p>
         </div>
         </form>
 
@@ -3246,9 +3298,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"old_password\": \"placeat\",
-    \"new_password\": \"quia\",
-    \"new_password_confirmation\": \"impedit\"
+    \"old_password\": \"sunt\",
+    \"new_password\": \"dolore\",
+    \"new_password_confirmation\": \"officia\"
 }"
 </code></pre></div>
 
@@ -3265,9 +3317,9 @@ const headers = {
 };
 
 let body = {
-    "old_password": "placeat",
-    "new_password": "quia",
-    "new_password_confirmation": "impedit"
+    "old_password": "sunt",
+    "new_password": "dolore",
+    "new_password_confirmation": "officia"
 };
 
 fetch(url, {
@@ -3374,10 +3426,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="old_password"                data-endpoint="PUTapi-user-update-password"
-               value="placeat"
+               value="sunt"
                data-component="body">
     <br>
-<p>L'ancien mot de passe de l'utilisateur. Example: <code>placeat</code></p>
+<p>L'ancien mot de passe de l'utilisateur. Example: <code>sunt</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>new_password</code></b>&nbsp;&nbsp;
@@ -3385,10 +3437,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="new_password"                data-endpoint="PUTapi-user-update-password"
-               value="quia"
+               value="dolore"
                data-component="body">
     <br>
-<p>Le nouveau mot de passe de l'utilisateur. Example: <code>quia</code></p>
+<p>Le nouveau mot de passe de l'utilisateur. Example: <code>dolore</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>new_password_confirmation</code></b>&nbsp;&nbsp;
@@ -3396,10 +3448,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="new_password_confirmation"                data-endpoint="PUTapi-user-update-password"
-               value="impedit"
+               value="officia"
                data-component="body">
     <br>
-<p>La confirmation du nouveau mot de passe de l'utilisateur. Example: <code>impedit</code></p>
+<p>La confirmation du nouveau mot de passe de l'utilisateur. Example: <code>officia</code></p>
         </div>
         </form>
 

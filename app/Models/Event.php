@@ -26,6 +26,7 @@ class Event extends Model
 		"contact",
 		"description",
 		"description_summary",
+		"poster_path",
 	];
 
 	public function toArray()
