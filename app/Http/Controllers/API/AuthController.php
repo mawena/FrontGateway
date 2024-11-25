@@ -32,9 +32,9 @@ class AuthController extends Controller
 			"password" => 'required'
 		]);
 		if ($validator->fails()) {
-			return $this->responseError($validator->errors(), 400);
+			return $this->responseError($validator->errors()->toArray(), 400);
 		}
-		
+
 		$user = User::where('email', $request->email)->first();
 		if (Hash::check($request->password, $user->password)) {
 			return $this->responseOk([
@@ -42,7 +42,7 @@ class AuthController extends Controller
 				"user" => $user,
 			]);
 		} else {
-			return $this->responseError(["password" => ["password incorrect"]], 400);
+			return $this->responseError(["password" => ["Mot de passe incorrect"]], 400);
 		}
 	}
 

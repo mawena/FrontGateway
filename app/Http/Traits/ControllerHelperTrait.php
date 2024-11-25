@@ -8,6 +8,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Eloquent\RelationNotFoundException;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 trait ControllerHelperTrait
 {
@@ -28,6 +29,29 @@ trait ControllerHelperTrait
 					$requestData[$filter] = ($requestData[$filter] == "true") ? 1 : 0;
 				}
 				$query->where($filter, $requestData[$filter]);
+			}
+		}
+		return $query;
+	}
+	
+	/**
+	 * Permet d'ajouter des filtres sur un objet Eloquent avec in
+	 * @param 	mixed 	$query				L'objet Eloquent
+	 * @param 	mixed 	$requestData		Les données de la requete
+	 * @param 	mixed 	$modelName			Le nom du model
+	 * @return 	mixed
+	 */
+	public function queryFilterIn($query, $requestData, $modelName)
+	{
+		$modelPath = "\App\Models\\$modelName";
+		foreach ($requestData as $filter => $value) {
+			
+			if(Str::startsWith($filter, "in_")){
+				$filter_name = Str::after($filter, "in_");
+				if (in_array($filter_name, Schema::getColumnListing((new $modelPath)->getTable())) && $requestData[$filter]) {
+					$filters = explode('-', $requestData[$filter]);
+					$query->whereIn($filter_name, $filters);
+				}
 			}
 		}
 		return $query;
@@ -98,7 +122,6 @@ trait ControllerHelperTrait
 			if (in_array($value, ["true", "false"])) {
 				$relationData[$filter] = ($value == "true") ? 1 : 0;
 			}
-
 			$filterData = str_replace(">", ".", substr($filter, strlen($prefix)));
 			$filterData = explode('-', $filterData);
 			$relation = $filterData[0];

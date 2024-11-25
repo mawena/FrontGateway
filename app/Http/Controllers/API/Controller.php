@@ -63,6 +63,7 @@ class Controller extends BaseController
 		$requestData = $request->all();
 		($search = $request->search) ? $list = $this->querySearch($list, $this->indexSearchFieldList, $search) : null;
 		$list = $this->queryFilter($list, $requestData, $this->modelName);
+		$list = $this->queryFilterIn($list, $requestData, $this->modelName);
 		$list = $this->queryRelationAdd($list, $requestData, $this->modelName);
 
 		$connectedUser = $request->user();

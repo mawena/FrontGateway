@@ -39,7 +39,7 @@ class Event extends Model
 
 	public function promoter(): BelongsTo
 	{
-		return $this->belongsTo(User::class, 'promoter_id', 'id');
+		return $this->belongsTo(Promoter::class, 'promoter_id', 'id');
 	}
 
 	public function decors(): HasMany{
