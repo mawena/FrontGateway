@@ -87,7 +87,7 @@ class EventController extends Controller
 			"name" => "required|min:2",
 			"start_date" => "required|date",
 			"end_date" => "nullable|date",
-			"promoter_id" => "required|exists:promoter,id",
+			"promoter_id" => "required|exists:promoters,id",
 			"place" => "required|min:2",
 			"type" => "required|min:2",
 			"nb_expected" => "required|numeric",
@@ -147,7 +147,7 @@ class EventController extends Controller
 				"name" => "required|min:2",
 				"start_date" => "required|date",
 				"end_date" => "nullable|date",
-				"promoter_id" => "required|exists:promoter,id",
+				"promoter_id" => "required|exists:promoters,id",
 				"place" => "required|min:2",
 				"type" => "required|min:2",
 				"nb_expected" => "required|numeric",
@@ -167,7 +167,7 @@ class EventController extends Controller
 				if ($poster_path = $this->saveImageFromBase64($requestData["poster"], $model->poster_path)) {
 					return ["data" => ["poster_path" => $poster_path]];
 				} else {
-					return ["errors" => $this->responseError(["poster" => ["Une erreur est survenu durant l'insertion"]])];
+					return ["errors" => ["poster" => ["Une erreur est survenu durant l'insertion"]]];
 				}
 			}
 		};

@@ -14,10 +14,11 @@ return new class extends Migration {
 			$table->id();
 			$table->string('name');
 			$table->string('file_path');
-			$table->text('description')->nullable();
+			$table->date("start_use");
+			$table->date("end_use");
+			$table->foreignId('event_id')->constrained()->cascadeOnDelete();
 			$table->timestamps();
 
-			$table->foreignId('event_id')->constrained()->cascadeOnDelete();
 		});
 	}
 
