@@ -752,18 +752,29 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="query">
     <br>
-<p>Filtrer par nom du decor.</p>
+<p>Nom.</p>
             </div>
                                     <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>file_path</code></b>&nbsp;&nbsp;
+                <b style="line-height: 2;"><code>start_use</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
-                              name="file_path"                data-endpoint="GETapi-decor"
+                              name="start_use"                data-endpoint="GETapi-decor"
                value=""
                data-component="query">
     <br>
-<p>Filtrer par chemin du decor.</p>
+<p>Date début d'utilisation.</p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>end_use</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="end_use"                data-endpoint="GETapi-decor"
+               value=""
+               data-component="query">
+    <br>
+<p>Date fin d'utilisation.</p>
             </div>
                                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>event_id</code></b>&nbsp;&nbsp;
@@ -774,7 +785,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="query">
     <br>
-<p>Filtrer par événement.</p>
+<p>Evenement.</p>
             </div>
                                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>with_event</code></b>&nbsp;&nbsp;
@@ -978,10 +989,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"name\": \"first\",
+    \"name\": \"Base\",
     \"file\": \"...\",
-    \"description\": \"...\",
-    \"event_id\": 1
+    \"start_use\": \"2024-10-01\",
+    \"end_use\": \"2025-01-31\",
+    \"event_id\": \"1\"
 }"
 </code></pre></div>
 
@@ -998,10 +1010,11 @@ const headers = {
 };
 
 let body = {
-    "name": "first",
+    "name": "Base",
     "file": "...",
-    "description": "...",
-    "event_id": 1
+    "start_use": "2024-10-01",
+    "end_use": "2025-01-31",
+    "event_id": "1"
 };
 
 fetch(url, {
@@ -1108,10 +1121,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="POSTapi-decor"
-               value="first"
+               value="Base"
                data-component="body">
     <br>
-<p>Le nom du decor. Example: <code>first</code></p>
+<p>Nom. Example: <code>Base</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>file</code></b>&nbsp;&nbsp;
@@ -1122,29 +1135,40 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="..."
                data-component="body">
     <br>
-<p>Le fichier. Example: <code>...</code></p>
+<p>Le décor. Example: <code>...</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
+            <b style="line-height: 2;"><code>start_use</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
-                              name="description"                data-endpoint="POSTapi-decor"
-               value="..."
+                              name="start_use"                data-endpoint="POSTapi-decor"
+               value="2024-10-01"
                data-component="body">
     <br>
-<p>La description. Example: <code>...</code></p>
+<p>Date début d'utilisation. Example: <code>2024-10-01</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>end_use</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="end_use"                data-endpoint="POSTapi-decor"
+               value="2025-01-31"
+               data-component="body">
+    <br>
+<p>Date fin d'utilisation. Example: <code>2025-01-31</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>event_id</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
+<small>string</small>&nbsp;
 <i>optional</i> &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="event_id"                data-endpoint="POSTapi-decor"
+                <input type="text" style="display: none"
+                              name="event_id"                data-endpoint="POSTapi-decor"
                value="1"
                data-component="body">
     <br>
-<p>L'événement. Example: <code>1</code></p>
+<p>Evenement. Example: <code>1</code></p>
         </div>
         </form>
 
@@ -1167,10 +1191,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"name\": \"first\",
+    \"name\": \"Base\",
     \"file\": \"...\",
-    \"description\": \"...\",
-    \"event_id\": 1
+    \"start_use\": \"2024-10-01\",
+    \"end_use\": \"2025-01-31\",
+    \"event_id\": \"1\"
 }"
 </code></pre></div>
 
@@ -1187,10 +1212,11 @@ const headers = {
 };
 
 let body = {
-    "name": "first",
+    "name": "Base",
     "file": "...",
-    "description": "...",
-    "event_id": 1
+    "start_use": "2024-10-01",
+    "end_use": "2025-01-31",
+    "event_id": "1"
 };
 
 fetch(url, {
@@ -1309,10 +1335,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="PUTapi-decor--id-"
-               value="first"
+               value="Base"
                data-component="body">
     <br>
-<p>Le nom du decor. Example: <code>first</code></p>
+<p>Nom. Example: <code>Base</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>file</code></b>&nbsp;&nbsp;
@@ -1323,29 +1349,40 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="..."
                data-component="body">
     <br>
-<p>Le fichier. Example: <code>...</code></p>
+<p>Le décor. Example: <code>...</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
+            <b style="line-height: 2;"><code>start_use</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
-                              name="description"                data-endpoint="PUTapi-decor--id-"
-               value="..."
+                              name="start_use"                data-endpoint="PUTapi-decor--id-"
+               value="2024-10-01"
                data-component="body">
     <br>
-<p>La description. Example: <code>...</code></p>
+<p>Date début d'utilisation. Example: <code>2024-10-01</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>end_use</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="end_use"                data-endpoint="PUTapi-decor--id-"
+               value="2025-01-31"
+               data-component="body">
+    <br>
+<p>Date fin d'utilisation. Example: <code>2025-01-31</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>event_id</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
+<small>string</small>&nbsp;
 <i>optional</i> &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="event_id"                data-endpoint="PUTapi-decor--id-"
+                <input type="text" style="display: none"
+                              name="event_id"                data-endpoint="PUTapi-decor--id-"
                value="1"
                data-component="body">
     <br>
-<p>L'événement. Example: <code>1</code></p>
+<p>Evenement. Example: <code>1</code></p>
         </div>
         </form>
 
@@ -3298,9 +3335,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"old_password\": \"incidunt\",
-    \"new_password\": \"sint\",
-    \"new_password_confirmation\": \"error\"
+    \"old_password\": \"delectus\",
+    \"new_password\": \"id\",
+    \"new_password_confirmation\": \"cupiditate\"
 }"
 </code></pre></div>
 
@@ -3317,9 +3354,9 @@ const headers = {
 };
 
 let body = {
-    "old_password": "incidunt",
-    "new_password": "sint",
-    "new_password_confirmation": "error"
+    "old_password": "delectus",
+    "new_password": "id",
+    "new_password_confirmation": "cupiditate"
 };
 
 fetch(url, {
@@ -3426,10 +3463,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="old_password"                data-endpoint="PUTapi-user-update-password"
-               value="incidunt"
+               value="delectus"
                data-component="body">
     <br>
-<p>L'ancien mot de passe de l'utilisateur. Example: <code>incidunt</code></p>
+<p>L'ancien mot de passe de l'utilisateur. Example: <code>delectus</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>new_password</code></b>&nbsp;&nbsp;
@@ -3437,10 +3474,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="new_password"                data-endpoint="PUTapi-user-update-password"
-               value="sint"
+               value="id"
                data-component="body">
     <br>
-<p>Le nouveau mot de passe de l'utilisateur. Example: <code>sint</code></p>
+<p>Le nouveau mot de passe de l'utilisateur. Example: <code>id</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>new_password_confirmation</code></b>&nbsp;&nbsp;
@@ -3448,10 +3485,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="new_password_confirmation"                data-endpoint="PUTapi-user-update-password"
-               value="error"
+               value="cupiditate"
                data-component="body">
     <br>
-<p>La confirmation du nouveau mot de passe de l'utilisateur. Example: <code>error</code></p>
+<p>La confirmation du nouveau mot de passe de l'utilisateur. Example: <code>cupiditate</code></p>
         </div>
         </form>
 

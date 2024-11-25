@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "a8b9109a-15a3-4286-a0eb-32a6424a2a6e",
+        "_postman_id": "d6c1191a-7b49-4324-81bd-b80cae8bbefa",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -134,19 +134,25 @@
                                 {
                                     "key": "name",
                                     "value": "",
-                                    "description": "Filtrer par nom du decor.",
+                                    "description": "Nom.",
                                     "disabled": true
                                 },
                                 {
-                                    "key": "file_path",
+                                    "key": "start_use",
                                     "value": "",
-                                    "description": "Filtrer par chemin du decor.",
+                                    "description": "Date d\u00e9but d'utilisation.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "end_use",
+                                    "value": "",
+                                    "description": "Date fin d'utilisation.",
                                     "disabled": true
                                 },
                                 {
                                     "key": "event_id",
                                     "value": "",
-                                    "description": "Filtrer par \u00e9v\u00e9nement.",
+                                    "description": "Evenement.",
                                     "disabled": true
                                 },
                                 {
@@ -162,7 +168,7 @@
                                     "disabled": false
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/decor?name=&file_path=&event_id=&with_event=false&paginate=false"
+                            "raw": "{{baseUrl}}\/api\/decor?name=&start_use=&end_use=&event_id=&with_event=false&paginate=false"
                         },
                         "method": "GET",
                         "header": [
@@ -256,7 +262,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"first\",\"file\":\"...\",\"description\":\"...\",\"event_id\":1}"
+                            "raw": "{\"name\":\"Base\",\"file\":\"...\",\"start_use\":\"2024-10-01\",\"end_use\":\"2025-01-31\",\"event_id\":\"1\"}"
                         },
                         "description": ""
                     },
@@ -299,7 +305,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"first\",\"file\":\"...\",\"description\":\"...\",\"event_id\":1}"
+                            "raw": "{\"name\":\"Base\",\"file\":\"...\",\"start_use\":\"2024-10-01\",\"end_use\":\"2025-01-31\",\"event_id\":\"1\"}"
                         },
                         "description": ""
                     },
@@ -813,7 +819,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"old_password\":\"incidunt\",\"new_password\":\"sint\",\"new_password_confirmation\":\"error\"}"
+                            "raw": "{\"old_password\":\"delectus\",\"new_password\":\"id\",\"new_password_confirmation\":\"cupiditate\"}"
                         },
                         "description": ""
                     },

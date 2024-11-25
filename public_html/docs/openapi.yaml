@@ -79,32 +79,42 @@ paths:
         -
           in: query
           name: name
-          description: 'Filtrer par nom du decor.'
+          description: Nom.
           example: null
           required: false
           schema:
             type: string
-            description: 'Filtrer par nom du decor.'
+            description: Nom.
             example: null
         -
           in: query
-          name: file_path
-          description: 'Filtrer par chemin du decor.'
+          name: start_use
+          description: "Date début d'utilisation."
           example: null
           required: false
           schema:
             type: string
-            description: 'Filtrer par chemin du decor.'
+            description: "Date début d'utilisation."
+            example: null
+        -
+          in: query
+          name: end_use
+          description: "Date fin d'utilisation."
+          example: null
+          required: false
+          schema:
+            type: string
+            description: "Date fin d'utilisation."
             example: null
         -
           in: query
           name: event_id
-          description: 'Filtrer par événement.'
+          description: Evenement.
           example: null
           required: false
           schema:
             type: string
-            description: 'Filtrer par événement.'
+            description: Evenement.
             example: null
         -
           in: query
@@ -162,20 +172,24 @@ paths:
               properties:
                 name:
                   type: string
-                  description: 'Le nom du decor.'
-                  example: first
+                  description: Nom.
+                  example: Base
                 file:
                   type: string
-                  description: 'Le fichier.'
+                  description: 'Le décor.'
                   example: ...
-                description:
+                start_use:
                   type: string
-                  description: 'La description.'
-                  example: ...
+                  description: "Date début d'utilisation."
+                  example: '2024-10-01'
+                end_use:
+                  type: string
+                  description: "Date fin d'utilisation."
+                  example: '2025-01-31'
                 event_id:
-                  type: integer
-                  description: "L'événement."
-                  example: 1
+                  type: string
+                  description: Evenement.
+                  example: '1'
   '/api/decor/{id}':
     get:
       summary: 'Affiche un décor'
@@ -228,20 +242,24 @@ paths:
               properties:
                 name:
                   type: string
-                  description: 'Le nom du decor.'
-                  example: first
+                  description: Nom.
+                  example: Base
                 file:
                   type: string
-                  description: 'Le fichier.'
+                  description: 'Le décor.'
                   example: ...
-                description:
+                start_use:
                   type: string
-                  description: 'La description.'
-                  example: ...
+                  description: "Date début d'utilisation."
+                  example: '2024-10-01'
+                end_use:
+                  type: string
+                  description: "Date fin d'utilisation."
+                  example: '2025-01-31'
                 event_id:
-                  type: integer
-                  description: "L'événement."
-                  example: 1
+                  type: string
+                  description: Evenement.
+                  example: '1'
     delete:
       summary: 'Supprime un decor'
       operationId: supprimeUnDecor
@@ -884,15 +902,15 @@ paths:
                 old_password:
                   type: string
                   description: "L'ancien mot de passe de l'utilisateur."
-                  example: incidunt
+                  example: delectus
                 new_password:
                   type: string
                   description: "Le nouveau mot de passe de l'utilisateur."
-                  example: sint
+                  example: id
                 new_password_confirmation:
                   type: string
                   description: "La confirmation du nouveau mot de passe de l'utilisateur."
-                  example: error
+                  example: cupiditate
               required:
                 - old_password
                 - new_password
