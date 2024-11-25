@@ -8,8 +8,8 @@
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="../docs/css/theme-default.style.css" media="screen">
-    <link rel="stylesheet" href="../docs/css/theme-default.print.css" media="print">
+    <link rel="stylesheet" href="./css/theme-default.style.css" media="screen">
+    <link rel="stylesheet" href="./css/theme-default.print.css" media="print">
 
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
 
@@ -30,9 +30,9 @@
         var useCsrf = Boolean();
         var csrfUrl = "/sanctum/csrf-cookie";
     </script>
-    <script src="../docs/js/tryitout-4.33.0.js"></script>
+    <script src="./js/tryitout-4.33.0.js"></script>
 
-    <script src="../docs/js/theme-default-4.33.0.js"></script>
+    <script src="./js/theme-default-4.33.0.js"></script>
 
 </head>
 
@@ -41,7 +41,7 @@
 <a href="#" id="nav-button">
     <span>
         MENU
-        <img src="../docs/images/navbar.png" alt="navbar-image"/>
+        <img src="./images/navbar.png" alt="navbar-image"/>
     </span>
 </a>
 <div class="tocify-wrapper">
@@ -154,13 +154,13 @@
             </div>
 
     <ul class="toc-footer" id="toc-footer">
-                    <li style="padding-bottom: 5px;"><a href="../docs/collection.json">View Postman collection</a></li>
-                            <li style="padding-bottom: 5px;"><a href="../docs/openapi.yaml">View OpenAPI spec</a></li>
+                    <li style="padding-bottom: 5px;"><a href="./collection.json">View Postman collection</a></li>
+                            <li style="padding-bottom: 5px;"><a href="./openapi.yaml">View OpenAPI spec</a></li>
                 <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: November 24, 2024</li>
+        <li>Last updated: November 25, 2024</li>
     </ul>
 </div>
 
@@ -1663,11 +1663,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>Date de fin.</p>
             </div>
                                     <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>user_id</code></b>&nbsp;&nbsp;
+                <b style="line-height: 2;"><code>promoter_id</code></b>&nbsp;&nbsp;
 <small>integer</small>&nbsp;
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
-               step="any"               name="user_id"                data-endpoint="GETapi-event"
+               step="any"               name="promoter_id"                data-endpoint="GETapi-event"
                value=""
                data-component="query">
     <br>
@@ -1966,7 +1966,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"name\": \"Hiver Togo\",
     \"start_date\": \"2024-12-01\",
     \"end_date\": \"2024-12-01\",
-    \"user_id\": 1,
+    \"promoter_id\": 1,
     \"place\": \"Lomé\",
     \"type\": \"Dance\",
     \"nb_expected\": 45,
@@ -1995,7 +1995,7 @@ let body = {
     "name": "Hiver Togo",
     "start_date": "2024-12-01",
     "end_date": "2024-12-01",
-    "user_id": 1,
+    "promoter_id": 1,
     "place": "Lomé",
     "type": "Dance",
     "nb_expected": 45,
@@ -2139,11 +2139,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>La date de début. Example: <code>2024-12-01</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>user_id</code></b>&nbsp;&nbsp;
+            <b style="line-height: 2;"><code>promoter_id</code></b>&nbsp;&nbsp;
 <small>integer</small>&nbsp;
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
-               step="any"               name="user_id"                data-endpoint="POSTapi-event"
+               step="any"               name="promoter_id"                data-endpoint="POSTapi-event"
                value="1"
                data-component="body">
     <br>
@@ -2272,7 +2272,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"name\": \"Hiver Togo\",
     \"start_date\": \"2024-12-01\",
     \"end_date\": \"2024-12-01\",
-    \"user_id\": 1,
+    \"promoter_id\": 1,
     \"place\": \"Lomé\",
     \"type\": \"Dance\",
     \"nb_expected\": 45,
@@ -2301,7 +2301,7 @@ let body = {
     "name": "Hiver Togo",
     "start_date": "2024-12-01",
     "end_date": "2024-12-01",
-    "user_id": 1,
+    "promoter_id": 1,
     "place": "Lomé",
     "type": "Dance",
     "nb_expected": 45,
@@ -2457,11 +2457,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>La date de début. Example: <code>2024-12-01</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>user_id</code></b>&nbsp;&nbsp;
+            <b style="line-height: 2;"><code>promoter_id</code></b>&nbsp;&nbsp;
 <small>integer</small>&nbsp;
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
-               step="any"               name="user_id"                data-endpoint="PUTapi-event--id-"
+               step="any"               name="promoter_id"                data-endpoint="PUTapi-event--id-"
                value="1"
                data-component="body">
     <br>
@@ -3298,9 +3298,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"old_password\": \"sunt\",
-    \"new_password\": \"dolore\",
-    \"new_password_confirmation\": \"officia\"
+    \"old_password\": \"incidunt\",
+    \"new_password\": \"sint\",
+    \"new_password_confirmation\": \"error\"
 }"
 </code></pre></div>
 
@@ -3317,9 +3317,9 @@ const headers = {
 };
 
 let body = {
-    "old_password": "sunt",
-    "new_password": "dolore",
-    "new_password_confirmation": "officia"
+    "old_password": "incidunt",
+    "new_password": "sint",
+    "new_password_confirmation": "error"
 };
 
 fetch(url, {
@@ -3426,10 +3426,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="old_password"                data-endpoint="PUTapi-user-update-password"
-               value="sunt"
+               value="incidunt"
                data-component="body">
     <br>
-<p>L'ancien mot de passe de l'utilisateur. Example: <code>sunt</code></p>
+<p>L'ancien mot de passe de l'utilisateur. Example: <code>incidunt</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>new_password</code></b>&nbsp;&nbsp;
@@ -3437,10 +3437,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="new_password"                data-endpoint="PUTapi-user-update-password"
-               value="dolore"
+               value="sint"
                data-component="body">
     <br>
-<p>Le nouveau mot de passe de l'utilisateur. Example: <code>dolore</code></p>
+<p>Le nouveau mot de passe de l'utilisateur. Example: <code>sint</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>new_password_confirmation</code></b>&nbsp;&nbsp;
@@ -3448,10 +3448,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="new_password_confirmation"                data-endpoint="PUTapi-user-update-password"
-               value="officia"
+               value="error"
                data-component="body">
     <br>
-<p>La confirmation du nouveau mot de passe de l'utilisateur. Example: <code>officia</code></p>
+<p>La confirmation du nouveau mot de passe de l'utilisateur. Example: <code>error</code></p>
         </div>
         </form>
 

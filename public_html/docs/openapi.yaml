@@ -311,7 +311,7 @@ paths:
             example: null
         -
           in: query
-          name: user_id
+          name: promoter_id
           description: Promoteur.
           example: null
           required: false
@@ -465,7 +465,7 @@ paths:
                   type: string
                   description: 'La date de début.'
                   example: '2024-12-01'
-                user_id:
+                promoter_id:
                   type: integer
                   description: Promoteur.
                   example: 1
@@ -567,7 +567,7 @@ paths:
                   type: string
                   description: 'La date de début.'
                   example: '2024-12-01'
-                user_id:
+                promoter_id:
                   type: integer
                   description: Promoteur.
                   example: 1
@@ -884,15 +884,15 @@ paths:
                 old_password:
                   type: string
                   description: "L'ancien mot de passe de l'utilisateur."
-                  example: sunt
+                  example: incidunt
                 new_password:
                   type: string
                   description: "Le nouveau mot de passe de l'utilisateur."
-                  example: dolore
+                  example: sint
                 new_password_confirmation:
                   type: string
                   description: "La confirmation du nouveau mot de passe de l'utilisateur."
-                  example: officia
+                  example: error
               required:
                 - old_password
                 - new_password
