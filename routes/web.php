@@ -17,9 +17,13 @@ Route::prefix("/")->group(function () {
 		Route::post("login", "login");
 		Route::prefix("/user")->name("user.")->controller(UserController::class)->group(function () {
 			Route::get("/", "index")->name("index");
+			Route::post("/", "store")->name("store");
+			Route::delete("/{id}", "destroy")->name("destroy");
 		});
 		Route::prefix("/promoter")->name("promoter.")->controller(PromoterController::class)->group(function () {
 			Route::get("/", "index")->name("index");
+			Route::post("/", "store")->name("store");
+			Route::delete("/{id}", "destroy")->name("destroy");
 		});
 	});
 });

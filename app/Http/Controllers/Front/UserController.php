@@ -20,4 +20,37 @@ class UserController
 		)->json();
 		return view("pages.user.index", ["users" => $response["data"]]);
 	}
+
+	public function store(Request $request)
+	{
+		$requestData = $request->all();
+		$response = Http::withHeaders([
+			'Authorization' => 'Bearer ' . session('userToken'),
+			'Accept' => 'application/json',
+		])->post(url("/") . "/api/user", $requestData)->json();
+		if ($response["status"] == 201) {
+			return redirect()->route("admin.user.index");
+		} else {
+			dd($response);
+			return redirect()->back()
+				->withInput()
+				->withErrors($response["errors"]);
+		}
+	}
+
+	public function destroy(Request $request, int $id)
+	{
+		$response = Http::withHeaders([
+			'Authorization' => 'Bearer ' . session('userToken'),
+			'Accept' => 'application/json',
+		])->delete(url("/") . "/api/user/" . $id)->json();
+		if ($response["status"] == 200) {
+			return redirect()->route("admin.user.index");
+		} else {
+			dd($response);
+			return redirect()->back()
+				->withInput()
+				->withErrors($response["errors"]);
+		}
+	}
 }

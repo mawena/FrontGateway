@@ -156,7 +156,7 @@ class Controller extends BaseController
 		}
 		$validator = Validator::make($requestData, $validations, $validationsText);
 		if ($validator->fails()) {
-			return $this->responseError($validator->errors(), 400);
+			return $this->responseError($validator->errors()->toArray(), 400);
 		}
 		DB::beginTransaction();
 		$manualValidationsReturn = ($manualValidations) ? $manualValidations($requestData) : null;
@@ -200,7 +200,7 @@ class Controller extends BaseController
 		if ($modelId) {
 			$validator = Validator::make($requestData, $validations, $validationsText);
 			if ($validator->fails()) {
-				return $this->responseError($validator->errors(), 400);
+				return $this->responseError($validator->errors()->toArray(), 400);
 			}
 			$modelClassExployed = explode("\\", $modelClass);
 			$model = call_user_func_array([$modelClass, 'find'], [$modelId]);

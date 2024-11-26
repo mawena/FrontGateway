@@ -89,7 +89,7 @@ class UserController extends Controller
 					"promoter.sex" => "required|in:M,F",
 				],);
 				if ($validator->fails()) {
-					return ["errors" => $this->responseError($validator->errors(), 400)];
+					return ["errors" => $validator->errors()->toArray(), "status" => 400];
 				}
 			}
 
@@ -157,7 +157,7 @@ class UserController extends Controller
 					"promoter.user_id" => "required|exists:users,id",
 				],);
 				if ($validator->fails()) {
-					return ["errors" => $this->responseError($validator->errors(), 400)];
+					return ["errors" => $validator->errors()->toArray(), "status" => 400];
 				}
 			}
 
@@ -186,10 +186,10 @@ class UserController extends Controller
 			}
 
 			if ($requestData["profile"] == "promoter") {
-				if($model->promoter){
+				if ($model->promoter) {
 					$promoter = Promoter::find($model->promoter->id);
 					$promoter->update($requestData["promoter"]);
-				}else{
+				} else {
 					Promoter::create($requestData["promoter"]);
 				}
 			}
