@@ -126,7 +126,7 @@
 						<input type="hidden" value="supervisor" name="profile">
 
 						<div class="form-group text-center">
-							<button class="btn btn-primary" type="submit">Créerssss</button>
+							<button class="btn btn-primary" type="submit">Créer</button>
 						</div>
 
 					</form>
