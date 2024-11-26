@@ -31,7 +31,6 @@ class UserController
 		if ($response["status"] == 201) {
 			return redirect()->route("admin.user.index");
 		} else {
-			dd($response);
 			return redirect()->back()
 				->withInput()
 				->withErrors($response["errors"]);
