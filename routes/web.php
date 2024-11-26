@@ -14,7 +14,8 @@ Route::prefix("/")->group(function () {
 		Route::get("login", function () {
 			return view("Auth.login");
 		})->name("login");
-		Route::post("login", "login");
+		Route::post("login", "login")->name("post.login");
+		Route::delete("logout", "logout")->name("logout");
 		Route::middleware("user-token")->group(function () {
 			Route::prefix("/user")->name("user.")->controller(UserController::class)->group(function () {
 				Route::get("/", "index")->name("index");

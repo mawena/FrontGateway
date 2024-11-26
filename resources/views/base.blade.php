@@ -186,9 +186,16 @@
                                         class="svg-icon"></i></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
-                                <a class="dropdown-item" href="javascript:void(0)"><i data-feather="power"
-                                        class="svg-icon mr-2 ml-1"></i>
-                                    Logout</a>
+                                <form action="{{ route('admin.logout') }}" method="POST"
+									style="display:inline-block;">
+									@csrf
+									@method('DELETE')
+									<button type="submit" class="dropdown-item">
+										<i data-feather="power" class="svg-icon mr-2 ml-1"></i>
+										Deconnexion
+									</button>
+								</form>
+								
                             </div>
                         </li>
                         <!-- ============================================================== -->
