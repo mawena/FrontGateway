@@ -12,12 +12,18 @@ class AuthControler
 		$requestData = $request->all();
 		$response = Http::post(url("/") . "/api/auth/login", $requestData)->json();
 		if ($response["status"] == 200) {
-			session(['userToken'=>$response["data"]["userToken"]]);
+			session(['userToken' => $response["data"]["userToken"]]);
 			return redirect()->route("admin.user.index");
-		}else{
+		} else {
 			return redirect()->back()
 				->withInput()
 				->withErrors($response["errors"]);
 		}
+	}
+
+	public function logout()
+	{
+		session()->forget('userToken');
+		return redirect()->route('admin.login');
 	}
 }
