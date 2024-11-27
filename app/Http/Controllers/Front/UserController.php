@@ -12,13 +12,25 @@ class UserController
 		$response = Http::withHeaders([
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
-		])->get(url("/") . "/api/user"
-		,[
-			"paginate" => "false",
-			"in_profile" => "supervisor"
-		]
+		])->get(
+			url("/") . "/api/user",
+			[
+				"paginate" => "false",
+				"in_profile" => "supervisor"
+			]
 		)->json();
 		return view("pages.user.index", ["users" => $response["data"]]);
+	}
+
+	public function edit(Request $request, $id)
+	{
+		$response = Http::withHeaders([
+			'Authorization' => 'Bearer ' . session('userToken'),
+			'Accept' => 'application/json',
+		])->get(
+			url("/") . "/api/user/" . $id
+		)->json();
+		return view("pages.user.edit", ["users" => $response["data"]]);
 	}
 
 	public function store(Request $request)

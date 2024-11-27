@@ -154,7 +154,6 @@ class UserController extends Controller
 					"promoter.phone_number" => "required|min:2",
 					"promoter.birth_date" => "required|date",
 					"promoter.sex" => "required|in:M,F",
-					"promoter.user_id" => "required|exists:users,id",
 				],);
 				if ($validator->fails()) {
 					return ["errors" => $validator->errors()->toArray(), "status" => 400];

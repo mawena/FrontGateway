@@ -36,7 +36,8 @@
 	<!-- ============================================================== -->
 	<!-- Main wrapper - style you can find in pages.scss -->
 	<!-- ============================================================== -->
-	<div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
+	<div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+		data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
 		<!-- ============================================================== -->
 		<!-- Topbar header - style you can find in pages.scss -->
 		<!-- ============================================================== -->
@@ -73,121 +74,111 @@
 				<!-- End Logo -->
 				<!-- ============================================================== -->
 				<div class="navbar-collapse collapse" id="navbarSupportedContent">
-                    <!-- ============================================================== -->
-                    <!-- toggle and nav items -->
-                    <!-- ============================================================== -->
-                    <ul class="navbar-nav float-left mr-auto ml-3 pl-1">
-                        <!-- Notification -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle pl-md-3 position-relative" href="javascript:void(0)"
-                                id="bell" role="button" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
-                                <span><i data-feather="bell" class="svg-icon"></i></span>
-                                <span class="badge badge-primary notify-no rounded-circle">5</span>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-left mailbox animated bounceInDown">
-                                <ul class="list-style-none">
-                                    <li>
-                                        <div class="message-center notifications position-relative">
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)"
-                                                class="message-item d-flex align-items-center border-bottom px-3 py-2">
-                                                <div class="btn btn-danger rounded-circle btn-circle"><i
-                                                        data-feather="airplay" class="text-white"></i></div>
-                                                <div class="w-75 d-inline-block v-middle pl-2">
-                                                    <h6 class="message-title mb-0 mt-1">Luanch Admin</h6>
-                                                    <span class="font-12 text-nowrap d-block text-muted">Just see
-                                                        the my new
-                                                        admin!</span>
-                                                    <span class="font-12 text-nowrap d-block text-muted">9:30 AM</span>
-                                                </div>
-                                            </a>
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)"
-                                                class="message-item d-flex align-items-center border-bottom px-3 py-2">
-                                                <span class="btn btn-success text-white rounded-circle btn-circle"><i
-                                                        data-feather="calendar" class="text-white"></i></span>
-                                                <div class="w-75 d-inline-block v-middle pl-2">
-                                                    <h6 class="message-title mb-0 mt-1">Event today</h6>
-                                                    <span
-                                                        class="font-12 text-nowrap d-block text-muted text-truncate">Just
-                                                        a reminder that you have event</span>
-                                                    <span class="font-12 text-nowrap d-block text-muted">9:10 AM</span>
-                                                </div>
-                                            </a>
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)"
-                                                class="message-item d-flex align-items-center border-bottom px-3 py-2">
-                                                <span class="btn btn-info rounded-circle btn-circle"><i
-                                                        data-feather="settings" class="text-white"></i></span>
-                                                <div class="w-75 d-inline-block v-middle pl-2">
-                                                    <h6 class="message-title mb-0 mt-1">Settings</h6>
-                                                    <span
-                                                        class="font-12 text-nowrap d-block text-muted text-truncate">You
-                                                        can customize this template
-                                                        as you want</span>
-                                                    <span class="font-12 text-nowrap d-block text-muted">9:08 AM</span>
-                                                </div>
-                                            </a>
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)"
-                                                class="message-item d-flex align-items-center border-bottom px-3 py-2">
-                                                <span class="btn btn-primary rounded-circle btn-circle"><i
-                                                        data-feather="box" class="text-white"></i></span>
-                                                <div class="w-75 d-inline-block v-middle pl-2">
-                                                    <h6 class="message-title mb-0 mt-1">Pavan kumar</h6> <span
-                                                        class="font-12 text-nowrap d-block text-muted">Just
-                                                        see the my admin!</span>
-                                                    <span class="font-12 text-nowrap d-block text-muted">9:02 AM</span>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <a class="nav-link pt-3 text-center text-dark" href="javascript:void(0);">
-                                            <strong>Check all notifications</strong>
-                                            <i class="fa fa-angle-right"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <!-- End Notification -->
-                        <!-- ============================================================== -->
-                        <!-- create new -->
-                        <!-- ============================================================== -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i data-feather="settings" class="svg-icon"></i>
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </li>
-                    </ul>
-                    <!-- ============================================================== -->
-                    <!-- Right side toggle and nav items -->
-                    <!-- ============================================================== -->
-                    <ul class="navbar-nav float-right">
-                        <!-- ============================================================== -->
-                        <!-- User profile and search -->
-                        <!-- ============================================================== -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                                <img src="/assets/images/users/profile-pic.jpg" alt="user" class="rounded-circle"
-                                    width="40">
-                                <span class="ml-2 d-none d-lg-inline-block"><span>Hello,</span> <span
-                                        class="text-dark">Jason Doe</span> <i data-feather="chevron-down"
-                                        class="svg-icon"></i></span>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
-                                <form action="{{ route('admin.logout') }}" method="POST"
-									style="display:inline-block;">
+					<!-- ============================================================== -->
+					<!-- toggle and nav items -->
+					<!-- ============================================================== -->
+					<ul class="navbar-nav float-left mr-auto ml-3 pl-1">
+						<!-- Notification -->
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle pl-md-3 position-relative" href="javascript:void(0)" id="bell"
+								role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<span><i data-feather="bell" class="svg-icon"></i></span>
+								<span class="badge badge-primary notify-no rounded-circle">5</span>
+							</a>
+							<div class="dropdown-menu dropdown-menu-left mailbox animated bounceInDown">
+								<ul class="list-style-none">
+									<li>
+										<div class="message-center notifications position-relative">
+											<!-- Message -->
+											<a href="javascript:void(0)" class="message-item d-flex align-items-center border-bottom px-3 py-2">
+												<div class="btn btn-danger rounded-circle btn-circle"><i data-feather="airplay" class="text-white"></i>
+												</div>
+												<div class="w-75 d-inline-block v-middle pl-2">
+													<h6 class="message-title mb-0 mt-1">Luanch Admin</h6>
+													<span class="font-12 text-nowrap d-block text-muted">Just see
+														the my new
+														admin!</span>
+													<span class="font-12 text-nowrap d-block text-muted">9:30 AM</span>
+												</div>
+											</a>
+											<!-- Message -->
+											<a href="javascript:void(0)" class="message-item d-flex align-items-center border-bottom px-3 py-2">
+												<span class="btn btn-success text-white rounded-circle btn-circle"><i data-feather="calendar"
+														class="text-white"></i></span>
+												<div class="w-75 d-inline-block v-middle pl-2">
+													<h6 class="message-title mb-0 mt-1">Event today</h6>
+													<span class="font-12 text-nowrap d-block text-muted text-truncate">Just
+														a reminder that you have event</span>
+													<span class="font-12 text-nowrap d-block text-muted">9:10 AM</span>
+												</div>
+											</a>
+											<!-- Message -->
+											<a href="javascript:void(0)" class="message-item d-flex align-items-center border-bottom px-3 py-2">
+												<span class="btn btn-info rounded-circle btn-circle"><i data-feather="settings"
+														class="text-white"></i></span>
+												<div class="w-75 d-inline-block v-middle pl-2">
+													<h6 class="message-title mb-0 mt-1">Settings</h6>
+													<span class="font-12 text-nowrap d-block text-muted text-truncate">You
+														can customize this template
+														as you want</span>
+													<span class="font-12 text-nowrap d-block text-muted">9:08 AM</span>
+												</div>
+											</a>
+											<!-- Message -->
+											<a href="javascript:void(0)" class="message-item d-flex align-items-center border-bottom px-3 py-2">
+												<span class="btn btn-primary rounded-circle btn-circle"><i data-feather="box"
+														class="text-white"></i></span>
+												<div class="w-75 d-inline-block v-middle pl-2">
+													<h6 class="message-title mb-0 mt-1">Pavan kumar</h6> <span
+														class="font-12 text-nowrap d-block text-muted">Just
+														see the my admin!</span>
+													<span class="font-12 text-nowrap d-block text-muted">9:02 AM</span>
+												</div>
+											</a>
+										</div>
+									</li>
+									<li>
+										<a class="nav-link pt-3 text-center text-dark" href="javascript:void(0);">
+											<strong>Check all notifications</strong>
+											<i class="fa fa-angle-right"></i>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<!-- End Notification -->
+						<!-- ============================================================== -->
+						<!-- create new -->
+						<!-- ============================================================== -->
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+								aria-haspopup="true" aria-expanded="false">
+								<i data-feather="settings" class="svg-icon"></i>
+							</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" href="#">Action</a>
+								<a class="dropdown-item" href="#">Another action</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="#">Something else here</a>
+							</div>
+						</li>
+					</ul>
+					<!-- ============================================================== -->
+					<!-- Right side toggle and nav items -->
+					<!-- ============================================================== -->
+					<ul class="navbar-nav float-right">
+						<!-- ============================================================== -->
+						<!-- User profile and search -->
+						<!-- ============================================================== -->
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false">
+								<img src="/assets/images/users/profile-pic.jpg" alt="user" class="rounded-circle" width="40">
+								<span class="ml-2 d-none d-lg-inline-block"><span>Hello,</span> <span class="text-dark">Jason Doe</span> <i
+										data-feather="chevron-down" class="svg-icon"></i></span>
+							</a>
+							<div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
+								<form action="{{ route('admin.logout') }}" method="POST" style="display:inline-block;">
 									@csrf
 									@method('DELETE')
 									<button type="submit" class="dropdown-item">
@@ -195,14 +186,14 @@
 										Deconnexion
 									</button>
 								</form>
-								
-                            </div>
-                        </li>
-                        <!-- ============================================================== -->
-                        <!-- User profile and search -->
-                        <!-- ============================================================== -->
-                    </ul>
-                </div>
+
+							</div>
+						</li>
+						<!-- ============================================================== -->
+						<!-- User profile and search -->
+						<!-- ============================================================== -->
+					</ul>
+				</div>
 			</nav>
 		</header>
 		<!-- ============================================================== -->
@@ -217,23 +208,19 @@
 				<!-- Sidebar navigation-->
 				<nav class="sidebar-nav">
 					<ul id="sidebarnav">
-						<li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="/admin/user"
-								aria-expanded="false"><i data-feather="users" class="feather-icon"></i><span
-									class="hide-menu">Utilisateurs</span></a></li>
-						<li class="sidebar-item"> 
-							<a class="sidebar-link sidebar-link" href="/admin/promoter"
-								aria-expanded="false"><i data-feather="users" class="feather-icon"></i><span
-									class="hide-menu">Promoteurs</span></a>
+						<li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="/admin/user" aria-expanded="false"><i
+									data-feather="users" class="feather-icon"></i><span class="hide-menu">Utilisateurs</span></a></li>
+						<li class="sidebar-item">
+							<a class="sidebar-link sidebar-link" href="/admin/promoter" aria-expanded="false"><i data-feather="users"
+									class="feather-icon"></i><span class="hide-menu">Promoteurs</span></a>
 						</li>
-						<li class="sidebar-item"> 
-							<a class="sidebar-link sidebar-link" href="/admin/event"
-								aria-expanded="false"><i data-feather="calendar" class="feather-icon"></i><span
-									class="hide-menu">Evenements</span></a>
+						<li class="sidebar-item">
+							<a class="sidebar-link sidebar-link" href="/admin/event" aria-expanded="false"><i data-feather="calendar"
+									class="feather-icon"></i><span class="hide-menu">Evenements</span></a>
 						</li>
-						<li class="sidebar-item"> 
-							<a class="sidebar-link sidebar-link" href="/admin/event"
-								aria-expanded="false"><i data-feather="image" class="feather-icon"></i><span
-									class="hide-menu">Décors</span></a>
+						<li class="sidebar-item">
+							<a class="sidebar-link sidebar-link" href="/admin/event" aria-expanded="false"><i data-feather="image"
+									class="feather-icon"></i><span class="hide-menu">Décors</span></a>
 						</li>
 					</ul>
 				</nav>
