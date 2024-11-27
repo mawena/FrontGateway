@@ -902,15 +902,15 @@ paths:
                 old_password:
                   type: string
                   description: "L'ancien mot de passe de l'utilisateur."
-                  example: sunt
+                  example: illo
                 new_password:
                   type: string
                   description: "Le nouveau mot de passe de l'utilisateur."
-                  example: similique
+                  example: voluptate
                 new_password_confirmation:
                   type: string
                   description: "La confirmation du nouveau mot de passe de l'utilisateur."
-                  example: quibusdam
+                  example: iusto
               required:
                 - old_password
                 - new_password
