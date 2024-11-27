@@ -8,7 +8,7 @@
         <div class="page-breadcrumb">
             <div class="row">
                 <div class="col-7 align-self-center">
-                    <h2 class="page-title text-truncate text-dark font-weight-medium mb-1">Gestion des Utilisateurs</h2>
+                    <h2 class="page-title text-truncate text-dark font-weight-medium mb-1">Gestion des Evenements</h2>
                 </div>
 
             </div>
@@ -46,53 +46,39 @@
                                 <table id="zero_config" class="table table-striped table-bordered no-wrap">
                                     <thead>
                                         <tr class="text-center">
-                                            <th>Chemin</th>
                                             <th>Nom</th>
                                             <th>Type</th>
-                                            <th>Place</th>
-                                            <th>Contact</th>
+                                            <th>Lieu</th>
                                             <th>Date de debut</th>
                                             <th>Date de fin</th>
                                             <th>Nombre de personne attendues</th>
-                                            <th>Entrée</th>
-                                            <th>Prix d'entrée</th>
-                                            <th>Promoteur</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($users as $user)
+                                        @foreach ($events as $event)
                                             <tr class="py-0 text-center">
-                                                <td class="" style="width: 100px">
-                                                    <img src="{{ asset($user['picture_path']) }}"
-                                                        style="border-radius: 100%; object-fit: cover; width: 50px; height: 50px;"
-                                                        alt="">
-                                                </td>
-                                                <td class="py-4">{{ $user['name'] }}</td>
-                                                <td class="py-4">{{ $user['email'] }}</td>
-                                                <td class="py-4" class="text-bold">{{ $user['profile_fr'] }}</td>
-                                                <td  @class([
-                                                    'py-4 text-bold',
-                                                    'text-danger' => !$user['activated'],
-                                                    'bg-success text-white' => $user['activated'],
-                                                ])>
-												{{ $user["activated"] ? 'COMPTE ACTIF' : 'DESACTIVE' }}
-                                                </td>
-                                                <td class="py-4">{{ $user['created_at_fr'] }}</td>
+                                                
+                                                <td class="py-4">{{ $event['name'] }}</td>
+                                                <td class="py-4">{{ $event['type'] }}</td>
+                                                <td class="py-4">{{ $event['place'] }}</td>
+                                                <td class="py-4">{{ $event['start_date'] }}</td>
+                                                <td class="py-4">{{ $event['end_date'] }}</td>
+                                                <td class="py-4">{{ $event['nb_expected'] }}</td>
                                                 <td class="" style="max-width: 100px">
                                                     {{-- <button type="button" class="btn text-primary"><i class="fa fa-eye"></i></button> --}}
-                                                    <a href="{{ route('admin.user.edit', $user['id']) }}" type="button" class="btn text-warning"><i
+                                                    <a href="{{ route('admin.event.edit', $event['id']) }}" type="button" class="btn text-warning"><i
                                                             class="fa fa-edit"></i></a>
-                                                    <form action="{{ route('admin.user.destroy', $user['id']) }}"
+                                                    <form action="{{ route('admin.event.destroy', $event['id']) }}"
                                                         method="POST" style="display:inline-block;">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn"
-                                                            onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')">
+                                                            onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet évènement ?')">
                                                             <i style="color: red" class="fa fa-trash"></i>
                                                         </button>
                                                     </form>
-                                                    <a href="{{ route('admin.user.destroy', $user['id']) }}" class="btn">
+                                                    <a href="{{ route('admin.event.destroy', $event['id']) }}" class="btn">
                                                     </a>
                                                 </td>
                                             </tr>
