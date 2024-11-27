@@ -29,7 +29,7 @@ class EventController
 		])->get(
 				url("/") . "/api/event/" . $id
 			)->json();
-		return view("pages.event.edit", ["user" => $response["data"]["Event"]]);
+		return view("pages.event.edit", ["event" => $response["data"]["Event"]]);
 	}
 
 	public function update(Request $request, $id)

@@ -38,7 +38,6 @@ Route::prefix("/")->group(function () {
 				Route::delete("/{id}", "destroy")->name("destroy");
 			});
 
-
 			Route::prefix("/event")->name("event.")->controller(EventController::class)->group(function () {
 				Route::get("/", "index")->name("index");
 				Route::post("/", "store")->name("store");

@@ -38,7 +38,7 @@
 									</a>
 								</div>
 
-								<form class="pl-3 pr-3" action="{{ route('admin.decor.update', $decor['id']) }}" method="POST">
+								<form class="pl-3 pr-3" action="{{ route('admin.decor.update', $decor['id']) }}" method="POST" enctype="multipart/form-data">
 									@csrf
 									@method('PUT')
 									<div class="row">

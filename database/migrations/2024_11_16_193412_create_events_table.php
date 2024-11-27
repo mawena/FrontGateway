@@ -13,8 +13,8 @@ return new class extends Migration {
 		Schema::create('events', function (Blueprint $table) {
 			$table->id();
 			$table->string('name');
-			$table->dateTime('start_date');
-			$table->dateTime('end_date');
+			$table->date('start_date');
+			$table->date('end_date');
 			$table->string("place");
 			$table->string("type");
 			$table->integer("nb_expected");
