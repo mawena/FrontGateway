@@ -15,7 +15,8 @@ class Decor extends Model
 	protected $fillable = [
 		"name",
 		"file_path",
-		"description",
+		"start_use",
+		"end_use",
 		"event_id",
 	];
 

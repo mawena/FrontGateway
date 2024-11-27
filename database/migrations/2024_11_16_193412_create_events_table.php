@@ -22,7 +22,7 @@ return new class extends Migration {
 			$table->float("entry_price")->nullable();
 			$table->string("contact");
 			$table->timestamps();
-			$table->foreignId('user_id')->constrained()->cascadeOnDelete();
+			$table->foreignId('promoter_id')->constrained()->cascadeOnDelete();
 			$table->text('description')->nullable();
 			$table->text('description_summary');
 			$table->string("poster_path");
