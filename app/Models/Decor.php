@@ -23,6 +23,8 @@ class Decor extends Model
 	public function toArray()
 	{
 		$data = parent::toArray();
+		$data["start_use_fr"] = Carbon::parse($data["start_use"])->format("d/m/yy");
+		$data["end_use_fr"] = Carbon::parse($data["end_use"])->format("d/m/yy");
 		$data["created_at_fr"] = Carbon::parse($data["created_at"])->format("d/m/yy H:i:s");
 		$data["updated_at_fr"] = Carbon::parse($data["updated_at"])->format("d/m/yy H:i:s");
 		return $data;

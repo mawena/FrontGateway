@@ -72,10 +72,10 @@ class DecorController extends Controller
 			"file" => "required:min:2",
 			"start_use" => "required|date",
 			"end_use" => "required|date",
-			"event_id" => "required|exists:events:events:id",
+			"event_id" => "required|exists:events,id",
 		];
 		$this->storeManualValidationsFunction = function ($requestData) {
-			$event = Event::get($requestData["event_id"]);
+			$event = Event::where("id", $requestData["event_id"])->first();
 			if (!$this->checkIsBase64Validated($requestData["file"], ["png"])) {
 				return ["errors" => $this->responseError(["file" => ["le fichier n'est pas une image valide"]], 400)];
 			}
@@ -113,16 +113,16 @@ class DecorController extends Controller
 		$this->updateGetValidationArrayFunction = function ($id) {
 			return [
 				"name" => "required|min:2",
-				"file" => "required|min:2",
+				"file" => "nullable|min:2",
 				"start_use" => "required|date",
 				"end_use" => "required|date",
-				"event_id" => "required|exists:events:events:id",
+				"event_id" => "required|exists:events,id",
 			];
 		};
 
 		$this->updateManualValidationsFunction = function ($requestData) {
 			if (isset($requestData["file"])) {
-				$event = Event::get($requestData["event_id"]);
+				$event = Event::where("id", $requestData["event_id"])->first();
 				if (!$this->checkIsBase64Validated($requestData["file"], ["png"])) {
 					return ["errors" => $this->responseError(["file" => ["le fichier n'est pas une image valide"]], 400)];
 				}

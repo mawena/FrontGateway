@@ -144,7 +144,7 @@
                                     class="hide-menu">Evenements</span></a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link sidebar-link" href="/admin/event" aria-expanded="false"><i
+                            <a class="sidebar-link sidebar-link" href="/admin/decor" aria-expanded="false"><i
                                     data-feather="image" class="feather-icon"></i><span
                                     class="hide-menu">Décors</span></a>
                         </li>

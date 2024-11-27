@@ -5,39 +5,44 @@ namespace App\Http\Controllers\Front;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
-class PromoterController
+class DecorController
 {
 	public function index()
 	{
-		$response = Http::withHeaders([
+		$decor_response = Http::withHeaders([
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
 		])->get(
-			url("/") . "/api/user",
+			url("/") . "/api/decor",
 			[
 				"paginate" => "false",
-				"in_profile" => "promoter",
-				"with_promoter" => "true"
+				"with_event<promoter<user" => "true",
 			]
 		)->json();
-		return view("pages.promoter.index", ["users" => $response["data"]]);
+		
+		$event_response = Http::withHeaders([
+			'Authorization' => 'Bearer ' . session('userToken'),
+			'Accept' => 'application/json',
+		])->get(
+			url("/") . "/api/event",
+			[
+				"paginate" => "false",
+			]
+		)->json();
+		return view("pages.decor.index", ["decors" => $decor_response["data"], "events" => $event_response["data"]]);
 	}
-
 	public function store(Request $request)
 	{
 		$requestData = $request->all();
-		$requestData["promoter"] = [
-			"structure" => $requestData["promoter_structure"],
-			"phone_number" => $requestData["promoter_phone_number"],
-			"birth_date" => $requestData["promoter_birth_date"],
-			"sex" => $requestData["promoter_sex"],
-		];
+		$image = $request->file('file');
+		$imageContent = file_get_contents($image->getPathname());
+		$requestData['file'] = 'data:' . $image->getMimeType() . ';base64,' . base64_encode($imageContent);
 		$response = Http::withHeaders([
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
-		])->post(url("/") . "/api/user", $requestData)->json();
+		])->post(url("/") . "/api/decor", $requestData)->json();
 		if ($response["status"] == 201) {
-			return redirect()->route("admin.promoter.index");
+			return redirect()->route("admin.decor.index");
 		} else {
 			return redirect()->back()
 				->withInput()
@@ -51,29 +56,32 @@ class PromoterController
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
 		])->get(
-			url("/") . "/api/user/" . $id,
+			url("/") . "/api/decor/" . $id,
 			[
-				"with_promoter" => "true"
+				"with_event" => "true",
 			]
 		)->json();
-		return view("pages.promoter.edit", ["promoter" => $response["data"]["User"]]);
+		$event_response = Http::withHeaders([
+			'Authorization' => 'Bearer ' . session('userToken'),
+			'Accept' => 'application/json',
+		])->get(
+			url("/") . "/api/event",
+			[
+				"paginate" => "false",
+			]
+		)->json();
+		return view("pages.decor.edit", ["decor" => $response["data"]["Decor"], "events" => $event_response["data"]]);
 	}
 
 	public function update(Request $request, $id)
 	{
 		$requestData = $request->all();
-		$requestData["promoter"] = [
-			"structure" => $requestData["promoter_structure"],
-			"phone_number" => $requestData["promoter_phone_number"],
-			"birth_date" => $requestData["promoter_birth_date"],
-			"sex" => $requestData["promoter_sex"],
-		];
 		$response = Http::withHeaders([
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
-		])->put(url("/") . "/api/user/" . $id, $requestData)->json();
+		])->put(url("/") . "/api/decor/" . $id, $requestData)->json();
 		if ($response["status"] == 200) {
-			return redirect()->route("admin.promoter.index");
+			return redirect()->route("admin.decor.index");
 		} else {
 			return redirect()->back()
 				->withInput()
@@ -86,9 +94,9 @@ class PromoterController
 		$response = Http::withHeaders([
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
-		])->delete(url("/") . "/api/user/" . $id)->json();
+		])->delete(url("/") . "/api/decor/" . $id)->json();
 		if ($response["status"] == 200) {
-			return redirect()->route("admin.promoter.index");
+			return redirect()->route("admin.decor.index");
 		} else {
 			return redirect()->back()
 				->withInput()
