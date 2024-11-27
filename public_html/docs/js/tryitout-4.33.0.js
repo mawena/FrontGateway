@@ -231,7 +231,7 @@ async function executeTryOut(endpointId, form) {
     const urlParameters = form.querySelectorAll('input[data-component=url]');
     urlParameters.forEach(el => (path = path.replace(new RegExp(`\\{${el.name}\\??}`), el.value)));
 
-    const headers = Object.fromentrées(Array.from(form.querySelectorAll('input[data-component=header]'))
+    const headers = Object.fromEntries(Array.from(form.querySelectorAll('input[data-component=header]'))
         .map(el => [el.name, el.value]));
 
     // When using FormData, the browser sets the correct content-type + boundary

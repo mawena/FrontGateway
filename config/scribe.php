@@ -9,7 +9,7 @@ return [
     // A short description of your API. Will be included in the docs webpage, Postman collection and OpenAPI spec.
     'description' => '',
 
-    // The base URL displayed in the docs. If this is empty, Scribe will use the value of config('app.url') at generation time.
+    // The base URL displayed in the docs. If this is empty, Scribe will use the value of url("/") at generation time.
     // If you're using `laravel` type, you can set this to a dynamic string, like '{{ config("app.tenant_url") }}' to get a dynamic base URL.
     'base_url' => null,
 

@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "b45c9052-ffab-4d49-8287-95fc408c3be1",
+        "_postman_id": "2ae6c6fa-92d0-4c83-8161-7486c207cdcc",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -819,7 +819,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"old_password\":\"ut\",\"new_password\":\"ipsa\",\"new_password_confirmation\":\"sequi\"}"
+                            "raw": "{\"old_password\":\"sunt\",\"new_password\":\"similique\",\"new_password_confirmation\":\"quibusdam\"}"
                         },
                         "description": ""
                     },
