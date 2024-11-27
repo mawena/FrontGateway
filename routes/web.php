@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Front\AuthControler;
+use App\Http\Controllers\Front\DecorController;
+use App\Http\Controllers\Front\EventController;
 use App\Http\Controllers\Front\PromoterController;
 use App\Http\Controllers\Front\UserController;
 use Illuminate\Support\Facades\Route;
