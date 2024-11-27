@@ -1,4 +1,4 @@
-.rounded-app {
+.rounded-app, .card {
     border-radius: 32px !important;
 }
 
@@ -149,6 +149,7 @@
 
 ::-webkit-scrollbar {
     width: 10px;
+    height:  10px;
 }
 
 /* Track */

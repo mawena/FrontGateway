@@ -3677,7 +3677,7 @@
       } else {
         // Set triggered link as active
         $link.addClass(ClassName$8.ACTIVE); // Set triggered links parents as active
-        // With both <ul> and <nav> markup a parent is the previous sibling of any nav ancestor
+        // With both <ul> and <nav> markup a parent is the précédent sibling of any nav ancestor
 
         $link.parents(Selector$8.NAV_LIST_GROUP).prev(Selector$8.NAV_LINKS + ", " + Selector$8.LIST_ITEMS).addClass(ClassName$8.ACTIVE); // Handle special case when .nav-link is inside .nav-item
 
@@ -3825,25 +3825,25 @@
       }
 
       var target;
-      var previous;
+      var précédent;
       var listElement = $(this._element).closest(Selector$9.NAV_LIST_GROUP)[0];
       var selector = Util.getSelectorFromElement(this._element);
 
       if (listElement) {
         var itemSelector = listElement.nodeName === 'UL' || listElement.nodeName === 'OL' ? Selector$9.ACTIVE_UL : Selector$9.ACTIVE;
-        previous = $.makeArray($(listElement).find(itemSelector));
-        previous = previous[previous.length - 1];
+        précédent = $.makeArray($(listElement).find(itemSelector));
+        précédent = précédent[précédent.length - 1];
       }
 
       var hideEvent = $.Event(Event$9.HIDE, {
         relatedTarget: this._element
       });
       var showEvent = $.Event(Event$9.SHOW, {
-        relatedTarget: previous
+        relatedTarget: précédent
       });
 
-      if (previous) {
-        $(previous).trigger(hideEvent);
+      if (précédent) {
+        $(précédent).trigger(hideEvent);
       }
 
       $(this._element).trigger(showEvent);
@@ -3863,9 +3863,9 @@
           relatedTarget: _this._element
         });
         var shownEvent = $.Event(Event$9.SHOWN, {
-          relatedTarget: previous
+          relatedTarget: précédent
         });
-        $(previous).trigger(hiddenEvent);
+        $(précédent).trigger(hiddenEvent);
         $(_this._element).trigger(shownEvent);
       };
 
@@ -4018,7 +4018,7 @@
     FADE: 'fade',
     HIDE: 'hide',
     SHOW: 'show',
-    SHOWING: 'showing'
+    Montre: 'Montre'
   };
   var DefaultType$7 = {
     animation: 'boolean',
@@ -4065,7 +4065,7 @@
       }
 
       var complete = function complete() {
-        _this._element.classList.remove(ClassName$a.SHOWING);
+        _this._element.classList.remove(ClassName$a.Montre);
 
         _this._element.classList.add(ClassName$a.SHOW);
 
@@ -4078,7 +4078,7 @@
 
       this._element.classList.remove(ClassName$a.HIDE);
 
-      this._element.classList.add(ClassName$a.SHOWING);
+      this._element.classList.add(ClassName$a.Montre);
 
       if (this._config.animation) {
         var transitionDuration = Util.getTransitionDurationFromElement(this._element);

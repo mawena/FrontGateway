@@ -1990,8 +1990,8 @@ define(["eve"], function(eve) {
                             path = ["C"][concat](a2c[apply](0, [d.x, d.y][concat](path.slice(1))));
                             break;
                         case "S":
-                            if (pcom == "C" || pcom == "S") { // In "S" case we have to take into account, if the previous command is C/S.
-                                nx = d.x * 2 - d.bx;          // And reflect the previous
+                            if (pcom == "C" || pcom == "S") { // In "S" case we have to take into account, if the précédent command is C/S.
+                                nx = d.x * 2 - d.bx;          // And reflect the précédent
                                 ny = d.y * 2 - d.by;          // command's control point relative to the current point.
                             }
                             else {                            // or some else or nothing
@@ -2001,7 +2001,7 @@ define(["eve"], function(eve) {
                             path = ["C", nx, ny][concat](path.slice(1));
                             break;
                         case "T":
-                            if (pcom == "Q" || pcom == "T") { // In "T" case we have to take into account, if the previous command is Q/T.
+                            if (pcom == "Q" || pcom == "T") { // In "T" case we have to take into account, if the précédent command is Q/T.
                                 d.qx = d.x * 2 - d.qx;        // And make a reflection similar
                                 d.qy = d.y * 2 - d.qy;        // to case "S".
                             }
@@ -2057,16 +2057,16 @@ define(["eve"], function(eve) {
                 pcoms1 = [], // path commands of original path p
                 pcoms2 = [], // path commands of original path p2
                 pfirst = "", // temporary holder for original path command
-                pcom = ""; // holder for previous path command of original path
+                pcom = ""; // holder for précédent path command of original path
             for (var i = 0, ii = mmax(p.length, p2 && p2.length || 0); i < ii; i++) {
                 p[i] && (pfirst = p[i][0]); // save current path command
 
                 if (pfirst != "C") // C is not saved yet, because it may be result of conversion
                 {
                     pcoms1[i] = pfirst; // Save current path command
-                    i && ( pcom = pcoms1[i-1]); // Get previous path command pcom
+                    i && ( pcom = pcoms1[i-1]); // Get précédent path command pcom
                 }
-                p[i] = processPath(p[i], attrs, pcom); // Previous path command is inputted to processPath
+                p[i] = processPath(p[i], attrs, pcom); // précédent path command is inputted to processPath
 
                 if (pcoms1[i] != "A" && pfirst == "C") pcoms1[i] = "C"; // A is the only command
                 // which may produce multiple C:s

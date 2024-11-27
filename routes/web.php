@@ -24,6 +24,8 @@ Route::prefix("/")->group(function () {
 			Route::prefix("/user")->name("user.")->controller(UserController::class)->group(function () {
 				Route::get("/", "index")->name("index");
 				Route::post("/", "store")->name("store");
+				Route::get("/edit/{id}", "edit")->name("edit");
+				Route::put("/{id}", "update")->name("update");
 				Route::delete("/{id}", "destroy")->name("destroy");
 			});
 			Route::prefix("/promoter")->name("promoter.")->controller(PromoterController::class)->group(function () {

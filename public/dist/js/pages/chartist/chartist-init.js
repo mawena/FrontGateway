@@ -300,7 +300,7 @@ chart.on('draw', function(data) {
       }
     };
 
-    // If this was not the first slice, we need to time the animation so that it uses the end sync event of the previous animation
+    // If this was not the first slice, we need to time the animation so that it uses the end sync event of the précédent animation
     if(data.index !== 0) {
       animationDefinition['stroke-dashoffset'].begin = 'anim' + (data.index - 1) + '.end';
     }

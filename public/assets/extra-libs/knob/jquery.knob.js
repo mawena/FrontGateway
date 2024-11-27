@@ -69,7 +69,7 @@
         this.t = 0; // touches index
         this.isInit = false;
         this.fgColor = null; // main color
-        this.pColor = null; // previous color
+        this.pColor = null; // précédent color
         this.dH = null; // draw hook
         this.cH = null; // change hook
         this.eH = null; // cancel hook
@@ -112,7 +112,7 @@
                     width: this.$.data('width') || 200,
                     height: this.$.data('height') || 200,
                     displayInput: this.$.data('displayinput') == null || this.$.data('displayinput'),
-                    displayPrevious: this.$.data('displayprevious'),
+                    displayprécédent: this.$.data('displayprécédent'),
                     fgColor: this.$.data('fgcolor') || '#87CEEB',
                     inputColor: this.$.data('inputcolor'),
                     font: this.$.data('font') || 'Arial',
@@ -440,7 +440,7 @@
             if (this.o.cancel) this.eH = this.o.cancel;
             if (this.o.release) this.rH = this.o.release;
 
-            if (this.o.displayPrevious) {
+            if (this.o.displayprécédent) {
                 this.pColor = this.h2rgba(this.o.fgColor, "0.4");
                 this.fgColor = this.h2rgba(this.o.fgColor, "0.6");
             } else {
@@ -758,7 +758,7 @@
         this.draw = function () {
             var c = this.g,                 // context
                 a = this.arc(this.cv),      // Arc
-                pa,                         // Previous arc
+                pa,                         // précédent arc
                 r = 1;
 
             c.lineWidth = this.lineWidth;
@@ -771,7 +771,7 @@
                 c.stroke();
             }
 
-            if (this.o.displayPrevious) {
+            if (this.o.displayprécédent) {
                 pa = this.arc(this.v);
                 c.beginPath();
                 c.strokeStyle = this.pColor;

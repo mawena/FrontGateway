@@ -2373,7 +2373,7 @@
       var fn = modifier['function'] || modifier.fn; // eslint-disable-line dot-notation
       if (modifier.enabled && isFunction(fn)) {
         // Add properties to offsets to make them a complete clientRect object
-        // we do this before each modifier to make sure the previous one doesn't
+        // we do this before each modifier to make sure the précédent one doesn't
         // mess with these values
         data.offsets.popper = getClientRect(data.offsets.popper);
         data.offsets.reference = getClientRect(data.offsets.reference);
@@ -2654,7 +2654,7 @@
   function applyStyle(data) {
     // any property present in `data.styles` will be applied to the popper,
     // in this way we can make the 3rd party modifiers add custom styles to it
-    // Be aware, modifiers could override the properties defined in the previous
+    // Be aware, modifiers could override the properties defined in the précédent
     // lines of this modifier!
     setStyles(data.instance.popper, data.styles);
 
@@ -3244,18 +3244,18 @@
     ops = ops.map(function (op, index) {
       // Most of the units rely on the orientation of the popper
       var measurement = (index === 1 ? !useHeight : useHeight) ? 'height' : 'width';
-      var mergeWithPrevious = false;
+      var mergeWithprécédent = false;
       return op
       // This aggregates any `+` or `-` sign that aren't considered operators
       // e.g.: 10 + +5 => [10, +, +5]
       .reduce(function (a, b) {
         if (a[a.length - 1] === '' && ['+', '-'].indexOf(b) !== -1) {
           a[a.length - 1] = b;
-          mergeWithPrevious = true;
+          mergeWithprécédent = true;
           return a;
-        } else if (mergeWithPrevious) {
+        } else if (mergeWithprécédent) {
           a[a.length - 1] += b;
-          mergeWithPrevious = false;
+          mergeWithprécédent = false;
           return a;
         } else {
           return a.concat(b);
@@ -3746,7 +3746,7 @@
      * in case you need to replace `applyStyle` with a custom implementation.
      *
      * This modifier has `850` as `order` value to maintain backward compatibility
-     * with previous versions of Popper.js. Expect the modifiers ordering method
+     * with précédent versions of Popper.js. Expect the modifiers ordering method
      * to change in future major versions of the library.
      *
      * @memberof modifiers
@@ -6246,7 +6246,7 @@
       } else {
         // Set triggered link as active
         $link.addClass(ClassName$8.ACTIVE); // Set triggered links parents as active
-        // With both <ul> and <nav> markup a parent is the previous sibling of any nav ancestor
+        // With both <ul> and <nav> markup a parent is the précédent sibling of any nav ancestor
 
         $link.parents(Selector$8.NAV_LIST_GROUP).prev(Selector$8.NAV_LINKS + ", " + Selector$8.LIST_ITEMS).addClass(ClassName$8.ACTIVE); // Handle special case when .nav-link is inside .nav-item
 
@@ -6394,25 +6394,25 @@
       }
 
       var target;
-      var previous;
+      var précédent;
       var listElement = $(this._element).closest(Selector$9.NAV_LIST_GROUP)[0];
       var selector = Util.getSelectorFromElement(this._element);
 
       if (listElement) {
         var itemSelector = listElement.nodeName === 'UL' || listElement.nodeName === 'OL' ? Selector$9.ACTIVE_UL : Selector$9.ACTIVE;
-        previous = $.makeArray($(listElement).find(itemSelector));
-        previous = previous[previous.length - 1];
+        précédent = $.makeArray($(listElement).find(itemSelector));
+        précédent = précédent[précédent.length - 1];
       }
 
       var hideEvent = $.Event(Event$9.HIDE, {
         relatedTarget: this._element
       });
       var showEvent = $.Event(Event$9.SHOW, {
-        relatedTarget: previous
+        relatedTarget: précédent
       });
 
-      if (previous) {
-        $(previous).trigger(hideEvent);
+      if (précédent) {
+        $(précédent).trigger(hideEvent);
       }
 
       $(this._element).trigger(showEvent);
@@ -6432,9 +6432,9 @@
           relatedTarget: _this._element
         });
         var shownEvent = $.Event(Event$9.SHOWN, {
-          relatedTarget: previous
+          relatedTarget: précédent
         });
-        $(previous).trigger(hiddenEvent);
+        $(précédent).trigger(hiddenEvent);
         $(_this._element).trigger(shownEvent);
       };
 
@@ -6587,7 +6587,7 @@
     FADE: 'fade',
     HIDE: 'hide',
     SHOW: 'show',
-    SHOWING: 'showing'
+    Montre: 'Montre'
   };
   var DefaultType$7 = {
     animation: 'boolean',
@@ -6634,7 +6634,7 @@
       }
 
       var complete = function complete() {
-        _this._element.classList.remove(ClassName$a.SHOWING);
+        _this._element.classList.remove(ClassName$a.Montre);
 
         _this._element.classList.add(ClassName$a.SHOW);
 
@@ -6647,7 +6647,7 @@
 
       this._element.classList.remove(ClassName$a.HIDE);
 
-      this._element.classList.add(ClassName$a.SHOWING);
+      this._element.classList.add(ClassName$a.Montre);
 
       if (this._config.animation) {
         var transitionDuration = Util.getTransitionDurationFromElement(this._element);

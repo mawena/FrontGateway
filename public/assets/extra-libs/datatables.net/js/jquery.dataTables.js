@@ -671,8 +671,8 @@
 		/**
 		 * Change the pagination - provides the internal logic for pagination in a simple API
 		 * function. With this function you can have a DataTables table go to the next,
-		 * previous, first or last pages.
-		 *  @param {string|int} mAction Paging action to take: "first", "previous", "next" or "last"
+		 * précédent, first or last pages.
+		 *  @param {string|int} mAction Paging action to take: "first", "précédent", "next" or "last"
 		 *    or page number to jump to (integer), note that page 0 is the first page.
 		 *  @param {bool} [bRedraw=true] Redraw the table or not
 		 *  @dtopt API
@@ -745,7 +745,7 @@
 		/**
 		 * Sort the table by a particular column
 		 *  @param {int} iCol the data index to sort on. Note that this will not match the
-		 *    'display index' if you have hidden data entries
+		 *    'display index' if you have hidden data entrées
 		 *  @dtopt API
 		 *  @deprecated Since v1.10
 		 *
@@ -933,7 +933,7 @@
 					}
 				}
 
-				/* If the element we are initialising has the same ID as a table which was previously
+				/* If the element we are initialising has the same ID as a table which was précédently
 				 * initialised, but the table nodes don't match (from before) then we destroy the old
 				 * instance by simply deleting it. This is under the assumption that the table has been
 				 * destroyed by other methods. Anyone using non-id selectors will need to do this manually
@@ -1020,7 +1020,7 @@
 				"searchDelay",
 				"rowId",
 				[ "iCookieDuration", "iStateDuration" ], // backwards compat
-				[ "oSearch", "oPreviousSearch" ],
+				[ "oSearch", "oprécédentSearch" ],
 				[ "aoSearchCols", "aoPreSearchCols" ],
 				[ "iDisplayLength", "_iDisplayLength" ]
 			] );
@@ -1747,7 +1747,7 @@
 			// Backwards compatibility - if there is no sEmptyTable given, then use the same as
 			// sZeroRecords - assuming that is given.
 			if ( ! lang.sEmptyTable && zeroRecords &&
-				defaults.sEmptyTable === "No data available in table" )
+				defaults.sEmptyTable === "- Aucune entrée trouvée -" )
 			{
 				_fnMap( lang, lang, 'sZeroRecords', 'sEmptyTable' );
 			}
@@ -3532,7 +3532,7 @@
 		}
 
 		if ( filter ) {
-			_fnFilterComplete( settings, settings.oPreviousSearch );
+			_fnFilterComplete( settings, settings.oprécédentSearch );
 		}
 		else {
 			// No filtering, so we want to just use the display master
@@ -3996,7 +3996,7 @@
 			columns = settings.aoColumns,
 			columnCount = columns.length,
 			features = settings.oFeatures,
-			preSearch = settings.oPreviousSearch,
+			preSearch = settings.oprécédentSearch,
 			preColSearch = settings.aoPreSearchCols,
 			i, data = [], dataProp, column, columnSearch,
 			sort = _fnSortFlatten( settings ),
@@ -4176,7 +4176,7 @@
 		var classes = settings.oClasses;
 		var tableId = settings.sTableId;
 		var language = settings.oLanguage;
-		var previousSearch = settings.oPreviousSearch;
+		var précédentSearch = settings.oprécédentSearch;
 		var features = settings.aanFeatures;
 		var input = '<input type="search" class="'+classes.sFilterInput+'"/>';
 
@@ -4197,12 +4197,12 @@
 			var val = !this.value ? "" : this.value; // mental IE8 fix :-(
 
 			/* Now do the filter */
-			if ( val != previousSearch.sSearch ) {
+			if ( val != précédentSearch.sSearch ) {
 				_fnFilterComplete( settings, {
 					"sSearch": val,
-					"bRegex": previousSearch.bRegex,
-					"bSmart": previousSearch.bSmart ,
-					"bCaseInsensitive": previousSearch.bCaseInsensitive
+					"bRegex": précédentSearch.bRegex,
+					"bSmart": précédentSearch.bSmart ,
+					"bCaseInsensitive": précédentSearch.bCaseInsensitive
 				} );
 
 				// Need to redraw, without resorting
@@ -4218,7 +4218,7 @@
 				0;
 
 		var jqFilter = $('input', filter)
-			.val( previousSearch.sSearch )
+			.val( précédentSearch.sSearch )
 			.attr( 'placeholder', language.sSearchPlaceholder )
 			.on(
 				'keyup.DT search.DT input.DT paste.DT cut.DT',
@@ -4241,7 +4241,7 @@
 				// inside an iframe or frame...
 				try {
 					if ( jqFilter[0] !== document.activeElement ) {
-						jqFilter.val( previousSearch.sSearch );
+						jqFilter.val( précédentSearch.sSearch );
 					}
 				}
 				catch ( e ) {}
@@ -4261,7 +4261,7 @@
 	 */
 	function _fnFilterComplete ( oSettings, oInput, iForce )
 	{
-		var oPrevSearch = oSettings.oPreviousSearch;
+		var oPrevSearch = oSettings.oprécédentSearch;
 		var aoPrevSearch = oSettings.aoPreSearchCols;
 		var fnSaveFilter = function ( oFilter ) {
 			/* Save the filtering values */
@@ -4385,7 +4385,7 @@
 	function _fnFilter( settings, input, force, regex, smart, caseInsensitive )
 	{
 		var rpSearch = _fnFilterCreateSearch( input, regex, smart, caseInsensitive );
-		var prevSearch = settings.oPreviousSearch.sSearch;
+		var prevSearch = settings.oprécédentSearch.sSearch;
 		var displayMaster = settings.aiDisplayMaster;
 		var display, invalidated, i;
 		var filtered = [];
@@ -4924,7 +4924,7 @@
 	/**
 	 * Alter the display settings to change the page
 	 *  @param {object} settings DataTables settings object
-	 *  @param {string|int} action Paging action to take: "first", "previous",
+	 *  @param {string|int} action Paging action to take: "first", "précédent",
 	 *    "next" or "last" or page number to jump to (integer)
 	 *  @param [bool] redraw Automatically draw the update or not
 	 *  @returns {bool} true page has changed, false - no change
@@ -4954,7 +4954,7 @@
 		{
 			start = 0;
 		}
-		else if ( action == "previous" )
+		else if ( action == "précédent" )
 		{
 			start = len >= 0 ?
 				start - len :
@@ -6307,7 +6307,7 @@
 			start:   settings._iDisplayStart,
 			length:  settings._iDisplayLength,
 			order:   $.extend( true, [], settings.aaSorting ),
-			search:  _fnSearchToCamel( settings.oPreviousSearch ),
+			search:  _fnSearchToCamel( settings.oprécédentSearch ),
 			columns: $.map( settings.aoColumns, function ( col, i ) {
 				return {
 					visible: col.bVisible,
@@ -6387,7 +6387,7 @@
 
 			// Search
 			if ( s.search !== undefined ) {
-				$.extend( settings.oPreviousSearch, _fnSearchToHung( s.search ) );
+				$.extend( settings.oprécédentSearch, _fnSearchToHung( s.search ) );
 			}
 
 			// Columns
@@ -7466,7 +7466,7 @@
 	 *  * `string` - An action to take:
 	 *    * `first` - Jump to first page.
 	 *    * `next` - Jump to the next page
-	 *    * `previous` - Jump to previous page
+	 *    * `précédent` - Jump to précédent page
 	 *    * `last` - Jump to the last page.
 	 * @returns {DataTables.Api} this
 	 */
@@ -9040,7 +9040,7 @@
 		if ( input === undefined ) {
 			// get
 			return ctx.length !== 0 ?
-				ctx[0].oPreviousSearch.sSearch :
+				ctx[0].oprécédentSearch.sSearch :
 				undefined;
 		}
 
@@ -9050,7 +9050,7 @@
 				return;
 			}
 
-			_fnFilterComplete( settings, $.extend( {}, settings.oPreviousSearch, {
+			_fnFilterComplete( settings, $.extend( {}, settings.oprécédentSearch, {
 				"sSearch": input+"",
 				"bRegex":  regex === null ? false : regex,
 				"bSmart":  smart === null ? true  : smart,
@@ -9084,7 +9084,7 @@
 					"bCaseInsensitive": caseInsen === null ? true : caseInsen
 				} );
 
-				_fnFilterComplete( settings, settings.oPreviousSearch, 1 );
+				_fnFilterComplete( settings, settings.oprécédentSearch, 1 );
 			} );
 		}
 	);
@@ -10168,7 +10168,7 @@
 
 
 		/**
-		 * This parameter allows you to readily specify the entries in the length drop
+		 * This parameter allows you to readily specify the entrées in the length drop
 		 * down menu that DataTables shows when pagination is enabled. It can be
 		 * either a 1D array of options which will be used for both the displayed
 		 * option and the value, or a 2D array which will use the array in the first
@@ -10433,7 +10433,7 @@
 		 * Enable or disable the display of a 'processing' indicator when the table is
 		 * being processed (e.g. a sort). This is particularly useful for tables with
 		 * large amounts of data where it can take a noticeable amount of time to sort
-		 * the entries.
+		 * the entrées.
 		 *  @type boolean
 		 *  @default false
 		 *
@@ -10619,7 +10619,7 @@
 		 * Enable or disable state saving. When enabled HTML5 `localStorage` will be
 		 * used to save table display information such as pagination information,
 		 * display length, filtering and sorting. As such when the end user reloads
-		 * the page the display display will match what thy had previously set up.
+		 * the page the display display will match what thy had précédently set up.
 		 *
 		 * Due to the use of `localStorage` the default state saving is not supported
 		 * in IE6 or 7. If state saving is required in those browsers, use
@@ -10719,7 +10719,7 @@
 
 		/**
 		 * When rendering large numbers in the information element for the table
-		 * (i.e. "Showing 1 to 10 of 57 entries") DataTables will render large numbers
+		 * (i.e. "Montre 1 to 10 of 57 entrées") DataTables will render large numbers
 		 * to have a comma separator for the 'thousands' units (e.g. 1 million is
 		 * rendered as "1,000,000") to help readability for the end user. This
 		 * function will override the default method DataTables uses.
@@ -11392,26 +11392,26 @@
 
 
 				/**
-				 * Text to use for the 'previous' pagination button (to take the user to
-				 * the previous page).
+				 * Text to use for the 'précédent' pagination button (to take the user to
+				 * the précédent page).
 				 *  @type string
-				 *  @default Previous
+				 *  @default précédent
 				 *
 				 *  @dtopt Language
-				 *  @name DataTable.defaults.language.paginate.previous
+				 *  @name DataTable.defaults.language.paginate.précédent
 				 *
 				 *  @example
 				 *    $(document).ready( function() {
 				 *      $('#example').dataTable( {
 				 *        "language": {
 				 *          "paginate": {
-				 *            "previous": "Previous page"
+				 *            "précédent": "précédent page"
 				 *          }
 				 *        }
 				 *      } );
 				 *    } );
 				 */
-				"sPrevious": "Previous"
+				"sprécédent": "précédent"
 			},
 
 			/**
@@ -11420,7 +11420,7 @@
 			 * parameter - if it is not given, the value of `zeroRecords` will be used
 			 * instead (either the default or given value).
 			 *  @type string
-			 *  @default No data available in table
+			 *  @default - Aucune entrée trouvée -
 			 *
 			 *  @dtopt Language
 			 *  @name DataTable.defaults.language.emptyTable
@@ -11429,12 +11429,12 @@
 			 *    $(document).ready( function() {
 			 *      $('#example').dataTable( {
 			 *        "language": {
-			 *          "emptyTable": "No data available in table"
+			 *          "emptyTable": "- Aucune entrée trouvée -"
 			 *        }
 			 *      } );
 			 *    } );
 			 */
-			"sEmptyTable": "No data available in table",
+			"sEmptyTable": "- Aucune entrée trouvée -",
 
 
 			/**
@@ -11452,7 +11452,7 @@
 			 * * `\_PAGES\_` - Total number of pages of data in the table
 			 *
 			 *  @type string
-			 *  @default Showing _START_ to _END_ of _TOTAL_ entries
+			 *  @default Montre _START_ to _END_ of _TOTAL_ entrées
 			 *
 			 *  @dtopt Language
 			 *  @name DataTable.defaults.language.info
@@ -11461,19 +11461,19 @@
 			 *    $(document).ready( function() {
 			 *      $('#example').dataTable( {
 			 *        "language": {
-			 *          "info": "Showing page _PAGE_ of _PAGES_"
+			 *          "info": "Montre page _PAGE_ of _PAGES_"
 			 *        }
 			 *      } );
 			 *    } );
 			 */
-			"sInfo": "Showing _START_ to _END_ of _TOTAL_ entries",
+			"sInfo": "Montre _START_ to _END_ of _TOTAL_ entrées",
 
 
 			/**
 			 * Display information string for when the table is empty. Typically the
 			 * format of this string should match `info`.
 			 *  @type string
-			 *  @default Showing 0 to 0 of 0 entries
+			 *  @default Montre 0 to 0 of 0 entrées
 			 *
 			 *  @dtopt Language
 			 *  @name DataTable.defaults.language.infoEmpty
@@ -11482,12 +11482,12 @@
 			 *    $(document).ready( function() {
 			 *      $('#example').dataTable( {
 			 *        "language": {
-			 *          "infoEmpty": "No entries to show"
+			 *          "infoEmpty": "No entrées to show"
 			 *        }
 			 *      } );
 			 *    } );
 			 */
-			"sInfoEmpty": "Showing 0 to 0 of 0 entries",
+			"sInfoEmpty": "Montre 0 to 0 of 0 entrées",
 
 
 			/**
@@ -11495,7 +11495,7 @@
 			 * to the information (`info`) to give an idea of how strong the filtering
 			 * is. The variable _MAX_ is dynamically updated.
 			 *  @type string
-			 *  @default (filtered from _MAX_ total entries)
+			 *  @default (filtered from _MAX_ total entrées)
 			 *
 			 *  @dtopt Language
 			 *  @name DataTable.defaults.language.infoFiltered
@@ -11509,7 +11509,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sInfoFiltered": "(filtered from _MAX_ total entries)",
+			"sInfoFiltered": "(filtered from _MAX_ total entrées)",
 
 
 			/**
@@ -11595,7 +11595,7 @@
 			 * with a default select list of 10, 25, 50 and 100, and can be replaced
 			 * with a custom select box if required.
 			 *  @type string
-			 *  @default Show _MENU_ entries
+			 *  @default Show _MENU_ entrées
 			 *
 			 *  @dtopt Language
 			 *  @name DataTable.defaults.language.lengthMenu
@@ -11627,7 +11627,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sLengthMenu": "Show _MENU_ entries",
+			"sLengthMenu": "Show _MENU_ entrées",
 
 
 			/**
@@ -11912,10 +11912,10 @@
 		 * display for pagination control:
 		 *
 		 * * `numbers` - Page number buttons only
-		 * * `simple` - 'Previous' and 'Next' buttons only
-		 * * 'simple_numbers` - 'Previous' and 'Next' buttons, plus page numbers
-		 * * `full` - 'First', 'Previous', 'Next' and 'Last' buttons
-		 * * `full_numbers` - 'First', 'Previous', 'Next' and 'Last' buttons, plus page numbers
+		 * * `simple` - 'précédent' and 'Next' buttons only
+		 * * 'simple_numbers` - 'précédent' and 'Next' buttons, plus page numbers
+		 * * `full` - 'First', 'précédent', 'Next' and 'Last' buttons
+		 * * `full_numbers` - 'First', 'précédent', 'Next' and 'Last' buttons, plus page numbers
 		 * * `first_last_numbers` - 'First' and 'Last' buttons, plus page numbers
 		 *
 		 * Further methods can be added using {@link DataTable.ext.oPagination}.
@@ -12984,7 +12984,7 @@
 			"bFilter": null,
 
 			/**
-			 * Table information element (the 'Showing x of y records' div) enable
+			 * Table information element (the 'Montre x of y records' div) enable
 			 * flag.
 			 * Note that this parameter will be set by the initialisation routine. To
 			 * set a default use {@link DataTable.defaults}.
@@ -13246,7 +13246,7 @@
 		 *  @namespace
 		 *  @extends DataTable.models.oSearch
 		 */
-		"oPreviousSearch": {},
+		"oprécédentSearch": {},
 
 		/**
 		 * Store the applied search for each column - see
@@ -14087,7 +14087,7 @@
 		 *
 		 * * `first` - Jump to first page when activated
 		 * * `last` - Jump to last page when activated
-		 * * `previous` - Show previous page when activated
+		 * * `précédent` - Show précédent page when activated
 		 * * `next` - Show next page when activated
 		 * * `{int}` - Show page of the index given
 		 * * `{array}` - A nested array containing the above elements to add a
@@ -14103,9 +14103,9 @@
 		 *  @default {}
 		 *
 		 *  @example
-		 *    // Show previous, next and current page buttons only
+		 *    // Show précédent, next and current page buttons only
 		 *    $.fn.dataTableExt.oPagination.current = function ( page, pages ) {
-		 *      return [ 'previous', page, 'next' ];
+		 *      return [ 'précédent', page, 'next' ];
 		 *    };
 		 */
 		pager: {},
@@ -14486,11 +14486,11 @@
 
 	$.extend( extPagination, {
 		simple: function ( page, pages ) {
-			return [ 'previous', 'next' ];
+			return [ 'précédent', 'next' ];
 		},
 
 		full: function ( page, pages ) {
-			return [  'first', 'previous', 'next', 'last' ];
+			return [  'first', 'précédent', 'next', 'last' ];
 		},
 
 		numbers: function ( page, pages ) {
@@ -14498,11 +14498,11 @@
 		},
 
 		simple_numbers: function ( page, pages ) {
-			return [ 'previous', _numbers(page, pages), 'next' ];
+			return [ 'précédent', _numbers(page, pages), 'next' ];
 		},
 
 		full_numbers: function ( page, pages ) {
-			return [ 'first', 'previous', _numbers(page, pages), 'next', 'last' ];
+			return [ 'first', 'précédent', _numbers(page, pages), 'next', 'last' ];
 		},
 
 		first_last_numbers: function (page, pages) {
@@ -14554,8 +14554,8 @@
 										'' : ' '+classes.sPageButtonDisabled);
 									break;
 
-								case 'previous':
-									btnDisplay = lang.sPrevious;
+								case 'précédent':
+									btnDisplay = lang.sprécédent;
 									btnClass = button + (page > 0 ?
 										'' : ' '+classes.sPageButtonDisabled);
 									break;
@@ -15301,5 +15301,5 @@
 */
 (function(b){"function"===typeof define&&define.amd?define(["jquery","datatables.net"],function(a){return b(a,window,document)}):"object"===typeof exports?module.exports=function(a,d){a||(a=window);if(!d||!d.fn.dataTable)d=require("datatables.net")(a,d).$;return b(d,a,a.document)}:b(jQuery,window,document)})(function(b,a,d,m){var f=b.fn.dataTable;b.extend(!0,f.defaults,{dom:"<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>><'row'<'col-sm-12'tr>><'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
 renderer:"bootstrap"});b.extend(f.ext.classes,{sWrapper:"dataTables_wrapper container-fluid dt-bootstrap4",sFilterInput:"form-control form-control-sm",sLengthSelect:"form-control form-control-sm",sProcessing:"dataTables_processing card",sPageButton:"paginate_button page-item"});f.ext.renderer.pageButton.bootstrap=function(a,h,r,s,j,n){var o=new f.Api(a),t=a.oClasses,k=a.oLanguage.oPaginate,u=a.oLanguage.oAria.paginate||{},e,g,p=0,q=function(d,f){var l,h,i,c,m=function(a){a.preventDefault();!b(a.currentTarget).hasClass("disabled")&&
-o.page()!=a.data.action&&o.page(a.data.action).draw("page")};l=0;for(h=f.length;l<h;l++)if(c=f[l],b.isArray(c))q(d,c);else{g=e="";switch(c){case "ellipsis":e="&#x2026;";g="disabled";break;case "first":e=k.sFirst;g=c+(0<j?"":" disabled");break;case "previous":e=k.sPrevious;g=c+(0<j?"":" disabled");break;case "next":e=k.sNext;g=c+(j<n-1?"":" disabled");break;case "last":e=k.sLast;g=c+(j<n-1?"":" disabled");break;default:e=c+1,g=j===c?"active":""}e&&(i=b("<li>",{"class":t.sPageButton+" "+g,id:0===r&&
+o.page()!=a.data.action&&o.page(a.data.action).draw("page")};l=0;for(h=f.length;l<h;l++)if(c=f[l],b.isArray(c))q(d,c);else{g=e="";switch(c){case "ellipsis":e="&#x2026;";g="disabled";break;case "first":e=k.sFirst;g=c+(0<j?"":" disabled");break;case "précédent":e=k.sprécédent;g=c+(0<j?"":" disabled");break;case "next":e=k.sNext;g=c+(j<n-1?"":" disabled");break;case "last":e=k.sLast;g=c+(j<n-1?"":" disabled");break;default:e=c+1,g=j===c?"active":""}e&&(i=b("<li>",{"class":t.sPageButton+" "+g,id:0===r&&
 "string"===typeof c?a.sTableId+"_"+c:null}).append(b("<a>",{href:"#","aria-controls":a.sTableId,"aria-label":u[c],"data-dt-idx":p,tabindex:a.iTabIndex,"class":"page-link"}).html(e)).appendTo(d),a.oApi._fnBindAction(i,{action:c},m),p++)}},i;try{i=b(h).find(d.activeElement).data("dt-idx")}catch(v){}q(b(h).empty().html('<ul class="pagination"/>').children("ul"),s);i!==m&&b(h).find("[data-dt-idx="+i+"]").focus()};return f});
