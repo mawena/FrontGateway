@@ -14,11 +14,10 @@ class AuthControler
 		if ($response["status"] == 200) {
 			session(['userToken' => $response["data"]["userToken"]]);
 			return redirect()->route("admin.user.index");
-		} else {
-			return redirect()->back()
-				->withInput()
-				->withErrors($response["errors"]);
 		}
+		return redirect()->back()
+			->withInput()
+			->withErrors($response["errors"]);
 	}
 
 	public function logout()

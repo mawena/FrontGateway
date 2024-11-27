@@ -10,9 +10,10 @@
 	<meta name="author" content="">
 	<!-- Favicon icon -->
 	<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon.png">
-	<title>Adminmart Template - The Ultimate Multipurpose admin template</title>
+	<title>{{ config('app.name') }}</title>
 	<!-- Custom CSS -->
-	<link href="/dist/css/style.min.css" rel="stylesheet">
+	<link href="{{ asset('dist/css/style.min.css') }}" rel="stylesheet">
+	<link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet">
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
@@ -39,17 +40,15 @@
 		<!-- Login box.scss -->
 		<!-- ============================================================== -->
 		<div class="auth-wrapper d-flex no-block justify-content-center align-items-center position-relative"
-			style="background:url(/assets/images/big/auth-bg.jpg) no-repeat center center;">
-			<div class="auth-box row">
-				<div class="col-lg-7 col-md-5 modal-bg-img" style="background-image: url(/assets/images/big/3.jpg);">
-				</div>
-				<div class="col-lg-5 col-md-7 bg-white">
+			style="background:url(/assets/images/big/auth-bg.jpg) no-repeat center center; background-size: cover">
+			<div class="auth-box shadow-none">
+				<div class="col-lg-12 mx-auto py-2 rounded-app col-md-12 bg-white" style="max-width: 400px">
 					<div class="p-3">
 						<div class="text-center">
-							<img src="/assets/images/big/icon.png" alt="wrapkit">
+							<img src="{{ asset('assets/images/logo-icon.png') }}" alt="wrapkit">
 						</div>
-						<h2 class="mt-3 text-center">Connexion</h2>
-						<p class="text-center">Entrez vôtre email et vôtre mot de passe pour vous connecter.</p>
+						<h2 class="mt-3 text-center text-dark">Connexion</h2>
+						<p class="text-center py-2">Entrez vôtre email et vôtre mot de passe pour vous connecter.</p>
 						<form class="mt-4" action="/admin/login" method="POST">
 							@csrf
 							<div class="row">
@@ -73,8 +72,8 @@
 											@enderror
 									</div>
 								</div>
-								<div class="col-lg-12 text-center">
-									<button type="submit" class="btn btn-block btn-dark">Sign In</button>
+								<div class="col-lg-12 mt-4 text-center">
+									<button type="submit" class="btn btn-block btn-dark">Se connecter</button>
 								</div>
 							</div>
 						</form>
