@@ -19,7 +19,7 @@ class DecorController
 				"with_event<promoter<user" => "true",
 			]
 		)->json();
-		
+
 		$event_response = Http::withHeaders([
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
@@ -76,6 +76,11 @@ class DecorController
 	public function update(Request $request, $id)
 	{
 		$requestData = $request->all();
+		if ($requestData["poster"]) {
+			$image = $request->file('file');
+			$imageContent = file_get_contents($image->getPathname());
+			$requestData['file'] = 'data:' . $image->getMimeType() . ';base64,' . base64_encode($imageContent);
+		}
 		$response = Http::withHeaders([
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
