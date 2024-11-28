@@ -73,7 +73,7 @@
                                                 </td>
                                                 <td class="py-4">{{ $user['created_at_fr'] }}</td>
                                                 <td style="max-width: 100px">
-                                                    {{-- <button type="button" class="btn text-primary"><i class="fa fa-eye"></i></button> --}}
+                                                    <a href="{{ route('admin.promoter.show', $user['id']) }}" class="btn text-primary"><i class="fa fa-eye"></i></a>
                                                     <a href="{{ route('admin.promoter.edit', $user['id']) }}"
                                                         class="btn text-warning"><i class="fa fa-edit"></i></a>
                                                     <form action="{{ route('admin.promoter.destroy', $user['id']) }}"

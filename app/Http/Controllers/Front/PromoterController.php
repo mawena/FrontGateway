@@ -45,6 +45,20 @@ class PromoterController
 		}
 	}
 
+	public function show(Request $request, $id)
+	{
+		$response = Http::withHeaders([
+			'Authorization' => 'Bearer ' . session('userToken'),
+			'Accept' => 'application/json',
+		])->get(
+			config('app.url') . "/api/user/" . $id,
+			[
+				"with_promoter" => "true"
+			]
+		)->json();
+		return view("pages.promoter.show", ["promoter" => $response["data"]["User"]]);
+	}
+
 	public function edit(Request $request, $id)
 	{
 		$response = Http::withHeaders([
