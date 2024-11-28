@@ -35,7 +35,7 @@ class EventController
 	public function update(Request $request, $id)
 	{
 		$requestData = $request->all();
-		if ($requestData["poster"]) {
+		if (isset($requestData["poster"])) {
 			$image = $request->file('poster');
 			$imageContent = file_get_contents($image->getPathname());
 			$requestData['poster'] = 'data:' . $image->getMimeType() . ';base64,' . base64_encode($imageContent);
@@ -56,7 +56,7 @@ class EventController
 	public function store(Request $request)
 	{
 		$requestData = $request->all();
-		if ($requestData["poster"]) {
+		if (isset($requestData["poster"])) {
 			$image = $request->file('poster');
 			$imageContent = file_get_contents($image->getPathname());
 			$requestData['poster'] = 'data:' . $image->getMimeType() . ';base64,' . base64_encode($imageContent);

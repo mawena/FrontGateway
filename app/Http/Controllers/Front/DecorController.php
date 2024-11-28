@@ -76,7 +76,7 @@ class DecorController
 	public function update(Request $request, $id)
 	{
 		$requestData = $request->all();
-		if ($requestData["poster"]) {
+		if (isset($requestData["poster"])) {
 			$image = $request->file('file');
 			$imageContent = file_get_contents($image->getPathname());
 			$requestData['file'] = 'data:' . $image->getMimeType() . ';base64,' . base64_encode($imageContent);
