@@ -52,7 +52,6 @@
                                             <th>Structure</th>
                                             <th>Tel</th>
                                             <th>Sexe</th>
-                                            <th>Type</th>
                                             <th>Status</th>
                                             <th>Date de création</th>
                                             <th>Actions</th>
@@ -71,7 +70,6 @@
                                                 <td class="py-4">{{ $user['promoter']['structure'] }}</td>
                                                 <td class="py-4">{{ $user['promoter']['phone_number'] }}</td>
                                                 <td class="py-4">{{ $user['promoter']['sex'] }}</td>
-                                                <td class="py-4" class="text-bold">{{ $user['profile_fr'] }}</td>
                                                 <td  @class([
                                                     'py-4 text-bold',
                                                     'text-danger' => !$user['activated'],
