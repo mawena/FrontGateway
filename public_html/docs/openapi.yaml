@@ -483,10 +483,6 @@ paths:
                   type: string
                   description: 'La date de début.'
                   example: '2024-12-01'
-                promoter_id:
-                  type: integer
-                  description: Promoteur.
-                  example: 1
                 place:
                   type: string
                   description: Lieu.
@@ -585,10 +581,6 @@ paths:
                   type: string
                   description: 'La date de début.'
                   example: '2024-12-01'
-                promoter_id:
-                  type: integer
-                  description: Promoteur.
-                  example: 1
                 place:
                   type: string
                   description: Lieu.
@@ -902,15 +894,15 @@ paths:
                 old_password:
                   type: string
                   description: "L'ancien mot de passe de l'utilisateur."
-                  example: repellendus
+                  example: explicabo
                 new_password:
                   type: string
                   description: "Le nouveau mot de passe de l'utilisateur."
-                  example: ipsam
+                  example: tenetur
                 new_password_confirmation:
                   type: string
                   description: "La confirmation du nouveau mot de passe de l'utilisateur."
-                  example: qui
+                  example: quia
               required:
                 - old_password
                 - new_password

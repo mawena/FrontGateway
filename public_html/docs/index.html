@@ -160,7 +160,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: November 27, 2024</li>
+        <li>Last updated: November 28, 2024</li>
     </ul>
 </div>
 
@@ -2003,7 +2003,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"name\": \"Hiver Togo\",
     \"start_date\": \"2024-12-01\",
     \"end_date\": \"2024-12-01\",
-    \"promoter_id\": 1,
     \"place\": \"Lomé\",
     \"type\": \"Dance\",
     \"nb_expected\": 45,
@@ -2032,7 +2031,6 @@ let body = {
     "name": "Hiver Togo",
     "start_date": "2024-12-01",
     "end_date": "2024-12-01",
-    "promoter_id": 1,
     "place": "Lomé",
     "type": "Dance",
     "nb_expected": 45,
@@ -2176,17 +2174,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>La date de début. Example: <code>2024-12-01</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>promoter_id</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
-<i>optional</i> &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="promoter_id"                data-endpoint="POSTapi-event"
-               value="1"
-               data-component="body">
-    <br>
-<p>Promoteur. Example: <code>1</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>place</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
 <i>optional</i> &nbsp;
@@ -2309,7 +2296,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"name\": \"Hiver Togo\",
     \"start_date\": \"2024-12-01\",
     \"end_date\": \"2024-12-01\",
-    \"promoter_id\": 1,
     \"place\": \"Lomé\",
     \"type\": \"Dance\",
     \"nb_expected\": 45,
@@ -2338,7 +2324,6 @@ let body = {
     "name": "Hiver Togo",
     "start_date": "2024-12-01",
     "end_date": "2024-12-01",
-    "promoter_id": 1,
     "place": "Lomé",
     "type": "Dance",
     "nb_expected": 45,
@@ -2492,17 +2477,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
                data-component="body">
     <br>
 <p>La date de début. Example: <code>2024-12-01</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>promoter_id</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
-<i>optional</i> &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="promoter_id"                data-endpoint="PUTapi-event--id-"
-               value="1"
-               data-component="body">
-    <br>
-<p>Promoteur. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>place</code></b>&nbsp;&nbsp;
@@ -3335,9 +3309,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"old_password\": \"repellendus\",
-    \"new_password\": \"ipsam\",
-    \"new_password_confirmation\": \"qui\"
+    \"old_password\": \"explicabo\",
+    \"new_password\": \"tenetur\",
+    \"new_password_confirmation\": \"quia\"
 }"
 </code></pre></div>
 
@@ -3354,9 +3328,9 @@ const headers = {
 };
 
 let body = {
-    "old_password": "repellendus",
-    "new_password": "ipsam",
-    "new_password_confirmation": "qui"
+    "old_password": "explicabo",
+    "new_password": "tenetur",
+    "new_password_confirmation": "quia"
 };
 
 fetch(url, {
@@ -3463,10 +3437,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="old_password"                data-endpoint="PUTapi-user-update-password"
-               value="repellendus"
+               value="explicabo"
                data-component="body">
     <br>
-<p>L'ancien mot de passe de l'utilisateur. Example: <code>repellendus</code></p>
+<p>L'ancien mot de passe de l'utilisateur. Example: <code>explicabo</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>new_password</code></b>&nbsp;&nbsp;
@@ -3474,10 +3448,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="new_password"                data-endpoint="PUTapi-user-update-password"
-               value="ipsam"
+               value="tenetur"
                data-component="body">
     <br>
-<p>Le nouveau mot de passe de l'utilisateur. Example: <code>ipsam</code></p>
+<p>Le nouveau mot de passe de l'utilisateur. Example: <code>tenetur</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>new_password_confirmation</code></b>&nbsp;&nbsp;
@@ -3485,10 +3459,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="new_password_confirmation"                data-endpoint="PUTapi-user-update-password"
-               value="qui"
+               value="quia"
                data-component="body">
     <br>
-<p>La confirmation du nouveau mot de passe de l'utilisateur. Example: <code>qui</code></p>
+<p>La confirmation du nouveau mot de passe de l'utilisateur. Example: <code>quia</code></p>
         </div>
         </form>
 

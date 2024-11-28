@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "a0f2ce4c-29b2-443d-a187-da6cf704c2e0",
+        "_postman_id": "1c878fe6-7148-44c9-998d-92c91f42ad1a",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -550,7 +550,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"Hiver Togo\",\"start_date\":\"2024-12-01\",\"end_date\":\"2024-12-01\",\"promoter_id\":1,\"place\":\"Lom\u00e9\",\"type\":\"Dance\",\"nb_expected\":45,\"entrance\":\"free\",\"entry_price\":null,\"contact\":\"+228 90 90 90 90\",\"description\":\"description d\u00e9taill\u00e9\",\"description_summary\":\"description r\u00e9sum\u00e9\",\"poster\":\"...\"}"
+                            "raw": "{\"name\":\"Hiver Togo\",\"start_date\":\"2024-12-01\",\"end_date\":\"2024-12-01\",\"place\":\"Lom\u00e9\",\"type\":\"Dance\",\"nb_expected\":45,\"entrance\":\"free\",\"entry_price\":null,\"contact\":\"+228 90 90 90 90\",\"description\":\"description d\u00e9taill\u00e9\",\"description_summary\":\"description r\u00e9sum\u00e9\",\"poster\":\"...\"}"
                         },
                         "description": ""
                     },
@@ -593,7 +593,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"Hiver Togo\",\"start_date\":\"2024-12-01\",\"end_date\":\"2024-12-01\",\"promoter_id\":1,\"place\":\"Lom\u00e9\",\"type\":\"Dance\",\"nb_expected\":45,\"entrance\":\"free\",\"entry_price\":null,\"contact\":\"+228 90 90 90 90\",\"description\":\"description d\u00e9taill\u00e9\",\"description_summary\":\"description r\u00e9sum\u00e9\",\"poster\":\"...\"}"
+                            "raw": "{\"name\":\"Hiver Togo\",\"start_date\":\"2024-12-01\",\"end_date\":\"2024-12-01\",\"place\":\"Lom\u00e9\",\"type\":\"Dance\",\"nb_expected\":45,\"entrance\":\"free\",\"entry_price\":null,\"contact\":\"+228 90 90 90 90\",\"description\":\"description d\u00e9taill\u00e9\",\"description_summary\":\"description r\u00e9sum\u00e9\",\"poster\":\"...\"}"
                         },
                         "description": ""
                     },
@@ -819,7 +819,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"old_password\":\"repellendus\",\"new_password\":\"ipsam\",\"new_password_confirmation\":\"qui\"}"
+                            "raw": "{\"old_password\":\"explicabo\",\"new_password\":\"tenetur\",\"new_password_confirmation\":\"quia\"}"
                         },
                         "description": ""
                     },
