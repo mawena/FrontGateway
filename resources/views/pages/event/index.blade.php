@@ -95,7 +95,7 @@
                     <div class="modal-content p-2 rounded-app">
                         <div class="modal-body">
                             <div class="text-center mt-2 mb-4">
-                                <a href="{{ route('admin.user.index') }}" class="text-success">
+                                <a href="{{ route('admin.event.index') }}" class="text-success">
                                     <span><img class="mr-2" src="/assets/images/logo-icon.png" alt=""
                                             height="18"><img src="/assets/images/logo-text.png" alt=""
                                             height="18"></span>
@@ -112,32 +112,84 @@
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
-
-                                <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input class="form-control" type="email" name="email" id="email" required=""
-                                        placeholder="" value="Test01@gmail.com">
-                                    @error('email')
+								<div class="form-group">
+                                    <label for="type">Type</label>
+                                    <input class="form-control" name="type" id="type" required="" placeholder="">
+                                    @error('type')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
-
-                                <div class="form-group">
-                                    <label for="password">Mot de passe</label>
-                                    <input class="form-control" name="password" type="password" required=""
-                                        id="password" placeholder="" value="azertyazerty">
-                                    @error('password')
+								<div class="form-group">
+                                    <label for="place">Lieu</label>
+                                    <input class="form-control" name="place" id="place" required="" placeholder="">
+                                    @error('place')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
-
-                                <div class="form-group">
-                                    <label for="activated">Statut</label>
-                                    <select class="form-control" id="activated" name="activated" required="">
-                                        <option value="1" selected>Actif</option>
-                                        <option value="0">Inactif</option>
+								<div class="form-group">
+                                    <label for="start_date">Date de debut</label>
+                                    <input class="form-control" type="date" name="start_date" id="start_date" required="" placeholder="">
+                                    @error('start_date')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+								<div class="form-group">
+                                    <label for="end_date">Date de fin</label>
+                                    <input class="form-control" type="date" name="end_date" id="end_date" required="" placeholder="">
+                                    @error('end_date')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+								<div class="form-group">
+                                    <label for="nb_expected">Nombre de personne attendues</label>
+                                    <input class="form-control" name="nb_expected" id="nb_expected" required="" placeholder="">
+                                    @error('nb_expected')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+								<div class="form-group">
+                                    <label for="entrance">Entrée</label>
+                                    <select class="form-control" id="entrance" name="entrance" required="">
+                                        <option value="1" selected>Gratuit</option>
+                                        <option value="0">Payant</option>
                                     </select>
-                                    @error('activated')
+                                    @error('entrance')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+								<div class="form-group">
+                                    <label for="entry_price">Prix d'entrée</label>
+                                    <input class="form-control" name="entry_price" id="entry_price" placeholder="">
+                                    @error('entry_price')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+								<div class="form-group">
+                                    <label for="contact">Contact</label>
+                                    <input class="form-control" name="contact" id="contact" placeholder="" required>
+                                    @error('contact')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+								<div class="form-group">
+                                    <label for="description_summary">Description resumée</label>
+                                    <input class="form-control" name="description_summary" id="description_summary" placeholder="" 
+									required>
+                                    @error('description_summary')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+								<div class="form-group">
+                                    <label for="description">Description Complète</label>
+                                    <input class="form-control" name="description" id="description" placeholder="">
+                                    @error('description')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+								<div class="form-group">
+                                    <label for="poster_path">Poster</label>
+                                    <input class="form-control" name="poster_path" type="file" id="poster_path" placeholder="">
+                                    @error('poster_path')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
