@@ -69,7 +69,6 @@ class EventController extends Controller
 	 * @bodyParam  name											string				Nom.																		Example: Hiver Togo
 	 * @bodyParam  start_date									string				Date de début.																Example: 2024-12-01
 	 * @bodyParam  end_date										string				La date de début.															Example: 2024-12-01
-	 * @bodyParam  promoter_id									integer				Promoteur.																	Example: 1
 	 * @bodyParam  place										string				Lieu.																		Example: Lomé
 	 * @bodyParam  type											string				Type.																		Example: Dance
 	 * @bodyParam  nb_expected									integer				Nombre de personne attendu.													Example: 45
@@ -87,7 +86,6 @@ class EventController extends Controller
 			"name" => "required|min:2",
 			"start_date" => "required|date",
 			"end_date" => "nullable|date",
-			"promoter_id" => "required|exists:promoters,id",
 			"place" => "required|min:2",
 			"type" => "required|min:2",
 			"nb_expected" => "required|numeric",
@@ -126,7 +124,6 @@ class EventController extends Controller
 	 * @bodyParam  name											string				Nom.																		Example: Hiver Togo
 	 * @bodyParam  start_date									string				Date de début.																Example: 2024-12-01
 	 * @bodyParam  end_date										string				La date de début.															Example: 2024-12-01
-	 * @bodyParam  promoter_id									integer				Promoteur.																	Example: 1
 	 * @bodyParam  place										string				Lieu.																		Example: Lomé
 	 * @bodyParam  type											string				Type.																		Example: Dance
 	 * @bodyParam  nb_expected									integer				Nombre de personne attendu.													Example: 45
@@ -147,7 +144,6 @@ class EventController extends Controller
 				"name" => "required|min:2",
 				"start_date" => "required|date",
 				"end_date" => "nullable|date",
-				"promoter_id" => "required|exists:promoters,id",
 				"place" => "required|min:2",
 				"type" => "required|min:2",
 				"nb_expected" => "required|numeric",

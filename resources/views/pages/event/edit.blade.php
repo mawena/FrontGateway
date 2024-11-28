@@ -95,7 +95,7 @@
 										<div class="col-lg-6 col-md-12">
 											<div class="form-group">
 												<label for="nb_expected">Nombre de personnes attendus</label>
-												<input class="form-control" name="nb_expected" id="nb_expected" required="" placeholder=""
+												<input class="form-control" type="number" name="nb_expected" id="nb_expected" required="" placeholder=""
 													value="{{ $event['nb_expected'] }}">
 												@error('nb_expected')
 													<span class="text-danger">{{ $message }}</span>

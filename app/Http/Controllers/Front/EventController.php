@@ -13,11 +13,11 @@ class EventController
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
 		])->get(
-				url("/") . "/api/event",
-				[
-					"paginate" => "false"
-				]
-			)->json();
+			url("/") . "/api/event",
+			[
+				"paginate" => "false"
+			]
+		)->json();
 		return view("pages.event.index", ["events" => $response["data"]]);
 	}
 
@@ -27,14 +27,19 @@ class EventController
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
 		])->get(
-				url("/") . "/api/event/" . $id
-			)->json();
+			url("/") . "/api/event/" . $id
+		)->json();
 		return view("pages.event.edit", ["event" => $response["data"]["Event"]]);
 	}
 
 	public function update(Request $request, $id)
 	{
 		$requestData = $request->all();
+		if ($requestData["poster"]) {
+			$image = $request->file('poster');
+			$imageContent = file_get_contents($image->getPathname());
+			$requestData['poster'] = 'data:' . $image->getMimeType() . ';base64,' . base64_encode($imageContent);
+		}
 		$response = Http::withHeaders([
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
@@ -51,6 +56,9 @@ class EventController
 	public function store(Request $request)
 	{
 		$requestData = $request->all();
+		$image = $request->file('poster');
+		$imageContent = file_get_contents($image->getPathname());
+		$requestData['poster'] = 'data:' . $image->getMimeType() . ';base64,' . base64_encode($imageContent);
 		$response = Http::withHeaders([
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
@@ -73,7 +81,6 @@ class EventController
 		if ($response["status"] == 200) {
 			return redirect()->route("admin.event.index");
 		} else {
-			dd($response);
 			return redirect()->back()
 				->withInput()
 				->withErrors($response["errors"]);
