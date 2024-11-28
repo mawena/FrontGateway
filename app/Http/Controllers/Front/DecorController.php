@@ -13,7 +13,7 @@ class DecorController
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
 		])->get(
-			url("/") . "/api/decor",
+			config('app.url') . "/api/decor",
 			[
 				"paginate" => "false",
 				"with_event<promoter<user" => "true",
@@ -24,7 +24,7 @@ class DecorController
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
 		])->get(
-			url("/") . "/api/event",
+			config('app.url') . "/api/event",
 			[
 				"paginate" => "false",
 			]
@@ -40,7 +40,7 @@ class DecorController
 		$response = Http::withHeaders([
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
-		])->post(url("/") . "/api/decor", $requestData)->json();
+		])->post(config('app.url') . "/api/decor", $requestData)->json();
 		if ($response["status"] == 201) {
 			return redirect()->route("admin.decor.index");
 		} else {
@@ -56,7 +56,7 @@ class DecorController
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
 		])->get(
-			url("/") . "/api/decor/" . $id,
+			config('app.url') . "/api/decor/" . $id,
 			[
 				"with_event" => "true",
 			]
@@ -65,7 +65,7 @@ class DecorController
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
 		])->get(
-			url("/") . "/api/event",
+			config('app.url') . "/api/event",
 			[
 				"paginate" => "false",
 			]
@@ -84,7 +84,7 @@ class DecorController
 		$response = Http::withHeaders([
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
-		])->put(url("/") . "/api/decor/" . $id, $requestData)->json();
+		])->put(config('app.url') . "/api/decor/" . $id, $requestData)->json();
 		if ($response["status"] == 200) {
 			return redirect()->route("admin.decor.index");
 		} else {
@@ -99,7 +99,7 @@ class DecorController
 		$response = Http::withHeaders([
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
-		])->delete(url("/") . "/api/decor/" . $id)->json();
+		])->delete(config('app.url') . "/api/decor/" . $id)->json();
 		if ($response["status"] == 200) {
 			return redirect()->route("admin.decor.index");
 		} else {

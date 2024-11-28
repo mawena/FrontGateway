@@ -10,7 +10,7 @@ class AuthControler
 	public function login(Request $request)
 	{
 		$requestData = $request->all();
-		$response = Http::post(url("/") . "/api/auth/login", $requestData)->json();
+		$response = Http::post(config('app.url') . "/api/auth/login", $requestData)->json();
 		if ($response["status"] == 200) {
 			session(['userToken' => $response["data"]["userToken"]]);
 			return redirect()->route("admin.user.index");

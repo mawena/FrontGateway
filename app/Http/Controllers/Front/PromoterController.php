@@ -13,7 +13,7 @@ class PromoterController
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
 		])->get(
-			url("/") . "/api/user",
+			config('app.url') . "/api/user",
 			[
 				"paginate" => "false",
 				"in_profile" => "promoter",
@@ -35,7 +35,7 @@ class PromoterController
 		$response = Http::withHeaders([
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
-		])->post(url("/") . "/api/user", $requestData)->json();
+		])->post(config('app.url') . "/api/user", $requestData)->json();
 		if ($response["status"] == 201) {
 			return redirect()->route("admin.promoter.index");
 		} else {
@@ -51,7 +51,7 @@ class PromoterController
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
 		])->get(
-			url("/") . "/api/user/" . $id,
+			config('app.url') . "/api/user/" . $id,
 			[
 				"with_promoter" => "true"
 			]
@@ -71,7 +71,7 @@ class PromoterController
 		$response = Http::withHeaders([
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
-		])->put(url("/") . "/api/user/" . $id, $requestData)->json();
+		])->put(config('app.url') . "/api/user/" . $id, $requestData)->json();
 		if ($response["status"] == 200) {
 			return redirect()->route("admin.promoter.index");
 		} else {
@@ -86,7 +86,7 @@ class PromoterController
 		$response = Http::withHeaders([
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
-		])->delete(url("/") . "/api/user/" . $id)->json();
+		])->delete(config('app.url') . "/api/user/" . $id)->json();
 		if ($response["status"] == 200) {
 			return redirect()->route("admin.promoter.index");
 		} else {
