@@ -56,9 +56,11 @@ class EventController
 	public function store(Request $request)
 	{
 		$requestData = $request->all();
-		$image = $request->file('poster');
-		$imageContent = file_get_contents($image->getPathname());
-		$requestData['poster'] = 'data:' . $image->getMimeType() . ';base64,' . base64_encode($imageContent);
+		if ($requestData["poster"]) {
+			$image = $request->file('poster');
+			$imageContent = file_get_contents($image->getPathname());
+			$requestData['poster'] = 'data:' . $image->getMimeType() . ';base64,' . base64_encode($imageContent);
+		}
 		$response = Http::withHeaders([
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
