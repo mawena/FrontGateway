@@ -132,7 +132,7 @@
                     <ul id="sidebarnav">
                         <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="/admin/user"
                                 aria-expanded="false"><i data-feather="users" class="feather-icon"></i><span
-                                    class="hide-menu">Utilisateurs</span></a></li>
+                                    class="hide-menu">Superviseurs</span></a></li>
                         <li class="sidebar-item">
                             <a class="sidebar-link sidebar-link" href="/admin/promoter" aria-expanded="false"><i
                                     data-feather="users" class="feather-icon"></i><span
