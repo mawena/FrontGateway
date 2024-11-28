@@ -46,7 +46,6 @@
                                 <table id="zero_config" class="table table-striped table-bordered no-wrap">
                                     <thead>
                                         <tr class="text-center">
-                                            <th>Profil</th>
                                             <th>Nom</th>
                                             <th>Email</th>
                                             <th>Structure</th>
@@ -60,11 +59,6 @@
                                     <tbody>
                                         @foreach ($users as $user)
                                             <tr class="text-center">
-                                                <td class="" style="width: 100px">
-                                                    <img src="{{ asset($user['picture_path']) }}"
-                                                        style="border-radius: 100%; object-fit: cover; width: 50px; height: 50px;"
-                                                        alt="">
-                                                </td>
                                                 <td class="py-4">{{ $user['name'] }}</td>
                                                 <td class="py-4">{{ $user['email'] }}</td>
                                                 <td class="py-4">{{ $user['promoter']['structure'] }}</td>

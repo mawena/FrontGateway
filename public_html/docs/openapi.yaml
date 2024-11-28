@@ -894,15 +894,15 @@ paths:
                 old_password:
                   type: string
                   description: "L'ancien mot de passe de l'utilisateur."
-                  example: provident
+                  example: temporibus
                 new_password:
                   type: string
                   description: "Le nouveau mot de passe de l'utilisateur."
-                  example: accusantium
+                  example: doloribus
                 new_password_confirmation:
                   type: string
                   description: "La confirmation du nouveau mot de passe de l'utilisateur."
-                  example: voluptas
+                  example: error
               required:
                 - old_password
                 - new_password
