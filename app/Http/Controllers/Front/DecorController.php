@@ -31,6 +31,31 @@ class DecorController
 		)->json();
 		return view("pages.decor.index", ["decors" => $decor_response["data"], "events" => $event_response["data"]]);
 	}
+	public function show(Request $request, $id)
+	{
+		$response = Http::withHeaders([
+			'Authorization' => 'Bearer ' . session('userToken'),
+			'Accept' => 'application/json',
+		])->get(
+			config('app.url') . "/api/decor/" . $id,
+			[
+				"with_event" => "true",
+			]
+		)->json();
+		$decor = $response["data"]["Decor"];
+		$event = $response["data"]["Decor"]["event"];
+		$promoter = Http::withHeaders([
+			'Authorization' => 'Bearer ' . session('userToken'),
+			'Accept' => 'application/json',
+		])->get(
+			config('app.url') . "/api/user/" . $event['promoter_id'],
+			[
+				"with_promoter" => "true"
+			]
+		)->json()["data"]["User"];
+		return view("pages.decor.show", compact("decor", "event", "promoter"));
+	}
+
 	public function store(Request $request)
 	{
 		$requestData = $request->all();
