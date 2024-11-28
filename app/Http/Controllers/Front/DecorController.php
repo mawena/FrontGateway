@@ -13,7 +13,7 @@ class DecorController
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
 		])->get(
-			config('app.url') . "/api/decor",
+			url("/") . "/api/decor",
 			[
 				"paginate" => "false",
 				"with_event<promoter<user" => "true",
@@ -24,7 +24,7 @@ class DecorController
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
 		])->get(
-			config('app.url') . "/api/event",
+			url("/") . "/api/event",
 			[
 				"paginate" => "false",
 			]
@@ -37,7 +37,7 @@ class DecorController
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
 		])->get(
-			config('app.url') . "/api/decor/" . $id,
+			url("/") . "/api/decor/" . $id,
 			[
 				"with_event" => "true",
 			]
@@ -48,7 +48,7 @@ class DecorController
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
 		])->get(
-			config('app.url') . "/api/user/" . $event['promoter_id'],
+			url("/") . "/api/user/" . $event['promoter_id'],
 			[
 				"with_promoter" => "true"
 			]
@@ -65,7 +65,7 @@ class DecorController
 		$response = Http::withHeaders([
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
-		])->post(config('app.url') . "/api/decor", $requestData)->json();
+		])->post(url("/") . "/api/decor", $requestData)->json();
 		if ($response["status"] == 201) {
 			return redirect()->route("admin.decor.index");
 		} else {
@@ -81,7 +81,7 @@ class DecorController
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
 		])->get(
-			config('app.url') . "/api/decor/" . $id,
+			url("/") . "/api/decor/" . $id,
 			[
 				"with_event" => "true",
 			]
@@ -90,7 +90,7 @@ class DecorController
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
 		])->get(
-			config('app.url') . "/api/event",
+			url("/") . "/api/event",
 			[
 				"paginate" => "false",
 			]
@@ -109,7 +109,7 @@ class DecorController
 		$response = Http::withHeaders([
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
-		])->put(config('app.url') . "/api/decor/" . $id, $requestData)->json();
+		])->put(url("/") . "/api/decor/" . $id, $requestData)->json();
 		if ($response["status"] == 200) {
 			return redirect()->route("admin.decor.index");
 		} else {
@@ -124,7 +124,7 @@ class DecorController
 		$response = Http::withHeaders([
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
-		])->delete(config('app.url') . "/api/decor/" . $id)->json();
+		])->delete(url("/") . "/api/decor/" . $id)->json();
 		if ($response["status"] == 200) {
 			return redirect()->route("admin.decor.index");
 		} else {
