@@ -49,7 +49,6 @@
                                             <th>Profil</th>
                                             <th>Nom</th>
                                             <th>Email</th>
-                                            <th>Type</th>
                                             <th>Status</th>
                                             <th>Date de création</th>
                                             <th>Actions</th>
@@ -65,7 +64,6 @@
                                                 </td>
                                                 <td class="py-4">{{ $user['name'] }}</td>
                                                 <td class="py-4">{{ $user['email'] }}</td>
-                                                <td class="py-4" class="text-bold">{{ $user['profile_fr'] }}</td>
                                                 <td  @class([
                                                     'py-4 text-bold',
                                                     'text-danger' => !$user['activated'],
