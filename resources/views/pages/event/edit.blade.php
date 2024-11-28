@@ -64,7 +64,7 @@
 										</div>
 										<div class="col-lg-6 col-md-12">
 											<div class="form-group">
-												<label for="end_date">Nom</label>
+												<label for="end_date">Date Fin</label>
 												<input class="form-control" type="date" name="end_date" id="end_date" required="" placeholder=""
 													value="{{ $event['end_date'] }}">
 												@error('end_date')
