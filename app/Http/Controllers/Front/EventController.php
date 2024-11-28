@@ -21,6 +21,17 @@ class EventController
 		return view("pages.event.index", ["events" => $response["data"]]);
 	}
 
+	public function show(Request $request, $id)
+	{
+		$response = Http::withHeaders([
+			'Authorization' => 'Bearer ' . session('userToken'),
+			'Accept' => 'application/json',
+		])->get(
+			config('app.url') . "/api/event/" . $id
+		)->json();
+		return view("pages.event.show", ["event" => $response["data"]["Event"]]);
+	}
+
 	public function edit(Request $request, $id)
 	{
 		$response = Http::withHeaders([

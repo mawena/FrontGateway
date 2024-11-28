@@ -58,7 +58,6 @@
 									<tbody>
 										@foreach ($events as $event)
 											<tr class="py-0 text-center">
-
 												<td class="py-4">{{ $event['name'] }}</td>
 												<td class="py-4">{{ $event['type'] }}</td>
 												<td class="py-4">{{ $event['place'] }}</td>
@@ -66,7 +65,7 @@
 												<td class="py-4">{{ $event['end_date'] }}</td>
 												<td class="py-4">{{ $event['nb_expected'] }}</td>
 												<td class="" style="max-width: 100px">
-													{{-- <button type="button" class="btn text-primary"><i class="fa fa-eye"></i></button> --}}
+													<a href="{{ route('admin.event.show', $event['id']) }}" class="btn text-primary"><i class="fa fa-eye"></i></a>
 													<a href="{{ route('admin.event.edit', $event['id']) }}" type="button" class="btn text-warning"><i
 															class="fa fa-edit"></i></a>
 													<form action="{{ route('admin.event.destroy', $event['id']) }}" method="POST"
