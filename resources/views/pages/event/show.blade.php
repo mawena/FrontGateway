@@ -30,7 +30,7 @@
                 <div class="col-12">
                     <div class="card" style="overflow: hidden">
                         <div class="card-header p-2">
-                            <img src="{{ asset($event['poster_path']) }}" style="width: 100%; height: 250px; object-fit: cover"
+                            <img src="/storage/{{ $event['poster_path'] }}" style="width: 100%; height: 250px; object-fit: cover"
                                alt="">
                         </div>
                         <div class="card-body pb-0">
