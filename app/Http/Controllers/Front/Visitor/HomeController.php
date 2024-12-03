@@ -12,7 +12,7 @@ class HomeController
 		// 	'Authorization' => 'Bearer ' . session('userToken'),
 		// 	'Accept' => 'application/json',
 		// ])->get(
-		// 	url("/") . "/api/decor",
+		// 	config('app.url') . "/api/decor",
 		// 	[
 		// 		"paginate" => "false",
 		// 		"with_event<promoter<user" => "true",
@@ -23,7 +23,7 @@ class HomeController
 		// 	'Authorization' => 'Bearer ' . session('userToken'),
 		// 	'Accept' => 'application/json',
 		// ])->get(
-		// 	url("/") . "/api/event",
+		// 	config('app.url') . "/api/event",
 		// 	[
 		// 		"paginate" => "false",
 		// 	]

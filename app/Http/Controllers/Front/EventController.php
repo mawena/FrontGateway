@@ -13,7 +13,7 @@ class EventController
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
 		])->get(
-			url("/") . "/api/event",
+			config('app.url') . "/api/event",
 			[
 				"paginate" => "false"
 			]
@@ -27,7 +27,7 @@ class EventController
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
 		])->get(
-			url("/") . "/api/event/" . $id
+			config('app.url') . "/api/event/" . $id
 		)->json();
 		return view("pages.event.show", ["event" => $response["data"]["Event"]]);
 	}
@@ -38,7 +38,7 @@ class EventController
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
 		])->get(
-			url("/") . "/api/event/" . $id
+			config('app.url') . "/api/event/" . $id
 		)->json();
 		return view("pages.event.edit", ["event" => $response["data"]["Event"]]);
 	}
@@ -54,7 +54,7 @@ class EventController
 		$response = Http::withHeaders([
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
-		])->put(url("/") . "/api/event/" . $id, $requestData)->json();
+		])->put(config('app.url') . "/api/event/" . $id, $requestData)->json();
 		if ($response["status"] == 200) {
 			return redirect()->route("admin.event.index");
 		} else {
@@ -75,7 +75,7 @@ class EventController
 		$response = Http::withHeaders([
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
-		])->post(url("/") . "/api/event", $requestData)->json();
+		])->post(config('app.url') . "/api/event", $requestData)->json();
 		if ($response["status"] == 201) {
 			return redirect()->route("admin.event.index");
 		} else {
@@ -90,7 +90,7 @@ class EventController
 		$response = Http::withHeaders([
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
-		])->delete(url("/") . "/api/event/" . $id)->json();
+		])->delete(config('app.url') . "/api/event/" . $id)->json();
 		if ($response["status"] == 200) {
 			return redirect()->route("admin.event.index");
 		} else {

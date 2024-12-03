@@ -13,7 +13,7 @@ class UserController
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
 		])->get(
-			url("/") . "/api/user",
+			config('app.url') . "/api/user",
 			[
 				"paginate" => "false",
 				"in_profile" => "supervisor"
@@ -28,7 +28,7 @@ class UserController
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
 		])->get(
-			url("/") . "/api/user/" . $id
+			config('app.url') . "/api/user/" . $id
 		)->json();
 		return view("pages.user.show", ["user" => $response["data"]["User"]]);
 	}
@@ -40,7 +40,7 @@ class UserController
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
 		])->get(
-			url("/") . "/api/user/" . $id
+			config('app.url') . "/api/user/" . $id
 		)->json();
 		return view("pages.user.edit", ["user" => $response["data"]["User"]]);
 	}
@@ -51,7 +51,7 @@ class UserController
 		$response = Http::withHeaders([
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
-		])->put(url("/") . "/api/user/" . $id, $requestData)->json();
+		])->put(config('app.url') . "/api/user/" . $id, $requestData)->json();
 		if ($response["status"] == 200) {
 			return redirect()->route("admin.user.index");
 		} else {
@@ -67,7 +67,7 @@ class UserController
 		$response = Http::withHeaders([
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
-		])->post(url("/") . "/api/user", $requestData)->json();
+		])->post(config('app.url') . "/api/user", $requestData)->json();
 		if ($response["status"] == 201) {
 			return redirect()->route("admin.user.index");
 		} else {
@@ -82,7 +82,7 @@ class UserController
 		$response = Http::withHeaders([
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
-		])->delete(url("/") . "/api/user/" . $id)->json();
+		])->delete(config('app.url') . "/api/user/" . $id)->json();
 		if ($response["status"] == 200) {
 			return redirect()->route("admin.user.index");
 		} else {
