@@ -40,7 +40,7 @@ return [
     ],
 
     // The type of documentation output to generate.
-    // - "static" will generate a static HTMl page in the /public_html/docs folder,
+    // - "static" will generate a static HTMl page in the /public/docs folder,
     // - "laravel" will generate the documentation as a Blade view, so you can add routing and authentication.
     // - "external_static" and "external_laravel" do the same as above, but generate a basic template,
     // passing the OpenAPI spec as a URL, allowing you to easily use the docs with an external generator
@@ -52,7 +52,7 @@ return [
     'static' => [
         // HTML documentation, assets and Postman collection will be generated to this folder.
         // Source Markdown will still be in resources/docs.
-        'output_path' => 'public_html/docs',
+        'output_path' => 'public/docs',
     ],
 
     'laravel' => [
@@ -65,8 +65,8 @@ return [
         'docs_url' => '/docs',
 
         // Directory within `public` in which to store CSS and JS assets.
-        // By default, assets are stored in `public_html/vendor/scribe`.
-        // If set, assets will be stored in `public_html/{{assets_directory}}`
+        // By default, assets are stored in `public/vendor/scribe`.
+        // If set, assets will be stored in `public/{{assets_directory}}`
         'assets_directory' => null,
 
         // Middleware to attach to the docs endpoint (if `add_routes` is true).
@@ -139,7 +139,7 @@ INTRO
     ],
 
     // Generate a Postman collection (v2.1.0) in addition to HTML docs.
-    // For 'static' docs, the collection will be generated to public_html/docs/collection.json.
+    // For 'static' docs, the collection will be generated to public/docs/collection.json.
     // For 'laravel' docs, it will be generated to storage/app/scribe/collection.json.
     // Setting `laravel.add_routes` to true (above) will also add a route for the collection.
     'postman' => [
@@ -151,7 +151,7 @@ INTRO
     ],
 
     // Generate an OpenAPI spec (v3.0.1) in addition to docs webpage.
-    // For 'static' docs, the collection will be generated to public_html/docs/openapi.yaml.
+    // For 'static' docs, the collection will be generated to public/docs/openapi.yaml.
     // For 'laravel' docs, it will be generated to storage/app/scribe/openapi.yaml.
     // Setting `laravel.add_routes` to true (above) will also add a route for the spec.
     'openapi' => [
@@ -174,8 +174,8 @@ INTRO
 
     // Custom logo path. This will be used as the value of the src attribute for the <img> tag,
     // so make sure it points to an accessible URL or path. Set to false to not use a logo.
-    // For example, if your logo is in public_html/img:
-    // - 'logo' => '../img/logo.png' // for `static` type (output folder is public_html/docs)
+    // For example, if your logo is in public/img:
+    // - 'logo' => '../img/logo.png' // for `static` type (output folder is public/docs)
     // - 'logo' => 'img/logo.png' // for `laravel` type
     'logo' => false,
 
