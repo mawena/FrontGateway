@@ -894,15 +894,15 @@ paths:
                 old_password:
                   type: string
                   description: "L'ancien mot de passe de l'utilisateur."
-                  example: quae
+                  example: laborum
                 new_password:
                   type: string
                   description: "Le nouveau mot de passe de l'utilisateur."
-                  example: minima
+                  example: aut
                 new_password_confirmation:
                   type: string
                   description: "La confirmation du nouveau mot de passe de l'utilisateur."
-                  example: sunt
+                  example: culpa
               required:
                 - old_password
                 - new_password
