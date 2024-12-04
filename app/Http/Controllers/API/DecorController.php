@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\API;
 
 use App\Models\Decor;
@@ -56,22 +57,33 @@ class DecorController extends Controller
 		return parent::show($request, $id);
 	}
 
+	/**
+	 * Générer une image avec ce décor
+	 *
+	 * @urlParam	id											integer			L'ID du decor.																Example: 1.
+	 * 
+	 * @response 200
+	 */
 	public function generate_image($request, $id)
 	{
-		// Chemins des deux images à superposer
-		$imagePath1 = public_path('images/image1.png'); // Image de base
-		$imagePath2 = public_path('images/image2.png'); // Image à superposer
-		$manager = new ImageManager(new Driver());
+		$source = imagecreatefrompng("/home/charles-gamligo/Downloads/pngwing.com.png"); // Le logo est la source
+		$destination = imagecreatefromjpeg("/home/charles-gamligo/Pictures/Pictures/photoeffets.com_.png"); // La photo est la d
 
-		// read image from file system
-		$image1 = $manager->read($imagePath1);
-		$image2 = $manager->read($imagePath2);
-		// Charger la première image
-		$image2->resize(200, 200);
-		$image1->insert($image2, 'top-left', 50, 50);
-		$outputPath = public_path('images/output.png');
-		$image1->save($outputPath);
-		return response()->download($outputPath);
+		// Les fonctions imagesx et imagesy renvoient la largeur et la hauteur d'une image
+		$largeur_source = imagesx($source);
+		$hauteur_source = imagesy($source);
+		$largeur_destination = imagesx($destination);
+		$hauteur_destination = imagesy($destination);
+
+		// On veut placer le logo en bas à droite, on calcule les coordonnées où on doit placer le logo sur la photo
+		$destination_x = $largeur_destination - $largeur_source;
+		$destination_y =  $hauteur_destination - $hauteur_source;
+
+		// On met le logo (source) dans l'image de destination (la photo)
+		imagecopymerge($destination, $source, $destination_x, $destination_y, 0, 0, $largeur_source, $hauteur_source, 60);
+
+		// On affiche l'image de destination qui a été fusionnée avec le logo
+		imagejpeg($destination, "./edit/herbe2.jpg");
 	}
 
 	/**
