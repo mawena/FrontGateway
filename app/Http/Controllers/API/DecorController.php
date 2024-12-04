@@ -120,6 +120,7 @@ class DecorController extends Controller
 		$this->storeBeforeCreateFunction = function ($requestData, $data) {
 			$requestData["file_path"] = $data["file_path"];
 			$requestData["validation"] = 'pending';
+			$requestData["nb_uses"] = 0;
 			return $requestData;
 		};
 		$this->storeRelationArray = ["with_event" => "true"];

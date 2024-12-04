@@ -20,11 +20,13 @@
             </div>
             <div class="slider-area tour-slider">
                 <div class="row justify-content-center gx-3 gy-4">
-                    @for ($i = 0; $i < 10; $i++)
-                        <div class="col-lg-6 col-xl-4 col-md-6 pb-3">
-                            @include('visitor.modules.decor')
-                        </div>
-                    @endfor
+					@forelse ($decors as $key => $decor)
+						<div class="col-lg-6 col-xl-4 col-md-6 pb-3">
+							@include('visitor.modules.decor')
+						</div>
+					@empty
+						Aucun Décor
+					@endforelse
                 </div>
             </div>
         </div>

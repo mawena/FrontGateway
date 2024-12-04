@@ -42,7 +42,8 @@ class HomeController
 			config('app.url') . "/api/event",
 			[
 				"paginate" => "false",
-				"with_decors" => "true"
+				"with_decors" => "true",
+				"validation" => "validated",
 			]
 		)->json();
 		return view("visitor.pages.events", ["events" => $event_response["data"] ?? []]);
@@ -58,6 +59,7 @@ class HomeController
 			[
 				"paginate" => "false",
 				"with_event<promoter<user" => "true",
+				"validation" => "validated",
 			]
 		)->json();
 		return view("visitor.pages.decors", ["decors" => $decor_response["data"] ?? []]);

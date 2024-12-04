@@ -12,9 +12,7 @@
                                 <option selected value="" disabled>
                                     * Choisir un lieu
                                 </option>
-                                <option @selected(request('place') == "Australia") value="Australia">Australia</option>
-                                <option @selected(request('place') == "Dubai") value="Dubai">Dubai</option>
-                                <option @selected(request('place') == "England") value="England">England</option>
+                                <option @selected(request('place') == "Lomé") value="Lomé">Lomé</option>
                             </select>
                         </div>
                     </div>

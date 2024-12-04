@@ -10,18 +10,7 @@
                                 <option value="Choisir un lieu" selected="selected" disabled="disabled">
                                     Choisir un lieu
                                 </option>
-                                <option value="Australia">Australia</option>
-                                <option value="Dubai">Dubai</option>
-                                <option value="England">England</option>
-                                <option value="Sweden">Sweden</option>
-                                <option value="Thailand">Thailand</option>
-                                <option value="Egypt">Egypt</option>
-                                <option value="Saudi Arab">Saudi Arab</option>
-                                <option value="Switzerland">Switzerland</option>
-                                <option value="Scandinavia">Scandinavia</option>
-                                <option value="Western Europe">Western Europe</option>
-                                <option value="Indonesia">Indonesia</option>
-                                <option class="Italy">Italy</option>
+                                <option value="Lomé">Lomé</option>
                             </select>
                         </div>
                     </div>
