@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Http;
 
 class HomeController
 {
-    public function index()
+	public function index()
 	{
 		// $decor_response = Http::withHeaders([
 		// 	'Authorization' => 'Bearer ' . session('userToken'),
@@ -33,7 +33,7 @@ class HomeController
 		return view("visitor.pages.index");
 	}
 
-    public function events()
+	public function events()
 	{
 		$event_response = Http::withHeaders([
 			'Authorization' => 'Bearer ' . session('userToken'),
@@ -49,7 +49,7 @@ class HomeController
 		return view("visitor.pages.events", ["events" => $event_response["data"] ?? []]);
 	}
 
-    public function decors()
+	public function decors()
 	{
 		$decor_response = Http::withHeaders([
 			'Authorization' => 'Bearer ' . session('userToken'),
@@ -65,7 +65,18 @@ class HomeController
 		return view("visitor.pages.decors", ["decors" => $decor_response["data"] ?? []]);
 	}
 
-    public function event_details(Request $request, $id){
-        return view('visitor.pages.event-details');
-    }
+	public function event_details(Request $request, $id)
+	{
+		$event_response = Http::withHeaders([
+			'Authorization' => 'Bearer ' . session('userToken'),
+			'Accept' => 'application/json',
+		])->get(
+			config('app.url') . "/api/event/" . $id,
+			[
+				"paginate" => "false",
+				"with_decors" => "true"
+			]
+		)->json();
+		return view('visitor.pages.event-details', ['event' => $event_response["data"]["Event"]]);
+	}
 }

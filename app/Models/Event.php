@@ -30,13 +30,15 @@ class Event extends Model
 		"validation",
 	];
 
+	public $appends = ["entrance_fr"];
+
 	public function toArray()
 	{
 		$data = parent::toArray();
 		$data["created_at_fr"] = Carbon::parse($data["created_at"])->format("d/m/yy H:i:s");
 		$data["updated_at_fr"] = Carbon::parse($data["updated_at"])->format("d/m/yy H:i:s");
-		$data["start_date_fr"] = Carbon::parse($data["start_date"])->format("d/m/yy H:i:s");
-		$data["end_date_fr"] = Carbon::parse($data["end_date"])->format("d/m/yy H:i:s");
+		$data["start_date_fr"] = Carbon::parse($data["start_date"])->format("d/m/yy");
+		$data["end_date_fr"] = Carbon::parse($data["end_date"])->format("d/m/yy");
 		return $data;
 	}
 
@@ -48,5 +50,13 @@ class Event extends Model
 	public function decors(): HasMany
 	{
 		return $this->hasMany(Decor::class, "event_id", "id");
+	}
+
+	public function getEntranceFrAttribute()
+	{
+		return [
+			"paid" => "payante",
+			"free" => "gratuite",
+		][$this->entrance];
 	}
 }

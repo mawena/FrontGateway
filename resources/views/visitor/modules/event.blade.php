@@ -14,6 +14,6 @@
 				{{$event["description_summary"]}}
 			</p>
 		</h3>
-		<a href="{{ route('visitor.events.details', ['id' => 1]) }}" class="th-btn style4 th-icon">Voir les détails</a>
+		<a href="{{ route('visitor.events.details', ['id' => $event['id']]) }}" class="th-btn style4 th-icon">Voir les détails</a>
 	</div>
 </div>

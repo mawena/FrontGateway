@@ -86,7 +86,7 @@ class Controller extends BaseController
 				return $this->responseError(["auth" => [$authorisation->message()]], 403);
 			}
 		} else {
-			return $this->responseError(["id" => "l'élément n'existe pas"], 404);
+			return $this->responseError(["id" => ["l'élément n'existe pas"]], 404);
 		}
 	}
 
@@ -228,10 +228,10 @@ class Controller extends BaseController
 					$modelClassName => $model
 				]);
 			} else {
-				return $this->responseError(["id" => "$elementName n'existe pas"], 404);
+				return $this->responseError(["id" => ["$elementName n'existe pas"]], 404);
 			}
 		} else {
-			return $this->responseError(["id" => "$elementName est manquant"], 401);
+			return $this->responseError(["id" => ["$elementName est manquant"]], 401);
 		}
 	}
 
@@ -263,10 +263,10 @@ class Controller extends BaseController
 				$model = ($afterDelete) ? $afterDelete($model) : $model;
 				return $this->responseOk(messages: [$modelClassName => "$elementName a été supprimé"]);
 			} else {
-				return $this->responseError(["server" => "Erreur du serveur"], 500);
+				return $this->responseError(["server" => ["Erreur du serveur"]], 500);
 			}
 		} else {
-			return $this->responseError(["id" => "$elementName n'existe pas"], 404);
+			return $this->responseError(["id" => ["$elementName n'existe pas"]], 404);
 		}
 	}
 }
