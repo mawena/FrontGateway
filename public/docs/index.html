@@ -26,7 +26,7 @@
             </style>
 
     <script>
-        var tryItOutBaseUrl = "http://pecorator.client";
+        var tryItOutBaseUrl = "http://pecorator.ulrich.client";
         var useCsrf = Boolean();
         var csrfUrl = "/sanctum/csrf-cookie";
     </script>
@@ -99,6 +99,9 @@
                                                                                 <li class="tocify-item level-2" data-unique="decors-PUTapi-decor--id-">
                                 <a href="#decors-PUTapi-decor--id-">Mettre à jour un decor</a>
                             </li>
+                                                                                <li class="tocify-item level-2" data-unique="decors-PUTapi-decor-change-validation--id-">
+                                <a href="#decors-PUTapi-decor-change-validation--id-">Mettre à jour la validation d'un événement</a>
+                            </li>
                                                                                 <li class="tocify-item level-2" data-unique="decors-DELETEapi-decor--id-">
                                 <a href="#decors-DELETEapi-decor--id-">Supprime un decor</a>
                             </li>
@@ -118,11 +121,11 @@
                                                                                 <li class="tocify-item level-2" data-unique="evenements-POSTapi-event">
                                 <a href="#evenements-POSTapi-event">Créer un nouveau decor</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="evenements-PUTapi-event-change-validation--id-">
-                                <a href="#evenements-PUTapi-event-change-validation--id-">Mettre à jour la validation d'un événement</a>
-                            </li>
                                                                                 <li class="tocify-item level-2" data-unique="evenements-PUTapi-event--id-">
                                 <a href="#evenements-PUTapi-event--id-">Mettre à jour un événement</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="evenements-PUTapi-event-change-validation--id-">
+                                <a href="#evenements-PUTapi-event-change-validation--id-">Mettre à jour la validation d'un événement</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="evenements-DELETEapi-event--id-">
                                 <a href="#evenements-DELETEapi-event--id-">Supprime un événement</a>
@@ -172,7 +175,7 @@
     <div class="content">
         <h1 id="introduction">Introduction</h1>
 <aside>
-    <strong>Base URL</strong>: <code>http://pecorator.client</code>
+    <strong>Base URL</strong>: <code>http://pecorator.ulrich.client</code>
 </aside>
 <p>This documentation aims to provide all the information you need to work with our API.</p>
 <aside>As you scroll, you'll see code examples for working with the API in different programming languages in the dark area to the right (or as part of the content on mobile).
@@ -201,7 +204,7 @@ You can switch the language used with the tabs at the top right (or from the nav
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://pecorator.client/api/auth/login" \
+    "http://pecorator.ulrich.client/api/auth/login" \
     --header "Authorization: Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -214,7 +217,7 @@ You can switch the language used with the tabs at the top right (or from the nav
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.client/api/auth/login"
+    "http://pecorator.ulrich.client/api/auth/login"
 );
 
 const headers = {
@@ -364,7 +367,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://pecorator.client/api/auth/show" \
+    --get "http://pecorator.ulrich.client/api/auth/show" \
     --header "Authorization: Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -372,7 +375,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.client/api/auth/show"
+    "http://pecorator.ulrich.client/api/auth/show"
 );
 
 const headers = {
@@ -493,7 +496,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://pecorator.client/api/auth/logout" \
+    "http://pecorator.ulrich.client/api/auth/logout" \
     --header "Authorization: Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -501,7 +504,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.client/api/auth/logout"
+    "http://pecorator.ulrich.client/api/auth/logout"
 );
 
 const headers = {
@@ -625,7 +628,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://pecorator.client/api/decor?with_event=false&amp;paginate=false" \
+    --get "http://pecorator.ulrich.client/api/decor?with_event=false&amp;paginate=false" \
     --header "Authorization: Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -633,7 +636,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.client/api/decor"
+    "http://pecorator.ulrich.client/api/decor"
 );
 
 const params = {
@@ -828,7 +831,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://pecorator.client/api/decor/1?with_event=false" \
+    --get "http://pecorator.ulrich.client/api/decor/1?with_event=false" \
     --header "Authorization: Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -836,7 +839,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.client/api/decor/1"
+    "http://pecorator.ulrich.client/api/decor/1"
 );
 
 const params = {
@@ -987,7 +990,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://pecorator.client/api/decor" \
+    "http://pecorator.ulrich.client/api/decor" \
     --header "Authorization: Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -1003,7 +1006,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.client/api/decor"
+    "http://pecorator.ulrich.client/api/decor"
 );
 
 const headers = {
@@ -1189,7 +1192,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://pecorator.client/api/decor/1" \
+    "http://pecorator.ulrich.client/api/decor/1" \
     --header "Authorization: Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -1205,7 +1208,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.client/api/decor/1"
+    "http://pecorator.ulrich.client/api/decor/1"
 );
 
 const headers = {
@@ -1389,6 +1392,168 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
         </form>
 
+                    <h2 id="decors-PUTapi-decor-change-validation--id-">Mettre à jour la validation d&#039;un événement</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PUTapi-decor-change-validation--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "http://pecorator.ulrich.client/api/decor/change-validation/1" \
+    --header "Authorization: Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"validation\": \"validated\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://pecorator.ulrich.client/api/decor/change-validation/1"
+);
+
+const headers = {
+    "Authorization": "Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "validation": "validated"
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTapi-decor-change-validation--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{}</code>
+ </pre>
+    </span>
+<span id="execution-results-PUTapi-decor-change-validation--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-decor-change-validation--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-decor-change-validation--id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PUTapi-decor-change-validation--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-decor-change-validation--id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PUTapi-decor-change-validation--id-" data-method="PUT"
+      data-path="api/decor/change-validation/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-decor-change-validation--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PUTapi-decor-change-validation--id-"
+                    onclick="tryItOut('PUTapi-decor-change-validation--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PUTapi-decor-change-validation--id-"
+                    onclick="cancelTryOut('PUTapi-decor-change-validation--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PUTapi-decor-change-validation--id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/decor/change-validation/{id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PUTapi-decor-change-validation--id-"
+               value="Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PUTapi-decor-change-validation--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PUTapi-decor-change-validation--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="PUTapi-decor-change-validation--id-"
+               value="1"
+               data-component="url">
+    <br>
+<p>L'événement. Example: <code>1</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>validation</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="validation"                data-endpoint="PUTapi-decor-change-validation--id-"
+               value="validated"
+               data-component="body">
+    <br>
+<p>Nouveau statut. Example: <code>validated</code></p>
+        </div>
+        </form>
+
                     <h2 id="decors-DELETEapi-decor--id-">Supprime un decor</h2>
 
 <p>
@@ -1403,7 +1568,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://pecorator.client/api/decor/1" \
+    "http://pecorator.ulrich.client/api/decor/1" \
     --header "Authorization: Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -1411,7 +1576,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.client/api/decor/1"
+    "http://pecorator.ulrich.client/api/decor/1"
 );
 
 const headers = {
@@ -1548,7 +1713,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://pecorator.client/api/event?with_promoter=false&amp;paginate=false" \
+    --get "http://pecorator.ulrich.client/api/event?with_promoter=false&amp;paginate=false" \
     --header "Authorization: Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -1556,7 +1721,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.client/api/event"
+    "http://pecorator.ulrich.client/api/event"
 );
 
 const params = {
@@ -1839,7 +2004,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://pecorator.client/api/event/1?with_promoter=false" \
+    --get "http://pecorator.ulrich.client/api/event/1?with_promoter=false" \
     --header "Authorization: Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -1847,7 +2012,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.client/api/event/1"
+    "http://pecorator.ulrich.client/api/event/1"
 );
 
 const params = {
@@ -1998,7 +2163,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://pecorator.client/api/event" \
+    "http://pecorator.ulrich.client/api/event" \
     --header "Authorization: Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -2021,7 +2186,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.client/api/event"
+    "http://pecorator.ulrich.client/api/event"
 );
 
 const headers = {
@@ -2277,168 +2442,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
         </form>
 
-                    <h2 id="evenements-PUTapi-event-change-validation--id-">Mettre à jour la validation d&#039;un événement</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-PUTapi-event-change-validation--id-">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request PUT \
-    "http://pecorator.client/api/event/change-validation/1" \
-    --header "Authorization: Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data "{
-    \"validation\": \"validated\"
-}"
-</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.client/api/event/change-validation/1"
-);
-
-const headers = {
-    "Authorization": "Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed",
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-let body = {
-    "validation": "validated"
-};
-
-fetch(url, {
-    method: "PUT",
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-PUTapi-event-change-validation--id-">
-            <blockquote>
-            <p>Example response (200):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{}</code>
- </pre>
-    </span>
-<span id="execution-results-PUTapi-event-change-validation--id-" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-PUTapi-event-change-validation--id-"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-PUTapi-event-change-validation--id-"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-PUTapi-event-change-validation--id-" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-PUTapi-event-change-validation--id-">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-PUTapi-event-change-validation--id-" data-method="PUT"
-      data-path="api/event/change-validation/{id}"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('PUTapi-event-change-validation--id-', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-PUTapi-event-change-validation--id-"
-                    onclick="tryItOut('PUTapi-event-change-validation--id-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-PUTapi-event-change-validation--id-"
-                    onclick="cancelTryOut('PUTapi-event-change-validation--id-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-PUTapi-event-change-validation--id-"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-darkblue">PUT</small>
-            <b><code>api/event/change-validation/{id}</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="PUTapi-event-change-validation--id-"
-               value="Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed"
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="PUTapi-event-change-validation--id-"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="PUTapi-event-change-validation--id-"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="id"                data-endpoint="PUTapi-event-change-validation--id-"
-               value="1"
-               data-component="url">
-    <br>
-<p>L'événement. Example: <code>1</code></p>
-            </div>
-                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>validation</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
-                <input type="text" style="display: none"
-                              name="validation"                data-endpoint="PUTapi-event-change-validation--id-"
-               value="validated"
-               data-component="body">
-    <br>
-<p>Nouveau statut. Example: <code>validated</code></p>
-        </div>
-        </form>
-
                     <h2 id="evenements-PUTapi-event--id-">Mettre à jour un événement</h2>
 
 <p>
@@ -2453,7 +2456,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://pecorator.client/api/event/1" \
+    "http://pecorator.ulrich.client/api/event/1" \
     --header "Authorization: Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -2476,7 +2479,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.client/api/event/1"
+    "http://pecorator.ulrich.client/api/event/1"
 );
 
 const headers = {
@@ -2744,6 +2747,168 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
         </form>
 
+                    <h2 id="evenements-PUTapi-event-change-validation--id-">Mettre à jour la validation d&#039;un événement</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PUTapi-event-change-validation--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "http://pecorator.ulrich.client/api/event/change-validation/1" \
+    --header "Authorization: Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"validation\": \"validated\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://pecorator.ulrich.client/api/event/change-validation/1"
+);
+
+const headers = {
+    "Authorization": "Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "validation": "validated"
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTapi-event-change-validation--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{}</code>
+ </pre>
+    </span>
+<span id="execution-results-PUTapi-event-change-validation--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-event-change-validation--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-event-change-validation--id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PUTapi-event-change-validation--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-event-change-validation--id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PUTapi-event-change-validation--id-" data-method="PUT"
+      data-path="api/event/change-validation/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-event-change-validation--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PUTapi-event-change-validation--id-"
+                    onclick="tryItOut('PUTapi-event-change-validation--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PUTapi-event-change-validation--id-"
+                    onclick="cancelTryOut('PUTapi-event-change-validation--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PUTapi-event-change-validation--id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/event/change-validation/{id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PUTapi-event-change-validation--id-"
+               value="Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PUTapi-event-change-validation--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PUTapi-event-change-validation--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="PUTapi-event-change-validation--id-"
+               value="1"
+               data-component="url">
+    <br>
+<p>L'événement. Example: <code>1</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>validation</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="validation"                data-endpoint="PUTapi-event-change-validation--id-"
+               value="validated"
+               data-component="body">
+    <br>
+<p>Nouveau statut. Example: <code>validated</code></p>
+        </div>
+        </form>
+
                     <h2 id="evenements-DELETEapi-event--id-">Supprime un événement</h2>
 
 <p>
@@ -2758,7 +2923,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://pecorator.client/api/event/1" \
+    "http://pecorator.ulrich.client/api/event/1" \
     --header "Authorization: Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -2766,7 +2931,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.client/api/event/1"
+    "http://pecorator.ulrich.client/api/event/1"
 );
 
 const headers = {
@@ -2903,7 +3068,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://pecorator.client/api/user?with_events=false&amp;paginate=false" \
+    --get "http://pecorator.ulrich.client/api/user?with_events=false&amp;paginate=false" \
     --header "Authorization: Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -2911,7 +3076,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.client/api/user"
+    "http://pecorator.ulrich.client/api/user"
 );
 
 const params = {
@@ -3095,7 +3260,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://pecorator.client/api/user/1?with_events=false" \
+    --get "http://pecorator.ulrich.client/api/user/1?with_events=false" \
     --header "Authorization: Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -3103,7 +3268,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.client/api/user/1"
+    "http://pecorator.ulrich.client/api/user/1"
 );
 
 const params = {
@@ -3254,7 +3419,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://pecorator.client/api/user" \
+    "http://pecorator.ulrich.client/api/user" \
     --header "Authorization: Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -3271,7 +3436,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.client/api/user"
+    "http://pecorator.ulrich.client/api/user"
 );
 
 const headers = {
@@ -3469,21 +3634,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://pecorator.client/api/user/update-password" \
+    "http://pecorator.ulrich.client/api/user/update-password" \
     --header "Authorization: Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"old_password\": \"molestiae\",
-    \"new_password\": \"vero\",
-    \"new_password_confirmation\": \"et\"
+    \"old_password\": \"eos\",
+    \"new_password\": \"laboriosam\",
+    \"new_password_confirmation\": \"non\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.client/api/user/update-password"
+    "http://pecorator.ulrich.client/api/user/update-password"
 );
 
 const headers = {
@@ -3493,9 +3658,9 @@ const headers = {
 };
 
 let body = {
-    "old_password": "molestiae",
-    "new_password": "vero",
-    "new_password_confirmation": "et"
+    "old_password": "eos",
+    "new_password": "laboriosam",
+    "new_password_confirmation": "non"
 };
 
 fetch(url, {
@@ -3602,10 +3767,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="old_password"                data-endpoint="PUTapi-user-update-password"
-               value="molestiae"
+               value="eos"
                data-component="body">
     <br>
-<p>L'ancien mot de passe de l'utilisateur. Example: <code>molestiae</code></p>
+<p>L'ancien mot de passe de l'utilisateur. Example: <code>eos</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>new_password</code></b>&nbsp;&nbsp;
@@ -3613,10 +3778,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="new_password"                data-endpoint="PUTapi-user-update-password"
-               value="vero"
+               value="laboriosam"
                data-component="body">
     <br>
-<p>Le nouveau mot de passe de l'utilisateur. Example: <code>vero</code></p>
+<p>Le nouveau mot de passe de l'utilisateur. Example: <code>laboriosam</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>new_password_confirmation</code></b>&nbsp;&nbsp;
@@ -3624,10 +3789,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="new_password_confirmation"                data-endpoint="PUTapi-user-update-password"
-               value="et"
+               value="non"
                data-component="body">
     <br>
-<p>La confirmation du nouveau mot de passe de l'utilisateur. Example: <code>et</code></p>
+<p>La confirmation du nouveau mot de passe de l'utilisateur. Example: <code>non</code></p>
         </div>
         </form>
 
@@ -3645,7 +3810,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://pecorator.client/api/user/1" \
+    "http://pecorator.ulrich.client/api/user/1" \
     --header "Authorization: Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -3662,7 +3827,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.client/api/user/1"
+    "http://pecorator.ulrich.client/api/user/1"
 );
 
 const headers = {
@@ -3872,7 +4037,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://pecorator.client/api/user/1" \
+    "http://pecorator.ulrich.client/api/user/1" \
     --header "Authorization: Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -3880,7 +4045,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.client/api/user/1"
+    "http://pecorator.ulrich.client/api/user/1"
 );
 
 const headers = {

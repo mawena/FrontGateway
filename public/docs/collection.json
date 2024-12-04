@@ -5,12 +5,12 @@
             "key": "baseUrl",
             "type": "string",
             "name": "string",
-            "value": "http:\/\/pecorator.client"
+            "value": "http:\/\/pecorator.ulrich.client"
         }
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "4f71d264-7e90-4060-a48f-1a578476abf1",
+        "_postman_id": "4af5aae2-f998-4000-9417-5bfb89c735b3",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -319,6 +319,49 @@
                     ]
                 },
                 {
+                    "name": "Mettre \u00e0 jour la validation d'un \u00e9v\u00e9nement",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/decor\/change-validation\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/decor\/change-validation\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "L'\u00e9v\u00e9nement."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"validation\":\"validated\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
                     "name": "Supprime un decor",
                     "request": {
                         "url": {
@@ -564,49 +607,6 @@
                     ]
                 },
                 {
-                    "name": "Mettre \u00e0 jour la validation d'un \u00e9v\u00e9nement",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/event\/change-validation\/:id",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/event\/change-validation\/:id",
-                            "variable": [
-                                {
-                                    "id": "id",
-                                    "key": "id",
-                                    "value": "1",
-                                    "description": "L'\u00e9v\u00e9nement."
-                                }
-                            ]
-                        },
-                        "method": "PUT",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\"validation\":\"validated\"}"
-                        },
-                        "description": ""
-                    },
-                    "response": [
-                        {
-                            "header": [],
-                            "code": 200,
-                            "body": "{}",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
                     "name": "Mettre \u00e0 jour un \u00e9v\u00e9nement",
                     "request": {
                         "url": {
@@ -637,6 +637,49 @@
                         "body": {
                             "mode": "raw",
                             "raw": "{\"name\":\"Hiver Togo\",\"start_date\":\"2024-12-01\",\"end_date\":\"2024-12-01\",\"place\":\"Lom\u00e9\",\"type\":\"Dance\",\"nb_expected\":45,\"entrance\":\"free\",\"entry_price\":null,\"contact\":\"+228 90 90 90 90\",\"description\":\"description d\u00e9taill\u00e9\",\"description_summary\":\"description r\u00e9sum\u00e9\",\"poster\":\"...\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Mettre \u00e0 jour la validation d'un \u00e9v\u00e9nement",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/event\/change-validation\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/event\/change-validation\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "L'\u00e9v\u00e9nement."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"validation\":\"validated\"}"
                         },
                         "description": ""
                     },
@@ -862,7 +905,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"old_password\":\"molestiae\",\"new_password\":\"vero\",\"new_password_confirmation\":\"et\"}"
+                            "raw": "{\"old_password\":\"eos\",\"new_password\":\"laboriosam\",\"new_password_confirmation\":\"non\"}"
                         },
                         "description": ""
                     },
