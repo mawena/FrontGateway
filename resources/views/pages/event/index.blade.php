@@ -43,7 +43,7 @@
 								</div>
 							</div>
 							<div class="table-responsive">
-								<table id="zero_config" class="table table-striped table-bordered no-wrap">
+								<table id="zero_config" class="table table-striped">
 									<thead>
 										<tr class="text-center">
 											<th>Nom</th>
@@ -51,8 +51,7 @@
 											<th>Lieu</th>
 											<th>Date de debut</th>
 											<th>Date de fin</th>
-											<th>Nombre de personne attendues</th>
-											<th>Actions</th>
+											<th rowspan="5">Actions</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -63,9 +62,9 @@
 												<td class="py-4">{{ $event['place'] }}</td>
 												<td class="py-4">{{ $event['start_date'] }}</td>
 												<td class="py-4">{{ $event['end_date'] }}</td>
-												<td class="py-4">{{ $event['nb_expected'] }}</td>
 												<td class="" style="max-width: 100px">
-													<a href="{{ route('admin.event.show', $event['id']) }}" class="btn text-primary"><i class="fa fa-eye"></i></a>
+													<a href="{{ route('admin.event.show', $event['id']) }}" class="btn text-primary"><i
+															class="fa fa-eye"></i></a>
 													<a href="{{ route('admin.event.edit', $event['id']) }}" type="button" class="btn text-warning"><i
 															class="fa fa-edit"></i></a>
 													<form action="{{ route('admin.event.destroy', $event['id']) }}" method="POST"
@@ -77,8 +76,30 @@
 															<i style="color: red" class="fa fa-trash"></i>
 														</button>
 													</form>
-													<a href="{{ route('admin.event.destroy', $event['id']) }}" class="btn">
-													</a>
+													@if ($event['validation'] != 'rejected')
+														<form action="{{ route('admin.event.change_validation', $event['id']) }}" method="POST"
+															style="display:inline-block;">
+															@csrf
+															@method('PUT')
+															<input type="hidden" name="validation" value="rejected">
+															<button type="submit" class="btn"
+																onclick="return confirm('Êtes-vous sûr de vouloir rejeter cet événement ?')">
+																<i style="color: red" class="fa fa-times"></i>
+															</button>
+														</form>
+													@endif
+													@if ($event['validation'] != 'validated')
+														<form action="{{ route('admin.event.change_validation', $event['id']) }}" method="POST"
+															style="display:inline-block;">
+															@csrf
+															@method('PUT')
+															<input type="hidden" name="validation" value="validated">
+															<button type="submit" class="btn"
+																onclick="return confirm('Êtes-vous sûr de vouloir valider cet événement ?')">
+																<i style="color: green" class="fa fa-check"></i>
+															</button>
+														</form>
+													@endif
 												</td>
 											</tr>
 										@endforeach
@@ -115,8 +136,8 @@
 									<div class="col-lg-12 col-md-12">
 										<div class="form-group">
 											<label for="start_date">Date Début</label>
-											<input class="form-control" type="date" name="start_date" id="start_date" required="" placeholder=""
-												value="2024-01-01">
+											<input class="form-control" type="date" name="start_date" id="start_date" required=""
+												placeholder="" value="2024-01-01">
 											@error('start_date')
 												<span class="text-danger">{{ $message }}</span>
 											@enderror
@@ -153,8 +174,8 @@
 									<div class="col-lg-12 col-md-12">
 										<div class="form-group">
 											<label for="nb_expected">Nombre de personnes attendus</label>
-											<input class="form-control" type="number" name="nb_expected" id="nb_expected" required="" placeholder=""
-												value="10">
+											<input class="form-control" type="number" name="nb_expected" id="nb_expected" required=""
+												placeholder="" value="10">
 											@error('nb_expected')
 												<span class="text-danger">{{ $message }}</span>
 											@enderror
@@ -185,7 +206,8 @@
 									<div class="col-lg-12 col-md-12">
 										<div class="form-group">
 											<label for="contact">Contact</label>
-											<input class="form-control" name="contact" id="contact" required="" placeholder="" value="+228 30 30 30 30">
+											<input class="form-control" name="contact" id="contact" required="" placeholder=""
+												value="+228 30 30 30 30">
 											@error('contact')
 												<span class="text-danger">{{ $message }}</span>
 											@enderror

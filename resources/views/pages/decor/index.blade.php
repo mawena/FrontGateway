@@ -47,11 +47,10 @@
                                     <thead>
                                         <tr class="text-center">
                                             <th>Nom</th>
+                                            <th>Promoteur</th>
+                                            <th>Evénement</th>
                                             <th>Disponibilité (Début)</th>
                                             <th>Disponibilité (Fin)</th>
-                                            <th>Evénement</th>
-                                            <th>Promoteur</th>
-                                            <th>Date création</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
@@ -59,12 +58,11 @@
                                         @foreach ($decors as $decor)
                                             <tr class="py-0 text-center">
                                                 <td class="" style="width: 100px">{{ $decor['name'] }}</td>
+                                                <td class="py-4" class="text-bold">
+													{{ $decor['event']['promoter']['user']['name'] }}</td>
+													<td class="py-4" class="text-bold">{{ $decor['event']['name'] }}</td>
                                                 <td class="py-4">{{ $decor['start_use_fr'] }}</td>
                                                 <td class="py-4">{{ $decor['end_use_fr'] }}</td>
-                                                <td class="py-4" class="text-bold">{{ $decor['event']['name'] }}</td>
-                                                <td class="py-4" class="text-bold">
-                                                    {{ $decor['event']['promoter']['user']['name'] }}</td>
-                                                <td class="py-4">{{ $decor['created_at_fr'] }}</td>
                                                 <td class="" style="max-width: 100px">
                                                     <a href="{{ route('admin.decor.show', $decor['id']) }}"
                                                         class="btn text-primary"><i class="fa fa-eye"></i></a>
@@ -79,9 +77,30 @@
                                                             <i style="color: red" class="fa fa-trash"></i>
                                                         </button>
                                                     </form>
-                                                    <a href="{{ route('admin.decor.destroy', $decor['id']) }}"
-                                                        class="btn">
-                                                    </a>
+													@if ($decor['validation'] != 'rejected')
+														<form action="{{ route('admin.decor.change_validation', $decor['id']) }}" method="POST"
+															style="display:inline-block;">
+															@csrf
+															@method('PUT')
+															<input type="hidden" name="validation" value="rejected">
+															<button type="submit" class="btn"
+																onclick="return confirm('Êtes-vous sûr de vouloir rejeter cet événement ?')">
+																<i style="color: red" class="fa fa-times"></i>
+															</button>
+														</form>
+													@endif
+													@if ($decor['validation'] != 'validated')
+														<form action="{{ route('admin.decor.change_validation', $decor['id']) }}" method="POST"
+															style="display:inline-block;">
+															@csrf
+															@method('PUT')
+															<input type="hidden" name="validation" value="validated">
+															<button type="submit" class="btn"
+																onclick="return confirm('Êtes-vous sûr de vouloir valider cet événement ?')">
+																<i style="color: green" class="fa fa-check"></i>
+															</button>
+														</form>
+													@endif
                                                 </td>
                                             </tr>
                                         @endforeach

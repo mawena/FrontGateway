@@ -51,6 +51,7 @@ Route::prefix("admin")->name("admin.")->controller(AuthControler::class)->group(
 			Route::get("/show/{id}", "show")->name("show");
 			Route::get("/edit/{id}", "edit")->name("edit");
 			Route::put("/{id}", "update")->name("update");
+			Route::put("/change-validation/{id}", "change_validation")->name("change_validation");
 			Route::delete("/{id}", "destroy")->name("destroy");
 		});
 		Route::prefix("/decor")->name("decor.")->controller(DecorController::class)->group(function () {
@@ -59,6 +60,7 @@ Route::prefix("admin")->name("admin.")->controller(AuthControler::class)->group(
 			Route::get("/show/{id}", "show")->name("show");
 			Route::get("/edit/{id}", "edit")->name("edit");
 			Route::put("/{id}", "update")->name("update");
+			Route::put("/change-validation/{id}", "change_validation")->name("change_validation");
 			Route::delete("/{id}", "destroy")->name("destroy");
 		});
 	});
