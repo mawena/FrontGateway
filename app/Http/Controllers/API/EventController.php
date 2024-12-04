@@ -17,7 +17,7 @@ class EventController extends Controller
 {
 
 	protected string $modelClass = "\App\Models\Event";
-
+	protected string $indexAbilityName = Null;
 	protected array $indexSearchFieldList = ["name", "start_date", "end_date"];
 
 
