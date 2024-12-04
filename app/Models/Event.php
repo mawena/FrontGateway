@@ -27,6 +27,7 @@ class Event extends Model
 		"description",
 		"description_summary",
 		"poster_path",
+		"validation",
 	];
 
 	public function toArray()
@@ -42,7 +43,8 @@ class Event extends Model
 		return $this->belongsTo(Promoter::class, 'promoter_id', 'id');
 	}
 
-	public function decors(): HasMany{
+	public function decors(): HasMany
+	{
 		return $this->hasMany(Decor::class, "event_id", "id");
 	}
 }

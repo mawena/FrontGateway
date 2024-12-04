@@ -28,6 +28,7 @@ Route::controller(AuthController::class)->group(function () {
 			Route::get("/", 'index')->name("index");
 			Route::get("{id}", 'show')->name("show");
 			Route::post("/", 'store')->name("store");
+			Route::put("/change-validation/{id}", 'change_validation')->name("change_validation");
 			Route::put("{id}", 'update')->name("update");
 			Route::delete("{id}", 'destroy')->name("destroy");
 		});

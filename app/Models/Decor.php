@@ -9,8 +9,8 @@ use Illuminate\Support\Carbon;
 
 class Decor extends Model
 {
-    /** @use HasFactory<\Database\Factories\DecorFactory> */
-    use HasFactory;
+	/** @use HasFactory<\Database\Factories\DecorFactory> */
+	use HasFactory;
 
 	protected $fillable = [
 		"name",
@@ -18,6 +18,7 @@ class Decor extends Model
 		"start_use",
 		"end_use",
 		"event_id",
+		"validation",
 	];
 
 	public function toArray()
@@ -30,7 +31,8 @@ class Decor extends Model
 		return $data;
 	}
 
-	public function event(): BelongsTo{
+	public function event(): BelongsTo
+	{
 		return $this->belongsTo(Event::class, "event_id", "id");
 	}
 }
