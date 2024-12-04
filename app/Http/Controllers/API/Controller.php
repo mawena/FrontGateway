@@ -20,7 +20,7 @@ class Controller extends BaseController
 	protected string $modelClass = "";
 
 	//Index, show and destroy
-	protected $indexAbilityName = "viewAny";
+	protected string|null $indexAbilityName = "viewAny";
 	protected $indexManualFilter = null;
 	protected array $indexSearchFieldList = [];
 
