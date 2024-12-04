@@ -5,7 +5,6 @@
         </div>
         <div class="th-mobile-menu">
             <ul>
-                <li><a href="{{ route('visitor.index') }}">Accueil</a></li>
                 <li><a href="{{ route('visitor.events') }}">Événements</a></li>
                 <li><a href="{{ route('visitor.decors') }}">Décors</a></li>
             </ul>
@@ -24,7 +23,6 @@
                     <div class="col text-center me-xl-auto">
                         <nav class="main-menu d-none w-100 d-xl-inline-block">
                             <ul>
-                                <li><a @class(['active'=> Route::is('visitor.index')]) href="{{ route('visitor.index') }}">Accueil</a></li>
                                 <li><a @class(['active'=> Route::is('visitor.events') || Route::is('visitor.events.details')]) href="{{ route('visitor.events') }}">Événements</a></li>
                                 <li><a @class(['active'=> Route::is('visitor.decors')]) href="{{ route('visitor.decors') }}">Décors</a></li>
                             </ul>

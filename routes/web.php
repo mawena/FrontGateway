@@ -8,8 +8,10 @@ use App\Http\Controllers\Front\UserController;
 use App\Http\Controllers\Front\Visitor\HomeController;
 use Illuminate\Support\Facades\Route;
 
-Route::controller(HomeController::class)->as('visitor.')->group(function(){
-	Route::get('/', 'index')->name('index');
+Route::controller(HomeController::class)->as('visitor.')->group(function () {
+	Route::get('/', function () {
+		return redirect()->route("visitor.events");
+	})->name('index');
 	Route::get('/evenements', 'events')->name('events');
 	Route::get('/evenements/details/{id}', 'event_details')->name('events.details');
 	Route::get('/decors', 'decors')->name('decors');

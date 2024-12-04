@@ -42,6 +42,7 @@ class HomeController
 			config('app.url') . "/api/event",
 			[
 				"paginate" => "false",
+				"with_decors" => "true"
 			]
 		)->json();
 		return view("visitor.pages.events", ["events" => $event_response["data"] ?? []]);
