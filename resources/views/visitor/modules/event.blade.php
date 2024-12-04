@@ -2,12 +2,12 @@
 	<div class="blog-img global-img"><img src="/storage/{{ $event['poster_path'] }}" alt="blog image"></div>
 	<div class="blog-box_content">
 		<div class="blog-meta">
-			<a class="author" href="#">{{ $event['start_date_fr'] }}</a>
-			<a href="#">{{$event['place']}}</a>
-			<a href="#">{{count($event['decors'])}} Décors</a>
+			<a class="author" href="{{ route('visitor.events.details', ['id' => $event['id']]) }}">{{ $event['start_date_fr'] }}</a>
+			<a href="{{ route('visitor.events.details', ['id' => $event['id']]) }}">{{$event['place']}}</a>
+			<a href="{{ route('visitor.events.details', ['id' => $event['id']]) }}">{{count($event['decors'])}} Décors</a>
 		</div>
 		<h3 class="box-title">
-			<a href="blog-details.html">
+			<a href="{{ route('visitor.events.details', ['id' => $event['id']]) }}">
 				{{ $event['name'] }}
 			</a>
 			<p class="text-dark" style="font-size: 14px; font-weight: 100; line-height: 28px">
