@@ -30,7 +30,7 @@
 						<div class="card-body">
 							<div class="d-flex align-items-center mb-4">
 								<h4 class="card-title">
-									Liste des évènements
+									Liste des événements
 									<span class="text-primary px-3 ml-2 py-4 border-primary">
 										[ Total : {{ count($events) }} ]
 									</span>
@@ -38,7 +38,7 @@
 								<div class="ml-auto">
 									<button type="button" class="btn btn-primary px-4" data-toggle="modal" data-target="#signup-modal"
 										id="toggle_modal">
-										Nouvel évènement
+										Nouvel événement
 									</button>
 								</div>
 							</div>
@@ -73,7 +73,7 @@
 														@csrf
 														@method('DELETE')
 														<button type="submit" class="btn"
-															onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet évènement ?')">
+															onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet événement ?')">
 															<i style="color: red" class="fa fa-trash"></i>
 														</button>
 													</form>
