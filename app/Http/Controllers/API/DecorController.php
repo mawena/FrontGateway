@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\API;
 
 use App\Models\Decor;
@@ -7,6 +6,8 @@ use App\Models\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
+use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\ImageManager;
 
 /**
  * @group Decors
@@ -36,6 +37,7 @@ class DecorController extends Controller
 	 */
 	public function index(Request $request)
 	{
+		$manager = new ImageManager(new Driver());
 		return parent::index($request);
 	}
 
@@ -52,6 +54,24 @@ class DecorController extends Controller
 	public function show(Request $request, int $id)
 	{
 		return parent::show($request, $id);
+	}
+
+	public function generate_image($request, $id)
+	{
+		// Chemins des deux images à superposer
+		$imagePath1 = public_path('images/image1.png'); // Image de base
+		$imagePath2 = public_path('images/image2.png'); // Image à superposer
+		$manager = new ImageManager(new Driver());
+
+		// read image from file system
+		$image1 = $manager->read($imagePath1);
+		$image2 = $manager->read($imagePath2);
+		// Charger la première image
+		$image2->resize(200, 200);
+		$image1->insert($image2, 'top-left', 50, 50);
+		$outputPath = public_path('images/output.png');
+		$image1->save($outputPath);
+		return response()->download($outputPath);
 	}
 
 	/**
@@ -142,6 +162,31 @@ class DecorController extends Controller
 			return $requestData;
 		};
 
+		return parent::update($request, $id);
+	}
+
+
+
+	/**
+	 * Mettre à jour la validation d'un événement
+	 *
+	 * @urlParam	id											int	required		L'événement.																Example: 1
+	 *
+	 * @bodyParam  validation									string				Nouveau statut.																Example: validated
+	 *
+	 * @response 200
+	 *
+	 */
+	public function change_validation(Request $request, $id)
+	{
+		$this->updateGetValidationArrayFunction = function ($id) {
+			return [
+				"validation" => "required|in:rejected,validated",
+			];
+		};
+		$this->updateBeforeUpdateFunction = function ($model, $requestData, $data) use ($request) {
+			return ["validation" => $requestData["validation"]];
+		};
 		return parent::update($request, $id);
 	}
 
