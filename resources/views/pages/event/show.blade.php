@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-7 align-self-center">
                     <h2 class="page-title text-truncate text-dark font-weight-medium mb-1">
-                        Détails d'évènement / {{ $event['name'] }}
+                        Détails d'événement / {{ $event['name'] }}
                     </h2>
                 </div>
 
@@ -116,7 +116,7 @@
                                         <a href="{{ route('admin.event.index') }}" class="btn btn-secondary px-5"
                                             type="submit">Retour</a>
                                         <a href="{{ route('admin.event.edit', $event['id']) }}"
-                                            class="btn btn-warning px-5" type="submit">Modifier cet évènement</a>
+                                            class="btn btn-warning px-5" type="submit">Modifier cet événement</a>
                                     </div>
                                 </div>
                             </div>
