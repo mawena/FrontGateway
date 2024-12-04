@@ -64,10 +64,10 @@ class DecorController extends Controller
 	 * 
 	 * @response 200
 	 */
-	public function generate_image($request, $id)
+	public function generate_image(Request $request, $id)
 	{
-		$source = imagecreatefrompng("/home/charles-gamligo/Downloads/pngwing.com.png"); // Le logo est la source
-		$destination = imagecreatefromjpeg("/home/charles-gamligo/Pictures/Pictures/photoeffets.com_.png"); // La photo est la d
+		$source = imagecreatefrompng("pngwing.com.png");
+		$destination = imagecreatefromjpeg("39679889_015_6ef8.jpg");
 
 		// Les fonctions imagesx et imagesy renvoient la largeur et la hauteur d'une image
 		$largeur_source = imagesx($source);
@@ -80,10 +80,10 @@ class DecorController extends Controller
 		$destination_y =  $hauteur_destination - $hauteur_source;
 
 		// On met le logo (source) dans l'image de destination (la photo)
-		imagecopymerge($destination, $source, $destination_x, $destination_y, 0, 0, $largeur_source, $hauteur_source, 60);
+		imagecopymerge($destination, $source, $destination_x, $destination_y, 0, 0, $largeur_source, $hauteur_source, 70);
 
 		// On affiche l'image de destination qui a été fusionnée avec le logo
-		imagejpeg($destination, "./edit/herbe2.jpg");
+		imagejpeg($destination, "herbe2.jpg");
 	}
 
 	/**
@@ -109,12 +109,12 @@ class DecorController extends Controller
 		$this->storeManualValidationsFunction = function ($requestData) {
 			$event = Event::where("id", $requestData["event_id"])->first();
 			if (!$this->checkIsBase64Validated($requestData["file"], ["png"])) {
-				return ["errors" => $this->responseError(["file" => ["le fichier n'est pas une image valide"]], 400)];
+				return ["errors" => ["file" => ["le fichier n'est pas une image valide"]]];
 			}
 			if ($file_path = $this->saveImageFromBase64($requestData["file"], "pictures/decors/$event->id/" . Str::slug($requestData["name"]) . ".png")) {
 				return ["data" => ["file_path" => $file_path]];
 			} else {
-				return ["errors" => $this->responseError(["file" => ["Une erreur est survenu durant l'insertion"]])];
+				return ["errors" => ["file" => ["Une erreur est survenu durant l'insertion"]]];
 			}
 		};
 		$this->storeBeforeCreateFunction = function ($requestData, $data) {
@@ -157,12 +157,12 @@ class DecorController extends Controller
 			if (isset($requestData["file"])) {
 				$event = Event::where("id", $requestData["event_id"])->first();
 				if (!$this->checkIsBase64Validated($requestData["file"], ["png"])) {
-					return ["errors" => $this->responseError(["file" => ["le fichier n'est pas une image valide"]], 400)];
+					return ["errors" => ["file" => ["le fichier n'est pas une image valide"]], 400];
 				}
 				if ($file_path = $this->saveImageFromBase64($requestData["file"], "pictures/decors/$event->id/" . Str::slug($requestData["name"]) . ".png")) {
 					return ["data" => ["file_path" => $file_path]];
 				} else {
-					return ["errors" => $this->responseError(["file" => ["Une erreur est survenu durant l'insertion"]])];
+					return ["errors" => ["file" => ["Une erreur est survenu durant l'insertion"]]];
 				}
 			}
 		};
