@@ -25,13 +25,7 @@
 						@include('visitor.modules.event')
 					</div>
 				@empty
-					<br>
-					<br>
-					<br>
 					Aucun événement
-					<br>
-					<br>
-					<br>
 				@endforelse
             </div>
         </div>
