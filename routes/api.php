@@ -25,16 +25,16 @@ Route::controller(AuthController::class)->group(function () {
 		});
 
 		Route::prefix("event")->name("event.")->controller(EventController::class)->group(function () {
-			Route::get("/", 'index')->name("index");
-			Route::get("{id}", 'show')->name("show");
+			Route::get("/", 'index')->name("index")->withoutMiddleware('auth:sanctum');
+			Route::get("{id}", 'show')->name("show")->withoutMiddleware('auth:sanctum');
 			Route::post("/", 'store')->name("store");
 			Route::put("{id}", 'update')->name("update");
 			Route::put("/change-validation/{id}", 'change_validation')->name("change_validation");
 			Route::delete("{id}", 'destroy')->name("destroy");
 		});
 		Route::prefix("decor")->name("decor.")->controller(DecorController::class)->group(function () {
-			Route::get("/", 'index')->name("index");
-			Route::get("/{id}", 'show')->name("show");
+			Route::get("/", 'index')->name("index")->withoutMiddleware('auth:sanctum');
+			Route::get("/{id}", 'show')->name("show")->withoutMiddleware('auth:sanctum');
 			Route::get("/generated-image/{id}", 'generate_image')->name("generate_image");
 			Route::post("/", 'store')->name("store");
 			Route::put("/{id}", 'update')->name("update");

@@ -19,7 +19,8 @@ class DecorController extends Controller
 {
 
 	protected string $modelClass = "\App\Models\Decor";
-
+	protected string|null $indexAbilityName = Null;
+	protected string|null $showAbilityName = Null;
 	protected array $indexSearchFieldList = ["name"];
 
 	/**

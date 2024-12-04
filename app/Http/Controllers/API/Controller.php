@@ -21,6 +21,7 @@ class Controller extends BaseController
 
 	//Index, show and destroy
 	protected string|null $indexAbilityName = "viewAny";
+	protected string|null $showAbilityName = "viewAny";
 	protected $indexManualFilter = null;
 	protected array $indexSearchFieldList = [];
 
@@ -81,12 +82,13 @@ class Controller extends BaseController
 		$model = call_user_func_array([$this->modelClass, 'find'], [$id]);
 		$requestData = $request->all();
 		if ($model) {
-			if (($authorisation = Gate::inspect('view', $model))->allowed()) {
-				$model = $this->modelRelationLoad($model, $requestData, $this->modelName);
-				return $this->responseOk([$this->modelName => $model]);
-			} else {
-				return $this->responseError(["auth" => [$authorisation->message()]], 403);
+			if($this->showAbilityName){
+				if (!($authorisation = Gate::inspect($this->showAbilityName, $model))->allowed()) {
+					return $this->responseError(["auth" => [$authorisation->message()]], 403);
+				}
 			}
+			$model = $this->modelRelationLoad($model, $requestData, $this->modelName);
+			return $this->responseOk([$this->modelName => $model]);
 		} else {
 			return $this->responseError(["id" => ["l'élément n'existe pas"]], 404);
 		}
