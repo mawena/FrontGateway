@@ -15,6 +15,8 @@ Route::controller(HomeController::class)->as('visitor.')->group(function () {
 	Route::get('/evenements', 'events')->name('events');
 	Route::get('/evenements/details/{id}', 'event_details')->name('events.details');
 	Route::get('/decors', 'decors')->name('decors');
+	Route::get("/decors/use/{id}", "use_decor")->name("decors.use");
+
 });
 
 

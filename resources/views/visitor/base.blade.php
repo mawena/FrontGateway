@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="{{ asset('/visitor/assets/css/magnific-popup.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/visitor/assets/css/swiper-bundle.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/visitor/assets/css/style.css') }}">
+    @yield('decor.use.head')
+
 </head>
 
 <body>
@@ -32,7 +34,7 @@
         <div class="cursor"></div>
         <div class="cursor-follower"></div>
     </div>
-    <div id="preloader" class="preloader"><button class="th-btn preloaderCls">Fermer</button>
+    <div id="preloader" class="preloader text-center"><button class="th-btn preloaderCls">Encours de chargement</button>
         <div class="preloader-inner"><img src="{{ asset('/visitor/assets/img/logo3.svg') }}" alt=""></div>
         <div id="loader" class="th-preloader">
             <div class="animation-preloader">
@@ -131,6 +133,7 @@
             </path>
         </svg></div>
     @include('visitor.form.login')
+	@stack('scripts')
     <script src="{{ asset('/visitor/assets/js/vendor/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('/visitor/assets/js/swiper-bundle.min.js') }}"></script>
     <script src="{{ asset('/visitor/assets/js/bootstrap.min.js') }}"></script>

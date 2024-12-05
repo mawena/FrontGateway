@@ -1,6 +1,6 @@
 <div class="th-menu-wrapper onepage-nav">
     <div class="th-menu-area text-center"><button class="th-menu-toggle"><i class="fal fa-times"></i></button>
-        <div class="mobile-logo"><a href="home-travel.html"><img src="/visitor/assets/img/logo2.svg"
+        <div class="mobile-logo"><a href="/"><img src="/visitor/assets/img/logo2.svg"
                     alt="Tourm"></a>
         </div>
         <div class="th-mobile-menu">
@@ -17,7 +17,7 @@
             <div class="container th-container">
                 <div class="row align-items-center justify-content-between">
                     <div class="col-auto">
-                        <div class="header-logo"><a href="home-travel.html"><img
+                        <div class="header-logo"><a href="/"><img
                                     src="{{ asset("/visitor/assets/img/logo.svg") }}" alt="Tourm"></a></div>
                     </div>
                     <div class="col text-center me-xl-auto">
@@ -26,7 +26,8 @@
                                 <li><a @class(['active'=> Route::is('visitor.events') || Route::is('visitor.events.details')]) href="{{ route('visitor.events') }}">Événements</a></li>
                                 <li><a @class(['active'=> Route::is('visitor.decors')]) href="{{ route('visitor.decors') }}">Décors</a></li>
                             </ul>
-                        </nav><button type="button" class="th-menu-toggle d-block d-xl-none"><i
+                        </nav>
+						<button  style="margin-left: 1500cm" type="button" class="th-menu-toggle d-block d-xl-none"><i
                                 class="far fa-bars"></i></button>
                     </div>
                     <div class="col-auto d-none d-xl-block">
