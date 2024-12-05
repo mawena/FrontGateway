@@ -64,6 +64,21 @@ class EventController
 		}
 	}
 
+	public function change_validation(Request $request, $id)
+	{
+		$response = Http::withHeaders([
+			'Authorization' => 'Bearer ' . session('userToken'),
+			'Accept' => 'application/json',
+		])->put(config('app.url') . "/api/event/change-validation/" . $id, $request->all())->json();
+		if ($response["status"] == 200) {
+			return redirect()->route("admin.event.index");
+		} else {
+			return redirect()->back()
+				->withInput()
+				->withErrors($response["errors"]);
+		}
+	}
+
 	public function store(Request $request)
 	{
 		$requestData = $request->all();

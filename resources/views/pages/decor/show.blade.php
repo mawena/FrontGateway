@@ -28,17 +28,16 @@
 			<div class="row">
 				<div class="col-12">
 					<div class="card" style="overflow: hidden">
-                        <div class="card-header p-2">
-                            <img src="{{ asset($event['poster_path']) }}" style="width: 100%; height: 250px; object-fit: cover"
-                               alt="">
-                        </div>
+						<div class="card-header p-2">
+							<img src="/storage/{{ $event['poster_path'] }}" style="width: 100%; height: 250px; object-fit: cover"
+								alt="">
+						</div>
 						<div class="card-body pb-0">
 							<div class="modal-body">
 								<div class="pl-3 pr-3">
 									<div class="row">
 										<div class="col-lg-6 col-md-12">
-											<img src="{{ asset($decor['file_path']) }}" class="rounded-app" @style(['width:100%; height:100%; object-fit: contain; border: black 4px dashed'])
-											alt="">
+											<img src="/storage/{{ $decor['file_path'] }}" class="rounded-app" @style(['width:100%; height:100%; object-fit: contain; border: black 4px dashed']) alt="">
 										</div>
 										<div class="col-lg-6 col-md-12">
 											<div class="row">
@@ -56,7 +55,8 @@
 													<div class="form-group">
 														<label for="decor_id">Promoteur</label>
 														<p class="py-1 text-bold text-dark">
-															<a class="text-primary d-flex align-items-center" href="{{ route('admin.promoter.show', $promoter['id']) }}">
+															<a class="text-primary d-flex align-items-center"
+																href="{{ route('admin.promoter.show', $promoter['id']) }}">
 																<i class="fa fa-eye"></i> &nbsp; {{ $promoter['name'] }}
 															</a>
 														</p>
@@ -84,11 +84,10 @@
 										</div>
 									</div>
 									<div class="form-group text-right mt-4">
-                                        <a href="{{ route('admin.decor.index') }}" class="btn btn-secondary px-5"
-                                            type="submit">Retour</a>
-                                        <a href="{{ route('admin.decor.edit', $decor['id']) }}"
-                                            class="btn btn-warning px-5" type="submit">Modifier ce décor</a>
-                                    </div>
+										<a href="{{ route('admin.decor.index') }}" class="btn btn-secondary px-5" type="submit">Retour</a>
+										<a href="{{ route('admin.decor.edit', $decor['id']) }}" class="btn btn-warning px-5" type="submit">Modifier
+											ce décor</a>
+									</div>
 								</div>
 							</div>
 						</div>

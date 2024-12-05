@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="{{ asset('/visitor/assets/css/magnific-popup.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/visitor/assets/css/swiper-bundle.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/visitor/assets/css/style.css') }}">
+    @yield('decor.use.head')
+
 </head>
 
 <body>
@@ -32,21 +34,7 @@
         <div class="cursor"></div>
         <div class="cursor-follower"></div>
     </div>
-    {{-- <div class="color-scheme-wrap active"><button class="switchIcon"><i class="fa-solid fa-palette"></i></button>
-        <h4 class="color-scheme-wrap-title"><i class="far fa-palette"></i>STYLE SWITCHER</h4>
-        <div class="color-switch-btns"><button data-color="#684DF4"><i class="fa-solid fa-droplet"></i></button> <button
-                data-color="#086ad8"><i class="fa-solid fa-droplet"></i></button> <button data-color="#FC3737"><i
-                    class="fa-solid fa-droplet"></i></button> <button data-color="#8a2be2"><i
-                    class="fa-solid fa-droplet"></i></button> <button data-color="#104CBA"><i
-                    class="fa-solid fa-droplet"></i></button> <button data-color="#ffbf4f"><i
-                    class="fa-solid fa-droplet"></i></button> <button data-color="#323F7C"><i
-                    class="fa-solid fa-droplet"></i></button> <button data-color="#0e2bc5"><i
-                    class="fa-solid fa-droplet"></i></button> <button data-color="#F79C53"><i
-                    class="fa-solid fa-droplet"></i></button> <button data-color="#6957af"><i
-                    class="fa-solid fa-droplet"></i></button></div><a href="https://themeforest.net/search/themeholy"
-            class="th-btn text-center"><i class="fa fa-shopping-cart me-2"></i> Purchase</a>
-    </div> --}}
-    <div id="preloader" class="preloader"><button class="th-btn preloaderCls">Fermer</button>
+    <div id="preloader" class="preloader text-center"><button class="th-btn preloaderCls">Encours de chargement</button>
         <div class="preloader-inner"><img src="{{ asset('/visitor/assets/img/logo3.svg') }}" alt=""></div>
         <div id="loader" class="th-preloader">
             <div class="animation-preloader">
@@ -145,6 +133,7 @@
             </path>
         </svg></div>
     @include('visitor.form.login')
+	@stack('scripts')
     <script src="{{ asset('/visitor/assets/js/vendor/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('/visitor/assets/js/swiper-bundle.min.js') }}"></script>
     <script src="{{ asset('/visitor/assets/js/bootstrap.min.js') }}"></script>

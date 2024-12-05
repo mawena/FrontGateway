@@ -291,6 +291,75 @@ paths:
           present:
             summary: 'When the value is present'
             value: 1
+  '/api/decor/generated-image/{id}':
+    get:
+      summary: 'Générer une image avec ce décor'
+      operationId: gnrerUneImageAvecCeDcor
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {  }
+                properties: {  }
+      tags:
+        - Decors
+    parameters:
+      -
+        in: path
+        name: id
+        description: "Optional parameter. L'ID du decor."
+        required: true
+        schema:
+          type: integer
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: 1
+  '/api/decor/change-validation/{id}':
+    put:
+      summary: "Mettre à jour la validation d'un événement"
+      operationId: mettreJourLaValidationDunvnement
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {  }
+                properties: {  }
+      tags:
+        - Decors
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                validation:
+                  type: string
+                  description: 'Nouveau statut.'
+                  example: validated
+    parameters:
+      -
+        in: path
+        name: id
+        description: "L'événement."
+        example: 1
+        required: true
+        schema:
+          type: integer
   /api/event:
     get:
       summary: 'Affiche les événement'
@@ -648,6 +717,43 @@ paths:
           present:
             summary: 'When the value is present'
             value: 1
+  '/api/event/change-validation/{id}':
+    put:
+      summary: "Mettre à jour la validation d'un événement"
+      operationId: mettreJourLaValidationDunvnement
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {  }
+                properties: {  }
+      tags:
+        - Evenements
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                validation:
+                  type: string
+                  description: 'Nouveau statut.'
+                  example: validated
+    parameters:
+      -
+        in: path
+        name: id
+        description: "L'événement."
+        example: 1
+        required: true
+        schema:
+          type: integer
   /api/user:
     get:
       summary: 'Affiche les utilisateurs'
@@ -894,15 +1000,15 @@ paths:
                 old_password:
                   type: string
                   description: "L'ancien mot de passe de l'utilisateur."
-                  example: fuga
+                  example: molestias
                 new_password:
                   type: string
                   description: "Le nouveau mot de passe de l'utilisateur."
-                  example: earum
+                  example: ad
                 new_password_confirmation:
                   type: string
                   description: "La confirmation du nouveau mot de passe de l'utilisateur."
-                  example: aut
+                  example: fugit
               required:
                 - old_password
                 - new_password

@@ -6,11 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Str;
 
 class Decor extends Model
 {
-    /** @use HasFactory<\Database\Factories\DecorFactory> */
-    use HasFactory;
+	/** @use HasFactory<\Database\Factories\DecorFactory> */
+	use HasFactory;
 
 	protected $fillable = [
 		"name",
@@ -18,7 +19,10 @@ class Decor extends Model
 		"start_use",
 		"end_use",
 		"event_id",
+		"validation",
 	];
+
+	public $appends = ["days_remaining"];
 
 	public function toArray()
 	{
@@ -30,7 +34,23 @@ class Decor extends Model
 		return $data;
 	}
 
-	public function event(): BelongsTo{
+	public function event(): BelongsTo
+	{
 		return $this->belongsTo(Event::class, "event_id", "id");
+	}
+
+	public function getDaysRemainingAttribute()
+	{
+		$dateNow = Carbon::now();
+		$diff = $dateNow->diff(Carbon::parse($this->end_use));
+		$return = "";
+		$return .= $diff->y ? "$diff->y an(s) et " : "";
+		$return .= $diff->m ? "$diff->m moi(s) et " : "";
+		$return .= $diff->d ? "$diff->d jour(s)" : "";
+
+		if (Str::endsWith($return, 'et ')) {
+			$result = Str::beforeLast($return, 'et ');
+		}
+		return $return;
 	}
 }

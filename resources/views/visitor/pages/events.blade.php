@@ -20,11 +20,13 @@
         <br>
         <div class="slider-area">
             <div class="row justify-content-center gx-3 gy-4">
-                @for ($i = 0; $i < 10; $i++)
-                    <div class="col-lg-6 col-xl-6 col-md-12 pb-3">
-                        @include('visitor.modules.event')
-                    </div>
-                @endfor
+				@forelse ($events as $event)
+					<div class="col-lg-6 col-xl-6 col-md-12 pb-3">
+						@include('visitor.modules.event')
+					</div>
+				@empty
+					Aucun événement
+				@endforelse
             </div>
         </div>
         <div class="shape-mockup shape1 d-none d-xxl-block" data-bottom="20%" data-left="-17%"><img

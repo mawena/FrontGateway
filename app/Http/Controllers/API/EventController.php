@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
 
 
-
 /**
  * @group Evenements
  *
@@ -18,7 +17,8 @@ class EventController extends Controller
 {
 
 	protected string $modelClass = "\App\Models\Event";
-
+	protected string|null $indexAbilityName = Null;
+	protected string|null $showAbilityName = Null;
 	protected array $indexSearchFieldList = ["name", "start_date", "end_date"];
 
 
@@ -109,6 +109,7 @@ class EventController extends Controller
 		$this->storeBeforeCreateFunction = function ($requestData, $data) use ($request) {
 			$requestData["poster_path"] = $data["poster_path"];
 			$requestData["promoter_id"] = $request->user()->id;
+			$requestData["validation"] = 'pending';
 			return $requestData;
 		};
 		$this->storeRelationArray = ["with_promoter" => "true"];
@@ -168,10 +169,34 @@ class EventController extends Controller
 			}
 		};
 		$this->updateBeforeUpdateFunction = function ($model, $requestData, $data) use ($request) {
-			if(isset($requestData["poster"])){
+			if (isset($requestData["poster"])) {
 				$requestData["poster_path"] = $data["poster_path"];
 			}
 			return $requestData;
+		};
+		$this->updateRelationArray = ["with_promoter" => "true"];
+		return parent::update($request, $id);
+	}
+
+	/**
+	 * Mettre à jour la validation d'un événement
+	 *
+	 * @urlParam	id											int	required		L'événement.																Example: 1
+	 *
+	 * @bodyParam  validation									string				Nouveau statut.																Example: validated
+	 *
+	 * @response 200
+	 *
+	 */
+	public function change_validation(Request $request, $id)
+	{
+		$this->updateGetValidationArrayFunction = function ($id) {
+			return [
+				"validation" => "required|in:rejected,validated",
+			];
+		};
+		$this->updateBeforeUpdateFunction = function ($model, $requestData, $data) use ($request) {
+			return ["validation" => $requestData["validation"]];
 		};
 		$this->updateRelationArray = ["with_promoter" => "true"];
 		return parent::update($request, $id);
@@ -188,4 +213,5 @@ class EventController extends Controller
 	{
 		return parent::destroy($request, $id);
 	}
+
 }

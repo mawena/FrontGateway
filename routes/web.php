@@ -8,11 +8,15 @@ use App\Http\Controllers\Front\UserController;
 use App\Http\Controllers\Front\Visitor\HomeController;
 use Illuminate\Support\Facades\Route;
 
-Route::controller(HomeController::class)->as('visitor.')->group(function(){
-	Route::get('/', 'index')->name('index');
+Route::controller(HomeController::class)->as('visitor.')->group(function () {
+	Route::get('/', function () {
+		return redirect()->route("visitor.events");
+	})->name('index');
 	Route::get('/evenements', 'events')->name('events');
 	Route::get('/evenements/details/{id}', 'event_details')->name('events.details');
 	Route::get('/decors', 'decors')->name('decors');
+	Route::get("/decors/use/{id}", "use_decor")->name("decors.use");
+
 });
 
 
@@ -49,6 +53,7 @@ Route::prefix("admin")->name("admin.")->controller(AuthControler::class)->group(
 			Route::get("/show/{id}", "show")->name("show");
 			Route::get("/edit/{id}", "edit")->name("edit");
 			Route::put("/{id}", "update")->name("update");
+			Route::put("/change-validation/{id}", "change_validation")->name("change_validation");
 			Route::delete("/{id}", "destroy")->name("destroy");
 		});
 		Route::prefix("/decor")->name("decor.")->controller(DecorController::class)->group(function () {
@@ -57,6 +62,7 @@ Route::prefix("admin")->name("admin.")->controller(AuthControler::class)->group(
 			Route::get("/show/{id}", "show")->name("show");
 			Route::get("/edit/{id}", "edit")->name("edit");
 			Route::put("/{id}", "update")->name("update");
+			Route::put("/change-validation/{id}", "change_validation")->name("change_validation");
 			Route::delete("/{id}", "destroy")->name("destroy");
 		});
 	});

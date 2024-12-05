@@ -20,7 +20,8 @@ class Controller extends BaseController
 	protected string $modelClass = "";
 
 	//Index, show and destroy
-	protected string $indexAbilityName = "viewAny";
+	protected string|null $indexAbilityName = "viewAny";
+	protected string|null $showAbilityName = "viewAny";
 	protected $indexManualFilter = null;
 	protected array $indexSearchFieldList = [];
 
@@ -55,8 +56,10 @@ class Controller extends BaseController
 
 	public function index(Request $request)
 	{
-		if (!($authorisation = Gate::inspect($this->indexAbilityName, $this->modelClass))->allowed()) {
-			return $this->responseError(["auth" => [$authorisation->message()]], 403);
+		if($this->indexAbilityName){
+			if (!($authorisation = Gate::inspect($this->indexAbilityName, $this->modelClass))->allowed()) {
+				return $this->responseError(["auth" => [$authorisation->message()]], 403);
+			}
 		}
 		$list = call_user_func([$this->modelClass, 'query']);
 
@@ -79,14 +82,15 @@ class Controller extends BaseController
 		$model = call_user_func_array([$this->modelClass, 'find'], [$id]);
 		$requestData = $request->all();
 		if ($model) {
-			if (($authorisation = Gate::inspect('view', $model))->allowed()) {
-				$model = $this->modelRelationLoad($model, $requestData, $this->modelName);
-				return $this->responseOk([$this->modelName => $model]);
-			} else {
-				return $this->responseError(["auth" => [$authorisation->message()]], 403);
+			if($this->showAbilityName){
+				if (!($authorisation = Gate::inspect($this->showAbilityName, $model))->allowed()) {
+					return $this->responseError(["auth" => [$authorisation->message()]], 403);
+				}
 			}
+			$model = $this->modelRelationLoad($model, $requestData, $this->modelName);
+			return $this->responseOk([$this->modelName => $model]);
 		} else {
-			return $this->responseError(["id" => "l'élément n'existe pas"], 404);
+			return $this->responseError(["id" => ["l'élément n'existe pas"]], 404);
 		}
 	}
 
@@ -228,10 +232,10 @@ class Controller extends BaseController
 					$modelClassName => $model
 				]);
 			} else {
-				return $this->responseError(["id" => "$elementName n'existe pas"], 404);
+				return $this->responseError(["id" => ["$elementName n'existe pas"]], 404);
 			}
 		} else {
-			return $this->responseError(["id" => "$elementName est manquant"], 401);
+			return $this->responseError(["id" => ["$elementName est manquant"]], 401);
 		}
 	}
 
@@ -263,10 +267,10 @@ class Controller extends BaseController
 				$model = ($afterDelete) ? $afterDelete($model) : $model;
 				return $this->responseOk(messages: [$modelClassName => "$elementName a été supprimé"]);
 			} else {
-				return $this->responseError(["server" => "Erreur du serveur"], 500);
+				return $this->responseError(["server" => ["Erreur du serveur"]], 500);
 			}
 		} else {
-			return $this->responseError(["id" => "$elementName n'existe pas"], 404);
+			return $this->responseError(["id" => ["$elementName n'existe pas"]], 404);
 		}
 	}
 }
