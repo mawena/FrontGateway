@@ -24,7 +24,7 @@
                         <nav class="main-menu d-none w-100 d-xl-inline-block">
                             <ul>
                                 <li><a @class(['active'=> Route::is('visitor.events') || Route::is('visitor.events.details')]) href="{{ route('visitor.events') }}">Événements</a></li>
-                                <li><a @class(['active'=> Route::is('visitor.decors')]) href="{{ route('visitor.decors') }}">Décors</a></li>
+                                <li><a @class(['active'=> Route::is('visitor.decors') || Route::is('visitor.decors.use')]) href="{{ route('visitor.decors') }}">Décors</a></li>
                             </ul>
                         </nav>
 						<button  style="margin-left: 1500cm" type="button" class="th-menu-toggle d-block d-xl-none"><i
