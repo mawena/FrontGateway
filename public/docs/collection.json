@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "2f39ff09-c175-4cf3-9aa1-b20852965bad",
+        "_postman_id": "b5347069-190f-4c83-b516-a122a49e72cb",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -945,7 +945,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"old_password\":\"qui\",\"new_password\":\"earum\",\"new_password_confirmation\":\"qui\"}"
+                            "raw": "{\"old_password\":\"consequatur\",\"new_password\":\"quis\",\"new_password_confirmation\":\"iusto\"}"
                         },
                         "description": ""
                     },

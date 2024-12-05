@@ -47,7 +47,6 @@ class HomeController
 		])->get(
 			config('app.url') . "/api/event/" . $id,
 			[
-				"paginate" => "false",
 				"with_decors" => "true"
 			]
 		)->json();
@@ -55,6 +54,14 @@ class HomeController
 	}
 
 	public function use_decor(Request $request, $id){
-		return view('visitor.pages.decor-use');
+		$response = Http::withHeaders([
+			'Authorization' => 'Bearer ' . session('userToken'),
+			'Accept' => 'application/json',
+		])->get(
+			config('app.url') . "/api/decor/" . $id,
+			[
+			]
+		)->json();
+		return view('visitor.pages.decor-use', ["decor" => $response["data"]["Decor"]]);
 	}
 }
