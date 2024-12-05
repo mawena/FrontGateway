@@ -27,7 +27,7 @@
                                 <li><a @class(['active'=> Route::is('visitor.decors') || Route::is('visitor.decors.use')]) href="{{ route('visitor.decors') }}">Décors</a></li>
                             </ul>
                         </nav>
-						<button  style="margin-left: 1500cm" type="button" class="th-menu-toggle d-block d-xl-none"><i
+						<button type="button" class="th-menu-toggle d-block d-xl-none"><i
                                 class="far fa-bars"></i></button>
                     </div>
                     <div class="col-auto d-none d-xl-block">
