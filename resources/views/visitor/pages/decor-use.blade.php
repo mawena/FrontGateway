@@ -187,67 +187,87 @@
 
 			let cropper;
 
-			imageInput.addEventListener("change", (event) => {
-				const file = event.target.files[0];
+			// Chargez le décor pour obtenir ses dimensions
+			const decorImage = new Image();
+			decorImage.src = "/storage/{{ $decor['file_path'] }}";
 
-				if (file) {
-					const reader = new FileReader();
+			decorImage.onload = () => {
+				const decorWidth = decorImage.naturalWidth; // Largeur réelle du décor
+				const decorHeight = decorImage.naturalHeight; // Hauteur réelle du décor
+				const decorAspectRatio = decorWidth / decorHeight; // Ratio du décor
 
-					reader.onload = (e) => {
-						imageElement.src = e.target.result;
-						imageElement.style.display = "block";
-						imageLabelElement.style.display = "none";
-						chooseBar.style.display = "block";
+				// Configurez le canvas avec la taille exacte du décor
+				canvas.width = decorWidth;
+				canvas.height = decorHeight;
 
-						if (cropper) {
-							cropper.destroy();
-						}
+				imageInput.addEventListener("change", (event) => {
+					const file = event.target.files[0];
 
-						cropper = new Cropper(imageElement, {
-							aspectRatio: 16 / 9,
-							viewMode: 1,
+					if (file) {
+						const reader = new FileReader();
+
+						reader.onload = (e) => {
+							imageElement.src = e.target.result;
+							imageElement.style.display = "block";
+							imageLabelElement.style.display = "none";
+							chooseBar.style.display = "block";
+
+							if (cropper) {
+								cropper.destroy();
+							}
+
+							// Configurez le Cropper.js avec le ratio du décor
+							cropper = new Cropper(imageElement, {
+								aspectRatio: decorAspectRatio,
+								viewMode: 1,
+							});
+
+							addDecorButton.disabled = false;
+						};
+
+						reader.readAsDataURL(file);
+					}
+				});
+
+				addDecorButton.addEventListener("click", () => {
+					if (cropper) {
+						const canvasContext = canvas.getContext("2d");
+
+						// Obtenez l'image recadrée avec les dimensions exactes du décor
+						const croppedCanvas = cropper.getCroppedCanvas({
+							width: decorWidth,
+							height: decorHeight,
 						});
 
-						addDecorButton.disabled = false;
-					};
+						// Effacez le canvas
+						canvasContext.clearRect(0, 0, canvas.width, canvas.height);
 
-					reader.readAsDataURL(file);
-				}
-			});
+						// Dessinez l'image recadrée sur le canvas
+						canvasContext.drawImage(croppedCanvas, 0, 0, decorWidth, decorHeight);
 
-			addDecorButton.addEventListener("click", () => {
-				if (cropper) {
-					const canvasContext = canvas.getContext("2d");
-					const croppedCanvas = cropper.getCroppedCanvas({
-						width: 800,
-						height: 450,
-					});
+						// Superposez le décor sur le canvas
+						canvasContext.drawImage(decorImage, 0, 0, decorWidth, decorHeight);
 
-					canvasContext.clearRect(0, 0, canvas.width, canvas.height);
-					canvasContext.drawImage(croppedCanvas, 0, 0, canvas.width, canvas.height);
-
-					const decorImage = new Image();
-					decorImage.src = "/storage/{{ $decor['file_path'] }}";
-					decorImage.onload = () => {
-						canvasContext.drawImage(decorImage, 0, 0, canvas.width, canvas.height);
-
+						// Préparez l'image finale
 						const finalImage = canvas.toDataURL("image/png");
 						modalImage.src = finalImage;
 
+						// Affichez le résultat dans la modal
 						modal.style.display = "flex";
 
+						// Configurez le bouton de téléchargement
 						downloadButton.addEventListener("click", () => {
 							const a = document.createElement("a");
 							a.href = finalImage;
 							a.download = "image-avec-decor.png";
 							a.click();
 						});
-					};
-				}
-			});
+					}
+				});
 
-			closeModalButton.addEventListener("click", () => {
-				modal.style.display = "none";
-			});
+				closeModalButton.addEventListener("click", () => {
+					modal.style.display = "none";
+				});
+			};
 		</script>
 	@endpush
