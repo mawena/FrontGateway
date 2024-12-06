@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "09119bc4-77da-46f3-abee-2c331f8a61ef",
+        "_postman_id": "d42567a9-6990-4042-a28a-2085f43e6d24",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -208,46 +208,6 @@
                                 }
                             ],
                             "raw": "{{baseUrl}}\/api\/decor\/:id?with_event=false",
-                            "variable": [
-                                {
-                                    "id": "id",
-                                    "key": "id",
-                                    "value": "1",
-                                    "description": "L'ID du decor."
-                                }
-                            ]
-                        },
-                        "method": "GET",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": ""
-                    },
-                    "response": [
-                        {
-                            "header": [],
-                            "code": 200,
-                            "body": "{}",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "name": "G\u00e9n\u00e9rer une image avec ce d\u00e9cor",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/decor\/generated-image\/:id",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/decor\/generated-image\/:id",
                             "variable": [
                                 {
                                     "id": "id",
@@ -945,7 +905,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"old_password\":\"vel\",\"new_password\":\"modi\",\"new_password_confirmation\":\"et\"}"
+                            "raw": "{\"old_password\":\"nobis\",\"new_password\":\"aut\",\"new_password_confirmation\":\"quasi\"}"
                         },
                         "description": ""
                     },

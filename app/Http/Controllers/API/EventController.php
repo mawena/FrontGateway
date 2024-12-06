@@ -94,7 +94,7 @@ class EventController extends Controller
 			"contact" => "required|min:2",
 			"description" => "nullable",
 			"description_summary" => "required|min:2",
-			"poster" => "required|min:2"
+			"poster" => "required"
 		];
 		$this->storeManualValidationsFunction = function ($requestData) {
 			if (!$this->checkIsBase64Validated($requestData["poster"], ["png", "jpeg", "jpg"])) {
@@ -153,7 +153,7 @@ class EventController extends Controller
 				"contact" => "required|min:2",
 				"description" => "nullable",
 				"description_summary" => "required|min:2",
-				"poster" => "nullable|min:2"
+				"poster" => "nullable"
 			];
 		};
 		$this->updateManualValidationsFunction = function ($requestData, $model) {

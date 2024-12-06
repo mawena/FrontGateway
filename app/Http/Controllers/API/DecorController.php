@@ -59,35 +59,6 @@ class DecorController extends Controller
 	}
 
 	/**
-	 * Générer une image avec ce décor
-	 *
-	 * @urlParam	id											integer			L'ID du decor.																Example: 1.
-	 * 
-	 * @response 200
-	 */
-	public function generate_image(Request $request, $id)
-	{
-		$source = imagecreatefrompng("pngwing.com.png");
-		$destination = imagecreatefromjpeg("39679889_015_6ef8.jpg");
-
-		// Les fonctions imagesx et imagesy renvoient la largeur et la hauteur d'une image
-		$largeur_source = imagesx($source);
-		$hauteur_source = imagesy($source);
-		$largeur_destination = imagesx($destination);
-		$hauteur_destination = imagesy($destination);
-
-		// On veut placer le logo en bas à droite, on calcule les coordonnées où on doit placer le logo sur la photo
-		$destination_x = $largeur_destination - $largeur_source;
-		$destination_y =  $hauteur_destination - $hauteur_source;
-
-		// On met le logo (source) dans l'image de destination (la photo)
-		imagecopymerge($destination, $source, $destination_x, $destination_y, 0, 0, $largeur_source, $hauteur_source, 70);
-
-		// On affiche l'image de destination qui a été fusionnée avec le logo
-		imagejpeg($destination, "herbe2.jpg");
-	}
-
-	/**
 	 * Créer un nouveau decor
 	 *
 	 * @bodyParam  name											string			Nom.																		Example: Base
@@ -102,7 +73,7 @@ class DecorController extends Controller
 	{
 		$this->storeValidationArray = [
 			"name" => "required|min:2",
-			"file" => "required:min:2",
+			"file" => "required",
 			"start_use" => "required|date",
 			"end_use" => "required|date",
 			"event_id" => "required|exists:events,id",
@@ -148,7 +119,7 @@ class DecorController extends Controller
 		$this->updateGetValidationArrayFunction = function ($id) {
 			return [
 				"name" => "required|min:2",
-				"file" => "nullable|min:2",
+				"file" => "nullable",
 				"start_use" => "required|date",
 				"end_use" => "required|date",
 				"event_id" => "required|exists:events,id",

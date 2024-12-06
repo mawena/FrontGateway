@@ -93,9 +93,6 @@
                                                                                 <li class="tocify-item level-2" data-unique="decors-GETapi-decor--id-">
                                 <a href="#decors-GETapi-decor--id-">Affiche un décor</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="decors-GETapi-decor-generated-image--id-">
-                                <a href="#decors-GETapi-decor-generated-image--id-">Générer une image avec ce décor</a>
-                            </li>
                                                                                 <li class="tocify-item level-2" data-unique="decors-POSTapi-decor">
                                 <a href="#decors-POSTapi-decor">Créer un nouveau decor</a>
                             </li>
@@ -978,147 +975,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>Afficher l'événement. Example: <code>false</code></p>
             </div>
                 </form>
-
-                    <h2 id="decors-GETapi-decor-generated-image--id-">Générer une image avec ce décor</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-GETapi-decor-generated-image--id-">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://pecorator.ulrich.client/api/decor/generated-image/1" \
-    --header "Authorization: Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.ulrich.client/api/decor/generated-image/1"
-);
-
-const headers = {
-    "Authorization": "Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed",
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-GETapi-decor-generated-image--id-">
-            <blockquote>
-            <p>Example response (200):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{}</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-decor-generated-image--id-" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-decor-generated-image--id-"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-decor-generated-image--id-"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-GETapi-decor-generated-image--id-" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-decor-generated-image--id-">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-GETapi-decor-generated-image--id-" data-method="GET"
-      data-path="api/decor/generated-image/{id}"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-decor-generated-image--id-', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-decor-generated-image--id-"
-                    onclick="tryItOut('GETapi-decor-generated-image--id-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-decor-generated-image--id-"
-                    onclick="cancelTryOut('GETapi-decor-generated-image--id-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-decor-generated-image--id-"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/decor/generated-image/{id}</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="GETapi-decor-generated-image--id-"
-               value="Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed"
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-decor-generated-image--id-"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-decor-generated-image--id-"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
-<i>optional</i> &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="id"                data-endpoint="GETapi-decor-generated-image--id-"
-               value="1"
-               data-component="url">
-    <br>
-<p>L'ID du decor. Example: <code>1</code></p>
-            </div>
-                    </form>
 
                     <h2 id="decors-POSTapi-decor">Créer un nouveau decor</h2>
 
@@ -3783,9 +3639,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"old_password\": \"vel\",
-    \"new_password\": \"modi\",
-    \"new_password_confirmation\": \"et\"
+    \"old_password\": \"nobis\",
+    \"new_password\": \"aut\",
+    \"new_password_confirmation\": \"quasi\"
 }"
 </code></pre></div>
 
@@ -3802,9 +3658,9 @@ const headers = {
 };
 
 let body = {
-    "old_password": "vel",
-    "new_password": "modi",
-    "new_password_confirmation": "et"
+    "old_password": "nobis",
+    "new_password": "aut",
+    "new_password_confirmation": "quasi"
 };
 
 fetch(url, {
@@ -3911,10 +3767,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="old_password"                data-endpoint="PUTapi-user-update-password"
-               value="vel"
+               value="nobis"
                data-component="body">
     <br>
-<p>L'ancien mot de passe de l'utilisateur. Example: <code>vel</code></p>
+<p>L'ancien mot de passe de l'utilisateur. Example: <code>nobis</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>new_password</code></b>&nbsp;&nbsp;
@@ -3922,10 +3778,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="new_password"                data-endpoint="PUTapi-user-update-password"
-               value="modi"
+               value="aut"
                data-component="body">
     <br>
-<p>Le nouveau mot de passe de l'utilisateur. Example: <code>modi</code></p>
+<p>Le nouveau mot de passe de l'utilisateur. Example: <code>aut</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>new_password_confirmation</code></b>&nbsp;&nbsp;
@@ -3933,10 +3789,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="new_password_confirmation"                data-endpoint="PUTapi-user-update-password"
-               value="et"
+               value="quasi"
                data-component="body">
     <br>
-<p>La confirmation du nouveau mot de passe de l'utilisateur. Example: <code>et</code></p>
+<p>La confirmation du nouveau mot de passe de l'utilisateur. Example: <code>quasi</code></p>
         </div>
         </form>
 
