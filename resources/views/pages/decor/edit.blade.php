@@ -38,14 +38,16 @@
 									</a>
 								</div>
 
-								<form class="pl-3 pr-3" action="{{ route('admin.decor.update', $decor['id']) }}" method="POST" enctype="multipart/form-data">
+								<form class="pl-3 pr-3" action="{{ route('admin.decor.update', $decor['id']) }}" method="POST"
+									enctype="multipart/form-data">
 									@csrf
 									@method('PUT')
 									<div class="row">
 										<div class="col-lg-6 col-md-12">
 											<div class="form-group">
 												<label for="event_id">Evénement</label>
-												<select class="form-control" id="event_id" name="event_id" required="">
+												<select class="form-control" id="event_id" name="event_id">
+													<option value="" selected>Aucun choix</option>
 													@foreach ($events as $event)
 														<option value="{{ $event['id'] }}">{{ $event['name'] }}</option>
 													@endforeach
@@ -67,8 +69,9 @@
 										</div>
 										<div class="col-lg-6 col-md-12">
 											<div class="form-group">
-												<label for="start_use">Date de début de disponibilit</label>
-												<input class="form-control" type="date" name="start_use" id="start_use" placeholder="" value="{{$decor['start_use']}}">
+												<label for="start_use">Date de début de disponibilité</label>
+												<input class="form-control" type="datetime-local" name="start_use" id="start_use" placeholder=""
+													value="{{ $decor['start_use'] }}">
 												@error('start_use')
 													<span class="text-danger">{{ $message }}</span>
 												@enderror
@@ -76,8 +79,9 @@
 										</div>
 										<div class="col-lg-6 col-md-12">
 											<div class="form-group">
-												<label for="end_use">Date de fin de disponibilit</label>
-												<input class="form-control" type="date" name="end_use" id="end_use" placeholder="" value="{{$decor['end_use']}}">
+												<label for="end_use">Date de fin de disponibilité</label>
+												<input class="form-control" type="datetime-local" name="end_use" id="end_use" placeholder=""
+													value="{{ $decor['end_use'] }}">
 												@error('end_use')
 													<span class="text-danger">{{ $message }}</span>
 												@enderror
@@ -86,8 +90,7 @@
 										<div class="col-lg-6 col-md-12">
 											<div class="form-group">
 												<label for="file">Décor</label>
-												<input class="form-control" type="file" name="file" id="file" placeholder=""
-													value="2024-01-01">
+												<input class="form-control" type="file" name="file" id="file" placeholder="" value="2024-01-01">
 												@error('file')
 													<span class="text-danger">{{ $message }}</span>
 												@enderror

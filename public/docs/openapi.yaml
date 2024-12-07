@@ -998,15 +998,15 @@ paths:
                 old_password:
                   type: string
                   description: "L'ancien mot de passe de l'utilisateur."
-                  example: tempora
+                  example: est
                 new_password:
                   type: string
                   description: "Le nouveau mot de passe de l'utilisateur."
-                  example: non
+                  example: et
                 new_password_confirmation:
                   type: string
                   description: "La confirmation du nouveau mot de passe de l'utilisateur."
-                  example: quo
+                  example: omnis
               required:
                 - old_password
                 - new_password
