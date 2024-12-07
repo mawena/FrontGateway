@@ -32,8 +32,9 @@ class HomeController
 			config('app.url') . "/api/decor",
 			[
 				"paginate" => "false",
-				"with_event<promoter<user" => "true",
-				"validation" => "validated",
+				"with_promoter<user" => "true",
+				"with_event" => "true",
+				"in_validation" => "validated-pending",
 			]
 		)->json();
 		return view("visitor.pages.decors", ["decors" => $decor_response["data"] ?? []]);
@@ -53,13 +54,16 @@ class HomeController
 		return view('visitor.pages.event-details', ['event' => $event_response["data"]["Event"]]);
 	}
 
-	public function use_decor(Request $request, $id){
+	public function use_decor(Request $request, $id)
+	{
 		$response = Http::withHeaders([
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
 		])->get(
 			config('app.url') . "/api/decor/" . $id,
 			[
+				"with_promoter<user" => "true",
+
 			]
 		)->json();
 		return view('visitor.pages.decor-use', ["decor" => $response["data"]["Decor"]]);

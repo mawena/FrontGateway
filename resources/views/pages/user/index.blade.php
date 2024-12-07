@@ -49,7 +49,6 @@
                                             <th>Nom</th>
                                             <th>Email</th>
                                             <th>Status</th>
-                                            <th>Date de création</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
@@ -65,7 +64,6 @@
                                                 ])>
 												{{ $user["activated"] ? 'COMPTE ACTIF' : 'DESACTIVE' }}
                                                 </td>
-                                                <td class="py-4">{{ $user['created_at_fr'] }}</td>
                                                 <td class="" style="max-width: 100px">
                                                     <a href="{{ route('admin.user.show', $user['id']) }}" class="btn text-primary"><i class="fa fa-eye"></i></a>
                                                     <a href="{{ route('admin.user.edit', $user['id']) }}" type="button" class="btn text-warning"><i

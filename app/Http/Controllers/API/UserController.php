@@ -95,12 +95,12 @@ class UserController extends Controller
 
 			if (isset($requestData["picture"])) {
 				if (!$this->checkIsBase64Validated($requestData["picture"], ["png", "jpeg", "jpg"])) {
-					return ["errors" => $this->responseError(["picture" => ["le fichier n'est pas une image valide"]], 400)];
+					return ["errors" => ["picture" => ["le fichier n'est pas une image valide"]]];
 				}
 				if ($picture_path = $this->saveImageFromBase64($requestData["picture"], "pictures/users/" . Str::slug($requestData["name"]) . ".png")) {
 					return ["data" => ["picture_path" => $picture_path]];
 				} else {
-					return ["errors" => $this->responseError(["picture" => ["Une erreur est survenu durant l'insertion"]])];
+					return ["errors" => ["picture" => ["Une erreur est survenu durant l'insertion"]]];
 				}
 			}
 		};
@@ -162,12 +162,12 @@ class UserController extends Controller
 
 			if (isset($requestData["picture"])) {
 				if (!$this->checkIsBase64Validated($requestData["picture"], ["png", "jpeg", "jpg"])) {
-					return ["errors" => $this->responseError(["picture" => ["le fichier n'est pas une image valide"]], 400)];
+					return ["errors" => ["picture" => ["le fichier n'est pas une image valide"]]];
 				}
 				if ($picture_path = $this->saveImageFromBase64($requestData["picture"], "pictures/users/" . Str::slug($requestData["name"]) . ".png")) {
 					return ["data" => ["picture_path" => $picture_path]];
 				} else {
-					return ["errors" => $this->responseError(["picture" => ["Une erreur est survenu durant l'insertion"]])];
+					return ["errors" => ["picture" => ["Une erreur est survenu durant l'insertion"]]];
 				}
 			}
 		};

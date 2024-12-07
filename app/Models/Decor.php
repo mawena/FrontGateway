@@ -20,6 +20,7 @@ class Decor extends Model
 		"end_use",
 		"event_id",
 		"validation",
+		"promoter_id",
 	];
 
 	public $appends = ["days_remaining"];
@@ -37,6 +38,11 @@ class Decor extends Model
 	public function event(): BelongsTo
 	{
 		return $this->belongsTo(Event::class, "event_id", "id");
+	}
+
+	public function promoter(): BelongsTo
+	{
+		return $this->belongsTo(Promoter::class, 'promoter_id', 'id');
 	}
 
 	public function getDaysRemainingAttribute()

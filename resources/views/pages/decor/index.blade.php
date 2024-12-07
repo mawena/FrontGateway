@@ -59,8 +59,8 @@
                                             <tr class="py-0 text-center">
                                                 <td class="" style="width: 100px">{{ $decor['name'] }}</td>
                                                 <td class="py-4" class="text-bold">
-													{{ $decor['event']['promoter']['user']['name'] }}</td>
-													<td class="py-4" class="text-bold">{{ $decor['event']['name'] }}</td>
+													{{ $decor['promoter']['user']['name'] }}</td>
+													<td class="py-4" class="text-bold">{{ $decor["event"]["name"] ?? '-' }}</td>
                                                 <td class="py-4">{{ $decor['start_use_fr'] }}</td>
                                                 <td class="py-4">{{ $decor['end_use_fr'] }}</td>
                                                 <td class="" style="max-width: 100px">
@@ -127,8 +127,9 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="event_id">Evénement</label>
-                                    <select class="form-control" id="event_id" name="event_id" required="">
-                                        @foreach ($events as $event)
+                                    <select class="form-control" id="event_id" name="event_id">
+										<option value="" selected>Aucun choix</option>
+										@foreach ($events as $event)
                                             <option value="{{ $event['id'] }}">{{ $event['name'] }}</option>
                                         @endforeach
                                     </select>
@@ -140,7 +141,7 @@
                                 <div class="form-group">
                                     <label for="name">Nom</label>
                                     <input class="form-control" name="name" id="name" required="" placeholder=""
-                                        value="Decor01">
+                                        value="">
                                     @error('name')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -148,8 +149,8 @@
 
                                 <div class="form-group">
                                     <label for="start_use">Date de début de disponibilité</label>
-                                    <input class="form-control" type="date" name="start_use" id="start_use"
-                                        required="" placeholder="" value="2024-01-01">
+                                    <input class="form-control" type="datetime-local" name="start_use" id="start_use"
+                                        required="" placeholder="" value="2024-12-07T14:30">
                                     @error('start_use')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -157,8 +158,8 @@
 
                                 <div class="form-group">
                                     <label for="end_use">Date de fin de disponibilité</label>
-                                    <input class="form-control" type="date" name="end_use" id="end_use"
-                                        required="" placeholder="" value="2024-01-01">
+                                    <input class="form-control" type="datetime-local" name="end_use" id="end_use"
+                                        required="" placeholder="" value="2024-12-07T22:30">
                                     @error('end_use')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -167,7 +168,7 @@
                                 <div class="form-group">
                                     <label for="file">Décor</label>
                                     <input class="form-control" type="file" name="file" id="file"
-                                        required="" placeholder="" value="2024-01-01">
+                                        required="" placeholder="" value="">
                                     @error('file')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror

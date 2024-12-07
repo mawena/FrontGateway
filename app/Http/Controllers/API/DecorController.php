@@ -30,8 +30,10 @@ class DecorController extends Controller
 	 * @queryParam  start_use									string			Date début d'utilisation.													 No-example
 	 * @queryParam  end_use										string			Date fin d'utilisation.														 No-example
 	 * @queryParam  event_id									string			Evenement.																	 No-example
+	 * @queryParam  promoter_id									string			Promoteur.																	 No-example
 	 * 
 	 * @queryParam  with_event									string			Afficher l'événement.														Example: false
+	 * @queryParam  with_promoter								string			Afficher le promoteur.														Example: false
 	 * 
 	 * @queryParam  paginate									string			Utiliser la pagination.														Example: false
 	 *
@@ -50,6 +52,7 @@ class DecorController extends Controller
 	 * @urlParam	id											integer			L'ID du decor.																Example: 1.
 	 *
 	 * @queryParam  with_event									string			Afficher l'événement.														Example: false
+	 * @queryParam  with_promoter								string			Afficher le promoteur.														Example: false
 	 * 
 	 * @response 200
 	 */
@@ -71,31 +74,33 @@ class DecorController extends Controller
 	 */
 	public function store(Request $request)
 	{
+		$connectedUser = $request->user();
 		$this->storeValidationArray = [
 			"name" => "required|min:2",
 			"file" => "required",
 			"start_use" => "required|date",
 			"end_use" => "required|date",
-			"event_id" => "required|exists:events,id",
+			"event_id" => "nullable|exists:events,id",
 		];
 		$this->storeManualValidationsFunction = function ($requestData) {
-			$event = Event::where("id", $requestData["event_id"])->first();
+			$parentName = isset($requestData["event_id"]) ? (Event::where("id", $requestData["event_id"])->first())->id : "no_event";
 			if (!$this->checkIsBase64Validated($requestData["file"], ["png"])) {
 				return ["errors" => ["file" => ["le fichier n'est pas une image valide"]]];
 			}
-			if ($file_path = $this->saveImageFromBase64($requestData["file"], "pictures/decors/$event->id/" . Str::slug($requestData["name"]) . ".png")) {
+			if ($file_path = $this->saveImageFromBase64($requestData["file"], "pictures/decors/$parentName/" . Str::slug($requestData["name"]) . ".png")) {
 				return ["data" => ["file_path" => $file_path]];
 			} else {
 				return ["errors" => ["file" => ["Une erreur est survenu durant l'insertion"]]];
 			}
 		};
-		$this->storeBeforeCreateFunction = function ($requestData, $data) {
+		$this->storeBeforeCreateFunction = function ($requestData, $data) use ($connectedUser) {
 			$requestData["file_path"] = $data["file_path"];
 			$requestData["validation"] = 'pending';
 			$requestData["nb_uses"] = 0;
+			$requestData["promoter_id"] = $connectedUser->id;
 			return $requestData;
 		};
-		$this->storeRelationArray = ["with_event" => "true"];
+		$this->storeRelationArray = ["with_event" => "true", "with_promoter" => "true"];
 		return parent::store($request);
 	}
 
@@ -122,17 +127,17 @@ class DecorController extends Controller
 				"file" => "nullable",
 				"start_use" => "required|date",
 				"end_use" => "required|date",
-				"event_id" => "required|exists:events,id",
+				"event_id" => "nullable|exists:events,id",
 			];
 		};
 
 		$this->updateManualValidationsFunction = function ($requestData) {
 			if (isset($requestData["file"])) {
-				$event = Event::where("id", $requestData["event_id"])->first();
+				$parentName = isset($requestData["event_id"]) ? (Event::where("id", $requestData["event_id"])->first())->id : "no_event";
 				if (!$this->checkIsBase64Validated($requestData["file"], ["png"])) {
-					return ["errors" => ["file" => ["le fichier n'est pas une image valide"]], 400];
+					return ["errors" => ["file" => ["le fichier n'est pas une image valide"]]];
 				}
-				if ($file_path = $this->saveImageFromBase64($requestData["file"], "pictures/decors/$event->id/" . Str::slug($requestData["name"]) . ".png")) {
+				if ($file_path = $this->saveImageFromBase64($requestData["file"], "pictures/decors/$parentName/" . Str::slug($requestData["name"]) . ".png")) {
 					return ["data" => ["file_path" => $file_path]];
 				} else {
 					return ["errors" => ["file" => ["Une erreur est survenu durant l'insertion"]]];

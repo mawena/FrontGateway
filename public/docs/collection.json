@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "d42567a9-6990-4042-a28a-2085f43e6d24",
+        "_postman_id": "86b3bd65-ccf5-46f7-b380-996571374419",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -156,9 +156,21 @@
                                     "disabled": true
                                 },
                                 {
+                                    "key": "promoter_id",
+                                    "value": "",
+                                    "description": "Promoteur.",
+                                    "disabled": true
+                                },
+                                {
                                     "key": "with_event",
                                     "value": "false",
                                     "description": "Afficher l'\u00e9v\u00e9nement.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "with_promoter",
+                                    "value": "false",
+                                    "description": "Afficher le promoteur.",
                                     "disabled": false
                                 },
                                 {
@@ -168,7 +180,7 @@
                                     "disabled": false
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/decor?name=&start_use=&end_use=&event_id=&with_event=false&paginate=false"
+                            "raw": "{{baseUrl}}\/api\/decor?name=&start_use=&end_use=&event_id=&promoter_id=&with_event=false&with_promoter=false&paginate=false"
                         },
                         "method": "GET",
                         "header": [
@@ -205,9 +217,15 @@
                                     "value": "false",
                                     "description": "Afficher l'\u00e9v\u00e9nement.",
                                     "disabled": false
+                                },
+                                {
+                                    "key": "with_promoter",
+                                    "value": "false",
+                                    "description": "Afficher le promoteur.",
+                                    "disabled": false
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/decor\/:id?with_event=false",
+                            "raw": "{{baseUrl}}\/api\/decor\/:id?with_event=false&with_promoter=false",
                             "variable": [
                                 {
                                     "id": "id",
@@ -905,7 +923,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"old_password\":\"nobis\",\"new_password\":\"aut\",\"new_password_confirmation\":\"quasi\"}"
+                            "raw": "{\"old_password\":\"tempora\",\"new_password\":\"non\",\"new_password_confirmation\":\"quo\"}"
                         },
                         "description": ""
                     },

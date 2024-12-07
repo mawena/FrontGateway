@@ -97,13 +97,13 @@ class EventController extends Controller
 			"poster" => "required"
 		];
 		$this->storeManualValidationsFunction = function ($requestData) {
-			if (!$this->checkIsBase64Validated($requestData["poster"], ["png", "jpeg", "jpg"])) {
-				return ["errors" => $this->responseError(["poster" => ["le fichier n'est pas une image valide"]], 400)];
+			if (!$this->checkIsBase64Validated($requestData["poster"], ["png", "jpeg", "jpg", "webp"])) {
+				return ["errors" => ["poster" => ["le fichier n'est pas une image valide"]]];
 			}
 			if ($poster_path = $this->saveImageFromBase64($requestData["poster"], "pictures/events/" . Str::random(10) . ".png")) {
 				return ["data" => ["poster_path" => $poster_path]];
 			} else {
-				return ["errors" => $this->responseError(["poster" => ["Une erreur est survenu durant l'insertion"]])];
+				return ["errors" => ["poster" => ["Une erreur est survenu durant l'insertion"]]];
 			}
 		};
 		$this->storeBeforeCreateFunction = function ($requestData, $data) use ($request) {
@@ -159,7 +159,7 @@ class EventController extends Controller
 		$this->updateManualValidationsFunction = function ($requestData, $model) {
 			if (isset($requestData["poster"])) {
 				if (!$this->checkIsBase64Validated($requestData["poster"], ["png", "jpeg", "jpg"])) {
-					return ["errors" => $this->responseError(["poster" => ["le fichier n'est pas une image valide"]], 400)];
+					return ["errors" => ["poster" => ["le fichier n'est pas une image valide"]]];
 				}
 				if ($poster_path = $this->saveImageFromBase64($requestData["poster"], $model->poster_path)) {
 					return ["data" => ["poster_path" => $poster_path]];
@@ -213,5 +213,4 @@ class EventController extends Controller
 	{
 		return parent::destroy($request, $id);
 	}
-
 }

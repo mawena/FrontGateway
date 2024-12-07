@@ -3,7 +3,7 @@
         <form action="{{ $_link }}" method="GET" class="booking-form">
             <div class="input-wrap">
                 <div class="row align-items-center justify-content-between">
-                    <div class="form-group col-md-6 col-lg-auto">
+                    <div class="form-group col-md-12 col-lg-auto">
                         <div class="icon"><i class="fa-light fa-route"></i></div>
                         <div class="search-input">
                             <label>Lieu</label>
@@ -16,7 +16,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group col-md-6 col-lg-auto">
+                    <div class="form-group col-md-12 col-lg-auto">
                         <div class="icon"><i class="fa-regular fa-person-hiking"></i></div>
                         <div class="search-input">
                             <label>Modalité de participation</label>
@@ -29,7 +29,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group col-md-6 col-lg-auto">
+                    {{-- <div class="form-group col-md-6 col-lg-auto">
                         <div class="icon"><i class="fa-light fa-clock"></i></div>
                         <div class="search-input">
                             <label>Intervalle du</label>
@@ -45,7 +45,7 @@
                                 value="{{ request('end') ?? \Carbon\Carbon::now()->addMonth()->toDateString() }}" class="form-input"
                                 name="end" />
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="form-btn col-md-12 col-lg-auto">
                         <button type="submit" class="th-btn">
                             <img src="{{ asset('/visitor/assets/img/icon/search.svg') }}" alt="">

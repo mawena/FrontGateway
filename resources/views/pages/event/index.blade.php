@@ -51,7 +51,7 @@
 											<th>Lieu</th>
 											<th>Date de debut</th>
 											<th>Date de fin</th>
-											<th rowspan="5">Actions</th>
+											<th rowspan="8">Actions</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -127,7 +127,7 @@
 									<div class="col-lg-12 col-md-12">
 										<div class="form-group">
 											<label for="name">Nom</label>
-											<input class="form-control" name="name" id="name" required="" placeholder="" value="Damso">
+											<input class="form-control" name="name" id="name" required="" placeholder="" value="">
 											@error('name')
 												<span class="text-danger">{{ $message }}</span>
 											@enderror
@@ -135,9 +135,9 @@
 									</div>
 									<div class="col-lg-12 col-md-12">
 										<div class="form-group">
-											<label for="start_date">Date Début</label>
-											<input class="form-control" type="date" name="start_date" id="start_date" required=""
-												placeholder="" value="2024-01-01">
+											<label for="start_date">Début</label>
+											<input class="form-control" type="datetime-local" name="start_date" id="start_date" required=""
+												placeholder="" value="">
 											@error('start_date')
 												<span class="text-danger">{{ $message }}</span>
 											@enderror
@@ -145,9 +145,9 @@
 									</div>
 									<div class="col-lg-12 col-md-12">
 										<div class="form-group">
-											<label for="end_date">Nom</label>
-											<input class="form-control" type="date" name="end_date" id="end_date" required="" placeholder=""
-												value="2024-01-01">
+											<label for="end_date">Fin</label>
+											<input class="form-control" type="datetime-local" name="end_date" id="end_date" required="" placeholder=""
+												value="">
 											@error('end_date')
 												<span class="text-danger">{{ $message }}</span>
 											@enderror
@@ -165,7 +165,7 @@
 									<div class="col-lg-12 col-md-12">
 										<div class="form-group">
 											<label for="type">Type</label>
-											<input class="form-control" name="type" id="type" required="" placeholder="" value="Test">
+											<input class="form-control" name="type" id="type" required="" placeholder="" value="">
 											@error('type')
 												<span class="text-danger">{{ $message }}</span>
 											@enderror
@@ -175,7 +175,7 @@
 										<div class="form-group">
 											<label for="nb_expected">Nombre de personnes attendus</label>
 											<input class="form-control" type="number" name="nb_expected" id="nb_expected" required=""
-												placeholder="" value="10">
+												placeholder="" value="">
 											@error('nb_expected')
 												<span class="text-danger">{{ $message }}</span>
 											@enderror
@@ -197,7 +197,7 @@
 										<div class="form-group">
 											<label for="entry_price">Prix d'entrée</label>
 											<input class="form-control" type="number" name="entry_price" id="entry_price" placeholder=""
-												value="500">
+												value="">
 											@error('entry_price')
 												<span class="text-danger">{{ $message }}</span>
 											@enderror

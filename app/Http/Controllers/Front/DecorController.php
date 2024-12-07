@@ -16,7 +16,8 @@ class DecorController
 			config('app.url') . "/api/decor",
 			[
 				"paginate" => "false",
-				"with_event<promoter<user" => "true",
+				"with_promoter<user" => "true",
+				"with_event" => "true",
 			]
 		)->json();
 
@@ -40,6 +41,7 @@ class DecorController
 			config('app.url') . "/api/decor/" . $id,
 			[
 				"with_event" => "true",
+				"with_promoter<user" => "true",
 			]
 		)->json();
 		$decor = $response["data"]["Decor"];

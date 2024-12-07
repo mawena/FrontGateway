@@ -244,6 +244,7 @@ trait ControllerHelperTrait
 			"png" => fn($base64) => strpos($base64, 'data:image/png;base64') === 0,
 			"gif" => fn($base64) => strpos($base64, 'data:image/gif;base64') === 0,
 			"py" => fn($base64) => strpos($base64, 'data:text/x-python;base64') === 0,
+			"webp" => fn($base64) => strpos($base64, 'data:image/webp;base64') === 0,
 		];
 		foreach ($validatedTypes as $validatedType) {
 			if ($validators[$validatedType]($base64)) {

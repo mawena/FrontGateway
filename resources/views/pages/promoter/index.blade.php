@@ -49,10 +49,7 @@
                                             <th>Nom</th>
                                             <th>Email</th>
                                             <th>Structure</th>
-                                            <th>Tel</th>
-                                            <th>Sexe</th>
                                             <th>Status</th>
-                                            <th>Date de création</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
@@ -62,8 +59,6 @@
                                                 <td class="py-4">{{ $user['name'] }}</td>
                                                 <td class="py-4">{{ $user['email'] }}</td>
                                                 <td class="py-4">{{ $user['promoter']['structure'] }}</td>
-                                                <td class="py-4">{{ $user['promoter']['phone_number'] }}</td>
-                                                <td class="py-4">{{ $user['promoter']['sex'] }}</td>
                                                 <td  @class([
                                                     'py-4 text-bold',
                                                     'text-danger' => !$user['activated'],
@@ -71,7 +66,6 @@
                                                 ])>
 												{{ $user["activated"] ? 'COMPTE ACTIF' : 'DESACTIVE' }}
                                                 </td>
-                                                <td class="py-4">{{ $user['created_at_fr'] }}</td>
                                                 <td style="max-width: 100px">
                                                     <a href="{{ route('admin.promoter.show', $user['id']) }}" class="btn text-primary"><i class="fa fa-eye"></i></a>
                                                     <a href="{{ route('admin.promoter.edit', $user['id']) }}"

@@ -118,6 +118,16 @@ paths:
             example: null
         -
           in: query
+          name: promoter_id
+          description: Promoteur.
+          example: null
+          required: false
+          schema:
+            type: string
+            description: Promoteur.
+            example: null
+        -
+          in: query
           name: with_event
           description: "Afficher l'événement."
           example: 'false'
@@ -125,6 +135,16 @@ paths:
           schema:
             type: string
             description: "Afficher l'événement."
+            example: 'false'
+        -
+          in: query
+          name: with_promoter
+          description: 'Afficher le promoteur.'
+          example: 'false'
+          required: false
+          schema:
+            type: string
+            description: 'Afficher le promoteur.'
             example: 'false'
         -
           in: query
@@ -205,6 +225,16 @@ paths:
           schema:
             type: string
             description: "Afficher l'événement."
+            example: 'false'
+        -
+          in: query
+          name: with_promoter
+          description: 'Afficher le promoteur.'
+          example: 'false'
+          required: false
+          schema:
+            type: string
+            description: 'Afficher le promoteur.'
             example: 'false'
       responses:
         200:
@@ -968,15 +998,15 @@ paths:
                 old_password:
                   type: string
                   description: "L'ancien mot de passe de l'utilisateur."
-                  example: nobis
+                  example: tempora
                 new_password:
                   type: string
                   description: "Le nouveau mot de passe de l'utilisateur."
-                  example: aut
+                  example: non
                 new_password_confirmation:
                   type: string
                   description: "La confirmation du nouveau mot de passe de l'utilisateur."
-                  example: quasi
+                  example: quo
               required:
                 - old_password
                 - new_password

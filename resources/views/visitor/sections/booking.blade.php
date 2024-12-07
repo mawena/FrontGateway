@@ -3,7 +3,7 @@
         <form action="https://html.themeholy.com/tourm/demo/mail.php" method="POST" class="booking-form ajax-contact">
             <div class="input-wrap">
                 <div class="row align-items-center justify-content-between">
-                    <div class="form-group col-md-6 col-lg-auto">
+                    <div class="form-group col-md-12 col-lg-auto">
                         <div class="icon"><i class="fa-light fa-route"></i></div>
                         <div class="search-input"><label>Lieu</label> <select name="place" id="place"
                                 class="form-select nice-select">
@@ -14,7 +14,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group col-md-6 col-lg-auto">
+                    <div class="form-group col-md-12 col-lg-auto">
                         <div class="icon"><i class="fa-regular fa-person-hiking"></i></div>
                         <div class="search-input">
                             <label>Modalité</label>
@@ -27,7 +27,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group col-md-6 col-lg-auto">
+                    {{-- <div class="form-group col-md-6 col-lg-auto">
                         <div class="icon"><i class="fa-light fa-clock"></i></div>
                         <div class="search-input">
                             <label>Intervalle du</label>
@@ -40,7 +40,7 @@
                             <label>Au</label>
                             <input type="date" class="form-input" name="end" />
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="form-btn col-md-12 col-lg-auto">
                         <button class="th-btn">
                             <img src="{{ asset("/visitor/assets/img/icon/search.svg") }}" alt="">

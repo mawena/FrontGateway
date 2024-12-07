@@ -32,6 +32,27 @@ class EventController
 		return view("pages.event.show", ["event" => $response["data"]["Event"]]);
 	}
 
+	public function store(Request $request)
+	{
+		$requestData = $request->all();
+		if (isset($requestData["poster"])) {
+			$image = $request->file('poster');
+			$imageContent = file_get_contents($image->getPathname());
+			$requestData['poster'] = 'data:' . $image->getMimeType() . ';base64,' . base64_encode($imageContent);
+		}
+		$response = Http::withHeaders([
+			'Authorization' => 'Bearer ' . session('userToken'),
+			'Accept' => 'application/json',
+		])->post(config('app.url') . "/api/event", $requestData)->json();
+		if ($response["status"] == 201) {
+			return redirect()->route("admin.event.index");
+		} else {
+			return redirect()->back()
+				->withInput()
+				->withErrors($response["errors"]);
+		}
+	}
+
 	public function edit(Request $request, $id)
 	{
 		$response = Http::withHeaders([
@@ -71,27 +92,6 @@ class EventController
 			'Accept' => 'application/json',
 		])->put(config('app.url') . "/api/event/change-validation/" . $id, $request->all())->json();
 		if ($response["status"] == 200) {
-			return redirect()->route("admin.event.index");
-		} else {
-			return redirect()->back()
-				->withInput()
-				->withErrors($response["errors"]);
-		}
-	}
-
-	public function store(Request $request)
-	{
-		$requestData = $request->all();
-		if (isset($requestData["poster"])) {
-			$image = $request->file('poster');
-			$imageContent = file_get_contents($image->getPathname());
-			$requestData['poster'] = 'data:' . $image->getMimeType() . ';base64,' . base64_encode($imageContent);
-		}
-		$response = Http::withHeaders([
-			'Authorization' => 'Bearer ' . session('userToken'),
-			'Accept' => 'application/json',
-		])->post(config('app.url') . "/api/event", $requestData)->json();
-		if ($response["status"] == 201) {
 			return redirect()->route("admin.event.index");
 		} else {
 			return redirect()->back()

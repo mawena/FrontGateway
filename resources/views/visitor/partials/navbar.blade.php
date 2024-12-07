@@ -37,7 +37,7 @@
 					<div class="col-auto d-none d-xl-block">
 						<div class="header-button">
 							<a href="contact.html" class="th-btn style3 th-icon">
-								Nous contacter
+								Soumettre un décor
 							</a>
 						</div>
 					</div>

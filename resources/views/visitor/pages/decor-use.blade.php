@@ -108,6 +108,7 @@
 					</div>
 				</div>
 			</div>
+
 			<div class="mt-5 pt-5">
 				<div class="px-4 py-3 rounded shadow mb-2 bg-white" id="chooseBar" style="display: none">
 					<div class="row align-items-center justify-content-center g-3">
@@ -128,9 +129,6 @@
 								</span>
 							</label>
 						</div>
-						<div class="col-auto col-md-12">
-							<button id="addDecorButton" disabled class="th-btn th-icon m-0">Appliquer le décor</button>
-						</div>
 					</div>
 				</div>
 				<label style="cursor: pointer" class="shadow bg-white rounded mb-4" for="imageInput" id="imgLabel">
@@ -148,11 +146,27 @@
 				</label>
 				<input type="file" hidden id="imageInput" accept="image/*">
 			</div>
+
+
+
+
 			<div>
 				<img id="image" style="display: none;">
 			</div>
 			<canvas id="canvas" class="shadow bg-white rounded mb-4" width="800" height="600"
 				style="display: none;"></canvas>
+
+
+			<div class="mt-1 pt-1">
+				<div class="px-4 py-3 rounded shadow mb-2 bg-white" id="applyDecor" style="display: none">
+					<div class="row align-items-center justify-content-center g-3">
+						<div class="col-auto col-md-12">
+							<button id="addDecorButton" disabled class="th-btn th-icon m-0">Appliquer le décor</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
 			<!-- Modal -->
 			<div id="modal" class="modal">
 				<div class="modal-content">
@@ -179,6 +193,7 @@
 			const canvas = document.getElementById("canvas");
 			const addDecorButton = document.getElementById("addDecorButton");
 			const chooseBar = document.getElementById("chooseBar");
+			const applyDecor = document.getElementById("applyDecor");
 
 			const modal = document.getElementById("modal");
 			const modalImage = document.getElementById("modalImage");
@@ -211,6 +226,7 @@
 							imageElement.style.display = "block";
 							imageLabelElement.style.display = "none";
 							chooseBar.style.display = "block";
+							applyDecor.style.display = "block";
 
 							if (cropper) {
 								cropper.destroy();

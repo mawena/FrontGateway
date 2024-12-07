@@ -37,4 +37,7 @@ class Promoter extends Model
 	public function events(): HasMany{
 		return $this->hasMany(Event::class, 'promoter_id', 'id');
 	}
+	public function decors(): HasMany{
+		return $this->hasMany(Decor::class, 'promoter_id', 'id');
+	}
 }
