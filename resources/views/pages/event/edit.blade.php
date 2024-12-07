@@ -55,7 +55,7 @@
 										<div class="col-lg-6 col-md-12">
 											<div class="form-group">
 												<label for="start_date">Date Début</label>
-												<input class="form-control" type="date" name="start_date" id="start_date" required="" placeholder=""
+												<input class="form-control" type="datetime-local" name="start_date" id="start_date" required="" placeholder=""
 													value="{{ $event['start_date'] }}">
 												@error('start_date')
 													<span class="text-danger">{{ $message }}</span>
@@ -65,7 +65,7 @@
 										<div class="col-lg-6 col-md-12">
 											<div class="form-group">
 												<label for="end_date">Date Fin</label>
-												<input class="form-control" type="date" name="end_date" id="end_date" required="" placeholder=""
+												<input class="form-control" type="datetime-local" name="end_date" id="end_date" required="" placeholder=""
 													value="{{ $event['end_date'] }}">
 												@error('end_date')
 													<span class="text-danger">{{ $message }}</span>
