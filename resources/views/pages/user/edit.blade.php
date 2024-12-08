@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-7 align-self-center">
                     <h2 class="page-title text-truncate text-dark font-weight-medium mb-1">
-                        Modification d'utilisateur / {{ $user['email'] }}
+                        Modification d'utilisateur / {{ $user['name'] }}
                     </h2>
                 </div>
 

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Laravel Documentation</title>
+    <title>Pecorator Documentation</title>
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
 
@@ -166,7 +166,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: December 7, 2024</li>
+        <li>Last updated: December 8, 2024</li>
     </ul>
 </div>
 
@@ -795,15 +795,15 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>Evenement.</p>
             </div>
                                     <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>promoter_id</code></b>&nbsp;&nbsp;
+                <b style="line-height: 2;"><code>user_id</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
-                              name="promoter_id"                data-endpoint="GETapi-decor"
+                              name="user_id"                data-endpoint="GETapi-decor"
                value=""
                data-component="query">
     <br>
-<p>Promoteur.</p>
+<p>Créateur.</p>
             </div>
                                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>with_event</code></b>&nbsp;&nbsp;
@@ -854,7 +854,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://pecorator.ulrich.client/api/decor/1?with_event=false&amp;with_promoter=false" \
+    --get "http://pecorator.ulrich.client/api/decor/1?with_event=false&amp;with_user=false" \
     --header "Authorization: Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -867,7 +867,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 const params = {
     "with_event": "false",
-    "with_promoter": "false",
+    "with_user": "false",
 };
 Object.keys(params)
     .forEach(key =&gt; url.searchParams.append(key, params[key]));
@@ -999,15 +999,15 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>Afficher l'événement. Example: <code>false</code></p>
             </div>
                                     <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>with_promoter</code></b>&nbsp;&nbsp;
+                <b style="line-height: 2;"><code>with_user</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
-                              name="with_promoter"                data-endpoint="GETapi-decor--id-"
+                              name="with_user"                data-endpoint="GETapi-decor--id-"
                value="false"
                data-component="query">
     <br>
-<p>Afficher le promoteur. Example: <code>false</code></p>
+<p>Afficher le créateur. Example: <code>false</code></p>
             </div>
                 </form>
 
@@ -1903,15 +1903,15 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>Date de fin.</p>
             </div>
                                     <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>promoter_id</code></b>&nbsp;&nbsp;
+                <b style="line-height: 2;"><code>user_id</code></b>&nbsp;&nbsp;
 <small>integer</small>&nbsp;
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
-               step="any"               name="promoter_id"                data-endpoint="GETapi-event"
+               step="any"               name="user_id"                data-endpoint="GETapi-event"
                value=""
                data-component="query">
     <br>
-<p>Promoteur.</p>
+<p>Créateur.</p>
             </div>
                                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>place</code></b>&nbsp;&nbsp;
@@ -3674,9 +3674,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"old_password\": \"deserunt\",
-    \"new_password\": \"delectus\",
-    \"new_password_confirmation\": \"dolores\"
+    \"old_password\": \"optio\",
+    \"new_password\": \"sed\",
+    \"new_password_confirmation\": \"ad\"
 }"
 </code></pre></div>
 
@@ -3693,9 +3693,9 @@ const headers = {
 };
 
 let body = {
-    "old_password": "deserunt",
-    "new_password": "delectus",
-    "new_password_confirmation": "dolores"
+    "old_password": "optio",
+    "new_password": "sed",
+    "new_password_confirmation": "ad"
 };
 
 fetch(url, {
@@ -3802,10 +3802,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="old_password"                data-endpoint="PUTapi-user-update-password"
-               value="deserunt"
+               value="optio"
                data-component="body">
     <br>
-<p>L'ancien mot de passe de l'utilisateur. Example: <code>deserunt</code></p>
+<p>L'ancien mot de passe de l'utilisateur. Example: <code>optio</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>new_password</code></b>&nbsp;&nbsp;
@@ -3813,10 +3813,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="new_password"                data-endpoint="PUTapi-user-update-password"
-               value="delectus"
+               value="sed"
                data-component="body">
     <br>
-<p>Le nouveau mot de passe de l'utilisateur. Example: <code>delectus</code></p>
+<p>Le nouveau mot de passe de l'utilisateur. Example: <code>sed</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>new_password_confirmation</code></b>&nbsp;&nbsp;
@@ -3824,10 +3824,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="new_password_confirmation"                data-endpoint="PUTapi-user-update-password"
-               value="dolores"
+               value="ad"
                data-component="body">
     <br>
-<p>La confirmation du nouveau mot de passe de l'utilisateur. Example: <code>dolores</code></p>
+<p>La confirmation du nouveau mot de passe de l'utilisateur. Example: <code>ad</code></p>
         </div>
         </form>
 

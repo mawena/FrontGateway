@@ -45,7 +45,7 @@
 								</div>
 							</div>
 							<div class="table-responsive">
-								<table id="zero_config" class="table table-striped">
+								<table id="zero_config" class="table table-striped table-bordered no-wrap">
 									<thead>
 										<tr class="text-center">
 											<th>Nom</th>
@@ -53,7 +53,7 @@
 											<th>Lieu</th>
 											<th>Date de debut</th>
 											<th>Date de fin</th>
-											<th rowspan="8">Actions</th>
+											<th>Actions</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -85,7 +85,9 @@
 														</form>
 													@endcan
 													@can(['reject'], 'event', session('userData'))
-														@if ($event['validation'] != 'rejected' && $event['promoter_id'] == session())
+														@if (
+															$event['validation'] != 'rejected' &&
+																($event['user_id'] == session('userData')['id'] || session('userData')['profile'] == 'admin'))
 															<form action="{{ route('admin.event.change_validation', $event['id']) }}" method="POST"
 																style="display:inline-block;">
 																@csrf
@@ -99,7 +101,9 @@
 														@endif
 													@endcan
 													@can(['validate'], 'event', session('userData'))
-														@if ($event['validation'] != 'validated')
+														@if (
+															$event['validation'] != 'validated' &&
+																($event['user_id'] == session('userData')['id'] || session('userData')['profile'] == 'admin'))
 															<form action="{{ route('admin.event.change_validation', $event['id']) }}" method="POST"
 																style="display:inline-block;">
 																@csrf

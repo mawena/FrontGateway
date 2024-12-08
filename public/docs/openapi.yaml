@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: Laravel
+  title: Pecorator
   description: ''
   version: 1.0.0
 servers:
@@ -118,13 +118,13 @@ paths:
             example: null
         -
           in: query
-          name: promoter_id
-          description: Promoteur.
+          name: user_id
+          description: Créateur.
           example: null
           required: false
           schema:
             type: string
-            description: Promoteur.
+            description: Créateur.
             example: null
         -
           in: query
@@ -228,13 +228,13 @@ paths:
             example: 'false'
         -
           in: query
-          name: with_promoter
-          description: 'Afficher le promoteur.'
+          name: with_user
+          description: 'Afficher le créateur.'
           example: 'false'
           required: false
           schema:
             type: string
-            description: 'Afficher le promoteur.'
+            description: 'Afficher le créateur.'
             example: 'false'
       responses:
         200:
@@ -396,13 +396,13 @@ paths:
             example: null
         -
           in: query
-          name: promoter_id
-          description: Promoteur.
+          name: user_id
+          description: Créateur.
           example: null
           required: false
           schema:
             type: integer
-            description: Promoteur.
+            description: Créateur.
             example: null
         -
           in: query
@@ -998,15 +998,15 @@ paths:
                 old_password:
                   type: string
                   description: "L'ancien mot de passe de l'utilisateur."
-                  example: deserunt
+                  example: optio
                 new_password:
                   type: string
                   description: "Le nouveau mot de passe de l'utilisateur."
-                  example: delectus
+                  example: sed
                 new_password_confirmation:
                   type: string
                   description: "La confirmation du nouveau mot de passe de l'utilisateur."
-                  example: dolores
+                  example: ad
               required:
                 - old_password
                 - new_password

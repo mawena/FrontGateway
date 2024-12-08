@@ -22,8 +22,8 @@ class UserSeeder extends Seeder
 		$adminUser = User::create(['name' => "admin", "email" => "admin@pecorator.com", "profile" => "admin", "password" => Hash::make("azerty"), "activated" => true]);
 		
 		foreach([1, 2, 3] as $i){
-			User::create(['name' => "supervisor0$i", "email" => "supervisor01$i@pecorator.com", "profile" => "supervisor", "password" => Hash::make("azerty"), "activated" => true]);
-			User::create(['name' => "promoter0$i", "email" => "promoter0$i@pecorator.com", "profile" => "promoter", "password" => Hash::make("azerty"), "activated" => true]);
+			User::create(['name' => "Supervisor-0$i", "email" => "supervisor0$i@pecorator.com", "profile" => "supervisor", "password" => Hash::make("azerty"), "activated" => true]);
+			User::create(['name' => "Promoter-0$i", "email" => "promoter0$i@pecorator.com", "profile" => "promoter", "password" => Hash::make("azerty"), "activated" => true]);
 		}
 		
 		$plainTextToken = $adminUser->createToken("auth-token")->plainTextToken;

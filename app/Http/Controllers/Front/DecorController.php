@@ -16,7 +16,7 @@ class DecorController
 			config('app.url') . "/api/decor",
 			[
 				"paginate" => "false",
-				"with_promoter<user" => "true",
+				"with_user" => "true",
 				"with_event" => "true",
 			]
 		)->json();

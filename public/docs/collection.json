@@ -9,8 +9,8 @@
         }
     ],
     "info": {
-        "name": "Laravel",
-        "_postman_id": "d7602948-868b-446c-9ea6-de97ee552a9f",
+        "name": "Pecorator",
+        "_postman_id": "c8d87b04-2ce8-4596-bd6a-6375654108d0",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -156,9 +156,9 @@
                                     "disabled": true
                                 },
                                 {
-                                    "key": "promoter_id",
+                                    "key": "user_id",
                                     "value": "",
-                                    "description": "Promoteur.",
+                                    "description": "Cr\u00e9ateur.",
                                     "disabled": true
                                 },
                                 {
@@ -180,7 +180,7 @@
                                     "disabled": false
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/decor?name=&start_use=&end_use=&event_id=&promoter_id=&with_event=false&with_promoter=false&paginate=false"
+                            "raw": "{{baseUrl}}\/api\/decor?name=&start_use=&end_use=&event_id=&user_id=&with_event=false&with_promoter=false&paginate=false"
                         },
                         "method": "GET",
                         "header": [
@@ -219,13 +219,13 @@
                                     "disabled": false
                                 },
                                 {
-                                    "key": "with_promoter",
+                                    "key": "with_user",
                                     "value": "false",
-                                    "description": "Afficher le promoteur.",
+                                    "description": "Afficher le cr\u00e9ateur.",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/decor\/:id?with_event=false&with_promoter=false",
+                            "raw": "{{baseUrl}}\/api\/decor\/:id?with_event=false&with_user=false",
                             "variable": [
                                 {
                                     "id": "id",
@@ -451,9 +451,9 @@
                                     "disabled": true
                                 },
                                 {
-                                    "key": "promoter_id",
+                                    "key": "user_id",
                                     "value": "",
-                                    "description": "Promoteur.",
+                                    "description": "Cr\u00e9ateur.",
                                     "disabled": true
                                 },
                                 {
@@ -517,7 +517,7 @@
                                     "disabled": false
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/event?name=&start_date=&end_date=&promoter_id=&place=&type=&nb_expected=&entrance=&entry_price=&contact=&description=&description_summary=&with_promoter=false&paginate=false"
+                            "raw": "{{baseUrl}}\/api\/event?name=&start_date=&end_date=&user_id=&place=&type=&nb_expected=&entrance=&entry_price=&contact=&description=&description_summary=&with_promoter=false&paginate=false"
                         },
                         "method": "GET",
                         "header": [
@@ -923,7 +923,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"old_password\":\"deserunt\",\"new_password\":\"delectus\",\"new_password_confirmation\":\"dolores\"}"
+                            "raw": "{\"old_password\":\"optio\",\"new_password\":\"sed\",\"new_password_confirmation\":\"ad\"}"
                         },
                         "description": ""
                     },
