@@ -41,21 +41,13 @@ class DecorController
 			config('app.url') . "/api/decor/" . $id,
 			[
 				"with_event" => "true",
-				"with_promoter<user" => "true",
+				"with_user<promoter" => "true",
 			]
 		)->json();
 		$decor = $response["data"]["Decor"];
 		$event = $response["data"]["Decor"]["event"];
-		$promoter = Http::withHeaders([
-			'Authorization' => 'Bearer ' . session('userToken'),
-			'Accept' => 'application/json',
-		])->get(
-			config('app.url') . "/api/user/" . $event['promoter_id'],
-			[
-				"with_promoter" => "true"
-			]
-		)->json()["data"]["User"];
-		return view("pages.decor.show", compact("decor", "event", "promoter"));
+		$user = $response["data"]["Decor"]["user"];
+		return view("pages.decor.show", compact("decor", "event", 'user'));
 	}
 
 	public function store(Request $request)

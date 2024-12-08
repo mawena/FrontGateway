@@ -15,7 +15,8 @@ class EventController
 		])->get(
 			config('app.url') . "/api/event",
 			[
-				"paginate" => "false"
+				"paginate" => "false",
+				"promoter_id" => session("userData")["id"]
 			]
 		)->json();
 		return view("pages.event.index", ["events" => $response["data"]]);

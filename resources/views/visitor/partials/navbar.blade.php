@@ -36,7 +36,7 @@
 					</div>
 					<div class="col-auto d-none d-xl-block">
 						<div class="header-button">
-							<a href="contact.html" class="th-btn style3 th-icon">
+							<a href="{{route('admin.decor.index')}}" class="th-btn style3 th-icon">
 								Soumettre un décor
 							</a>
 						</div>

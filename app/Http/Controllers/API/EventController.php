@@ -28,7 +28,7 @@ class EventController extends Controller
 	 * @queryParam  name										string				Nom.																		 No-example
 	 * @queryParam  start_date									string				Date de début.																 No-example
 	 * @queryParam  end_date									string				Date de fin.																 No-example
-	 * @queryParam  promoter_id									integer				Promoteur.																	 No-example
+	 * @queryParam  user_id										integer				Créateur.																	 No-example
 	 * @queryParam  place										string				Lieu.																		 No-example
 	 * @queryParam  type										string				Type.																		 No-example
 	 * @queryParam  nb_expected									integer				Nombre de personne attendu.													 No-example
@@ -108,7 +108,7 @@ class EventController extends Controller
 		};
 		$this->storeBeforeCreateFunction = function ($requestData, $data) use ($request) {
 			$requestData["poster_path"] = $data["poster_path"];
-			$requestData["promoter_id"] = $request->user()->id;
+			$requestData["user_id"] = $request->user()->id;
 			$requestData["validation"] = 'pending';
 			return $requestData;
 		};

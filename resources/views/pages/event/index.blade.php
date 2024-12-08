@@ -36,10 +36,12 @@
 									</span>
 								</h4>
 								<div class="ml-auto">
-									<button type="button" class="btn btn-primary px-4" data-toggle="modal" data-target="#signup-modal"
-										id="toggle_modal">
-										Nouvel événement
-									</button>
+									@can(['create'], 'event', session('userData'))
+										<button type="button" class="btn btn-primary px-4" data-toggle="modal" data-target="#signup-modal"
+											id="toggle_modal">
+											Nouvel événement
+										</button>
+									@endcan
 								</div>
 							</div>
 							<div class="table-responsive">
@@ -63,43 +65,53 @@
 												<td class="py-4">{{ $event['start_date'] }}</td>
 												<td class="py-4">{{ $event['end_date'] }}</td>
 												<td class="" style="max-width: 100px">
-													<a href="{{ route('admin.event.show', $event['id']) }}" class="btn text-primary"><i
-															class="fa fa-eye"></i></a>
-													<a href="{{ route('admin.event.edit', $event['id']) }}" type="button" class="btn text-warning"><i
-															class="fa fa-edit"></i></a>
-													<form action="{{ route('admin.event.destroy', $event['id']) }}" method="POST"
-														style="display:inline-block;">
-														@csrf
-														@method('DELETE')
-														<button type="submit" class="btn"
-															onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet événement ?')">
-															<i style="color: red" class="fa fa-trash"></i>
-														</button>
-													</form>
-													@if ($event['validation'] != 'rejected')
-														<form action="{{ route('admin.event.change_validation', $event['id']) }}" method="POST"
+													@can(['read'], 'event', session('userData'))
+														<a href="{{ route('admin.event.show', $event['id']) }}" class="btn text-primary"><i
+																class="fa fa-eye"></i></a>
+													@endcan
+													@can(['edit'], 'event', session('userData'))
+														<a href="{{ route('admin.event.edit', $event['id']) }}" type="button" class="btn text-warning"><i
+																class="fa fa-edit"></i></a>
+													@endcan
+													@can(['delete'], 'event', session('userData'))
+														<form action="{{ route('admin.event.destroy', $event['id']) }}" method="POST"
 															style="display:inline-block;">
 															@csrf
-															@method('PUT')
-															<input type="hidden" name="validation" value="rejected">
+															@method('DELETE')
 															<button type="submit" class="btn"
-																onclick="return confirm('Êtes-vous sûr de vouloir rejeter cet événement ?')">
-																<i style="color: red" class="fa fa-times"></i>
+																onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet événement ?')">
+																<i style="color: red" class="fa fa-trash"></i>
 															</button>
 														</form>
-													@endif
-													@if ($event['validation'] != 'validated')
-														<form action="{{ route('admin.event.change_validation', $event['id']) }}" method="POST"
-															style="display:inline-block;">
-															@csrf
-															@method('PUT')
-															<input type="hidden" name="validation" value="validated">
-															<button type="submit" class="btn"
-																onclick="return confirm('Êtes-vous sûr de vouloir valider cet événement ?')">
-																<i style="color: green" class="fa fa-check"></i>
-															</button>
-														</form>
-													@endif
+													@endcan
+													@can(['reject'], 'event', session('userData'))
+														@if ($event['validation'] != 'rejected' && $event['promoter_id'] == session())
+															<form action="{{ route('admin.event.change_validation', $event['id']) }}" method="POST"
+																style="display:inline-block;">
+																@csrf
+																@method('PUT')
+																<input type="hidden" name="validation" value="rejected">
+																<button type="submit" class="btn"
+																	onclick="return confirm('Êtes-vous sûr de vouloir rejeter cet événement ?')">
+																	<i style="color: red" class="fa fa-times"></i>
+																</button>
+															</form>
+														@endif
+													@endcan
+													@can(['validate'], 'event', session('userData'))
+														@if ($event['validation'] != 'validated')
+															<form action="{{ route('admin.event.change_validation', $event['id']) }}" method="POST"
+																style="display:inline-block;">
+																@csrf
+																@method('PUT')
+																<input type="hidden" name="validation" value="validated">
+																<button type="submit" class="btn"
+																	onclick="return confirm('Êtes-vous sûr de vouloir valider cet événement ?')">
+																	<i style="color: green" class="fa fa-check"></i>
+																</button>
+															</form>
+														@endif
+													@endcan
 												</td>
 											</tr>
 										@endforeach
@@ -146,8 +158,8 @@
 									<div class="col-lg-12 col-md-12">
 										<div class="form-group">
 											<label for="end_date">Fin</label>
-											<input class="form-control" type="datetime-local" name="end_date" id="end_date" required="" placeholder=""
-												value="">
+											<input class="form-control" type="datetime-local" name="end_date" id="end_date" required=""
+												placeholder="" value="">
 											@error('end_date')
 												<span class="text-danger">{{ $message }}</span>
 											@enderror

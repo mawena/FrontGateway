@@ -77,6 +77,12 @@ class User extends Authenticatable
 	public function promoter(): HasOne{
 		return $this->hasOne(Promoter::class, "user_id", "id");
 	}
+	public function events(): HasMany{
+		return $this->hasMany(Event::class, 'promoter_id', 'id');
+	}
+	public function decors(): HasMany{
+		return $this->hasMany(Decor::class, 'promoter_id', 'id');
+	}
 
 	public function getAbilityRulesAttribute()
 	{
@@ -90,23 +96,31 @@ class User extends Authenticatable
 			'supervisor' => [
 				[
 					'action' => ['read'],
-					'subject' => ['user', 'event', 'decor']
+					'subject' => ['user', 'promoter', 'event', 'decor']
 				],
 				[
 					'action' => ['create'],
-					'subject' => ['user']
+					'subject' => ['user','promoter', 'event', 'decor']
 				],
 				[
-					'action' => ['update'],
-					'subject' => ['user', 'event', 'decor']
+					'action' => ['edit'],
+					'subject' => ['promoter', 'event', 'decor']
 				],
 				[
 					'action' => ['update_password'],
 					'subject' => ['user']
 				],
 				[
+					'action' => ['reject'],
+					'subject' => ['event', 'decor']
+				],
+				[
+					'action' => ['validate'],
+					'subject' => ['event', 'decor']
+				],
+				[
 					'action' => ['delete'],
-					'subject' => ['user', 'event', 'decor']
+					'subject' => ['user', 'promoter', 'event', 'decor']
 				],
 			],
 			'promoter' => [
@@ -116,6 +130,10 @@ class User extends Authenticatable
 				],
 				[
 					'action' => ['create'],
+					'subject' => ['event', 'decor']
+				],
+				[
+					'action' => ['edit'],
 					'subject' => ['event', 'decor']
 				],
 				[

@@ -12,7 +12,7 @@ return new class extends Migration
 	public function up(): void
 	{
 		Schema::table('decors', function (Blueprint $table) {
-			$table->foreignId('promoter_id')->default(1)->constrained()->cascadeOnDelete();
+			$table->foreignId('user_id')->default(1)->constrained()->cascadeOnDelete();
 		});
 	}
 
@@ -22,8 +22,8 @@ return new class extends Migration
 	public function down(): void
 	{
 		Schema::table('decors', function (Blueprint $table) {
-			$table->dropForeign(['promoter_id']); // Supprime la contrainte étrangère
-			$table->dropColumn('promoter_id');   // Supprime la colonne
+			$table->dropForeign(['user_id']); // Supprime la contrainte étrangère
+			$table->dropColumn('user_id');   // Supprime la colonne
 		});
 	}
 };

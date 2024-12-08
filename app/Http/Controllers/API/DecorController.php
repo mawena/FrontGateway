@@ -30,7 +30,7 @@ class DecorController extends Controller
 	 * @queryParam  start_use									string			Date début d'utilisation.													 No-example
 	 * @queryParam  end_use										string			Date fin d'utilisation.														 No-example
 	 * @queryParam  event_id									string			Evenement.																	 No-example
-	 * @queryParam  promoter_id									string			Promoteur.																	 No-example
+	 * @queryParam  user_id										string			Créateur.																	 No-example
 	 * 
 	 * @queryParam  with_event									string			Afficher l'événement.														Example: false
 	 * @queryParam  with_promoter								string			Afficher le promoteur.														Example: false
@@ -41,7 +41,6 @@ class DecorController extends Controller
 	 */
 	public function index(Request $request)
 	{
-		$manager = new ImageManager(new Driver());
 		return parent::index($request);
 	}
 
@@ -52,7 +51,7 @@ class DecorController extends Controller
 	 * @urlParam	id											integer			L'ID du decor.																Example: 1.
 	 *
 	 * @queryParam  with_event									string			Afficher l'événement.														Example: false
-	 * @queryParam  with_promoter								string			Afficher le promoteur.														Example: false
+	 * @queryParam  with_user									string			Afficher le créateur.														Example: false
 	 * 
 	 * @response 200
 	 */
@@ -97,7 +96,7 @@ class DecorController extends Controller
 			$requestData["file_path"] = $data["file_path"];
 			$requestData["validation"] = 'pending';
 			$requestData["nb_uses"] = 0;
-			$requestData["promoter_id"] = $connectedUser->id;
+			$requestData["user_id"] = $connectedUser->id;
 			return $requestData;
 		};
 		$this->storeRelationArray = ["with_event" => "true", "with_promoter" => "true"];

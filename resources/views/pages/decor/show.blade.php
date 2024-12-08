@@ -29,7 +29,7 @@
 				<div class="col-12">
 					<div class="card" style="overflow: hidden">
 						<div class="card-header p-2">
-							<img src="/storage/{{ $event['poster_path'] }}" style="width: 100%; height: 250px; object-fit: cover"
+							<img src="/storage/{{ $decor['event']['poster_path'] }}" style="width: 100%; height: 250px; object-fit: cover"
 								alt="">
 						</div>
 						<div class="card-body pb-0">
@@ -45,19 +45,19 @@
 													<div class="form-group">
 														<label for="decor_id">Evénement</label>
 														<p class="py-1 text-bold text-dark">
-															<a class="text-primary d-flex align-items-center" href="{{ route('admin.event.show', $event['id']) }}">
-																<i class="fa fa-eye"></i> &nbsp; {{ $event['name'] }}
+															<a class="text-primary d-flex align-items-center" href="{{ route('admin.event.show', $decor['event']['id']) }}">
+																<i class="fa fa-eye"></i> &nbsp; {{ $decor['event']['name'] }}
 															</a>
 														</p>
 													</div>
 												</div>
 												<div class="col-lg-6 col-md-12">
 													<div class="form-group">
-														<label for="decor_id">Promoteur</label>
+														<label for="decor_id">Créateur</label>
 														<p class="py-1 text-bold text-dark">
 															<a class="text-primary d-flex align-items-center"
-																href="{{ route('admin.promoter.show', $promoter['id']) }}">
-																<i class="fa fa-eye"></i> &nbsp; {{ $promoter['name'] }}
+																href="{{ route('admin.promoter.show', $user['id']) }}">
+																<i class="fa fa-eye"></i> &nbsp; {{ $user['name'] }}
 															</a>
 														</p>
 													</div>

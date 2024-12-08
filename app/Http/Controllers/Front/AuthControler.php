@@ -12,8 +12,18 @@ class AuthControler
 		$requestData = $request->all();
 		$response = Http::post(config('app.url') . "/api/auth/login", $requestData)->json();
 		if ($response["status"] == 200) {
-			session(['userToken' => $response["data"]["userToken"]]);
-			return redirect()->route("admin.user.index");
+			session([
+				'userToken' => $response["data"]["userToken"],
+				"userData" => $response["data"]["user"],
+			]);
+			
+			return redirect()->route(
+				[
+					"admin" => "admin.user.index",
+					"supervisor" => "admin.promoter.index",
+					"promoter" => "admin.event.index",
+				][$response["data"]["user"]["profile"]]
+			);
 		}
 		return redirect()->back()
 			->withInput()
@@ -23,6 +33,7 @@ class AuthControler
 	public function logout()
 	{
 		session()->forget('userToken');
+		session()->forget('userData');
 		return redirect()->route('admin.login');
 	}
 }

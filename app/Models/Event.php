@@ -17,7 +17,7 @@ class Event extends Model
 		"name",
 		"start_date",
 		"end_date",
-		"promoter_id",
+		"user_id",
 		"place",
 		"type",
 		"nb_expected",
@@ -44,9 +44,9 @@ class Event extends Model
 		return $data;
 	}
 
-	public function promoter(): BelongsTo
+	public function user(): BelongsTo
 	{
-		return $this->belongsTo(Promoter::class, 'promoter_id', 'id');
+		return $this->belongsTo(User::class, 'user_id', 'id');
 	}
 
 	public function decors(): HasMany
