@@ -83,39 +83,40 @@
 																onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet décor ?')">
 																<i style="color: red" class="fa fa-trash"></i>
 															</button>
-														@endcan
-														@can(['reject'], 'decor', session('userData'))
-															@if (
-																$decor['validation'] != 'rejected' &&
-																	($decor['user_id'] == session('userData')['id'] || session('userData')['profile'] == 'admin'))
-																<form action="{{ route('admin.decor.change_validation', $decor['id']) }}" method="POST"
-																	style="display:inline-block;">
-																	@csrf
-																	@method('PUT')
-																	<input type="hidden" name="validation" value="rejected">
-																	<button type="submit" class="btn"
-																		onclick="return confirm('Êtes-vous sûr de vouloir rejeter cet événement ?')">
-																		<i style="color: red" class="fa fa-times"></i>
-																	</button>
-																</form>
-															@endif
-														@endcan
-														@can(['validate'], 'decor', session('userData'))
-															@if (
-																$decor['validation'] != 'validated' &&
-																	($decor['user_id'] == session('userData')['id'] || session('userData')['profile'] == 'admin'))
-																<form action="{{ route('admin.decor.change_validation', $decor['id']) }}" method="POST"
-																	style="display:inline-block;">
-																	@csrf
-																	@method('PUT')
-																	<input type="hidden" name="validation" value="validated">
-																	<button type="submit" class="btn"
-																		onclick="return confirm('Êtes-vous sûr de vouloir valider cet événement ?')">
-																		<i style="color: green" class="fa fa-check"></i>
-																	</button>
-																</form>
-															@endif
-														@endcan
+														</form>
+													@endcan
+													@can(['reject'], 'decor', session('userData'))
+														@if (
+															$decor['validation'] != 'rejected' &&
+																($decor['user_id'] == session('userData')['id'] || session('userData')['profile'] == 'admin'))
+															<form action="{{ route('admin.decor.change_validation', $decor['id']) }}" method="POST"
+																style="display:inline-block;">
+																@csrf
+																@method('PUT')
+																<input type="hidden" name="validation" value="rejected">
+																<button type="submit" class="btn"
+																	onclick="return confirm('Êtes-vous sûr de vouloir rejeter cet événement ?')">
+																	<i style="color: red" class="fa fa-times"></i>
+																</button>
+															</form>
+														@endif
+													@endcan
+													@can(['validate'], 'decor', session('userData'))
+														@if (
+															$decor['validation'] != 'validated' &&
+																($decor['user_id'] == session('userData')['id'] || session('userData')['profile'] == 'admin'))
+															<form action="{{ route('admin.decor.change_validation', $decor['id']) }}" method="POST"
+																style="display:inline-block;">
+																@csrf
+																@method('PUT')
+																<input type="hidden" name="validation" value="validated">
+																<button type="submit" class="btn"
+																	onclick="return confirm('Êtes-vous sûr de vouloir valider cet événement ?')">
+																	<i style="color: green" class="fa fa-check"></i>
+																</button>
+															</form>
+														@endif
+													@endcan
 													</form>
 												</td>
 											</tr>

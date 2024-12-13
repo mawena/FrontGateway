@@ -1,0 +1,36 @@
+<?php
+
+namespace App\Models;
+
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
+class Payment extends Model
+{
+	/** @use HasFactory<\Database\Factories\PaymentFactory> */
+	use HasFactory;
+
+	protected $fillable = [
+		"user_id",
+		"nb_uses",
+		"amount",
+		"currency",
+		"description",
+		"status",
+	];
+
+	public function user(): BelongsTo
+	{
+		return $this->belongsTo(User::class, "user_id", "id");
+	}
+
+	public function toArray()
+	{
+		$data = parent::toArray();
+		$data["created_at_fr"] = Carbon::parse($data["created_at"])->format("d/m/yy H:i:s");
+		$data["updated_at_fr"] = Carbon::parse($data["updated_at"])->format("d/m/yy H:i:s");
+		return $data;
+	}
+}

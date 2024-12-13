@@ -17,5 +17,6 @@ class DatabaseSeeder extends Seeder
 		$this->call(PromoterSeeder::class);
 		$this->call(EventSeeder::class);
 		$this->call(DecorSeeder::class);
+		$this->call(ConfigurationSeeder::class);
     }
 }

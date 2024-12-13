@@ -27,6 +27,8 @@ class UserController extends Controller
 	 * @queryParam  profile										string			Filtrer par profile de l'utilisateur.												 No-example
 	 * 
 	 * @queryParam  with_events									string			Afficher les evenements.															Example: false
+	 * @queryParam  with_decors									string			Afficher les décors.																Example: false
+	 * @queryParam  with_payments								string			Afficher les paiements.																Example: false
 	 * 
 	 * 
 	 * @queryParam  paginate									string			Utiliser la pagination.																Example: false
@@ -49,7 +51,9 @@ class UserController extends Controller
 	 *
 	 * @urlParam	id											integer			L'ID de l'utilisateur.																Example: 1.
 	 *
-	 * @queryParam  with_events									string			Afficher les departements.															Example: false
+	 * @queryParam  with_events									string			Afficher les evenements.															Example: false
+	 * @queryParam  with_decors									string			Afficher les décors.																Example: false
+	 * @queryParam  with_payments								string			Afficher les paiements.																Example: false
 	 * 
 	 * @response 200
 	 */

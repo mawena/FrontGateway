@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\ConfigurationController;
 use App\Http\Controllers\API\DecorController;
 use App\Http\Controllers\API\EventController;
+use App\Http\Controllers\API\PaymentController;
 use App\Http\Controllers\API\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -40,6 +42,18 @@ Route::controller(AuthController::class)->group(function () {
 			Route::put("/{id}", 'update')->name("update");
 			Route::put("/change-validation/{id}", 'change_validation')->name("change_validation");
 			Route::delete("/{id}", 'destroy')->name("destroy");
+		});
+		Route::prefix("configuration")->name("configuration.")->controller(ConfigurationController::class)->group(function () {
+			Route::get("/", 'index')->name("index");
+			Route::get("/{id}", 'show')->name("show");
+			Route::post("/", 'store')->name("store");
+			Route::put("/{id}", 'update')->name("update");
+			Route::delete("/{id}", 'destroy')->name("destroy");
+		});
+		Route::prefix("payment")->name("payment.")->controller(PaymentController::class)->group(function () {
+			Route::get("/", 'index')->name("index");
+			Route::get("/{id}", 'show')->name("show");
+			Route::post("/", 'store')->name("store");
 		});
 	});
 });

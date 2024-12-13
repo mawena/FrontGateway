@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Pecorator",
-        "_postman_id": "3dfe935a-73a7-4fb9-9716-1e7754cf7105",
+        "_postman_id": "74caa8fd-d81c-4ced-bb52-312ce6355016",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -138,6 +138,221 @@
                         {
                             "header": [],
                             "code": 204,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Configuration",
+            "description": "\nEndPoints pour g\u00e9rer les configurations",
+            "item": [
+                {
+                    "name": "Affiche les configurations",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/configuration",
+                            "query": [
+                                {
+                                    "key": "key",
+                                    "value": "",
+                                    "description": "Cl\u00e9.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "value",
+                                    "value": "",
+                                    "description": "Valeur.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "paginate",
+                                    "value": "false",
+                                    "description": "Utiliser la pagination.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/configuration?key=&value=&paginate=false"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Affiche un configuration",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/configuration\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/configuration\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "Configuration."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Cr\u00e9er une nouvelle configuration",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/configuration",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/configuration"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"key\":\"decor_unit_price\",\"value\":\"25\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Mettre \u00e0 jour une configuration",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/configuration\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/configuration\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "Configuration."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"value\":\"25\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Supprime une configuration",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/configuration\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/configuration\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "Configuration."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
                             "body": "{}",
                             "name": ""
                         }
@@ -778,6 +993,175 @@
             ]
         },
         {
+            "name": "Paiements",
+            "description": "\nEndPoints pour g\u00e9rer les paiements",
+            "item": [
+                {
+                    "name": "Affiche les paiements",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/payment",
+                            "query": [
+                                {
+                                    "key": "user_id",
+                                    "value": "",
+                                    "description": "Promoteur.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "nb_uses",
+                                    "value": "",
+                                    "description": "Nombre d'utilisation de d\u00e9cor.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "amount",
+                                    "value": "",
+                                    "description": "Montant.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "currency",
+                                    "value": "",
+                                    "description": "Devise.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "description",
+                                    "value": "",
+                                    "description": "Description.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "status",
+                                    "value": "",
+                                    "description": "Statut.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "with_user",
+                                    "value": "false",
+                                    "description": "Afficher le promoteur.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "paginate",
+                                    "value": "false",
+                                    "description": "Utiliser la pagination.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/payment?user_id=&nb_uses=&amount=&currency=&description=&status=&with_user=false&paginate=false"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Affiche un paiement",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/payment\/:id",
+                            "query": [
+                                {
+                                    "key": "with_user",
+                                    "value": "false",
+                                    "description": "Afficher le promoteur.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/payment\/:id?with_user=false",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "Le paiement."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Cr\u00e9er un nouveau decor",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/payment",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/payment"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"user_id\":1,\"nb_uses\":5,\"currency\":\"XOF\",\"description\":\"Payement de 100 utilisation de d\u00e9cors\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
             "name": "Utilisateurs",
             "description": "\nEndPoints pour g\u00e9rer les utilisateurs",
             "item": [
@@ -813,13 +1197,25 @@
                                     "disabled": false
                                 },
                                 {
+                                    "key": "with_decors",
+                                    "value": "false",
+                                    "description": "Afficher les d\u00e9cors.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "with_payments",
+                                    "value": "false",
+                                    "description": "Afficher les paiements.",
+                                    "disabled": false
+                                },
+                                {
                                     "key": "paginate",
                                     "value": "false",
                                     "description": "Utiliser la pagination.",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/user?name=&email=&profile=&with_events=false&paginate=false"
+                            "raw": "{{baseUrl}}\/api\/user?name=&email=&profile=&with_events=false&with_decors=false&with_payments=false&paginate=false"
                         },
                         "method": "GET",
                         "header": [
@@ -854,11 +1250,23 @@
                                 {
                                     "key": "with_events",
                                     "value": "false",
-                                    "description": "Afficher les departements.",
+                                    "description": "Afficher les evenements.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "with_decors",
+                                    "value": "false",
+                                    "description": "Afficher les d\u00e9cors.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "with_payments",
+                                    "value": "false",
+                                    "description": "Afficher les paiements.",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/user\/:id?with_events=false",
+                            "raw": "{{baseUrl}}\/api\/user\/:id?with_events=false&with_decors=false&with_payments=false",
                             "variable": [
                                 {
                                     "id": "id",
@@ -948,7 +1356,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"old_password\":\"quisquam\",\"new_password\":\"vitae\",\"new_password_confirmation\":\"quo\"}"
+                            "raw": "{\"old_password\":\"suscipit\",\"new_password\":\"vero\",\"new_password_confirmation\":\"dolor\"}"
                         },
                         "description": ""
                     },

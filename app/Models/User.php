@@ -13,48 +13,64 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasApiTokens, HasFactory, Notifiable;
+	/** @use HasFactory<\Database\Factories\UserFactory> */
+	use HasApiTokens, HasFactory, Notifiable;
 
 	protected $appends = ['ability_rules', 'profile_fr'];
 
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
+	/**
+	 * The attributes that are mass assignable.
+	 *
+	 * @var array<int, string>
+	 */
+	protected $fillable = [
+		'name',
+		'email',
+		'password',
 		'profile',
 		'picture_path',
 		'activated',
-    ];
+	];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+	/**
+	 * The attributes that should be hidden for serialization.
+	 *
+	 * @var array<int, string>
+	 */
+	protected $hidden = [
+		'password',
+		'remember_token',
+	];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
-    {
-        return [
-            'password' => 'hashed',
-        ];
-    }
+	/**
+	 * Get the attributes that should be cast.
+	 *
+	 * @return array<string, string>
+	 */
+	protected function casts(): array
+	{
+		return [
+			'password' => 'hashed',
+		];
+	}
 
+	public function promoter(): HasOne
+	{
+		return $this->hasOne(Promoter::class, "user_id", "id");
+	}
+	public function events(): HasMany
+	{
+		return $this->hasMany(Event::class, 'user_id', 'id');
+	}
+	public function decors(): HasMany
+	{
+		return $this->hasMany(Decor::class, 'promoter_id', 'id');
+	}
+	public function payments(): HasMany
+	{
+		return $this->hasMany(Payment::class, "user_id", "id");
+	}
 
 	public function toArray()
 	{
@@ -64,7 +80,6 @@ class User extends Authenticatable
 		$data["activated"] = (bool) $data["activated"];
 		return $data;
 	}
-
 	public function getProfileFrAttribute()
 	{
 		return [
@@ -73,17 +88,6 @@ class User extends Authenticatable
 			'promoter' => 'Promoteur',
 		][$this->profile];
 	}
-
-	public function promoter(): HasOne{
-		return $this->hasOne(Promoter::class, "user_id", "id");
-	}
-	public function events(): HasMany{
-		return $this->hasMany(Event::class, 'user_id', 'id');
-	}
-	public function decors(): HasMany{
-		return $this->hasMany(Decor::class, 'promoter_id', 'id');
-	}
-
 	public function getAbilityRulesAttribute()
 	{
 		return [
@@ -100,7 +104,7 @@ class User extends Authenticatable
 				],
 				[
 					'action' => ['create'],
-					'subject' => ['user','promoter', 'event', 'decor']
+					'subject' => ['user', 'promoter', 'event', 'decor']
 				],
 				[
 					'action' => ['edit'],

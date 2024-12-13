@@ -127,6 +127,14 @@
 				<!-- Sidebar navigation-->
 				<nav class="sidebar-nav">
 					<ul id="sidebarnav">
+						@can(['read'], 'configuration', session('userData'))
+							<li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="/admin/configuration" aria-expanded="false"><i
+										data-feather="settings" class="feather-icon"></i><span class="hide-menu">Configurations</span></a></li>
+						@endcan
+						@can(['read'], 'payment', session('userData'))
+							<li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="/admin/payment" aria-expanded="false"><i
+										data-feather="dollar-sign" class="feather-icon"></i><span class="hide-menu">Paiements</span></a></li>
+						@endcan
 						@can(['read'], 'supervisor', session('userData'))
 							<li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="/admin/user" aria-expanded="false"><i
 										data-feather="users" class="feather-icon"></i><span class="hide-menu">Superviseurs</span></a></li>

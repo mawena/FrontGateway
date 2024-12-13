@@ -79,6 +79,159 @@ paths:
           description: ''
       tags:
         - Authentification
+  /api/configuration:
+    get:
+      summary: 'Affiche les configurations'
+      operationId: afficheLesConfigurations
+      description: ''
+      parameters:
+        -
+          in: query
+          name: key
+          description: Clé.
+          example: null
+          required: false
+          schema:
+            type: string
+            description: Clé.
+            example: null
+        -
+          in: query
+          name: value
+          description: Valeur.
+          example: null
+          required: false
+          schema:
+            type: string
+            description: Valeur.
+            example: null
+        -
+          in: query
+          name: paginate
+          description: 'Utiliser la pagination.'
+          example: 'false'
+          required: false
+          schema:
+            type: string
+            description: 'Utiliser la pagination.'
+            example: 'false'
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {  }
+                properties: {  }
+      tags:
+        - Configuration
+    post:
+      summary: 'Créer une nouvelle configuration'
+      operationId: crerUneNouvelleConfiguration
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {  }
+                properties: {  }
+      tags:
+        - Configuration
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                key:
+                  type: string
+                  description: Clé.
+                  example: decor_unit_price
+                value:
+                  type: string
+                  description: Valeur.
+                  example: '25'
+  '/api/configuration/{id}':
+    get:
+      summary: 'Affiche un configuration'
+      operationId: afficheUnConfiguration
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {  }
+                properties: {  }
+      tags:
+        - Configuration
+    put:
+      summary: 'Mettre à jour une configuration'
+      operationId: mettreJourUneConfiguration
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {  }
+                properties: {  }
+      tags:
+        - Configuration
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                value:
+                  type: string
+                  description: Valeur.
+                  example: '25'
+    delete:
+      summary: 'Supprime une configuration'
+      operationId: supprimeUneConfiguration
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {  }
+                properties: {  }
+      tags:
+        - Configuration
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'Optional parameter. Configuration.'
+        required: true
+        schema:
+          type: integer
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: 1
   /api/decor:
     get:
       summary: 'Affiche les decors'
@@ -761,6 +914,184 @@ paths:
         required: true
         schema:
           type: integer
+  /api/payment:
+    get:
+      summary: 'Affiche les paiements'
+      operationId: afficheLesPaiements
+      description: ''
+      parameters:
+        -
+          in: query
+          name: user_id
+          description: Promoteur.
+          example: null
+          required: false
+          schema:
+            type: integer
+            description: Promoteur.
+            example: null
+        -
+          in: query
+          name: nb_uses
+          description: "Nombre d'utilisation de décor."
+          example: null
+          required: false
+          schema:
+            type: integer
+            description: "Nombre d'utilisation de décor."
+            example: null
+        -
+          in: query
+          name: amount
+          description: Montant.
+          example: null
+          required: false
+          schema:
+            type: integer
+            description: Montant.
+            example: null
+        -
+          in: query
+          name: currency
+          description: Devise.
+          example: null
+          required: false
+          schema:
+            type: string
+            description: Devise.
+            example: null
+        -
+          in: query
+          name: description
+          description: Description.
+          example: null
+          required: false
+          schema:
+            type: string
+            description: Description.
+            example: null
+        -
+          in: query
+          name: status
+          description: Statut.
+          example: null
+          required: false
+          schema:
+            type: string
+            description: Statut.
+            example: null
+        -
+          in: query
+          name: with_user
+          description: 'Afficher le promoteur.'
+          example: 'false'
+          required: false
+          schema:
+            type: string
+            description: 'Afficher le promoteur.'
+            example: 'false'
+        -
+          in: query
+          name: paginate
+          description: 'Utiliser la pagination.'
+          example: 'false'
+          required: false
+          schema:
+            type: string
+            description: 'Utiliser la pagination.'
+            example: 'false'
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {  }
+                properties: {  }
+      tags:
+        - Paiements
+    post:
+      summary: 'Créer un nouveau decor'
+      operationId: crerUnNouveauDecor
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {  }
+                properties: {  }
+      tags:
+        - Paiements
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                  description: Promoteur.
+                  example: 1
+                nb_uses:
+                  type: integer
+                  description: "Nombre d'utilisation de décor."
+                  example: 5
+                currency:
+                  type: string
+                  description: Devise.
+                  example: XOF
+                description:
+                  type: string
+                  description: Description.
+                  example: 'Payement de 100 utilisation de décors'
+  '/api/payment/{id}':
+    get:
+      summary: 'Affiche un paiement'
+      operationId: afficheUnPaiement
+      description: ''
+      parameters:
+        -
+          in: query
+          name: with_user
+          description: 'Afficher le promoteur.'
+          example: 'false'
+          required: false
+          schema:
+            type: string
+            description: 'Afficher le promoteur.'
+            example: 'false'
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {  }
+                properties: {  }
+      tags:
+        - Paiements
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'Optional parameter. Le paiement.'
+        required: true
+        schema:
+          type: integer
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: 1
   /api/user:
     get:
       summary: 'Affiche les utilisateurs'
@@ -806,6 +1137,26 @@ paths:
           schema:
             type: string
             description: 'Afficher les evenements.'
+            example: 'false'
+        -
+          in: query
+          name: with_decors
+          description: 'Afficher les décors.'
+          example: 'false'
+          required: false
+          schema:
+            type: string
+            description: 'Afficher les décors.'
+            example: 'false'
+        -
+          in: query
+          name: with_payments
+          description: 'Afficher les paiements.'
+          example: 'false'
+          required: false
+          schema:
+            type: string
+            description: 'Afficher les paiements.'
             example: 'false'
         -
           in: query
@@ -884,12 +1235,32 @@ paths:
         -
           in: query
           name: with_events
-          description: 'Afficher les departements.'
+          description: 'Afficher les evenements.'
           example: 'false'
           required: false
           schema:
             type: string
-            description: 'Afficher les departements.'
+            description: 'Afficher les evenements.'
+            example: 'false'
+        -
+          in: query
+          name: with_decors
+          description: 'Afficher les décors.'
+          example: 'false'
+          required: false
+          schema:
+            type: string
+            description: 'Afficher les décors.'
+            example: 'false'
+        -
+          in: query
+          name: with_payments
+          description: 'Afficher les paiements.'
+          example: 'false'
+          required: false
+          schema:
+            type: string
+            description: 'Afficher les paiements.'
             example: 'false'
       responses:
         200:
@@ -1007,15 +1378,15 @@ paths:
                 old_password:
                   type: string
                   description: "L'ancien mot de passe de l'utilisateur."
-                  example: quisquam
+                  example: suscipit
                 new_password:
                   type: string
                   description: "Le nouveau mot de passe de l'utilisateur."
-                  example: vitae
+                  example: vero
                 new_password_confirmation:
                   type: string
                   description: "La confirmation du nouveau mot de passe de l'utilisateur."
-                  example: quo
+                  example: dolor
               required:
                 - old_password
                 - new_password
@@ -1025,11 +1396,17 @@ tags:
     name: Authentification
     description: "\nEndPoints pour gérer l'authentification"
   -
+    name: Configuration
+    description: "\nEndPoints pour gérer les configurations"
+  -
     name: Decors
     description: "\nEndPoints pour gérer les décors"
   -
     name: Evenements
     description: "\nEndPoints pour gérer les événements"
+  -
+    name: Paiements
+    description: "\nEndPoints pour gérer les paiements"
   -
     name: Utilisateurs
     description: "\nEndPoints pour gérer les utilisateurs"

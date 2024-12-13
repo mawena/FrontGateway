@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\Front\AuthControler;
+use App\Http\Controllers\Front\ConfigurationController;
 use App\Http\Controllers\Front\DecorController;
 use App\Http\Controllers\Front\EventController;
+use App\Http\Controllers\Front\PaymentController;
 use App\Http\Controllers\Front\PromoterController;
 use App\Http\Controllers\Front\UserController;
 use App\Http\Controllers\Front\Visitor\HomeController;
@@ -63,6 +65,19 @@ Route::prefix("admin")->name("admin.")->controller(AuthControler::class)->group(
 			Route::put("/{id}", "update")->name("update");
 			Route::put("/change-validation/{id}", "change_validation")->name("change_validation");
 			Route::delete("/{id}", "destroy")->name("destroy");
+		});
+		Route::prefix("/configuration")->name("configuration.")->controller(ConfigurationController::class)->group(function () {
+			Route::get("/", "index")->name("index");
+			Route::post("/", "store")->name("store");
+			Route::get("/edit/{id}", "edit")->name("edit");
+			Route::put("/{id}", "update")->name("update");
+			Route::delete("/{id}", "destroy")->name("destroy");
+		});
+		Route::prefix("/payment")->name("payment.")->controller(PaymentController::class)->group(function () {
+			Route::get("/", "index")->name("index");
+			Route::post("/", "store")->name("store");
+			Route::get("/show/{id}", "show")->name("show");
+			Route::put("/change-status/{id}", "change_status")->name("change_status");
 		});
 	});
 });

@@ -1,0 +1,90 @@
+<?php
+
+namespace App\Http\Controllers\Front;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+
+class PaymentController
+{
+	public function index()
+	{
+		$response = Http::withHeaders([
+			'Authorization' => 'Bearer ' . session('userToken'),
+			'Accept' => 'application/json',
+		])->get(
+			config('app.url') . "/api/payment",
+			["paginate" => "false"]
+		)->json();
+		return view("pages.payment.index", ["payments" => $response["data"]]);
+	}
+
+	public function show(Request $request, $id)
+	{
+		$response = Http::withHeaders([
+			'Authorization' => 'Bearer ' . session('userToken'),
+			'Accept' => 'application/json',
+		])->get(
+			config('app.url') . "/api/payment/" . $id
+		)->json();
+		return view("pages.payment.show", ["payment" => $response["data"]["Configuration"]]);
+	}
+
+	public function store(Request $request)
+	{
+		$requestData = $request->all();
+		$response = Http::withHeaders([
+			'Authorization' => 'Bearer ' . session('userToken'),
+			'Accept' => 'application/json',
+		])->post(config('app.url') . "/api/payment", $requestData)->json();
+		if ($response["status"] == 201) {
+			return redirect()->route("admin.payment.index");
+		} else {
+			return redirect()->back()
+				->withInput()
+				->withErrors($response["errors"]);
+		}
+	}
+
+	public function edit(Request $request, $id)
+	{
+		$response = Http::withHeaders([
+			'Authorization' => 'Bearer ' . session('userToken'),
+			'Accept' => 'application/json',
+		])->get(
+			config('app.url') . "/api/payment/" . $id
+		)->json();
+		return view("pages.payment.edit", ["payment" => $response["data"]["Configuration"]]);
+	}
+
+	public function update(Request $request, $id)
+	{
+		$requestData = $request->all();
+		$response = Http::withHeaders([
+			'Authorization' => 'Bearer ' . session('userToken'),
+			'Accept' => 'application/json',
+		])->put(config('app.url') . "/api/payment/" . $id, $requestData)->json();
+		if ($response["status"] == 200) {
+			return redirect()->route("admin.payment.index");
+		} else {
+			return redirect()->back()
+				->withInput()
+				->withErrors($response["errors"]);
+		}
+	}
+
+	public function destroy(Request $request, int $id)
+	{
+		$response = Http::withHeaders([
+			'Authorization' => 'Bearer ' . session('userToken'),
+			'Accept' => 'application/json',
+		])->delete(config('app.url') . "/api/payment/" . $id)->json();
+		if ($response["status"] == 200) {
+			return redirect()->route("admin.payment.index");
+		} else {
+			return redirect()->back()
+				->withInput()
+				->withErrors($response["errors"]);
+		}
+	}
+}
