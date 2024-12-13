@@ -78,7 +78,7 @@ class User extends Authenticatable
 		return $this->hasOne(Promoter::class, "user_id", "id");
 	}
 	public function events(): HasMany{
-		return $this->hasMany(Event::class, 'promoter_id', 'id');
+		return $this->hasMany(Event::class, 'user_id', 'id');
 	}
 	public function decors(): HasMany{
 		return $this->hasMany(Decor::class, 'promoter_id', 'id');

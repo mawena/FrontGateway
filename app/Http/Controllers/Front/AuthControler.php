@@ -7,27 +7,74 @@ use Illuminate\Support\Facades\Http;
 
 class AuthControler
 {
-	public function login(Request $request)
+	public function login_view(Request $request)
 	{
-		$requestData = $request->all();
-		$response = Http::post(config('app.url') . "/api/auth/login", $requestData)->json();
-		if ($response["status"] == 200) {
-			session([
-				'userToken' => $response["data"]["userToken"],
-				"userData" => $response["data"]["user"],
-			]);
-			
+		if (session('userToken') && session('userData')) {
 			return redirect()->route(
 				[
 					"admin" => "admin.user.index",
 					"supervisor" => "admin.promoter.index",
 					"promoter" => "admin.event.index",
-				][$response["data"]["user"]["profile"]]
+				][session("userData")["profile"]]
 			);
 		}
-		return redirect()->back()
+		return view("auth.login");
+	}
+	public function login(Request $request)
+	{
+		$requestData = $request->all();
+		$response = Http::post(config('app.url') . "/api/auth/login", $requestData)->json();
+		if ($response["status"] != 200) {
+			return redirect()->back()
+				->withInput()
+				->withErrors($response["errors"]);
+		}
+		session([
+			'userToken' => $response["data"]["userToken"],
+			"userData" => $response["data"]["user"],
+		]);
+
+		return redirect()->route(
+			[
+				"admin" => "admin.user.index",
+				"supervisor" => "admin.promoter.index",
+				"promoter" => "admin.event.index",
+			][$response["data"]["user"]["profile"]]
+		);
+	}
+
+	public function register_view(Request $request){
+		if (session('userToken') && session('userData')) {
+			return redirect()->route(
+				[
+					"admin" => "admin.user.index",
+					"supervisor" => "admin.promoter.index",
+					"promoter" => "admin.event.index",
+				][session("userData")["profile"]]
+			);
+		}
+		return view("auth.register");
+	}
+
+	public function register(Request $request){
+		$requestData = $request->all();
+		$response = Http::post(config('app.url') . "/api/auth/register", $requestData)->json();
+		if ($response["status"] != 201) {
+			return redirect()->back()
 			->withInput()
 			->withErrors($response["errors"]);
+		}
+		session([
+			'userToken' => $response["data"]["user"]["userToken"],
+			"userData" => $response["data"]["user"],
+		]);
+		return redirect()->route(
+			[
+				"admin" => "admin.user.index",
+				"supervisor" => "admin.promoter.index",
+				"promoter" => "admin.event.index",
+			][$response["data"]["user"]["profile"]]
+		);
 	}
 
 	public function logout()

@@ -9,16 +9,22 @@ class DecorController
 {
 	public function index()
 	{
+
+		$userData = session('userData');
+		$query = [
+			"paginate" => "false",
+			"with_user" => "true",
+			"with_event" => "true",
+		];
+		if ($userData['profile'] == 'promoter') {
+			$query["user_id"] = $userData["id"];
+		}
 		$decor_response = Http::withHeaders([
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
 		])->get(
 			config('app.url') . "/api/decor",
-			[
-				"paginate" => "false",
-				"with_user" => "true",
-				"with_event" => "true",
-			]
+			$query
 		)->json();
 
 		$event_response = Http::withHeaders([

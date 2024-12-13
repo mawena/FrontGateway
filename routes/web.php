@@ -19,15 +19,14 @@ Route::controller(HomeController::class)->as('visitor.')->group(function () {
 
 });
 
-
 Route::prefix("admin")->name("admin.")->controller(AuthControler::class)->group(function () {
 	Route::get('/', function () {
 		return redirect()->route("admin.login");
 	});
-	Route::get("login", function () {
-		return view("Auth.login");
-	})->name("login");
+	Route::get("login", "login_view")->name("login");
 	Route::post("login", "login")->name("post.login");
+	Route::get("resgiter", "register_view")->name("register");
+	Route::post("register", "register")->name("post.register");
 	Route::middleware("user-token")->group(function () {
 		Route::delete("logout", "logout")->name("logout");
 		Route::prefix("/user")->name("user.")->controller(UserController::class)->group(function () {

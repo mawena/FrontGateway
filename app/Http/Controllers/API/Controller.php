@@ -27,7 +27,7 @@ class Controller extends BaseController
 
 
 	//Store
-	protected string $storeAuthName = "create";
+	protected string|null $storeAuthName = "create";
 	protected array $storeValidationArray = [];
 	protected array $storeValidationTextArray = [];
 	protected $storeManualValidationsFunction = null;
@@ -38,7 +38,7 @@ class Controller extends BaseController
 	protected array $storeRelationArray = [];
 
 	//Update
-	protected string $updateAuthName = "update";
+	protected string|null $updateAuthName = "update";
 	protected $updateGetValidationArrayFunction = [];
 	protected array $updateValidationTextArray = [];
 	protected $updateManualValidationsFunction = null;
@@ -153,7 +153,7 @@ class Controller extends BaseController
 	 * @param 	array	    $relations   		Les relations à afficher lors de retour
 	 * @return \Illuminate\Http\JsonResponse
 	 */
-	public function modelStore($modelClass, array $requestData, array $validations = [], array $validationsText = [], callable $manualValidations = null, callable $beforeCreate = null, callable $afterCreate = null, callable $beforeCommit = null, callable $afterCommit = null, string $authName = "create", $relations = [])
+	public function modelStore($modelClass, array $requestData, array $validations = [], array $validationsText = [], callable $manualValidations = null, callable $beforeCreate = null, callable $afterCreate = null, callable $beforeCommit = null, callable $afterCommit = null, string|null $authName = "create", $relations = [])
 	{
 		if ($authName && !($authorisation = Gate::inspect($authName, $modelClass))->allowed()) {
 			return $this->responseError(["auth" => [$authorisation->message()]], 403);
@@ -199,7 +199,7 @@ class Controller extends BaseController
 	 * @param 	array	    $relations   		Les relations à afficher lors de retour
 	 * @return \Illuminate\Http\JsonResponse
 	 */
-	public function modelUpdate(mixed $modelId, $modelClass, array $requestData, array $validations = [], array $validationsText = [], callable $manualValidations = null, callable $beforeUpdate = null, callable $afterUpdate = null, callable $beforeCommit = null, callable $afterCommit = null, $authName = "update", $elementName = "L'élément", $relations = [])
+	public function modelUpdate(mixed $modelId, $modelClass, array $requestData, array $validations = [], array $validationsText = [], callable $manualValidations = null, callable $beforeUpdate = null, callable $afterUpdate = null, callable $beforeCommit = null, callable $afterCommit = null, string|null $authName = "update", $elementName = "L'élément", $relations = [])
 	{
 		if ($modelId) {
 			$validator = Validator::make($requestData, $validations, $validationsText);

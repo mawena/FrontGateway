@@ -9,15 +9,17 @@ class EventController
 {
 	public function index()
 	{
+		$query = ["paginate" => "false"];
+		$userData = session('userData');
+		if ($userData['profile'] == 'promoter') {
+			$query["user_id"] = $userData["id"];
+		}
 		$response = Http::withHeaders([
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
 		])->get(
 			config('app.url') . "/api/event",
-			[
-				"paginate" => "false",
-				"promoter_id" => session("userData")["id"]
-			]
+			$query
 		)->json();
 		return view("pages.event.index", ["events" => $response["data"]]);
 	}

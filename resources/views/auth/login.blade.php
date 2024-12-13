@@ -75,6 +75,9 @@
 								<div class="col-lg-12 mt-4 text-center">
 									<button type="submit" class="btn btn-block btn-dark">Se connecter</button>
 								</div>
+								<div class="col-lg-12 mt-4 text-center">
+									<p>Pas de compte?. <a href="{{route('admin.register')}}">Inscrivez-vous</a></p>
+								</div>
 							</div>
 						</form>
 					</div>
