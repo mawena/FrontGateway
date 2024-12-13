@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Pecorator",
-        "_postman_id": "c8d87b04-2ce8-4596-bd6a-6375654108d0",
+        "_postman_id": "3dfe935a-73a7-4fb9-9716-1e7754cf7105",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -53,6 +53,31 @@
                             "name": ""
                         }
                     ]
+                },
+                {
+                    "name": "POST api\/auth\/register",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/auth\/register",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/auth\/register"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": []
                 },
                 {
                     "name": "Affiche l'utilisateur connect\u00e9",
@@ -923,7 +948,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"old_password\":\"optio\",\"new_password\":\"sed\",\"new_password_confirmation\":\"ad\"}"
+                            "raw": "{\"old_password\":\"quisquam\",\"new_password\":\"vitae\",\"new_password_confirmation\":\"quo\"}"
                         },
                         "description": ""
                     },

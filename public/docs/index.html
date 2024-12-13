@@ -74,6 +74,9 @@
                                                     <li class="tocify-item level-2" data-unique="authentification-POSTapi-auth-login">
                                 <a href="#authentification-POSTapi-auth-login">Connecte un utilisateur</a>
                             </li>
+                                                                                <li class="tocify-item level-2" data-unique="authentification-POSTapi-auth-register">
+                                <a href="#authentification-POSTapi-auth-register">POST api/auth/register</a>
+                            </li>
                                                                                 <li class="tocify-item level-2" data-unique="authentification-GETapi-auth-show">
                                 <a href="#authentification-GETapi-auth-show">Affiche l'utilisateur connecté</a>
                             </li>
@@ -166,7 +169,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: December 8, 2024</li>
+        <li>Last updated: December 13, 2024</li>
     </ul>
 </div>
 
@@ -352,6 +355,128 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>Le mot de passe complet de l'utilisateur. Example: <code>azerty</code></p>
         </div>
         </form>
+
+                    <h2 id="authentification-POSTapi-auth-register">POST api/auth/register</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-auth-register">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://pecorator.ulrich.client/api/auth/register" \
+    --header "Authorization: Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://pecorator.ulrich.client/api/auth/register"
+);
+
+const headers = {
+    "Authorization": "Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-auth-register">
+</span>
+<span id="execution-results-POSTapi-auth-register" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-auth-register"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-auth-register"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-auth-register" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-auth-register">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-auth-register" data-method="POST"
+      data-path="api/auth/register"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-auth-register', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-auth-register"
+                    onclick="tryItOut('POSTapi-auth-register');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-auth-register"
+                    onclick="cancelTryOut('POSTapi-auth-register');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-auth-register"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/auth/register</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-auth-register"
+               value="Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-auth-register"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-auth-register"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
 
                     <h2 id="authentification-GETapi-auth-show">Affiche l&#039;utilisateur connecté</h2>
 
@@ -3674,9 +3799,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"old_password\": \"optio\",
-    \"new_password\": \"sed\",
-    \"new_password_confirmation\": \"ad\"
+    \"old_password\": \"quisquam\",
+    \"new_password\": \"vitae\",
+    \"new_password_confirmation\": \"quo\"
 }"
 </code></pre></div>
 
@@ -3693,9 +3818,9 @@ const headers = {
 };
 
 let body = {
-    "old_password": "optio",
-    "new_password": "sed",
-    "new_password_confirmation": "ad"
+    "old_password": "quisquam",
+    "new_password": "vitae",
+    "new_password_confirmation": "quo"
 };
 
 fetch(url, {
@@ -3802,10 +3927,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="old_password"                data-endpoint="PUTapi-user-update-password"
-               value="optio"
+               value="quisquam"
                data-component="body">
     <br>
-<p>L'ancien mot de passe de l'utilisateur. Example: <code>optio</code></p>
+<p>L'ancien mot de passe de l'utilisateur. Example: <code>quisquam</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>new_password</code></b>&nbsp;&nbsp;
@@ -3813,10 +3938,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="new_password"                data-endpoint="PUTapi-user-update-password"
-               value="sed"
+               value="vitae"
                data-component="body">
     <br>
-<p>Le nouveau mot de passe de l'utilisateur. Example: <code>sed</code></p>
+<p>Le nouveau mot de passe de l'utilisateur. Example: <code>vitae</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>new_password_confirmation</code></b>&nbsp;&nbsp;
@@ -3824,10 +3949,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="new_password_confirmation"                data-endpoint="PUTapi-user-update-password"
-               value="ad"
+               value="quo"
                data-component="body">
     <br>
-<p>La confirmation du nouveau mot de passe de l'utilisateur. Example: <code>ad</code></p>
+<p>La confirmation du nouveau mot de passe de l'utilisateur. Example: <code>quo</code></p>
         </div>
         </form>
 
