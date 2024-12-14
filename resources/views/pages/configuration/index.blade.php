@@ -47,7 +47,7 @@
 							<div class="table-responsive">
 								<table id="zero_config" class="table table-striped table-bordered no-wrap">
 									<thead>
-										<tr class="text-center">
+										<tr class="">
 											<th>Nom</th>
 											<th>Valeur</th>
 											<th>Actions</th>
@@ -55,10 +55,10 @@
 									</thead>
 									<tbody>
 										@foreach ($configurations as $configuration)
-											<tr class="py-0 text-center">
-												<td class="" style="width: 100px">{{ $configuration['key'] }}</td>
+											<tr class="py-0">
+												<td class="">{{ $configuration['key'] }}</td>
 												<td class="py-4">{{ $configuration['value'] }}</td>
-												<td class="" style="max-width: 100px">
+												<td class="" style="width: 10px">
 													@can(['edit'], 'configuration', session('userData'))
 														<a href="{{ route('admin.configuration.edit', $configuration['id']) }}" type="button"
 															class="btn text-warning"><i class="fa fa-edit"></i></a>

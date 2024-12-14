@@ -168,8 +168,11 @@
                                                                                 <li class="tocify-item level-2" data-unique="paiements-GETapi-payment--id-">
                                 <a href="#paiements-GETapi-payment--id-">Affiche un paiement</a>
                             </li>
+                                                                                <li class="tocify-item level-2" data-unique="paiements-POSTapi-payment-callback">
+                                <a href="#paiements-POSTapi-payment-callback">POST api/payment/callback</a>
+                            </li>
                                                                                 <li class="tocify-item level-2" data-unique="paiements-POSTapi-payment">
-                                <a href="#paiements-POSTapi-payment">Créer un nouveau decor</a>
+                                <a href="#paiements-POSTapi-payment">Créer un nouveau paiement</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -207,7 +210,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: December 13, 2024</li>
+        <li>Last updated: December 14, 2024</li>
     </ul>
 </div>
 
@@ -4416,7 +4419,129 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                 </form>
 
-                    <h2 id="paiements-POSTapi-payment">Créer un nouveau decor</h2>
+                    <h2 id="paiements-POSTapi-payment-callback">POST api/payment/callback</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-payment-callback">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://pecorator.ulrich.client/api/payment/callback" \
+    --header "Authorization: Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://pecorator.ulrich.client/api/payment/callback"
+);
+
+const headers = {
+    "Authorization": "Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-payment-callback">
+</span>
+<span id="execution-results-POSTapi-payment-callback" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-payment-callback"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-payment-callback"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-payment-callback" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-payment-callback">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-payment-callback" data-method="POST"
+      data-path="api/payment/callback"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-payment-callback', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-payment-callback"
+                    onclick="tryItOut('POSTapi-payment-callback');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-payment-callback"
+                    onclick="cancelTryOut('POSTapi-payment-callback');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-payment-callback"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/payment/callback</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-payment-callback"
+               value="Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer 1|3EHtZpCFL35Mn1tff8F1JxPhNTfCsxNveKXdC652a8400aed</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-payment-callback"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-payment-callback"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="paiements-POSTapi-payment">Créer un nouveau paiement</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -4435,10 +4560,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"user_id\": 1,
-    \"nb_uses\": 5,
-    \"currency\": \"XOF\",
-    \"description\": \"Payement de 100 utilisation de décors\"
+    \"country_code\": \"228\",
+    \"phone_number\": \"91611135\",
+    \"nb_uses\": 5
 }"
 </code></pre></div>
 
@@ -4455,10 +4579,9 @@ const headers = {
 };
 
 let body = {
-    "user_id": 1,
-    "nb_uses": 5,
-    "currency": "XOF",
-    "description": "Payement de 100 utilisation de décors"
+    "country_code": "228",
+    "phone_number": "91611135",
+    "nb_uses": 5
 };
 
 fetch(url, {
@@ -4560,15 +4683,26 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                                 <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>user_id</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
+            <b style="line-height: 2;"><code>country_code</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
 <i>optional</i> &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="user_id"                data-endpoint="POSTapi-payment"
-               value="1"
+                <input type="text" style="display: none"
+                              name="country_code"                data-endpoint="POSTapi-payment"
+               value="228"
                data-component="body">
     <br>
-<p>Promoteur. Example: <code>1</code></p>
+<p>Pays. Example: <code>228</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>phone_number</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="phone_number"                data-endpoint="POSTapi-payment"
+               value="91611135"
+               data-component="body">
+    <br>
+<p>Tel. Example: <code>91611135</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>nb_uses</code></b>&nbsp;&nbsp;
@@ -4580,28 +4714,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
                data-component="body">
     <br>
 <p>Nombre d'utilisation de décor. Example: <code>5</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>currency</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
-                <input type="text" style="display: none"
-                              name="currency"                data-endpoint="POSTapi-payment"
-               value="XOF"
-               data-component="body">
-    <br>
-<p>Devise. Example: <code>XOF</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
-                <input type="text" style="display: none"
-                              name="description"                data-endpoint="POSTapi-payment"
-               value="Payement de 100 utilisation de décors"
-               data-component="body">
-    <br>
-<p>Description. Example: <code>Payement de 100 utilisation de décors</code></p>
         </div>
         </form>
 
@@ -5242,9 +5354,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"old_password\": \"suscipit\",
-    \"new_password\": \"vero\",
-    \"new_password_confirmation\": \"dolor\"
+    \"old_password\": \"ut\",
+    \"new_password\": \"ipsam\",
+    \"new_password_confirmation\": \"enim\"
 }"
 </code></pre></div>
 
@@ -5261,9 +5373,9 @@ const headers = {
 };
 
 let body = {
-    "old_password": "suscipit",
-    "new_password": "vero",
-    "new_password_confirmation": "dolor"
+    "old_password": "ut",
+    "new_password": "ipsam",
+    "new_password_confirmation": "enim"
 };
 
 fetch(url, {
@@ -5370,10 +5482,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="old_password"                data-endpoint="PUTapi-user-update-password"
-               value="suscipit"
+               value="ut"
                data-component="body">
     <br>
-<p>L'ancien mot de passe de l'utilisateur. Example: <code>suscipit</code></p>
+<p>L'ancien mot de passe de l'utilisateur. Example: <code>ut</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>new_password</code></b>&nbsp;&nbsp;
@@ -5381,10 +5493,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="new_password"                data-endpoint="PUTapi-user-update-password"
-               value="vero"
+               value="ipsam"
                data-component="body">
     <br>
-<p>Le nouveau mot de passe de l'utilisateur. Example: <code>vero</code></p>
+<p>Le nouveau mot de passe de l'utilisateur. Example: <code>ipsam</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>new_password_confirmation</code></b>&nbsp;&nbsp;
@@ -5392,10 +5504,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="new_password_confirmation"                data-endpoint="PUTapi-user-update-password"
-               value="dolor"
+               value="enim"
                data-component="body">
     <br>
-<p>La confirmation du nouveau mot de passe de l'utilisateur. Example: <code>dolor</code></p>
+<p>La confirmation du nouveau mot de passe de l'utilisateur. Example: <code>enim</code></p>
         </div>
         </form>
 

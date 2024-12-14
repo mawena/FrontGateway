@@ -19,6 +19,9 @@ class Payment extends Model
 		"currency",
 		"description",
 		"status",
+		"phone_number",
+		"payment_url",
+		"payment_token",
 	];
 
 	public function user(): BelongsTo

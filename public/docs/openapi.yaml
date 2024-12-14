@@ -1012,8 +1012,8 @@ paths:
       tags:
         - Paiements
     post:
-      summary: 'Créer un nouveau decor'
-      operationId: crerUnNouveauDecor
+      summary: 'Créer un nouveau paiement'
+      operationId: crerUnNouveauPaiement
       description: ''
       parameters: []
       responses:
@@ -1034,22 +1034,18 @@ paths:
             schema:
               type: object
               properties:
-                user_id:
-                  type: integer
-                  description: Promoteur.
-                  example: 1
+                country_code:
+                  type: string
+                  description: Pays.
+                  example: '228'
+                phone_number:
+                  type: string
+                  description: Tel.
+                  example: '91611135'
                 nb_uses:
                   type: integer
                   description: "Nombre d'utilisation de décor."
                   example: 5
-                currency:
-                  type: string
-                  description: Devise.
-                  example: XOF
-                description:
-                  type: string
-                  description: Description.
-                  example: 'Payement de 100 utilisation de décors'
   '/api/payment/{id}':
     get:
       summary: 'Affiche un paiement'
@@ -1092,6 +1088,15 @@ paths:
           present:
             summary: 'When the value is present'
             value: 1
+  /api/payment/callback:
+    post:
+      summary: ''
+      operationId: postApiPaymentCallback
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Paiements
   /api/user:
     get:
       summary: 'Affiche les utilisateurs'
@@ -1378,15 +1383,15 @@ paths:
                 old_password:
                   type: string
                   description: "L'ancien mot de passe de l'utilisateur."
-                  example: suscipit
+                  example: ut
                 new_password:
                   type: string
                   description: "Le nouveau mot de passe de l'utilisateur."
-                  example: vero
+                  example: ipsam
                 new_password_confirmation:
                   type: string
                   description: "La confirmation du nouveau mot de passe de l'utilisateur."
-                  example: dolor
+                  example: enim
               required:
                 - old_password
                 - new_password

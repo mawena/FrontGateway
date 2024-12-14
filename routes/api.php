@@ -53,6 +53,7 @@ Route::controller(AuthController::class)->group(function () {
 		Route::prefix("payment")->name("payment.")->controller(PaymentController::class)->group(function () {
 			Route::get("/", 'index')->name("index");
 			Route::get("/{id}", 'show')->name("show");
+			Route::post("/callback", "callback")->name("callback");
 			Route::post("/", 'store')->name("store");
 		});
 	});

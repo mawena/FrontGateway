@@ -21,7 +21,7 @@
             <div class="slider-area tour-slider">
                 <div class="row justify-content-center gx-3 gy-4">
 					@forelse ($decors as $key => $decor)
-						<div class="col-lg-6 col-xl-4 col-md-6 pb-3">
+						<div class="col-lg-6 col-xl-3 col-md-6 pb-3">
 							@include('visitor.modules.decor')
 						</div>
 					@empty

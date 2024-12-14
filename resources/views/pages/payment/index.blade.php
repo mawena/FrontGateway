@@ -8,7 +8,8 @@
 		<div class="page-breadcrumb">
 			<div class="row">
 				<div class="col-7 align-self-center">
-					<h2 class="page-title text-truncate text-dark font-weight-medium mb-1">Gestion des Paiement d'utilisations de décors</h2>
+					<h2 class="page-title text-truncate text-dark font-weight-medium mb-1">Gestion des Achat d'utilisations de décors
+					</h2>
 				</div>
 
 			</div>
@@ -30,7 +31,7 @@
 						<div class="card-body">
 							<div class="d-flex align-items-center mb-4">
 								<h4 class="card-title">
-									Liste des paiements
+									Liste des achats
 									<span class="text-primary px-3 ml-2 py-4 border-primary">
 										[ Total : {{ count($payments) }} ]
 									</span>
@@ -39,7 +40,7 @@
 									@can(['create'], 'payment', session('userData'))
 										<button type="button" class="btn btn-primary px-4" data-toggle="modal" data-target="#signup-modal"
 											id="toggle_modal">
-											Nouveau paiement
+											Nouvel achat
 										</button>
 									@endcan
 								</div>
@@ -48,35 +49,22 @@
 								<table id="zero_config" class="table table-striped table-bordered no-wrap">
 									<thead>
 										<tr class="text-center">
-											<th>Nom</th>
-											<th>Valeur</th>
+											<th>Date</th>
+											<th>Nombre</th>
+											<th>Prix</th>
 											<th>Actions</th>
 										</tr>
 									</thead>
 									<tbody>
 										@foreach ($payments as $payment)
 											<tr class="py-0 text-center">
-												<td class="" style="width: 100px">{{ $payment['key'] }}</td>
-												<td class="py-4">{{ $payment['value'] }}</td>
+												<td>{{ $payment['created_at_fr'] }}</td>
+												<td>{{ $payment['nb_uses'] }}</td>
+												<td>{{ $payment['amount'] }}</td>
 												<td class="" style="max-width: 100px">
-													@can(['read'], 'prayment', session('userData'))
-														<a href="{{ route('admin.prayment.show', $user['id']) }}" class="btn text-primary"><i
+													@can(['read'], 'payment', session('userData'))
+														<a href="{{ route('admin.payment.show', $payment['id']) }}" class="btn text-primary"><i
 																class="fa fa-eye"></i></a>
-													@endcan
-													@can(['edit'], 'payment', session('userData'))
-														<a href="{{ route('admin.payment.edit', $payment['id']) }}" type="button"
-															class="btn text-warning"><i class="fa fa-edit"></i></a>
-													@endcan
-													@can(['delete'], 'payment', session('userData'))
-														<form action="{{ route('admin.payment.destroy', $payment['id']) }}" method="POST"
-															style="display:inline-block;">
-															@csrf
-															@method('DELETE')
-															<button type="submit" class="btn"
-																onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet payment ?')">
-																<i style="color: red" class="fa fa-trash"></i>
-															</button>
-														</form>
 													@endcan
 													</form>
 												</td>
@@ -104,16 +92,27 @@
 								@csrf
 
 								<div class="form-group">
-									<label for="key">Nom</label>
-									<input class="form-control" name="key" id="key" required="" placeholder="" value="">
-									@error('key')
+									<label for="nb_uses">Nombre d'utilisation à acheter</label>
+									<input class="form-control" type="number" name="nb_uses" id="nb_uses" required="" placeholder="">
+									@error('nb_uses')
+									<span class="text-danger">{{ $message }}</span>
+									@enderror
+								</div>
+								
+								<div class="form-group">
+									<label for="country_code">Indicatif</label>
+									<select class="form-control" id="country_code" name="country_code">
+										<option value="228" selected>Togo</option>
+									</select>
+									@error('country_code')
 										<span class="text-danger">{{ $message }}</span>
 									@enderror
 								</div>
+
 								<div class="form-group">
-									<label for="value">Valeur</label>
-									<input class="form-control" name="value" id="value" required="" placeholder="" value="">
-									@error('value')
+									<label for="phone_number">Numéro de téléphone</label>
+									<input class="form-control" name="phone_number" id="phone_number" required="" placeholder="">
+									@error('phone_number')
 										<span class="text-danger">{{ $message }}</span>
 									@enderror
 								</div>

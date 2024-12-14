@@ -21,7 +21,7 @@
         <div class="slider-area">
             <div class="row justify-content-center gx-3 gy-4">
 				@forelse ($events as $event)
-					<div class="col-3 pb-3">
+					<div class="col-12 col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 col-xl-4 col-xxl-3 pb-3">
 						@include('visitor.modules.event')
 					</div>
 				@empty

@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Pecorator",
-        "_postman_id": "74caa8fd-d81c-4ced-bb52-312ce6355016",
+        "_postman_id": "98d95717-59e9-4b15-9d1b-96a09eae839e",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -1125,7 +1125,32 @@
                     ]
                 },
                 {
-                    "name": "Cr\u00e9er un nouveau decor",
+                    "name": "POST api\/payment\/callback",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/payment\/callback",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/payment\/callback"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Cr\u00e9er un nouveau paiement",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -1146,7 +1171,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"user_id\":1,\"nb_uses\":5,\"currency\":\"XOF\",\"description\":\"Payement de 100 utilisation de d\u00e9cors\"}"
+                            "raw": "{\"country_code\":\"228\",\"phone_number\":\"91611135\",\"nb_uses\":5}"
                         },
                         "description": ""
                     },
@@ -1356,7 +1381,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"old_password\":\"suscipit\",\"new_password\":\"vero\",\"new_password_confirmation\":\"dolor\"}"
+                            "raw": "{\"old_password\":\"ut\",\"new_password\":\"ipsam\",\"new_password_confirmation\":\"enim\"}"
                         },
                         "description": ""
                     },

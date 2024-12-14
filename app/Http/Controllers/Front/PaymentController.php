@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Redirect;
 
 class PaymentController
 {
@@ -38,7 +39,7 @@ class PaymentController
 			'Accept' => 'application/json',
 		])->post(config('app.url') . "/api/payment", $requestData)->json();
 		if ($response["status"] == 201) {
-			return redirect()->route("admin.payment.index");
+			return Redirect::to($response["data"]["payment"]["payment_url"]);
 		} else {
 			return redirect()->back()
 				->withInput()

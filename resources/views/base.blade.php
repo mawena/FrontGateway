@@ -133,7 +133,7 @@
 						@endcan
 						@can(['read'], 'payment', session('userData'))
 							<li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="/admin/payment" aria-expanded="false"><i
-										data-feather="dollar-sign" class="feather-icon"></i><span class="hide-menu">Paiements</span></a></li>
+										data-feather="dollar-sign" class="feather-icon"></i><span class="hide-menu">Achats</span></a></li>
 						@endcan
 						@can(['read'], 'supervisor', session('userData'))
 							<li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="/admin/user" aria-expanded="false"><i

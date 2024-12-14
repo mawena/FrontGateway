@@ -26,14 +26,14 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 400px; /* Hauteur uniforme */
+    height: 500px; /* Hauteur uniforme */
     padding: 10px;
     overflow: hidden;
 }
 
 /* Image */
 .blog-img {
-    height: 200px;
+    height: 300px;
     overflow: hidden;
     display: flex;
     justify-content: center;

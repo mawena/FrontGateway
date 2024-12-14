@@ -4,6 +4,9 @@ namespace App\Http\Controllers\API;
 
 use App\Models\Configuration;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Str;
 
 
 /**
@@ -57,29 +60,60 @@ class PaymentController extends Controller
 	}
 
 	/**
-	 * Créer un nouveau decor
+	 * Créer un nouveau paiement
 	 *
-	 * @bodyParam  user_id										integer				Promoteur.																	Example: 1
+	 * @bodyParam  country_code									string				Pays.																		Example: 228
+	 * @bodyParam  phone_number									string				Tel.																		Example: 91611135
 	 * @bodyParam  nb_uses										integer				Nombre d'utilisation de décor.												Example: 5
-	 * @bodyParam  currency										string				Devise.																		Example: XOF
-	 * @bodyParam  description									string				Description.																Example: Payement de 100 utilisation de décors
 	 * 
 	 * @response 200
 	 */
 	public function store(Request $request)
 	{
-		$this->storeValidationArray = [
-			"user_id" => "required|exists:users,id",
-			"nb_uses" => "required|numeric",
-			"currency" => "nullable|in:XOF,XAF,CDF,GNF,USD",
-			"description" => "required|min:2",
+		$conf = [
+			"unit_price" => Configuration::where('id', 1)->first(),
+			"api_token" => Configuration::where('id', 2)->first(),
+			"api_post_link" => Configuration::where('id', 3)->first(),
+			"api_callback_link" => Configuration::where('id', 4)->first(),
+			"api_site_sid" => Configuration::where('id', 5)->first(),
+			"api_secret_key" => Configuration::where('id', 6)->first(),
+			"return_url" => Configuration::where('id', 7)->first(),
 		];
-		$this->storeBeforeCreateFunction = function ($requestData, $data) use ($request) {
-			$unit_price_conf = Configuration::get(1);
-			$requestData["satus"] = $data["initiated"];
-			$requestData["amount"] = (float) ($unit_price_conf["value"]) * $requestData["nb_uses"];
+		$this->storeValidationArray = [
+			"country_code" => "required|in:228",
+			"phone_number" => "required|min:2",
+			"nb_uses" => "required|integer|min:4",
+		];
+		$this->storeBeforeCreateFunction = function ($requestData, $data) use ($request, $conf) {
+			$connectedUser = $request->user();
+			$requestData["user_id"] = $connectedUser->id;
+			$requestData["satus"] = "initiated";
+			$requestData["currency"] = "XOF";
+			$requestData["description"] = "Achat de " . $requestData["nb_uses"] . " utilisations de décors";
+			$requestData["amount"] = (float) ($conf["unit_price"]["value"]) * $requestData["nb_uses"];
+
+			$r_id = Str::random("10");
+
+			$response = Http::withHeaders([])->post($conf["api_post_link"]["value"], [
+				"apikey" => $conf["api_token"]["value"],
+				"site_id" => $conf["api_site_sid"]["value"],
+				"transaction_id" => "peco" . $r_id,
+				"amount" => $requestData["amount"],
+				"currency" => $requestData["currency"],
+				"description" => $requestData["description"],
+				"notify_url" => $conf["return_url"]["value"],
+				"channels" => "MOBILE_MONEY",
+				"lang" => "fr",
+			])->json();
+
+			$requestData["payment_token"] = $response["data"]["payment_token"];
+			$requestData["payment_url"] = $response["data"]["payment_url"];
+
 			return $requestData;
 		};
+
 		return parent::store($request);
 	}
+
+	public function callback(Request $request) {}
 }

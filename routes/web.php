@@ -10,6 +10,10 @@ use App\Http\Controllers\Front\UserController;
 use App\Http\Controllers\Front\Visitor\HomeController;
 use Illuminate\Support\Facades\Route;
 
+Route::get("test", function(){
+	return view("test");
+});
+
 Route::controller(HomeController::class)->as('visitor.')->group(function () {
 	Route::get('/', function () {
 		return redirect()->route("visitor.events");
