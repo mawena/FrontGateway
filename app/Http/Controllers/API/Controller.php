@@ -220,7 +220,7 @@ class Controller extends BaseController
 						return $this->responseError($manualValidationsReturn["errors"], $manualValidationsReturn["status"] ?? 400);
 					}
 				}
-				$manualValidationsReturn["data"] = isset($manualValidationsReturn["data"]) ? $manualValidationsReturn["data"] : [];
+				$manualValidationsReturn["data"] = isset($manualValidationsReturn["data"], $model) ? $manualValidationsReturn["data"] : [];
 				$requestData = ($beforeUpdate) ? $beforeUpdate($model, $requestData, $manualValidationsReturn["data"]) : $requestData;
 				$model->update($requestData);
 				$model = (($afterUpdate) ? $afterUpdate($model, $requestData, $manualValidationsReturn["data"]) : $model) ?? $model;

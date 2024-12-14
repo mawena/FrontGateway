@@ -32,7 +32,7 @@ class DecorController extends Controller
 	 * @queryParam  event_id									string			Evenement.																	 No-example
 	 * @queryParam  user_id										string			Créateur.																	 No-example
 	 * 
-	 * @queryParam  with_event									string			Afficher l'événement.														Example: false
+	 * @queryParam  with_event									string			Afficher l'décor.														Example: false
 	 * @queryParam  with_promoter								string			Afficher le promoteur.														Example: false
 	 * 
 	 * @queryParam  paginate									string			Utiliser la pagination.														Example: false
@@ -50,7 +50,7 @@ class DecorController extends Controller
 	 *
 	 * @urlParam	id											integer			L'ID du decor.																Example: 1.
 	 *
-	 * @queryParam  with_event									string			Afficher l'événement.														Example: false
+	 * @queryParam  with_event									string			Afficher l'décor.														Example: false
 	 * @queryParam  with_user									string			Afficher le créateur.														Example: false
 	 * 
 	 * @response 200
@@ -157,9 +157,9 @@ class DecorController extends Controller
 
 
 	/**
-	 * Mettre à jour la validation d'un événement
+	 * Mettre à jour la validation d'un décor
 	 *
-	 * @urlParam	id											int	required		L'événement.																Example: 1
+	 * @urlParam	id											int	required		Le décor.																	Example: 1
 	 *
 	 * @bodyParam  validation									string				Nouveau statut.																Example: validated
 	 *
@@ -180,9 +180,38 @@ class DecorController extends Controller
 	}
 
 	/**
+	 * Informer le backend de l'utilisation d'un decor
+	 *
+	 * @urlParam	id											int	required		Le décor.																	Example: 1
+	 *
+	 * @bodyParam  validation									string				Nouveau statut.																Example: validated
+	 *
+	 * @response 200
+	 *
+	 */
+	public function use(Request $request, $id)
+	{
+		$this->updateAuthName = null;
+		$this->updateGetValidationArrayFunction = function ($id) {
+			return [
+			];
+		};
+		$this->updateManualValidationsFunction = function ($requestData, $model) {
+			;
+			if ($model->user->nb_decor_not_used <= 0 && $model->user->profile == "promoter") {
+				return ["errors" => ["nb_decor_not_used" => ["Ce décor n'est plus utilisable"]]];
+			}
+		};
+		$this->updateBeforeUpdateFunction = function ($model, $requestData, $data) use ($request) {
+			return ["nb_use" => $model["nb_use"] + 1];
+		};
+		return parent::update($request, $id);
+	}
+
+	/**
 	 * Supprime un decor
 	 *
-	 * @urlParam	id											integer	required	L'ID du decor.														Example: 1
+	 * @urlParam	id											integer	required	L'ID du decor.																Example: 1
 	 *
 	 * @response 200
 	 */

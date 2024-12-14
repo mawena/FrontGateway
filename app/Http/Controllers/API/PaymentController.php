@@ -92,12 +92,12 @@ class PaymentController extends Controller
 			$requestData["description"] = "Achat de " . $requestData["nb_uses"] . " utilisations de décors";
 			$requestData["amount"] = (float) ($conf["unit_price"]["value"]) * $requestData["nb_uses"];
 
-			$r_id = Str::random("10");
+			$requestData["transaction_id"]= Str::random("10");
 
 			$response = Http::withHeaders([])->post($conf["api_post_link"]["value"], [
 				"apikey" => $conf["api_token"]["value"],
 				"site_id" => $conf["api_site_sid"]["value"],
-				"transaction_id" => "peco" . $r_id,
+				"transaction_id" => $requestData["transaction_id"],
 				"amount" => $requestData["amount"],
 				"currency" => $requestData["currency"],
 				"description" => $requestData["description"],

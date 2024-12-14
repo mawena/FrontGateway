@@ -16,7 +16,7 @@ class User extends Authenticatable
 	/** @use HasFactory<\Database\Factories\UserFactory> */
 	use HasApiTokens, HasFactory, Notifiable;
 
-	protected $appends = ['ability_rules', 'profile_fr'];
+	protected $appends = ['ability_rules', 'profile_fr', 'nb_decor_payed', 'nb_decor_used', 'nb_decor_not_used'];
 
 
 	/**
@@ -80,6 +80,16 @@ class User extends Authenticatable
 		$data["activated"] = (bool) $data["activated"];
 		return $data;
 	}
+
+	public function getNbDecorPayedAttribute(){
+		return Payment::where("user_id", $this->id)->where("status", "validated")->sum("nb_uses");
+	}
+	public function getNbDecorUsedAttribute(){
+		return Decor::where("user_id", $this->id)->sum("nb_use");
+	}
+	public function getNbDecorNotUsedAttribute(){
+		return $this->nb_decor_payed - $this->nb_decor_used;
+	}
 	public function getProfileFrAttribute()
 	{
 		return [
@@ -100,7 +110,7 @@ class User extends Authenticatable
 			'supervisor' => [
 				[
 					'action' => ['read'],
-					'subject' => ['user', 'promoter', 'event', 'decor']
+					'subject' => ['user', 'promoter', 'event', 'decor', 'payment']
 				],
 				[
 					'action' => ['create'],
@@ -130,11 +140,11 @@ class User extends Authenticatable
 			'promoter' => [
 				[
 					'action' => ['read'],
-					'subject' => ['user', 'event', 'decor']
+					'subject' => ['user', 'event', 'decor', 'payment']
 				],
 				[
 					'action' => ['create'],
-					'subject' => ['event', 'decor']
+					'subject' => ['event', 'decor', 'payment']
 				],
 				[
 					'action' => ['edit'],

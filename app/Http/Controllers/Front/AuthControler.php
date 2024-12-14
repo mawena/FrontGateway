@@ -43,7 +43,8 @@ class AuthControler
 		);
 	}
 
-	public function register_view(Request $request){
+	public function register_view(Request $request)
+	{
 		if (session('userToken') && session('userData')) {
 			return redirect()->route(
 				[
@@ -56,13 +57,14 @@ class AuthControler
 		return view("auth.register");
 	}
 
-	public function register(Request $request){
+	public function register(Request $request)
+	{
 		$requestData = $request->all();
 		$response = Http::post(config('app.url') . "/api/auth/register", $requestData)->json();
 		if ($response["status"] != 201) {
 			return redirect()->back()
-			->withInput()
-			->withErrors($response["errors"]);
+				->withInput()
+				->withErrors($response["errors"]);
 		}
 		session([
 			'userToken' => $response["data"]["user"]["userToken"],

@@ -21,6 +21,7 @@ class Decor extends Model
 		"event_id",
 		"validation",
 		"user_id",
+		"nb_use",
 	];
 
 	public $appends = ["days_remaining"];

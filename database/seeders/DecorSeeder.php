@@ -15,7 +15,7 @@ class DecorSeeder extends Seeder
 	public function run(): void
 	{
 		foreach (Event::all() as $event) {
-			foreach ([1, 2, 3] as $comp) {
+			foreach ([1, 2, 3, 4, 5] as $comp) {
 				Decor::create(["name" => "$event->name-Decor-0$comp", "file_path" => "pictures/decors/4/decor01.png", "start_use" => now(), "end_use" => now(), "event_id" => $event->id, "validation" => "validated", "user_id" => $event->user->id]);
 			}
 		}

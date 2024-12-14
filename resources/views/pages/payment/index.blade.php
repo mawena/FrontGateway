@@ -31,11 +31,20 @@
 						<div class="card-body">
 							<div class="d-flex align-items-center mb-4">
 								<h4 class="card-title">
-									Liste des achats
-									<span class="text-primary px-3 ml-2 py-4 border-primary">
-										[ Total : {{ count($payments) }} ]
-									</span>
+									<p>
+										Liste des achats
+										<span class="text-primary px-3 ml-2 py-4 border-primary">
+											[ Total : {{ count($payments) }} ]
+										</span>
+									</p>
+									<p>
+										Utilisation de décors
+										<span class="text-primary px-3 ml-2 py-4 border-primary">
+											[ Total : {{ $user["nb_decor_payed"] }}, Utilisés : {{ $user["nb_decor_used"] }}, Restant : {{ $user["nb_decor_not_used"] }} ]
+										</span>
+									</p>
 								</h4>
+								<br>
 								<div class="ml-auto">
 									@can(['create'], 'payment', session('userData'))
 										<button type="button" class="btn btn-primary px-4" data-toggle="modal" data-target="#signup-modal"
@@ -52,6 +61,7 @@
 											<th>Date</th>
 											<th>Nombre</th>
 											<th>Prix</th>
+											<th>Statut</th>
 											<th>Actions</th>
 										</tr>
 									</thead>
@@ -61,6 +71,7 @@
 												<td>{{ $payment['created_at_fr'] }}</td>
 												<td>{{ $payment['nb_uses'] }}</td>
 												<td>{{ $payment['amount'] }}</td>
+												<td>{{ $payment['status'] }}</td>
 												<td class="" style="max-width: 100px">
 													@can(['read'], 'payment', session('userData'))
 														<a href="{{ route('admin.payment.show', $payment['id']) }}" class="btn text-primary"><i

@@ -22,6 +22,7 @@ class Payment extends Model
 		"phone_number",
 		"payment_url",
 		"payment_token",
+		"transaction_id",
 	];
 
 	public function user(): BelongsTo

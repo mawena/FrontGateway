@@ -17,7 +17,14 @@ class PaymentController
 			config('app.url') . "/api/payment",
 			["paginate" => "false"]
 		)->json();
-		return view("pages.payment.index", ["payments" => $response["data"]]);
+
+		$user_response = Http::withHeaders([
+			'Authorization' => 'Bearer ' . session('userToken'),
+			'Accept' => 'application/json',
+		])->get(
+			config('app.url') . "/api/user/".session("userData")["id"],
+		)->json();
+		return view("pages.payment.index", ["payments" => $response["data"], "user" => $user_response["data"]["User"]]);
 	}
 
 	public function show(Request $request, $id)
@@ -26,9 +33,10 @@ class PaymentController
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
 		])->get(
-			config('app.url') . "/api/payment/" . $id
+			config('app.url') . "/api/payment/" . $id,
+			["with_user" => "true"]
 		)->json();
-		return view("pages.payment.show", ["payment" => $response["data"]["Configuration"]]);
+		return view("pages.payment.show", ["payment" => $response["data"]["Payment"]]);
 	}
 
 	public function store(Request $request)
@@ -55,7 +63,7 @@ class PaymentController
 		])->get(
 			config('app.url') . "/api/payment/" . $id
 		)->json();
-		return view("pages.payment.edit", ["payment" => $response["data"]["Configuration"]]);
+		return view("pages.payment.edit", ["payment" => $response["data"]["Payment"]]);
 	}
 
 	public function update(Request $request, $id)

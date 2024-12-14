@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('decors', function (Blueprint $table) {
-            $table->integer("nb_uses")->default(0);
+            $table->integer("nb_use")->default(0);
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('decors', function (Blueprint $table) {
-            $table->dropColumn("nb_uses");
+            $table->dropColumn("nb_use");
         });
     }
 };

@@ -39,8 +39,9 @@ Route::controller(AuthController::class)->group(function () {
 			Route::get("/", 'index')->name("index")->withoutMiddleware('auth:sanctum');
 			Route::get("/{id}", 'show')->name("show")->withoutMiddleware('auth:sanctum');
 			Route::post("/", 'store')->name("store");
-			Route::put("/{id}", 'update')->name("update");
 			Route::put("/change-validation/{id}", 'change_validation')->name("change_validation");
+			Route::put("/use/{id}", 'use')->name("use")->withoutMiddleware("auth:sanctum");
+			Route::put("/{id}", 'update')->name("update");
 			Route::delete("/{id}", 'destroy')->name("destroy");
 		});
 		Route::prefix("configuration")->name("configuration.")->controller(ConfigurationController::class)->group(function () {

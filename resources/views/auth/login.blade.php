@@ -42,7 +42,10 @@
 		<div class="auth-wrapper d-flex no-block justify-content-center align-items-center position-relative"
 			style="background:url(/assets/images/big/auth-bg.jpg) no-repeat center center; background-size: cover">
 			<div class="auth-box shadow-none">
-				<div class="col-lg-12 mx-auto py-2 rounded-app col-md-12 bg-white" style="max-width: 400px">
+				<div class="col-lg-12 mx-auto py-2 rounded-app col-md-12 bg-white" style="max-width: 500px">
+					<div class="form-group text-lefth mt-4">
+						<a href="{{ route('visitor.index') }}" class="btn btn-secondary px-5" type="submit"><- Acceuil</a>
+					</div>
 					<div class="p-3">
 						<div class="text-center">
 							<img src="{{ asset('assets/images/logo-icon.png') }}" alt="wrapkit">

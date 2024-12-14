@@ -39,20 +39,23 @@
 		<!-- ============================================================== -->
 		<!-- Login box.scss -->
 		<!-- ============================================================== -->
+		
 		<div class="auth-wrapper d-flex no-block justify-content-center align-items-center position-relative"
-			style="background:url(/assets/images/big/auth-bg.jpg) no-repeat center center; background-size: cover">
-			<div class="auth-box shadow-none">
-				<div class="col-lg-12 mx-auto py-2 rounded-app col-md-12 bg-white" style="width: 100%">
-					<div class="p-3">
-						<div class="text-center">
-							<img src="{{ asset('assets/images/logo-icon.png') }}" alt="wrapkit">
-						</div>
+		style="background:url(/assets/images/big/auth-bg.jpg) no-repeat center center; background-size: cover">
+		<div class="auth-box shadow-none">
+			<div class="col-lg-12 mx-auto py-2 rounded-app col-md-12 bg-white" style="width: 100%">
+				<div class="form-group text-lefth mt-4">
+					<a href="{{ route('visitor.index') }}" class="btn btn-secondary px-5" type="submit"><- Acceuil</a>
+				</div>
+				<div class="p-3">
+					<div class="text-center">
+						<img src="{{ asset('assets/images/logo-icon.png') }}" alt="wrapkit">
+					</div>
 						<h2 class="mt-3 text-center text-dark">Inscription</h2>
 						<p class="text-center py-2">Veuillez remplir les champs suivants.</p>
 						<form class="mt-4" action="{{ route('admin.post.register') }}" method="POST">
 							@csrf
 							<div class="row">
-
 								<div class="col-12 col-lg-6">
 									<div class="form-group">
 										<label for="name">Nom</label>

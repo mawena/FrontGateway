@@ -273,10 +273,27 @@
 
 						// Configurez le bouton de téléchargement
 						downloadButton.addEventListener("click", () => {
-							const a = document.createElement("a");
-							a.href = finalImage;
-							a.download = "image-avec-decor.png";
-							a.click();
+							axios.put("/api/decor/use/{{ $decor['id'] }}", {}, {
+									headers: {
+										'Content-Type': 'application/json', // Indique que le corps est en JSON
+									}
+								})
+								.then(response => {
+									if (response.data.status == 200) {
+										const a = document.createElement("a");
+										a.href = finalImage;
+										a.download = "image-avec-decor.png";
+										a.click();
+									} else {
+										alert("Ce décor n'est plus utilisable")
+									}
+									console.log('Réponse du serveur :', response.data);
+								})
+								.catch(error => {
+									console.error('Erreur lors de la requête PUT :', error.response
+										?.data || error.message);
+								});
+							modal.style.display = "none";
 						});
 					}
 				});

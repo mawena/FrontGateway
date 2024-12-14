@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string("phone_number");
             $table->string("payment_token")->nullable();
             $table->string("payment_url")->nullable();
+            $table->string("transaction_id")->unique();
         });
     }
 
@@ -27,6 +28,7 @@ return new class extends Migration
             $table->dropColumn("phone_number");
             $table->dropColumn("payment_token");
             $table->dropColumn("payment_url");
+            $table->dropColumn("transaction_id");
         });
     }
 };
