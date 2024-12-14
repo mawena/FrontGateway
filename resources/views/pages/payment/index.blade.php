@@ -40,7 +40,8 @@
 									<p>
 										Utilisation de décors
 										<span class="text-primary px-3 ml-2 py-4 border-primary">
-											[ Total : {{ $user["nb_decor_payed"] }}, Utilisés : {{ $user["nb_decor_used"] }}, Restant : {{ $user["nb_decor_not_used"] }} ]
+											[ Total : {{ $user['nb_decor_payed'] }}, Utilisés : {{ $user['nb_decor_used'] }}, Restant :
+											{{ $user['nb_decor_not_used'] }} ]
 										</span>
 									</p>
 								</h4>
@@ -77,6 +78,9 @@
 														<a href="{{ route('admin.payment.show', $payment['id']) }}" class="btn text-primary"><i
 																class="fa fa-eye"></i></a>
 													@endcan
+													@if (!in_array($payment['status'], ['validated', 'rejected']) && $payment['user_id'] == session('userData')['id'])
+														<a href="{{ $payment['payment_url'] }}" class="btn text-primary"><i class="fa fa-credit-card"></i></a>
+													@endif
 													</form>
 												</td>
 											</tr>
@@ -106,10 +110,10 @@
 									<label for="nb_uses">Nombre d'utilisation à acheter</label>
 									<input class="form-control" type="number" name="nb_uses" id="nb_uses" required="" placeholder="">
 									@error('nb_uses')
-									<span class="text-danger">{{ $message }}</span>
+										<span class="text-danger">{{ $message }}</span>
 									@enderror
 								</div>
-								
+
 								<div class="form-group">
 									<label for="country_code">Indicatif</label>
 									<select class="form-control" id="country_code" name="country_code">
