@@ -56,21 +56,14 @@
 												<div class="col-lg-4 col-md-12">
 													<div class="form-group">
 														<label for="activated">Statut</label>
-														<p>{{ $payment['status'] }}</p>
+														<p>{{ $payment['status_fr'] }}</p>
 													</div>
 												</div>
 												<div class="col-lg-4 col-md-12">
 													<div class="form-group">
-														<label for="email">Date de création</label>
+														<label for="email">Date d'achat</label>
 														<p class="py-1 text-bold text-dark">{{ $payment['created_at_fr'] }}
 														</p>
-													</div>
-												</div>
-												<div class="col-lg-4 col-md-12">
-													<div class="form-group">
-														<label for="email">Dernière modification</label>
-														<p class="py-1 text-bold text-dark">
-															{{ $payment['updated_at_fr'] }}</p>
 													</div>
 												</div>
 											</div>

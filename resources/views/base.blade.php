@@ -93,7 +93,7 @@
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true"
 								aria-expanded="false">
-								<img src="/assets/images/users/profile-pic.jpg" alt="user" class="rounded-circle" width="40">
+								<img src="/storage/{{ session('userData')["picture_path"] }}" alt="user" class="rounded-circle" width="40">
 								<span class="ml-2 d-none d-lg-inline-block"><span>Bonjour,</span> <span class="text-dark">{{session('userData')['name']}}</span> <i
 										data-feather="chevron-down" class="svg-icon"></i></span>
 							</a>

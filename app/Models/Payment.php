@@ -25,6 +25,8 @@ class Payment extends Model
 		"transaction_id",
 	];
 
+	public $appends = ["status_fr"];
+
 	public function user(): BelongsTo
 	{
 		return $this->belongsTo(User::class, "user_id", "id");
@@ -36,5 +38,15 @@ class Payment extends Model
 		$data["created_at_fr"] = Carbon::parse($data["created_at"])->format("d/m/yy H:i:s");
 		$data["updated_at_fr"] = Carbon::parse($data["updated_at"])->format("d/m/yy H:i:s");
 		return $data;
+	}
+
+	public function getStatusFrAttribute(){
+		return [
+			"initiated" => "Initié",
+			"in-progress" => "En cours de traitement",
+			"validated" => "Validé",
+			"rejected" => "Rejeté",
+			"error" => "Erreur !"
+		][$this->status];
 	}
 }

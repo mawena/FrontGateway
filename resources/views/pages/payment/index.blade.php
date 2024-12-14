@@ -60,7 +60,7 @@
 										<tr class="text-center">
 											<th>Date</th>
 											<th>Nombre</th>
-											<th>Prix</th>
+											<th>Montant</th>
 											<th>Statut</th>
 											<th>Actions</th>
 										</tr>
@@ -71,7 +71,7 @@
 												<td>{{ $payment['created_at_fr'] }}</td>
 												<td>{{ $payment['nb_uses'] }}</td>
 												<td>{{ $payment['amount'] }}</td>
-												<td>{{ $payment['status'] }}</td>
+												<td>{{ $payment['status_fr'] }}</td>
 												<td class="" style="max-width: 100px">
 													@can(['read'], 'payment', session('userData'))
 														<a href="{{ route('admin.payment.show', $payment['id']) }}" class="btn text-primary"><i
