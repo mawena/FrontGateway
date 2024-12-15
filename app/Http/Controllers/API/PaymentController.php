@@ -89,6 +89,7 @@ class PaymentController extends Controller
 			$requestData["user_id"] = $connectedUser->id;
 			$requestData["satus"] = "initiated";
 			$requestData["currency"] = "XOF";
+			$requestData["status"] = "initiated";
 			$requestData["description"] = "Achat de " . $requestData["nb_uses"] . " utilisations de décors";
 			$requestData["amount"] = (float) ($conf["unit_price"]["value"]) * $requestData["nb_uses"];
 

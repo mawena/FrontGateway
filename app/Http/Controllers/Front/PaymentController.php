@@ -46,6 +46,7 @@ class PaymentController
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
 		])->post(config('app.url') . "/api/payment", $requestData)->json();
+		dd($response);
 		if ($response["status"] == 201) {
 			return Redirect::to($response["data"]["payment"]["payment_url"]);
 		} else {
