@@ -13,7 +13,7 @@ class DecorPolicy extends BasePolicy
 	public function update(User $connectedUser, Model $decor)
 	{
 		if ($this->check(["update"], $this->modelName, $connectedUser)){
-			if ($decor->event->user_id == $connectedUser->id){
+			if ($decor->user_id == $connectedUser->id){
 				return Response::allow();
 			}
 		}
@@ -21,7 +21,7 @@ class DecorPolicy extends BasePolicy
 	}
 	public function delete(User $connectedUser, Model $decor){
 		if ($this->check(["delete"], $this->modelName, $connectedUser)){
-			if ($decor->event->user_id == $connectedUser->id){
+			if ($decor->user_id == $connectedUser->id){
 				return Response::allow();
 			}
 		}

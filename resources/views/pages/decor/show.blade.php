@@ -29,8 +29,10 @@
 				<div class="col-12">
 					<div class="card" style="overflow: hidden">
 						<div class="card-header p-2">
-							<img src="/storage/{{ $decor['event']['poster_path'] }}" style="width: 100%; height: 250px; object-fit: cover"
-								alt="">
+							@if ($decor['event'])
+								<img src="/storage/{{ $decor['event']['poster_path'] }}" style="width: 100%; height: 250px; object-fit: cover"
+									alt="">
+							@endif
 						</div>
 						<div class="card-body pb-0">
 							<div class="modal-body">
@@ -45,9 +47,12 @@
 													<div class="form-group">
 														<label for="decor_id">Evénement</label>
 														<p class="py-1 text-bold text-dark">
-															<a class="text-primary d-flex align-items-center" href="{{ route('admin.event.show', $decor['event']['id']) }}">
-																<i class="fa fa-eye"></i> &nbsp; {{ $decor['event']['name'] }}
-															</a>
+															@if ($decor['event'])
+																<a class="text-primary d-flex align-items-center"
+																	href="{{ route('admin.event.show', $decor['event']['id']) }}">
+																	<i class="fa fa-eye"></i> &nbsp; {{ $decor['event']['name'] }}
+																</a>
+															@endif
 														</p>
 													</div>
 												</div>
@@ -55,8 +60,7 @@
 													<div class="form-group">
 														<label for="decor_id">Créateur</label>
 														<p class="py-1 text-bold text-dark">
-															<a class="text-primary d-flex align-items-center"
-																href="{{ route('admin.promoter.show', $user['id']) }}">
+															<a class="text-primary d-flex align-items-center" href="{{ route('admin.promoter.show', $user['id']) }}">
 																<i class="fa fa-eye"></i> &nbsp; {{ $user['name'] }}
 															</a>
 														</p>
