@@ -34,6 +34,7 @@ class DecorController
 			config('app.url') . "/api/event",
 			[
 				"paginate" => "false",
+				"user_id" => $userData["id"]
 			]
 		)->json();
 		return view("pages.decor.index", ["decors" => $decor_response["data"], "events" => $event_response["data"]]);
