@@ -59,7 +59,7 @@
 								<div class="col-12 col-lg-6">
 									<div class="form-group">
 										<label for="name">Nom</label>
-										<input class="form-control" name="name" id="name" required="" placeholder="" value="Test01">
+										<input class="form-control" name="name" id="name" required="" placeholder="" value="">
 										@error('name')
 											<span class="text-danger">{{ $message }}</span>
 										@enderror
@@ -70,7 +70,7 @@
 									<div class="form-group">
 										<label for="email">Email</label>
 										<input class="form-control" type="email" name="email" id="email" required="" placeholder=""
-											value="Test01@gmail.com">
+											value="">
 										@error('email')
 											<span class="text-danger">{{ $message }}</span>
 										@enderror
@@ -81,7 +81,7 @@
 									<div class="form-group">
 										<label for="structure">Structure</label>
 										<input class="form-control" name="structure" type="text" required="" id="structure"
-											placeholder="" value="Test01">
+											placeholder="" value="">
 										@error('structure')
 											<span class="text-danger">{{ $message }}</span>
 										@enderror
@@ -92,7 +92,7 @@
 									<div class="form-group">
 										<label for="phone_number">Téléphone</label>
 										<input class="form-control" name="phone_number" type="text" required="" id="phone_number"
-											placeholder="" value="002283030303030">
+											placeholder="" value="">
 										@error('phone_number')
 											<span class="text-danger">{{ $message }}</span>
 										@enderror
@@ -103,7 +103,7 @@
 									<div class="form-group">
 										<label for="birth_date">Date de naissance</label>
 										<input class="form-control" name="birth_date" type="date" required="" id="birth_date"
-											placeholder="" value="2024-05-05">
+											placeholder="" value="">
 										@error('birth_date')
 											<span class="text-danger">{{ $message }}</span>
 										@enderror
@@ -127,7 +127,7 @@
 									<div class="form-group">
 										<label for="password">Mot de passe</label>
 										<input class="form-control" name="password" type="password" required="" id="password" placeholder=""
-											value="azertyazerty">
+											value="">
 										@error('password')
 											<span class="text-danger">{{ $message }}</span>
 										@enderror

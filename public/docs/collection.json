@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Pecorator",
-        "_postman_id": "134b124d-3a87-4ae4-a10a-be29aa4a09b7",
+        "_postman_id": "5c7c615f-873a-44a4-8c97-fc6068aadce5",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -1424,7 +1424,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"old_password\":\"recusandae\",\"new_password\":\"inventore\",\"new_password_confirmation\":\"harum\"}"
+                            "raw": "{\"old_password\":\"quos\",\"new_password\":\"voluptatem\",\"new_password_confirmation\":\"nihil\"}"
                         },
                         "description": ""
                     },
