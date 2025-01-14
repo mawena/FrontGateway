@@ -20,5 +20,6 @@ class ConfigurationSeeder extends Seeder
         Configuration::create(["key" => "API SITE_SID", "value" => "5884195"]);
         Configuration::create(["key" => "API SECRET_KEY", "value" => "1261551590675c0763b702c3.64362583"]);
         Configuration::create(["key" => "Le lien de retour", "value" => "https://pecorator.chawena.com/admin/payment"]);
+        Configuration::create(["key" => "Utilisation de décors gratuites", "value" => "150"]);
     }
 }

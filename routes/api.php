@@ -6,11 +6,15 @@ use App\Http\Controllers\API\DecorController;
 use App\Http\Controllers\API\EventController;
 use App\Http\Controllers\API\PaymentController;
 use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\ProjectController;
 use Illuminate\Support\Facades\Route;
 
 Route::controller(AuthController::class)->group(function () {
 	Route::post("auth/login", "login");
 	Route::post("auth/register", "register");
+
+
+	Route::post('/manage-project', [ProjectController::class, 'handleProject']);
 
 	Route::middleware('auth:sanctum')->group(function () {
 		Route::prefix("/auth")->name("auth.")->group(function () {

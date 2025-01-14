@@ -1,0 +1,34 @@
+liste déroulante des types d'événement:
+Nouvel evenement -> ajouter un evenement
+placeholder pour le contact
+poster -> affiche
+
+160 pour la partie résumé
+
+pays, ville, lieu
+
+bloc 
+
+Modalité de participation -> billeterie
+
+
+
+events:
+	Date, pays, lieu, 
+
+ajouter un popup après la création d'un event
+date de fin -> statut
+
+Mettre le bouton de validation sur la page d'affichage de l'événement
+boutton de supprimer sur la page d'affichage de  l'event
+supprimer les actions sur le dashboard
+enlever le bouton voir les décors sur la page d'event-detail
+
+
+recherche pour le décors:
+	type
+
+ajouter la possibilité d'ajouter
+	pays, ville, lieu pour de decor sans event
+
+un 

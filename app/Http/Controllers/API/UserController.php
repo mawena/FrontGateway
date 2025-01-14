@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Models\User;
+use App\Models\Configuration;
+use App\Models\Payment;
+use App\Models\Promoter;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Http\Controllers\API\Controller;
-use App\Models\Promoter;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\API\Controller;
+use Illuminate\Support\Facades\Validator;
 
 /**
  * @group Utilisateurs
@@ -117,6 +118,29 @@ class UserController extends Controller
 			if ($requestData["profile"] == "promoter") {
 				$requestData["promoter"]["user_id"] = $model->id;
 				Promoter::create($requestData["promoter"]);
+				
+				$conf = [
+					"unit_price" => Configuration::where('id', 1)->first(),
+					"api_token" => Configuration::where('id', 2)->first(),
+					"api_post_link" => Configuration::where('id', 3)->first(),
+					"api_callback_link" => Configuration::where('id', 4)->first(),
+					"api_site_sid" => Configuration::where('id', 5)->first(),
+					"api_secret_key" => Configuration::where('id', 6)->first(),
+					"return_url" => Configuration::where('id', 7)->first(),
+					"free_nb_uses" => Configuration::where('id', 8)->first(),
+				];
+				Payment::create([
+					"user_id" => $model->id,
+					"nb_uses" => $conf["free_nb_uses"]["value"],
+					"amount" => 0,
+					"currency" => "XAF",
+					"description" => "Création du compte",
+					"status" => "validated",
+					"phone_number" => "",
+					"payment_url" => "",
+					"payment_token" => "",
+					"transaction_id" => ""
+				]);
 			}
 			return $model;
 		};
