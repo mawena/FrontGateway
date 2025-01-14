@@ -59,7 +59,7 @@
 									<div class="form-group">
 										<label class="text-dark" for="email">Email</label>
 										<input class="form-control" name="email" id="email" type="email"
-											placeholder="Entrez vôtre mail" value="admin@pecorator.com">
+											placeholder="Entrez vôtre mail" value="">
 											@error('email')
 												<span class="text-danger">{{ $message }}</span>
 											@enderror
@@ -69,7 +69,7 @@
 									<div class="form-group">
 										<label class="text-dark" for="password">Mot de passe</label>
 										<input class="form-control" name="password" id="password" type="password"
-											placeholder="Entrez vôtre mot de passe" value="azerty">
+											placeholder="Entrez vôtre mot de passe" value="">
 											@error('password')
 													<span class="text-danger">{{ $message }}</span>
 											@enderror
