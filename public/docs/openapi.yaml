@@ -557,6 +557,49 @@ paths:
         required: true
         schema:
           type: integer
+  /api/manage-project:
+    post:
+      summary: ''
+      operationId: postApiManageProject
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                action:
+                  type: string
+                  description: ''
+                  example: delete
+                  enum:
+                    - download
+                    - transfer
+                    - delete
+                project_path:
+                  type: string
+                  description: ''
+                  example: delectus
+                target_server:
+                  type: string
+                  description: ''
+                  example: ex
+                target_path:
+                  type: string
+                  description: ''
+                  example: est
+                target_port:
+                  type: string
+                  description: ''
+                  example: ipsa
+              required:
+                - action
+                - project_path
   /api/event:
     get:
       summary: 'Affiche les événement'
@@ -1420,15 +1463,15 @@ paths:
                 old_password:
                   type: string
                   description: "L'ancien mot de passe de l'utilisateur."
-                  example: quos
+                  example: sed
                 new_password:
                   type: string
                   description: "Le nouveau mot de passe de l'utilisateur."
-                  example: voluptatem
+                  example: fugiat
                 new_password_confirmation:
                   type: string
                   description: "La confirmation du nouveau mot de passe de l'utilisateur."
-                  example: nihil
+                  example: ut
               required:
                 - old_password
                 - new_password
@@ -1443,6 +1486,9 @@ tags:
   -
     name: Decors
     description: "\nEndPoints pour gérer les décors"
+  -
+    name: Endpoints
+    description: ''
   -
     name: Evenements
     description: "\nEndPoints pour gérer les événements"

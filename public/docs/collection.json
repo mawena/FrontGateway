@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Pecorator",
-        "_postman_id": "5c7c615f-873a-44a4-8c97-fc6068aadce5",
+        "_postman_id": "7a18972b-1cd1-4127-9ed0-df237aaec614",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -701,6 +701,40 @@
                             "name": ""
                         }
                     ]
+                }
+            ]
+        },
+        {
+            "name": "Endpoints",
+            "description": "",
+            "item": [
+                {
+                    "name": "POST api\/manage-project",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manage-project",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manage-project"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"action\":\"delete\",\"project_path\":\"delectus\",\"target_server\":\"ex\",\"target_path\":\"est\",\"target_port\":\"ipsa\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": []
                 }
             ]
         },
@@ -1424,7 +1458,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"old_password\":\"quos\",\"new_password\":\"voluptatem\",\"new_password_confirmation\":\"nihil\"}"
+                            "raw": "{\"old_password\":\"sed\",\"new_password\":\"fugiat\",\"new_password_confirmation\":\"ut\"}"
                         },
                         "description": ""
                     },
