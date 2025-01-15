@@ -22,7 +22,7 @@
                     <div class="widget footer-widget">
                         <div class="th-widget-about">
                             <div class="about-logo"><a href="home-travel.html"><img
-                                        src="/visitor/assets/img/logo3.svg" alt="Tourm"></a>
+                                        src="/visitor/assets/img/logo3.svg" alt="Tourm" width="100"></a>
                             </div>
                             <p class="about-text">Rapidiously myocardinate cross-platform intellectual capital
                                 model. Appropriately create
