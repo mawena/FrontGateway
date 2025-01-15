@@ -17,7 +17,7 @@
 				<div class="row align-items-center justify-content-between">
 					<div class="col-auto">
 						<div class="header-logo"><a href="/"><img src="{{ asset('/visitor/assets/img/logo.svg') }}"
-									alt="Tourm"></a></div>
+									alt="Tourm" width="100"></a></div>
 					</div>
 					<div class="col text-center me-xl-auto">
 						<nav class="main-menu d-none w-100 d-xl-inline-block">

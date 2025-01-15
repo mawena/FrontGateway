@@ -35,7 +35,7 @@
 		<div class="cursor-follower"></div>
 	</div>
 	<div id="preloader" class="preloader text-center"><button class="th-btn preloaderCls">Encours de chargement</button>
-		<div class="preloader-inner"><img src="{{ asset('/visitor/assets/img/logo3.svg') }}" alt=""></div>
+		<div class="preloader-inner"><img src="{{ asset('/visitor/assets/img/logo3.svg') }}" alt="" width="100"></div>
 		<div id="loader" class="th-preloader">
 			<div class="animation-preloader">
 				<div class="txt-loading"><span preloader-text="T" class="characters">T </span><span preloader-text="O"
@@ -48,7 +48,7 @@
 		<div class="sidemenu-content"><button class="closeButton sideMenuCls"><i class="far fa-times"></i></button>
 			<div class="widget">
 				<div class="th-widget-about">
-					<div class="about-logo"><a href="home-travel.html"><img src="/visitor/assets/img/logo2.svg" alt="Tourm"></a>
+					<div class="about-logo"><a href="home-travel.html"><img src="/visitor/assets/img/logo2.svg" alt="Tourm" width="100"></a>
 					</div>
 					<p class="about-text">Rapidiously myocardinate cross-platform intellectual capital model.
 						Appropriately create

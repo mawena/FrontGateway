@@ -48,7 +48,7 @@
 					</div>
 					<div class="p-3">
 						<div class="text-center">
-							<img src="{{ asset('assets/images/logo-icon.png') }}" alt="wrapkit">
+							<img src="{{ asset('assets/images/logo-icon.png') }}" alt="wrapkit" width="100">
 						</div>
 						<h2 class="mt-3 text-center text-dark">Connexion</h2>
 						<p class="text-center py-2">Entrez vôtre email et vôtre mot de passe pour vous connecter.</p>
