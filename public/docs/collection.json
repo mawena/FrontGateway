@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Pecorator",
-        "_postman_id": "7a18972b-1cd1-4127-9ed0-df237aaec614",
+        "_postman_id": "46821e87-3bf2-42c6-b689-338ca15b9826",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -730,7 +730,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"action\":\"delete\",\"project_path\":\"delectus\",\"target_server\":\"ex\",\"target_path\":\"est\",\"target_port\":\"ipsa\"}"
+                            "raw": "{\"action\":\"transfer\",\"project_path\":\"qui\",\"target_server\":\"tempora\",\"target_path\":\"enim\",\"target_port\":\"ea\"}"
                         },
                         "description": ""
                     },
@@ -1458,7 +1458,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"old_password\":\"sed\",\"new_password\":\"fugiat\",\"new_password_confirmation\":\"ut\"}"
+                            "raw": "{\"old_password\":\"non\",\"new_password\":\"quis\",\"new_password_confirmation\":\"magnam\"}"
                         },
                         "description": ""
                     },
