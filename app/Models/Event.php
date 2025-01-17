@@ -35,11 +35,11 @@ class Event extends Model
 	public function toArray()
 	{
 		$data = parent::toArray();
-		$data["created_at_fr"] = Carbon::parse($data["created_at"])->format("d/m/yy H:i:s");
-		$data["updated_at_fr"] = Carbon::parse($data["updated_at"])->format("d/m/yy H:i:s");
-		$data["start_date_fr"] = Carbon::parse($data["start_date"])->format("d/m/yy");
+		$data["created_at_fr"] = Carbon::parse($data["created_at"])->format("d/m/Y H:i:s");
+		$data["updated_at_fr"] = Carbon::parse($data["updated_at"])->format("d/m/Y H:i:s");
+		$data["start_date_fr"] = Carbon::parse($data["start_date"])->format("d/m/Y");
 		$data["start_hour_fr"] = Carbon::parse($data["start_date"])->format("H:i:s");
-		$data["end_date_fr"] = Carbon::parse($data["end_date"])->format("d/m/yy");
+		$data["end_date_fr"] = Carbon::parse($data["end_date"])->format("d/m/Y");
 		$data["end_hour_fr"] = Carbon::parse($data["end_date"])->format("H:i:s");
 		return $data;
 	}

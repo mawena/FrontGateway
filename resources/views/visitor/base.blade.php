@@ -34,7 +34,7 @@
 		<div class="cursor"></div>
 		<div class="cursor-follower"></div>
 	</div>
-	<div id="preloader" class="preloader text-center"><button class="th-btn preloaderCls">Encours de chargement</button>
+	{{-- <div id="preloader" class="preloader text-center"><button class="th-btn preloaderCls">Encours de chargement</button>
 		<div class="preloader-inner"><img src="{{ asset('/visitor/assets/img/logo3.svg') }}" alt="" width="100"></div>
 		<div id="loader" class="th-preloader">
 			<div class="animation-preloader">
@@ -43,7 +43,7 @@
 						class="characters">R </span><span preloader-text="M" class="characters">M</span></div>
 			</div>
 		</div>
-	</div>
+	</div> --}}
 	<div class="sidemenu-wrapper sidemenu-info">
 		<div class="sidemenu-content"><button class="closeButton sideMenuCls"><i class="far fa-times"></i></button>
 			<div class="widget">

@@ -75,8 +75,8 @@ class User extends Authenticatable
 	public function toArray()
 	{
 		$data = parent::toArray();
-		$data["created_at_fr"] = Carbon::parse($data["created_at"])->format("d/m/yy H:i:s");
-		$data["updated_at_fr"] = Carbon::parse($data["updated_at"])->format("d/m/yy H:i:s");
+		$data["created_at_fr"] = Carbon::parse($data["created_at"])->format("d/m/Y H:i:s");
+		$data["updated_at_fr"] = Carbon::parse($data["updated_at"])->format("d/m/Y H:i:s");
 		$data["activated"] = (bool) $data["activated"];
 		$data["picture_path"] = ($data["picture_path"]) ?? "pictures/users/default.png";
 		return $data;
