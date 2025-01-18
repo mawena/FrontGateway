@@ -100,8 +100,7 @@
 						<div class="modal-body">
 							<div class="text-center mt-2 mb-4">
 								<a href="{{ route('admin.user.index') }}" class="text-success">
-									<span><img class="mr-2" src="/assets/images/logo-icon.png" alt="" height="18"><img
-											src="/assets/images/logo-text.png" alt="" height="18"></span>
+									<span><img class="mr-2" src="/assets/images/logo-icon.png" alt="" height="18"></span>
 								</a>
 							</div>
 
