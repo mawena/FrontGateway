@@ -584,19 +584,19 @@ paths:
                 project_path:
                   type: string
                   description: ''
-                  example: voluptatem
+                  example: accusantium
                 target_server:
                   type: string
                   description: ''
-                  example: blanditiis
+                  example: libero
                 target_path:
                   type: string
                   description: ''
-                  example: ut
+                  example: veritatis
                 target_port:
                   type: string
                   description: ''
-                  example: eos
+                  example: dolorem
               required:
                 - action
                 - project_path
@@ -1463,15 +1463,15 @@ paths:
                 old_password:
                   type: string
                   description: "L'ancien mot de passe de l'utilisateur."
-                  example: in
+                  example: voluptatem
                 new_password:
                   type: string
                   description: "Le nouveau mot de passe de l'utilisateur."
-                  example: harum
+                  example: aut
                 new_password_confirmation:
                   type: string
                   description: "La confirmation du nouveau mot de passe de l'utilisateur."
-                  example: voluptatibus
+                  example: eum
               required:
                 - old_password
                 - new_password

@@ -49,7 +49,7 @@
 				</div>
 				<div class="p-3">
 					<div class="text-center">
-						<img src="{{ asset('assets/images/logo-icon.png') }}" alt="wrapkit">
+						<img src="{{ asset('assets/images/logo-icon.png') }}" alt="wrapkit" width="100">
 					</div>
 						<h2 class="mt-3 text-center text-dark">Inscription</h2>
 						<p class="text-center py-2">Veuillez remplir les champs suivants.</p>

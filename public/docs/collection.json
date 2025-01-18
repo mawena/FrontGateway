@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Pecorator",
-        "_postman_id": "5e504e83-bf92-49c3-884e-cafc35beb567",
+        "_postman_id": "3f166d34-22be-4312-8825-c92fc8bc5560",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -730,7 +730,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"action\":\"download\",\"project_path\":\"voluptatem\",\"target_server\":\"blanditiis\",\"target_path\":\"ut\",\"target_port\":\"eos\"}"
+                            "raw": "{\"action\":\"download\",\"project_path\":\"accusantium\",\"target_server\":\"libero\",\"target_path\":\"veritatis\",\"target_port\":\"dolorem\"}"
                         },
                         "description": ""
                     },
@@ -1458,7 +1458,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"old_password\":\"in\",\"new_password\":\"harum\",\"new_password_confirmation\":\"voluptatibus\"}"
+                            "raw": "{\"old_password\":\"voluptatem\",\"new_password\":\"aut\",\"new_password_confirmation\":\"eum\"}"
                         },
                         "description": ""
                     },
