@@ -14,7 +14,10 @@ class AuthControler
 				[
 					"admin" => "admin.user.index",
 					"supervisor" => "admin.promoter.index",
+					"money_manager" => "admin.payment.index",
+					"event_planner" => "admin.event.index",
 					"promoter" => "admin.event.index",
+					"visitor" => "admin.event.index",
 				][session("userData")["profile"]]
 			);
 		}
@@ -38,7 +41,10 @@ class AuthControler
 			[
 				"admin" => "admin.user.index",
 				"supervisor" => "admin.promoter.index",
+				"money_manager" => "admin.payment.index",
+				"event_planner" => "admin.event.index",
 				"promoter" => "admin.event.index",
+				"visitor" => "admin.event.index",
 			][$response["data"]["user"]["profile"]]
 		);
 	}

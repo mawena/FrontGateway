@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Pecorator",
-        "_postman_id": "2e902e43-cc9d-4cdf-8a61-50efe3076746",
+        "_postman_id": "c539930f-1c9e-46fa-8672-22855fc3d468",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -730,7 +730,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"action\":\"transfer\",\"project_path\":\"sit\",\"target_server\":\"neque\",\"target_path\":\"sint\",\"target_port\":\"et\"}"
+                            "raw": "{\"action\":\"download\",\"project_path\":\"totam\",\"target_server\":\"voluptatibus\",\"target_path\":\"labore\",\"target_port\":\"provident\"}"
                         },
                         "description": ""
                     },
@@ -1458,7 +1458,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"old_password\":\"et\",\"new_password\":\"mollitia\",\"new_password_confirmation\":\"qui\"}"
+                            "raw": "{\"old_password\":\"officiis\",\"new_password\":\"dolorem\",\"new_password_confirmation\":\"corrupti\"}"
                         },
                         "description": ""
                     },

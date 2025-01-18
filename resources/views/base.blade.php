@@ -129,7 +129,7 @@
 						@endcan
 						@can(['read'], 'supervisor', session('userData'))
 							<li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="/admin/user" aria-expanded="false"><i
-										data-feather="users" class="feather-icon"></i><span class="hide-menu">Superviseurs</span></a></li>
+										data-feather="users" class="feather-icon"></i><span class="hide-menu">BackOfficiers</span></a></li>
 						@endcan
 						@can(['read'], 'promoter', session('userData'))
 							<li class="sidebar-item">

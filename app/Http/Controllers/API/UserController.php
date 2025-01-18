@@ -82,7 +82,7 @@ class UserController extends Controller
 			'email' => 'required|unique:users',
 			"password" => "required|min:8",
 			"activated" => "required|boolean",
-			"profile" => "required|in:admin,supervisor,promoter",
+			"profile" => "required|in:admin,supervisor,promoter,money_manager,event_planner,visitor",
 			"picture" => "nullable"
 		];
 		$this->storeManualValidationsFunction = function ($requestData) {
@@ -171,7 +171,7 @@ class UserController extends Controller
 				"email" => "required|unique:users,email," . $id,
 				"password" => "nullable|min:8",
 				"activated" => "required|boolean",
-				"profile" => "required|in:admin,supervisor,promoter",
+				"profile" => "required|in:admin,supervisor,promoter,money_manager,event_planner,visitor",
 				"picture" => "nullable"
 			];
 		};

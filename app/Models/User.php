@@ -16,7 +16,7 @@ class User extends Authenticatable
 	/** @use HasFactory<\Database\Factories\UserFactory> */
 	use HasApiTokens, HasFactory, Notifiable;
 
-	protected $appends = ['ability_rules', 'profile_fr', 'nb_decor_payed', 'nb_decor_used', 'nb_decor_not_used'];
+	protected $appends = ['ability_rules', 'profile_fr', 'nb_decor_payed', 'nb_decor_used', 'nb_decor_not_used', 'profiles_can_create'];
 
 
 	/**
@@ -96,7 +96,10 @@ class User extends Authenticatable
 		return [
 			'admin' => 'Administrateur',
 			'supervisor' => 'Superviseur',
+			'money_manager' => 'Gestionnaire de paiement',
+			'event_planner' => 'Planificateur d\'evenement',
 			'promoter' => 'Promoteur',
+			'visitor' => 'Visiteur',
 		][$this->profile];
 	}
 	public function getAbilityRulesAttribute()
@@ -111,15 +114,15 @@ class User extends Authenticatable
 			'supervisor' => [
 				[
 					'action' => ['read'],
-					'subject' => ['user', 'promoter', 'event', 'decor', 'payment']
+					'subject' => ['user', 'promoter', 'event', 'decor', 'payment', 'supervisor']
 				],
 				[
 					'action' => ['create'],
-					'subject' => ['user', 'promoter', 'event', 'decor']
+					'subject' => ['user', 'promoter', 'event', 'decor', 'supervisor']
 				],
 				[
 					'action' => ['edit'],
-					'subject' => ['promoter', 'event', 'decor']
+					'subject' => ['promoter', 'event', 'decor', 'supervisor']
 				],
 				[
 					'action' => ['update_password'],
@@ -136,6 +139,66 @@ class User extends Authenticatable
 				[
 					'action' => ['delete'],
 					'subject' => ['user', 'promoter', 'event', 'decor']
+				],
+			],
+			'money_manager' => [
+				[
+					'action' => ['read'],
+					'subject' => ['user', 'promoter', 'event', 'decor', 'payment']
+				],
+				[
+					'action' => ['create'],
+					'subject' => []
+				],
+				[
+					'action' => ['edit'],
+					'subject' => []
+				],
+				[
+					'action' => ['update_password'],
+					'subject' => ['user']
+				],
+				[
+					'action' => ['reject'],
+					'subject' => ['payment']
+				],
+				[
+					'action' => ['validate'],
+					'subject' => ['payment']
+				],
+				[
+					'action' => ['delete'],
+					'subject' => []
+				],
+			],
+			'event_planner' => [
+				[
+					'action' => ['read'],
+					'subject' => ['user', 'promoter', 'event', 'decor']
+				],
+				[
+					'action' => ['create'],
+					'subject' => ['event', 'decor']
+				],
+				[
+					'action' => ['edit'],
+					'subject' => ['event', 'decor']
+				],
+				[
+					'action' => ['update_password'],
+					'subject' => ['user']
+				],
+				[
+					'action' => ['reject'],
+					'subject' => []
+				],
+				[
+					'action' => ['validate'],
+					'subject' => []
+				],
+				[
+					'action' => ['delete'],
+					'subject' => ['event', 'decor']
 				],
 			],
 			'promoter' => [
@@ -164,6 +227,25 @@ class User extends Authenticatable
 					'subject' => ['event', 'decor']
 				],
 			],
+		][$this->profile];
+	}
+
+	public function getProfilesCanCreateAttribute(){
+		$profileList = [
+			'admin' => ['key' =>'admin', "name" => "Super Admin"],
+			'supervisor' => ['key' =>'supervisor', "name" => "Superviseur"],
+			'money_manager' => ['key' =>'money_manager', "name" => "Gestionnaire de paiement"],
+			'event_planner' => ['key' =>'event_planner', "name" => "Planificateur d'evenement"],
+			'promoter' => ['key' =>'promoter', "name" => "Organisateur"],
+			'visitor' => ['key' =>'visitor', "name" => "Visiteur"],
+		];
+		return [
+			"admin" => [$profileList["admin"], $profileList["supervisor"], $profileList["money_manager"], $profileList["event_planner"], $profileList["visitor"]],
+			"supervisor" => [$profileList["money_manager"], $profileList["event_planner"], $profileList["visitor"]],
+			"money_manager" => [],
+			"event_planner" => [],
+			"promoter" => [],
+			"visitor" => [],
 		][$this->profile];
 	}
 }

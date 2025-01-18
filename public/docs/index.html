@@ -223,7 +223,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: January 17, 2025</li>
+        <li>Last updated: January 18, 2025</li>
     </ul>
 </div>
 
@@ -2874,11 +2874,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"action\": \"transfer\",
-    \"project_path\": \"sit\",
-    \"target_server\": \"neque\",
-    \"target_path\": \"sint\",
-    \"target_port\": \"et\"
+    \"action\": \"download\",
+    \"project_path\": \"totam\",
+    \"target_server\": \"voluptatibus\",
+    \"target_path\": \"labore\",
+    \"target_port\": \"provident\"
 }"
 </code></pre></div>
 
@@ -2895,11 +2895,11 @@ const headers = {
 };
 
 let body = {
-    "action": "transfer",
-    "project_path": "sit",
-    "target_server": "neque",
-    "target_path": "sint",
-    "target_port": "et"
+    "action": "download",
+    "project_path": "totam",
+    "target_server": "voluptatibus",
+    "target_path": "labore",
+    "target_port": "provident"
 };
 
 fetch(url, {
@@ -2999,10 +2999,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="action"                data-endpoint="POSTapi-manage-project"
-               value="transfer"
+               value="download"
                data-component="body">
     <br>
-<p>Example: <code>transfer</code></p>
+<p>Example: <code>download</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>download</code></li> <li><code>transfer</code></li> <li><code>delete</code></li></ul>
         </div>
@@ -3012,10 +3012,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="project_path"                data-endpoint="POSTapi-manage-project"
-               value="sit"
+               value="totam"
                data-component="body">
     <br>
-<p>Example: <code>sit</code></p>
+<p>Example: <code>totam</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>target_server</code></b>&nbsp;&nbsp;
@@ -3023,10 +3023,10 @@ Must be one of:
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="target_server"                data-endpoint="POSTapi-manage-project"
-               value="neque"
+               value="voluptatibus"
                data-component="body">
     <br>
-<p>Example: <code>neque</code></p>
+<p>Example: <code>voluptatibus</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>target_path</code></b>&nbsp;&nbsp;
@@ -3034,10 +3034,10 @@ Must be one of:
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="target_path"                data-endpoint="POSTapi-manage-project"
-               value="sint"
+               value="labore"
                data-component="body">
     <br>
-<p>Example: <code>sint</code></p>
+<p>Example: <code>labore</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>target_port</code></b>&nbsp;&nbsp;
@@ -3045,10 +3045,10 @@ Must be one of:
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="target_port"                data-endpoint="POSTapi-manage-project"
-               value="et"
+               value="provident"
                data-component="body">
     <br>
-<p>Example: <code>et</code></p>
+<p>Example: <code>provident</code></p>
         </div>
         </form>
 
@@ -5730,9 +5730,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"old_password\": \"et\",
-    \"new_password\": \"mollitia\",
-    \"new_password_confirmation\": \"qui\"
+    \"old_password\": \"officiis\",
+    \"new_password\": \"dolorem\",
+    \"new_password_confirmation\": \"corrupti\"
 }"
 </code></pre></div>
 
@@ -5749,9 +5749,9 @@ const headers = {
 };
 
 let body = {
-    "old_password": "et",
-    "new_password": "mollitia",
-    "new_password_confirmation": "qui"
+    "old_password": "officiis",
+    "new_password": "dolorem",
+    "new_password_confirmation": "corrupti"
 };
 
 fetch(url, {
@@ -5858,10 +5858,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="old_password"                data-endpoint="PUTapi-user-update-password"
-               value="et"
+               value="officiis"
                data-component="body">
     <br>
-<p>L'ancien mot de passe de l'utilisateur. Example: <code>et</code></p>
+<p>L'ancien mot de passe de l'utilisateur. Example: <code>officiis</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>new_password</code></b>&nbsp;&nbsp;
@@ -5869,10 +5869,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="new_password"                data-endpoint="PUTapi-user-update-password"
-               value="mollitia"
+               value="dolorem"
                data-component="body">
     <br>
-<p>Le nouveau mot de passe de l'utilisateur. Example: <code>mollitia</code></p>
+<p>Le nouveau mot de passe de l'utilisateur. Example: <code>dolorem</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>new_password_confirmation</code></b>&nbsp;&nbsp;
@@ -5880,10 +5880,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="new_password_confirmation"                data-endpoint="PUTapi-user-update-password"
-               value="qui"
+               value="corrupti"
                data-component="body">
     <br>
-<p>La confirmation du nouveau mot de passe de l'utilisateur. Example: <code>qui</code></p>
+<p>La confirmation du nouveau mot de passe de l'utilisateur. Example: <code>corrupti</code></p>
         </div>
         </form>
 

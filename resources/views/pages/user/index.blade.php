@@ -8,7 +8,7 @@
 		<div class="page-breadcrumb">
 			<div class="row">
 				<div class="col-7 align-self-center">
-					<h2 class="page-title text-truncate text-dark font-weight-medium mb-1">Gestion des Superviseurs</h2>
+					<h2 class="page-title text-truncate text-dark font-weight-medium mb-1">Gestion des back officiers</h2>
 				</div>
 
 			</div>
@@ -30,7 +30,7 @@
 						<div class="card-body">
 							<div class="d-flex align-items-center mb-4">
 								<h4 class="card-title">
-									Liste des superviseurs
+									Liste des back officiers
 									<span class="text-primary px-3 ml-2 py-4 border-primary">
 										[ Total : {{ count($users) }} ]
 									</span>
@@ -39,7 +39,7 @@
 									@can(['create'], 'supervisor', session('userData'))
 										<button type="button" class="btn btn-primary px-4" data-toggle="modal" data-target="#signup-modal"
 											id="toggle_modal">
-											Nouvel superviseur
+											Nouveau back officier
 										</button>
 									@endcan
 								</div>
@@ -79,7 +79,7 @@
 															@csrf
 															@method('DELETE')
 															<button type="submit" class="btn"
-																onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce superviseur ?')">
+																onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce back officier ?')">
 																<i style="color: red" class="fa fa-trash"></i>
 															</button>
 														</form>
@@ -144,7 +144,18 @@
 									@enderror
 								</div>
 
-								<input type="hidden" value="supervisor" name="profile">
+
+								<div class="form-group">
+									<label for="profile">Profile</label>
+									<select class="form-control" id="profile" name="profile" required="">
+										@foreach (session('userData')["profiles_can_create"] as $profile)
+											<option value="{{$profile['key']}}" selected>{{$profile['name']}}</option>
+										@endforeach
+									</select>
+									@error('profile')
+										<span class="text-danger">{{ $message }}</span>
+									@enderror
+								</div>
 
 								<div class="form-group text-center mt-4">
 									<button class="btn btn-primary w-100" type="submit">Créer</button>

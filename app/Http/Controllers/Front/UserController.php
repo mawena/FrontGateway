@@ -16,7 +16,7 @@ class UserController
 			config('app.url') . "/api/user",
 			[
 				"paginate" => "false",
-				"in_profile" => "supervisor"
+				"in_profile" => "supervisor-money_manager-event_planner"
 			]
 		)->json();
 		return view("pages.user.index", ["users" => $response["data"]]);

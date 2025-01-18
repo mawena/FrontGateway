@@ -576,7 +576,7 @@ paths:
                 action:
                   type: string
                   description: ''
-                  example: transfer
+                  example: download
                   enum:
                     - download
                     - transfer
@@ -584,19 +584,19 @@ paths:
                 project_path:
                   type: string
                   description: ''
-                  example: sit
+                  example: totam
                 target_server:
                   type: string
                   description: ''
-                  example: neque
+                  example: voluptatibus
                 target_path:
                   type: string
                   description: ''
-                  example: sint
+                  example: labore
                 target_port:
                   type: string
                   description: ''
-                  example: et
+                  example: provident
               required:
                 - action
                 - project_path
@@ -1463,15 +1463,15 @@ paths:
                 old_password:
                   type: string
                   description: "L'ancien mot de passe de l'utilisateur."
-                  example: et
+                  example: officiis
                 new_password:
                   type: string
                   description: "Le nouveau mot de passe de l'utilisateur."
-                  example: mollitia
+                  example: dolorem
                 new_password_confirmation:
                   type: string
                   description: "La confirmation du nouveau mot de passe de l'utilisateur."
-                  example: qui
+                  example: corrupti
               required:
                 - old_password
                 - new_password
