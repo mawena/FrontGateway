@@ -49,7 +49,6 @@
 									<thead>
 										<tr class="text-center">
 											<th>Nom</th>
-											<th>Email</th>
 											<th>Structure</th>
 											<th>Status</th>
 											<th>Actions</th>
@@ -59,7 +58,6 @@
 										@foreach ($users as $user)
 											<tr class="text-center">
 												<td class="py-4">{{ $user['name'] }}</td>
-												<td class="py-4">{{ $user['email'] }}</td>
 												<td class="py-4">{{ $user['promoter']['structure'] }}</td>
 												<td @class([
 													'py-4 text-bold',

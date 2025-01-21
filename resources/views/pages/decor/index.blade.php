@@ -50,8 +50,6 @@
 										<tr class="text-center">
 											<th>Nom</th>
 											<th>Promoteur</th>
-											<th>Evénement</th>
-											<th>Disponibilité (Début)</th>
 											<th>Disponibilité (Fin)</th>
 											<th>Actions</th>
 										</tr>
@@ -62,8 +60,6 @@
 												<td class="" style="width: 100px">{{ $decor['name'] }}</td>
 												<td class="py-4" class="text-bold">
 													{{ $decor['user']['name'] }}</td>
-												<td class="py-4" class="text-bold">{{ $decor['event']['name'] ?? '-' }}</td>
-												<td class="py-4">{{ $decor['start_use_fr'] }}</td>
 												<td class="py-4">{{ $decor['end_use_fr'] }}</td>
 												<td class="" style="max-width: 100px">
 													@can(['read'], 'decor', session('userData'))

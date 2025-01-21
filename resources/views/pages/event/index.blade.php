@@ -49,22 +49,18 @@
 									<thead>
 										<tr class="text-center">
 											<th>Nom</th>
-											<th>Type</th>
 											<th>Lieu</th>
 											<th>Date de debut</th>
-											<th>Date de fin</th>
 											<th>Actions</th>
 										</tr>
 									</thead>
 									<tbody>
 										@foreach ($events as $event)
-											<tr class="py-0 text-center">
-												<td class="py-4">{{ $event['name'] }}</td>
-												<td class="py-4">{{ $event['type'] }}</td>
-												<td class="py-4">{{ $event['place'] }}</td>
-												<td class="py-4">{{ $event['start_date'] }}</td>
-												<td class="py-4">{{ $event['end_date'] }}</td>
-												<td class="" style="max-width: 100px">
+											<tr class="text-center">
+												<td class="">{{ $event['name'] }}</td>
+												<td class="">{{ $event['place'] }}</td>
+												<td class="">{{ $event['start_date'] }}</td>
+												<td class="" style="max-width: 170px">
 													@can(['read'], 'event', session('userData'))
 														<a href="{{ route('admin.event.show', $event['id']) }}" class="btn text-primary"><i
 																class="fa fa-eye"></i></a>
