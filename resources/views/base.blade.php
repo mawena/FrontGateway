@@ -138,10 +138,6 @@
 							</li>
 						@endcan
 						@can(['read'], 'event', session('userData'))
-							<li class="sidebar-item">
-								<a class="sidebar-link sidebar-link" href="/admin/event" aria-expanded="false"><i data-feather="calendar"
-										class="feather-icon"></i><span class="hide-menu">Evenements</span></a>
-							</li>
 							<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-19468"></li>
 								<li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
 									aria-expanded="false"><i data-feather="calendar" class="feather-icon"></i><span

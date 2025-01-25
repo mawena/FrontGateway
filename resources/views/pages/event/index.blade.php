@@ -57,8 +57,8 @@
 									<tbody>
 										@foreach ($events as $event)
 											<tr class="text-center">
-												<td class="">{{ $event['name'] }}</td>
-												<td class="">{{ $event['place'] }}</td>
+												<td class="">{{ Str::limit($event['name'], 30) }}</td>
+												<td class="">{{ Str::limit($event['place'], 30) }}</td>
 												<td class="">{{ $event['start_date'] }}</td>
 												<td class="" style="max-width: 170px">
 													@can(['read'], 'event', session('userData'))
