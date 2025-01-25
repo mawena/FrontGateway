@@ -7,19 +7,20 @@ use Illuminate\Support\Facades\Http;
 
 class EventController
 {
-	public function index()
+	public function index(Request $request)
 	{
 		$query = ["paginate" => "false"];
 		$userData = session('userData');
 		if ($userData['profile'] == 'promoter') {
 			$query["user_id"] = $userData["id"];
 		}
+		$requestData = array_merge($request->all(), $query);
 		$response = Http::withHeaders([
 			'Authorization' => 'Bearer ' . session('userToken'),
 			'Accept' => 'application/json',
 		])->get(
 			config('app.url') . "/api/event",
-			$query
+			$requestData
 		)->json();
 		return view("pages.event.index", ["events" => $response["data"]]);
 	}
@@ -48,7 +49,7 @@ class EventController
 			'Accept' => 'application/json',
 		])->post(config('app.url') . "/api/event", $requestData)->json();
 		if ($response["status"] == 201) {
-			return redirect()->route("admin.event.index");
+			return redirect()->route("admin.event.index", ["validation" => "pending"]);
 		} else {
 			return redirect()->back()
 				->withInput()
@@ -80,7 +81,7 @@ class EventController
 			'Accept' => 'application/json',
 		])->put(config('app.url') . "/api/event/" . $id, $requestData)->json();
 		if ($response["status"] == 200) {
-			return redirect()->route("admin.event.index");
+			return redirect()->route("admin.event.index", ["validation" => "pending"]);
 		} else {
 			return redirect()->back()
 				->withInput()
@@ -95,7 +96,7 @@ class EventController
 			'Accept' => 'application/json',
 		])->put(config('app.url') . "/api/event/change-validation/" . $id, $request->all())->json();
 		if ($response["status"] == 200) {
-			return redirect()->route("admin.event.index");
+			return redirect()->back();
 		} else {
 			return redirect()->back()
 				->withInput()

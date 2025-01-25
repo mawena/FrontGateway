@@ -142,6 +142,25 @@
 								<a class="sidebar-link sidebar-link" href="/admin/event" aria-expanded="false"><i data-feather="calendar"
 										class="feather-icon"></i><span class="hide-menu">Evenements</span></a>
 							</li>
+							<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-19468"></li>
+								<li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
+									aria-expanded="false"><i data-feather="calendar" class="feather-icon"></i><span
+										class="hide-menu">Evenements</span></a>
+								<ul aria-expanded="false" class="collapse  first-level base-level-line">
+									<li class="sidebar-item"><a href="/admin/event?validation=pending" class="sidebar-link"><span
+												class="hide-menu"> En attente
+											</span></a>
+									</li>
+									<li class="sidebar-item"><a href="/admin/event?validation=validated" class="sidebar-link"><span
+												class="hide-menu">Validés
+											</span></a>
+									</li>
+									<li class="sidebar-item"><a href="/admin/event?validation=rejected" class="sidebar-link"><span
+												class="hide-menu">Rejetés
+											</span></a>
+									</li>
+								</ul>
+							</li>
 						@endcan
 						@can(['read'], 'decor', session('userData'))
 							<li class="sidebar-item">

@@ -1,5 +1,5 @@
 <footer class="footer-wrapper footer-layout1">
-    {{-- <div class="widget-area">
+	{{-- <div class="widget-area">
         <div class="container">
             <div class="newsletter-area">
                 <div class="newsletter-top">
@@ -110,14 +110,15 @@
             </div>
         </div>
     </div> --}}
-    <div class="copyright-wrap bg-white" data-bg-src="/visitor/assets/img/bg/copyright_bg_1.jpgs">
-        <div class="container">
-            <div class="row justify-content-between align-items-center">
-                <div class="col-md-12 text-center text-dark">
-                    <p class="copyright-text text-dark">Copyright 2024 <a href="{{ route('visitor.events') }}">{{ config('app.name') }}</a>. All Rights
-                        Reserved.</p>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="copyright-wrap bg-white" data-bg-src="/visitor/assets/img/bg/copyright_bg_1.jpgs">
+		<div class="container">
+			<div class="row justify-content-between align-items-center">
+				<div class="col-md-12 text-center text-dark">
+					<p class="copyright-text text-dark">Copyright 2024 <a
+							href="{{ route('visitor.events') }}">{{ config('app.name') }}</a>. All Rights
+						Reserved.</p>
+				</div>
+			</div>
+		</div>
+	</div>
 </footer>
