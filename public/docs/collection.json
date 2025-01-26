@@ -10,11 +10,7 @@
     ],
     "info": {
         "name": "Pecorator",
-<<<<<<< HEAD
-        "_postman_id": "83ad57f9-8804-4c69-86cd-7f05f5c6a8d2",
-=======
-        "_postman_id": "1137f50a-83bb-4222-bbf0-bc72413ebe5e",
->>>>>>> Charles
+        "_postman_id": "b4859912-a8a4-42a3-9761-e030a368d132",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -699,11 +695,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-<<<<<<< HEAD
-                            "raw": "{\"action\":\"transfer\",\"project_path\":\"autem\",\"target_server\":\"optio\",\"target_path\":\"doloribus\",\"target_port\":\"non\"}"
-=======
-                            "raw": "{\"action\":\"download\",\"project_path\":\"sunt\",\"target_server\":\"ipsam\",\"target_path\":\"magnam\",\"target_port\":\"aut\"}"
->>>>>>> Charles
+                            "raw": "{\"action\":\"download\",\"project_path\":\"sint\",\"target_server\":\"quas\",\"target_path\":\"nobis\",\"target_port\":\"laboriosam\"}"
                         },
                         "description": ""
                     },
@@ -1431,11 +1423,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-<<<<<<< HEAD
-                            "raw": "{\"old_password\":\"temporibus\",\"new_password\":\"ad\",\"new_password_confirmation\":\"sint\"}"
-=======
-                            "raw": "{\"old_password\":\"et\",\"new_password\":\"tempore\",\"new_password_confirmation\":\"nihil\"}"
->>>>>>> Charles
+                            "raw": "{\"old_password\":\"quae\",\"new_password\":\"sed\",\"new_password_confirmation\":\"voluptatibus\"}"
                         },
                         "description": ""
                     },

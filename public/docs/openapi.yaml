@@ -578,38 +578,22 @@ paths:
                 project_path:
                   type: string
                   description: ''
-<<<<<<< HEAD
-                  example: autem
-=======
-                  example: sunt
->>>>>>> Charles
+                  example: sint
                   nullable: false
                 target_server:
                   type: string
                   description: ''
-<<<<<<< HEAD
-                  example: optio
-=======
-                  example: ipsam
->>>>>>> Charles
+                  example: quas
                   nullable: true
                 target_path:
                   type: string
                   description: ''
-<<<<<<< HEAD
-                  example: doloribus
-=======
-                  example: magnam
->>>>>>> Charles
+                  example: nobis
                   nullable: true
                 target_port:
                   type: string
                   description: ''
-<<<<<<< HEAD
-                  example: non
-=======
-                  example: aut
->>>>>>> Charles
+                  example: laboriosam
                   nullable: true
               required:
                 - action
@@ -1551,29 +1535,17 @@ paths:
                 old_password:
                   type: string
                   description: "L'ancien mot de passe de l'utilisateur."
-<<<<<<< HEAD
-                  example: temporibus
-=======
-                  example: et
->>>>>>> Charles
+                  example: quae
                   nullable: false
                 new_password:
                   type: string
                   description: "Le nouveau mot de passe de l'utilisateur."
-<<<<<<< HEAD
-                  example: ad
-=======
-                  example: tempore
->>>>>>> Charles
+                  example: sed
                   nullable: false
                 new_password_confirmation:
                   type: string
                   description: "La confirmation du nouveau mot de passe de l'utilisateur."
-<<<<<<< HEAD
-                  example: sint
-=======
-                  example: nihil
->>>>>>> Charles
+                  example: voluptatibus
                   nullable: false
               required:
                 - old_password
