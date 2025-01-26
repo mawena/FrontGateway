@@ -1,6 +1,0 @@
-Role: Lister le événements
-Lien: https://pecorator.chawena.com/api/event?with_promoter=false&paginate=false
-header:
-  Authorization: Bearer 24|z0Zgtc0e8k9EnicSMl7JyUeL0Cu1sBjkT3nWmgsCc15c2e73
-  Accept: application/json
-  Content-Type: application/json

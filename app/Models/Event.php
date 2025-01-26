@@ -30,7 +30,7 @@ class Event extends Model
 		"validation",
 	];
 
-	public $appends = ["entrance_fr"];
+	public $appends = ["entrance_fr", "short_name", "short_place"];
 
 	public function toArray()
 	{
@@ -60,5 +60,15 @@ class Event extends Model
 			"paid" => "payante",
 			"free" => "gratuite",
 		][$this->entrance];
+	}
+
+	public function getShortNameAttribute()
+	{
+		return substr($this->name, 0, 50) . (strlen($this->name) > 50 ? "..." : "");
+	}
+
+	public function getShortPlaceAttribute()
+	{
+		return substr($this->place, 0, 50) . (strlen($this->place) > 50 ? "..." : "");
 	}
 }

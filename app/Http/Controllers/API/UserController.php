@@ -38,11 +38,13 @@ class UserController extends Controller
 	 */
 	public function index(Request $request)
 	{
+		$this->indexSearchFieldList = ["name", "email"];
 		$this->indexManualFilter = function ($list, $connectedUser) {
 			$list = $connectedUser->profile == "supervisor" ? $list->where('profile', '<>', 'admin') : $list;
 			$list = $connectedUser->profile == "promoter" ? $list->where('profile', 'promoter') : $list;
 			return $list;
 		};
+
 		return parent::index($request);
 	}
 

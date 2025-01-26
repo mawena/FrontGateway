@@ -1,0 +1,21 @@
+{
+    "files.exclude": {
+		"**/.git": true,
+		"**/.svn": true,
+		"**/.hg": true,
+		"**/CVS": true,
+		"**/.DS_Store": true,
+		"**/Thumbs.db": true,
+		"node_modules": true,
+		".editorconfig": true,
+		".scribe": true,
+		".vscode": true
+	},
+    "hide-files.files": [
+        "node_modules",
+        ".editorconfig",
+        ".scribe",
+        ".vscode"
+	],
+	"vue3snippets.enable-compile-vue-file-on-did-save-code": false
+}

@@ -3,26 +3,22 @@
 namespace App\Providers;
 
 use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\Facades\Event;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\ServiceProvider;
-
 class AppServiceProvider extends ServiceProvider
 {
-	/**
-	 * Register any application services.
-	 */
-	public function register(): void
-	{
-		//
-	}
+    /**
+     * Register any application services.
+     */
+    public function register(): void
+    {
+        //
+    }
 
-	/**
-	 * Bootstrap any application services.
-	 */
-	public function boot(): void
-	{
-		// dd(Session::get('userToken'));
+    /**
+     * Bootstrap any application services.
+     */
+    public function boot(): void
+    {
 		Blade::if('can', function ($actions, $subject, $connectedUser=null) {
 			if($connectedUser){
 				foreach ($connectedUser["ability_rules"] as $rules) {
@@ -39,5 +35,5 @@ class AppServiceProvider extends ServiceProvider
 			}
 			return false;
 		});
-	}
+    }
 }

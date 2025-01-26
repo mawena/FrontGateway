@@ -5,12 +5,12 @@
             "key": "baseUrl",
             "type": "string",
             "name": "string",
-            "value": "http:\/\/pecorator.ulrich.client"
+            "value": "https:\/\/reporter.cofina.localhost"
         }
     ],
     "info": {
-        "name": "Pecorator",
-        "_postman_id": "24cd8eb7-5535-4b96-820d-133ab730a930",
+        "name": "Reporter",
+        "_postman_id": "03d3fbe8-0cc2-4b09-8bdb-d230d8fd5f6f",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -41,7 +41,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"admin@pecorator.com\",\"password\":\"azerty\"}"
+                            "raw": "{\"email\":\"admin@cofinacorp.com\",\"password\":\"Coftg@20$*21\u00f9!ad\"}"
                         },
                         "description": ""
                     },
@@ -53,31 +53,6 @@
                             "name": ""
                         }
                     ]
-                },
-                {
-                    "name": "POST api\/auth\/register",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/auth\/register",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/auth\/register"
-                        },
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": ""
-                    },
-                    "response": []
                 },
                 {
                     "name": "Affiche l'utilisateur connect\u00e9",
@@ -146,7 +121,7 @@
             ]
         },
         {
-            "name": "Configuration",
+            "name": "Configurations",
             "description": "\nEndPoints pour g\u00e9rer les configurations",
             "item": [
                 {
@@ -157,15 +132,27 @@
                             "path": "api\/configuration",
                             "query": [
                                 {
-                                    "key": "key",
+                                    "key": "name",
                                     "value": "",
-                                    "description": "Cl\u00e9.",
+                                    "description": "Filtrer par nom de la configuration.",
                                     "disabled": true
                                 },
                                 {
                                     "key": "value",
                                     "value": "",
-                                    "description": "Valeur.",
+                                    "description": "Filtrer par valeur de la configuration.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "sheet",
+                                    "value": "",
+                                    "description": "Filtrer par feuille de la configuration.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "line",
+                                    "value": "",
+                                    "description": "Filtrer par ligne dans la feuille de la configuration.",
                                     "disabled": true
                                 },
                                 {
@@ -175,7 +162,7 @@
                                     "disabled": false
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/configuration?key=&value=&paginate=false"
+                            "raw": "{{baseUrl}}\/api\/configuration?name=&value=&sheet=&line=&paginate=false"
                         },
                         "method": "GET",
                         "header": [
@@ -201,7 +188,7 @@
                     ]
                 },
                 {
-                    "name": "Affiche un configuration",
+                    "name": "Affiche une configuration",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -213,7 +200,7 @@
                                     "id": "id",
                                     "key": "id",
                                     "value": "1",
-                                    "description": "Configuration."
+                                    "description": "L'ID de la configuration."
                                 }
                             ]
                         },
@@ -262,7 +249,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"key\":\"decor_unit_price\",\"value\":\"25\"}"
+                            "raw": "{\"name\":\"ServerAddress\",\"value\":\"10.228.50.12\",\"sheet\":\"db_config\"}"
                         },
                         "description": ""
                     },
@@ -288,7 +275,7 @@
                                     "id": "id",
                                     "key": "id",
                                     "value": "1",
-                                    "description": "Configuration."
+                                    "description": "L'ID de la configuration."
                                 }
                             ]
                         },
@@ -305,7 +292,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"value\":\"25\"}"
+                            "raw": "{\"name\":\"ServerAddress\",\"value\":\"10.228.50.15\",\"sheet\":\"db_config\",\"line\":1}"
                         },
                         "description": ""
                     },
@@ -331,7 +318,7 @@
                                     "id": "id",
                                     "key": "id",
                                     "value": "1",
-                                    "description": "Configuration."
+                                    "description": "L'ID de la configuration."
                                 }
                             ]
                         },
@@ -361,56 +348,32 @@
             ]
         },
         {
-            "name": "Decors",
-            "description": "\nEndPoints pour g\u00e9rer les d\u00e9cors",
+            "name": "D\u00e9partements",
+            "description": "\nEndPoints pour g\u00e9rer les d\u00e9partements",
             "item": [
                 {
-                    "name": "Affiche les decors",
+                    "name": "Affiche les d\u00e9partements",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/decor",
+                            "path": "api\/department",
                             "query": [
                                 {
                                     "key": "name",
                                     "value": "",
-                                    "description": "Nom.",
+                                    "description": "Filtrer par nom du d\u00e9partement.",
                                     "disabled": true
                                 },
                                 {
-                                    "key": "start_use",
-                                    "value": "",
-                                    "description": "Date d\u00e9but d'utilisation.",
-                                    "disabled": true
-                                },
-                                {
-                                    "key": "end_use",
-                                    "value": "",
-                                    "description": "Date fin d'utilisation.",
-                                    "disabled": true
-                                },
-                                {
-                                    "key": "event_id",
-                                    "value": "",
-                                    "description": "Evenement.",
-                                    "disabled": true
-                                },
-                                {
-                                    "key": "user_id",
-                                    "value": "",
-                                    "description": "Cr\u00e9ateur.",
-                                    "disabled": true
-                                },
-                                {
-                                    "key": "with_event",
+                                    "key": "with_extractions",
                                     "value": "false",
-                                    "description": "Afficher l'd\u00e9cor.",
+                                    "description": "Afficher les extractions.",
                                     "disabled": false
                                 },
                                 {
-                                    "key": "with_promoter",
+                                    "key": "with_users",
                                     "value": "false",
-                                    "description": "Afficher le promoteur.",
+                                    "description": "Afficher les utilisateurs.",
                                     "disabled": false
                                 },
                                 {
@@ -420,7 +383,7 @@
                                     "disabled": false
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/decor?name=&start_use=&end_use=&event_id=&user_id=&with_event=false&with_promoter=false&paginate=false"
+                            "raw": "{{baseUrl}}\/api\/department?name=&with_extractions=false&with_users=false&paginate=false"
                         },
                         "method": "GET",
                         "header": [
@@ -446,32 +409,32 @@
                     ]
                 },
                 {
-                    "name": "Affiche un d\u00e9cor",
+                    "name": "Affiche un departement",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/decor\/:id",
+                            "path": "api\/department\/:id",
                             "query": [
                                 {
-                                    "key": "with_event",
+                                    "key": "with_extractions",
                                     "value": "false",
-                                    "description": "Afficher l'd\u00e9cor.",
+                                    "description": "Afficher les extractions.",
                                     "disabled": false
                                 },
                                 {
-                                    "key": "with_user",
+                                    "key": "with_users",
                                     "value": "false",
-                                    "description": "Afficher le cr\u00e9ateur.",
+                                    "description": "Afficher les utilisateurs.",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/decor\/:id?with_event=false&with_user=false",
+                            "raw": "{{baseUrl}}\/api\/department\/:id?with_extractions=false&with_users=false",
                             "variable": [
                                 {
                                     "id": "id",
                                     "key": "id",
                                     "value": "1",
-                                    "description": "L'ID du decor."
+                                    "description": "L'ID du d\u00e9partement."
                                 }
                             ]
                         },
@@ -499,13 +462,13 @@
                     ]
                 },
                 {
-                    "name": "Cr\u00e9er un nouveau decor",
+                    "name": "Cr\u00e9er un nouveau departement",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/decor",
+                            "path": "api\/department",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/decor"
+                            "raw": "{{baseUrl}}\/api\/department"
                         },
                         "method": "POST",
                         "header": [
@@ -520,7 +483,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"Base\",\"file\":\"...\",\"start_use\":\"2024-10-01\",\"end_use\":\"2025-01-31\",\"event_id\":\"1\"}"
+                            "raw": "{\"name\":\"IT\"}"
                         },
                         "description": ""
                     },
@@ -534,19 +497,19 @@
                     ]
                 },
                 {
-                    "name": "Mettre \u00e0 jour la validation d'un d\u00e9cor",
+                    "name": "Mettre \u00e0 jour un departement",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/decor\/change-validation\/:id",
+                            "path": "api\/department\/:id",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/decor\/change-validation\/:id",
+                            "raw": "{{baseUrl}}\/api\/department\/:id",
                             "variable": [
                                 {
                                     "id": "id",
                                     "key": "id",
                                     "value": "1",
-                                    "description": "Le d\u00e9cor."
+                                    "description": "L'ID du d\u00e9partement."
                                 }
                             ]
                         },
@@ -563,7 +526,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"validation\":\"validated\"}"
+                            "raw": "{\"name\":\"IT\"}"
                         },
                         "description": ""
                     },
@@ -577,105 +540,19 @@
                     ]
                 },
                 {
-                    "name": "Informer le backend de l'utilisation d'un decor",
+                    "name": "Supprime un departement",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/decor\/use\/:id",
+                            "path": "api\/department\/:id",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/decor\/use\/:id",
+                            "raw": "{{baseUrl}}\/api\/department\/:id",
                             "variable": [
                                 {
                                     "id": "id",
                                     "key": "id",
                                     "value": "1",
-                                    "description": "Le d\u00e9cor."
-                                }
-                            ]
-                        },
-                        "method": "PUT",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\"validation\":\"validated\"}"
-                        },
-                        "description": ""
-                    },
-                    "response": [
-                        {
-                            "header": [],
-                            "code": 200,
-                            "body": "{}",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "name": "Mettre \u00e0 jour un decor",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/decor\/:id",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/decor\/:id",
-                            "variable": [
-                                {
-                                    "id": "id",
-                                    "key": "id",
-                                    "value": "1",
-                                    "description": "L'ID du decor."
-                                }
-                            ]
-                        },
-                        "method": "PUT",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\"name\":\"Base\",\"file\":\"...\",\"start_use\":\"2024-10-01\",\"end_use\":\"2025-01-31\",\"event_id\":\"1\"}"
-                        },
-                        "description": ""
-                    },
-                    "response": [
-                        {
-                            "header": [],
-                            "code": 200,
-                            "body": "{}",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "name": "Supprime un decor",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/decor\/:id",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/decor\/:id",
-                            "variable": [
-                                {
-                                    "id": "id",
-                                    "key": "id",
-                                    "value": "1",
-                                    "description": "L'ID du decor."
+                                    "description": "L'ID du d\u00e9partement."
                                 }
                             ]
                         },
@@ -709,15 +586,15 @@
             "description": "",
             "item": [
                 {
-                    "name": "POST api\/manage-project",
+                    "name": "GET api\/test",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/manage-project",
+                            "path": "api\/test",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/manage-project"
+                            "raw": "{{baseUrl}}\/api\/test"
                         },
-                        "method": "POST",
+                        "method": "GET",
                         "header": [
                             {
                                 "key": "Content-Type",
@@ -728,103 +605,92 @@
                                 "value": "application\/json"
                             }
                         ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\"action\":\"delete\",\"project_path\":\"aliquam\",\"target_server\":\"eum\",\"target_path\":\"aut\",\"target_port\":\"laudantium\"}"
-                        },
+                        "body": null,
                         "description": ""
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "content-type",
+                                    "value": "text\/html; charset=UTF-8"
+                                },
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "600"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "599"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "",
+                            "name": ""
+                        }
+                    ]
                 }
             ]
         },
         {
-            "name": "Evenements",
-            "description": "\nEndPoints pour g\u00e9rer les \u00e9v\u00e9nements",
+            "name": "Extractions",
+            "description": "\nEndPoints pour g\u00e9rer les extractions",
             "item": [
                 {
-                    "name": "Affiche les \u00e9v\u00e9nement",
+                    "name": "Affiche les extractions",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/event",
+                            "path": "api\/extraction",
                             "query": [
+                                {
+                                    "key": "department_id",
+                                    "value": "",
+                                    "description": "Filtrer par ID de d\u00e9partement de l'extraction.",
+                                    "disabled": true
+                                },
                                 {
                                     "key": "name",
                                     "value": "",
-                                    "description": "Nom.",
+                                    "description": "Filtrer par nom de l'extraction.",
                                     "disabled": true
                                 },
                                 {
-                                    "key": "start_date",
+                                    "key": "script_id",
                                     "value": "",
-                                    "description": "Date de d\u00e9but.",
+                                    "description": "Filtrer par script lanceur de l'extraction.",
                                     "disabled": true
                                 },
                                 {
-                                    "key": "end_date",
-                                    "value": "",
-                                    "description": "Date de fin.",
-                                    "disabled": true
-                                },
-                                {
-                                    "key": "user_id",
-                                    "value": "",
-                                    "description": "Cr\u00e9ateur.",
-                                    "disabled": true
-                                },
-                                {
-                                    "key": "place",
-                                    "value": "",
-                                    "description": "Lieu.",
-                                    "disabled": true
-                                },
-                                {
-                                    "key": "type",
-                                    "value": "",
-                                    "description": "Type.",
-                                    "disabled": true
-                                },
-                                {
-                                    "key": "nb_expected",
-                                    "value": "",
-                                    "description": "Nombre de personne attendu.",
-                                    "disabled": true
-                                },
-                                {
-                                    "key": "entrance",
-                                    "value": "",
-                                    "description": "Type d'entr\u00e9e.",
-                                    "disabled": true
-                                },
-                                {
-                                    "key": "entry_price",
-                                    "value": "",
-                                    "description": "Prix d'entr\u00e9e.",
-                                    "disabled": true
-                                },
-                                {
-                                    "key": "contact",
-                                    "value": "",
-                                    "description": "Contact.",
-                                    "disabled": true
-                                },
-                                {
-                                    "key": "description",
-                                    "value": "",
-                                    "description": "Description detaill\u00e9e.",
-                                    "disabled": true
-                                },
-                                {
-                                    "key": "description_summary",
-                                    "value": "",
-                                    "description": "Description r\u00e9sum\u00e9.",
-                                    "disabled": true
-                                },
-                                {
-                                    "key": "with_promoter",
+                                    "key": "with_filters",
                                     "value": "false",
-                                    "description": "Afficher le promoteur.",
+                                    "description": "Ajouter les filtres de l'extraction",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "with_department",
+                                    "value": "false",
+                                    "description": "Ajouter le d\u00e9partement de l'extraction",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "with_launches",
+                                    "value": "false",
+                                    "description": "Ajouter les lancements de l'extraction",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "with_script",
+                                    "value": "false",
+                                    "description": "Ajouter le script lanceur de l'extraction",
                                     "disabled": false
                                 },
                                 {
@@ -834,7 +700,7 @@
                                     "disabled": false
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/event?name=&start_date=&end_date=&user_id=&place=&type=&nb_expected=&entrance=&entry_price=&contact=&description=&description_summary=&with_promoter=false&paginate=false"
+                            "raw": "{{baseUrl}}\/api\/extraction?department_id=&name=&script_id=&with_filters=false&with_department=false&with_launches=false&with_script=false&paginate=false"
                         },
                         "method": "GET",
                         "header": [
@@ -860,26 +726,44 @@
                     ]
                 },
                 {
-                    "name": "Affiche un d\u00e9cor",
+                    "name": "Affiche une extraction",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/event\/:id",
+                            "path": "api\/extraction\/:id",
                             "query": [
                                 {
-                                    "key": "with_promoter",
+                                    "key": "with_filters",
                                     "value": "false",
-                                    "description": "Afficher le promoteur.",
+                                    "description": "Ajouter les filtres de l'extraction",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "with_department",
+                                    "value": "false",
+                                    "description": "Ajouter le d\u00e9partement de l'extraction",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "with_launches",
+                                    "value": "false",
+                                    "description": "Ajouter les lancements de l'extraction",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "with_script",
+                                    "value": "false",
+                                    "description": "Ajouter le script lanceur de l'extraction",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/event\/:id?with_promoter=false",
+                            "raw": "{{baseUrl}}\/api\/extraction\/:id?with_filters=false&with_department=false&with_launches=false&with_script=false",
                             "variable": [
                                 {
                                     "id": "id",
                                     "key": "id",
                                     "value": "1",
-                                    "description": "L'\u00e9v\u00e9nement."
+                                    "description": "L'ID de l'extraction."
                                 }
                             ]
                         },
@@ -907,13 +791,13 @@
                     ]
                 },
                 {
-                    "name": "Cr\u00e9er un nouveau decor",
+                    "name": "Cr\u00e9er une nouvelle extraction",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/event",
+                            "path": "api\/extraction",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/event"
+                            "raw": "{{baseUrl}}\/api\/extraction"
                         },
                         "method": "POST",
                         "header": [
@@ -928,7 +812,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"Hiver Togo\",\"start_date\":\"2024-12-01\",\"end_date\":\"2024-12-01\",\"place\":\"Lom\u00e9\",\"type\":\"Dance\",\"nb_expected\":45,\"entrance\":\"free\",\"entry_price\":null,\"contact\":\"+228 90 90 90 90\",\"description\":\"description d\u00e9taill\u00e9\",\"description_summary\":\"description r\u00e9sum\u00e9\",\"poster\":\"...\"}"
+                            "raw": "{\"department_id\":1,\"name\":\"Balance-:j-1\",\"script_id\":0,\"filters\":[]}"
                         },
                         "description": ""
                     },
@@ -942,19 +826,19 @@
                     ]
                 },
                 {
-                    "name": "Mettre \u00e0 jour un \u00e9v\u00e9nement",
+                    "name": "Mettre \u00e0 jour une extraction",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/event\/:id",
+                            "path": "api\/extraction\/:id",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/event\/:id",
+                            "raw": "{{baseUrl}}\/api\/extraction\/:id",
                             "variable": [
                                 {
                                     "id": "id",
                                     "key": "id",
                                     "value": "1",
-                                    "description": "L'\u00e9v\u00e9nement."
+                                    "description": "integerrequired\tL'ID de l'extraction."
                                 }
                             ]
                         },
@@ -971,7 +855,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"Hiver Togo\",\"start_date\":\"2024-12-01\",\"end_date\":\"2024-12-01\",\"place\":\"Lom\u00e9\",\"type\":\"Dance\",\"nb_expected\":45,\"entrance\":\"free\",\"entry_price\":null,\"contact\":\"+228 90 90 90 90\",\"description\":\"description d\u00e9taill\u00e9\",\"description_summary\":\"description r\u00e9sum\u00e9\",\"poster\":\"...\"}"
+                            "raw": "{\"department_id\":1,\"name\":\"Balance-:j-1\",\"script_id\":0,\"filters\":[]}"
                         },
                         "description": ""
                     },
@@ -985,62 +869,19 @@
                     ]
                 },
                 {
-                    "name": "Mettre \u00e0 jour la validation d'un \u00e9v\u00e9nement",
+                    "name": "Supprime une extraction",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/event\/change-validation\/:id",
+                            "path": "api\/extraction\/:id",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/event\/change-validation\/:id",
+                            "raw": "{{baseUrl}}\/api\/extraction\/:id",
                             "variable": [
                                 {
                                     "id": "id",
                                     "key": "id",
                                     "value": "1",
-                                    "description": "L'\u00e9v\u00e9nement."
-                                }
-                            ]
-                        },
-                        "method": "PUT",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\"validation\":\"validated\"}"
-                        },
-                        "description": ""
-                    },
-                    "response": [
-                        {
-                            "header": [],
-                            "code": 200,
-                            "body": "{}",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "name": "Supprime un \u00e9v\u00e9nement",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/event\/:id",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/event\/:id",
-                            "variable": [
-                                {
-                                    "id": "id",
-                                    "key": "id",
-                                    "value": "1",
-                                    "description": "L'ID de l'utilisateur."
+                                    "description": "L'ID de l'extraction."
                                 }
                             ]
                         },
@@ -1070,56 +911,62 @@
             ]
         },
         {
-            "name": "Paiements",
-            "description": "\nEndPoints pour g\u00e9rer les paiements",
+            "name": "Extractions automatiques",
+            "description": "\nEndPoints pour g\u00e9rer les extractions automatiques",
             "item": [
                 {
-                    "name": "Affiche les paiements",
+                    "name": "Affiche les extractions automatiques",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/payment",
+                            "path": "api\/automatic-extraction",
                             "query": [
                                 {
-                                    "key": "user_id",
+                                    "key": "name",
                                     "value": "",
-                                    "description": "Promoteur.",
+                                    "description": "name Filtrer par de l'extraction automatique.",
                                     "disabled": true
                                 },
                                 {
-                                    "key": "nb_uses",
+                                    "key": "automatic_extraction_group_id",
                                     "value": "",
-                                    "description": "Nombre d'utilisation de d\u00e9cor.",
+                                    "description": "Filtrer par ID du groupe d'extraction automatique.",
                                     "disabled": true
                                 },
                                 {
-                                    "key": "amount",
+                                    "key": "extraction_id",
                                     "value": "",
-                                    "description": "Montant.",
+                                    "description": "Filtrer par ID de l'extraction.",
                                     "disabled": true
                                 },
                                 {
-                                    "key": "currency",
+                                    "key": "active",
                                     "value": "",
-                                    "description": "Devise.",
+                                    "description": "Filtrer par activation l'extraction.",
                                     "disabled": true
                                 },
                                 {
-                                    "key": "description",
+                                    "key": "script_id",
                                     "value": "",
-                                    "description": "Description.",
+                                    "description": "Filtrer par ID du robot.",
                                     "disabled": true
                                 },
                                 {
-                                    "key": "status",
-                                    "value": "",
-                                    "description": "Statut.",
-                                    "disabled": true
-                                },
-                                {
-                                    "key": "with_user",
+                                    "key": "with_automatic_extraction_group",
                                     "value": "false",
-                                    "description": "Afficher le promoteur.",
+                                    "description": "Ajouter le group d'extractions automatiques",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "with_extraction",
+                                    "value": "false",
+                                    "description": "Ajouter l'extraction",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "with_script",
+                                    "value": "false",
+                                    "description": "Ajouter le robot",
                                     "disabled": false
                                 },
                                 {
@@ -1129,7 +976,7 @@
                                     "disabled": false
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/payment?user_id=&nb_uses=&amount=&currency=&description=&status=&with_user=false&paginate=false"
+                            "raw": "{{baseUrl}}\/api\/automatic-extraction?name=&automatic_extraction_group_id=&extraction_id=&active=&script_id=&with_automatic_extraction_group=false&with_extraction=false&with_script=false&paginate=false"
                         },
                         "method": "GET",
                         "header": [
@@ -1155,26 +1002,38 @@
                     ]
                 },
                 {
-                    "name": "Affiche un paiement",
+                    "name": "Affiche une extraction automatique",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/payment\/:id",
+                            "path": "api\/automatic-extraction\/:id",
                             "query": [
                                 {
-                                    "key": "with_user",
+                                    "key": "with_automatic_extraction_group",
                                     "value": "false",
-                                    "description": "Afficher le promoteur.",
+                                    "description": "Ajouter le group d'extractions automatiques",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "with_extraction",
+                                    "value": "false",
+                                    "description": "Ajouter l'extraction",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "with_script",
+                                    "value": "false",
+                                    "description": "Ajouter le robot",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/payment\/:id?with_user=false",
+                            "raw": "{{baseUrl}}\/api\/automatic-extraction\/:id?with_automatic_extraction_group=false&with_extraction=false&with_script=false",
                             "variable": [
                                 {
                                     "id": "id",
                                     "key": "id",
                                     "value": "1",
-                                    "description": "Le paiement."
+                                    "description": "L'ID du groupe."
                                 }
                             ]
                         },
@@ -1202,38 +1061,13 @@
                     ]
                 },
                 {
-                    "name": "POST api\/payment\/callback",
+                    "name": "Cr\u00e9er une nouvelle extraction automatique",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/payment\/callback",
+                            "path": "api\/automatic-extraction",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/payment\/callback"
-                        },
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": ""
-                    },
-                    "response": []
-                },
-                {
-                    "name": "Cr\u00e9er un nouveau paiement",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/payment",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/payment"
+                            "raw": "{{baseUrl}}\/api\/automatic-extraction"
                         },
                         "method": "POST",
                         "header": [
@@ -1248,8 +1082,1863 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"country_code\":\"228\",\"phone_number\":\"91611135\",\"nb_uses\":5}"
+                            "raw": "{\"name\":\"DAT\",\"automatic_extraction_group_id\":1,\"extraction_id\":1,\"active\":1,\"automatic_extraction_filter_maps\":[],\"script_id\":1}"
                         },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Mettre \u00e0 jour un groupe d'extraction automatique",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/automatic-extraction\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/automatic-extraction\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "L'ID du groupe."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"DAT\",\"automatic_extraction_group_id\":1,\"extraction_id\":1,\"active\":1,\"automatic_extraction_filter_maps\":[],\"script_id\":1}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Supprime une automatic-extraction-group",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/automatic-extraction\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/automatic-extraction\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "L'ID du groupe."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Groupe d'extraction automatique",
+            "description": "\nEndPoints pour g\u00e9rer les groupes d'extraction automatique",
+            "item": [
+                {
+                    "name": "Affiche les groupes d'extraction automatique",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/automatic-extraction-group",
+                            "query": [
+                                {
+                                    "key": "name",
+                                    "value": "",
+                                    "description": "Filtrer par nom du groupe.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "active",
+                                    "value": "",
+                                    "description": "Filtrer par activit\u00e9 du groupe.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "mail_subject",
+                                    "value": "",
+                                    "description": "Filtrer par objet du mail associ\u00e9 au groupe.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "mail_content",
+                                    "value": "",
+                                    "description": "Filtrer par contenu du mail associ\u00e9 au groupe.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "receivers_mail",
+                                    "value": "",
+                                    "description": "Filtrer par receveurs du mail associ\u00e9 au groupe.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "receivers_cc_mail",
+                                    "value": "",
+                                    "description": "Filtrer par receveurs en copie du mail associ\u00e9 au groupe.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "with_automatic_extraction",
+                                    "value": "false",
+                                    "description": "Ajouter les extractions automatiques",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "paginate",
+                                    "value": "false",
+                                    "description": "Utiliser la pagination.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/automatic-extraction-group?name=&active=&mail_subject=&mail_content=&receivers_mail=&receivers_cc_mail=&with_automatic_extraction=false&paginate=false"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Affiche un groupe d'extraction automatique",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/automatic-extraction-group\/:id",
+                            "query": [
+                                {
+                                    "key": "with_automatic_extraction",
+                                    "value": "false",
+                                    "description": "Ajouter les extractions automatiques",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/automatic-extraction-group\/:id?with_automatic_extraction=false",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "L'ID du groupe."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Cr\u00e9er une nouveau groupe d'extraction automatique",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/automatic-extraction-group",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/automatic-extraction-group"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"Normal\",\"active\":1,\"mail_subject\":\"Extraction journali\u00e8re normale\",\"mail_content\":\"dums\",\"receivers_mail\":null,\"receivers_cc_mail\":null}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Mettre \u00e0 jour un groupe d'extraction automatique",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/automatic-extraction-group\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/automatic-extraction-group\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "L'ID du groupe."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"Normal\",\"active\":1,\"mail_subject\":\"Extraction journali\u00e8re normale\",\"mail_content\":\"dums\",\"receivers_mail\":null,\"receivers_cc_mail\":null}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Supprime une automatic-extraction-group",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/automatic-extraction-group\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/automatic-extraction-group\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "L'ID du groupe."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Lancements",
+            "description": "\nEndPoints pour g\u00e9rer les lancement",
+            "item": [
+                {
+                    "name": "Affiche les lancements",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/launch",
+                            "query": [
+                                {
+                                    "key": "extraction_id",
+                                    "value": "",
+                                    "description": "Filtrer par ID de l'extraction.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "extraction_file_name",
+                                    "value": "",
+                                    "description": "Filtrer par nom du fichier de l'extraction.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "status",
+                                    "value": "",
+                                    "description": "Filtrer par status du lancement.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "type",
+                                    "value": "",
+                                    "description": "Filtrer par type du lancement.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "file_path",
+                                    "value": "",
+                                    "description": "Filtrer par chemin du fichier extrait.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "launcher_id",
+                                    "value": "",
+                                    "description": "Filtrer par ID du lanceur.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "with_extraction",
+                                    "value": "false",
+                                    "description": "Afficher l'extraction du lancement.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "with_launch_data",
+                                    "value": "false",
+                                    "description": "Afficher les donn\u00e9es du lancement.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "paginate",
+                                    "value": "false",
+                                    "description": "Utiliser la pagination.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/launch?extraction_id=&extraction_file_name=&status=&type=&file_path=&launcher_id=&with_extraction=false&with_launch_data=false&paginate=false"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Affiche un lancement",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/launch\/:id",
+                            "query": [
+                                {
+                                    "key": "with_extraction",
+                                    "value": "false",
+                                    "description": "Afficher l'extraction du lancement.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "with_launch_data",
+                                    "value": "false",
+                                    "description": "Afficher les donn\u00e9es du lancement.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/launch\/:id?with_extraction=false&with_launch_data=false",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "L'ID du lancement."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Cr\u00e9er un nouveau lancement",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/launch",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/launch"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"extraction_id\":1,\"extraction_file_name\":\"DAT-04-05-2024\",\"launch_data\":[{\"filter_id\":1,\"value\":\"Damso\"}]}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Mettre \u00e0 jour un lancement",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/launch\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/launch\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "L'ID du lancement."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"status\":\"in-treatment\",\"file_path\":\"...\",\"error_message\":\"...\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Supprime un lancement",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/launch\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/launch\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "L'ID du lancement."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Lov",
+            "description": "\nEndPoints pour g\u00e9rer les lov",
+            "item": [
+                {
+                    "name": "Affiche les lov",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/lov",
+                            "query": [
+                                {
+                                    "key": "name",
+                                    "value": "",
+                                    "description": "Filtrer par nom de la lov.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "with_values",
+                                    "value": "false",
+                                    "description": "Ajouter les valeurs de la lov",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "paginate",
+                                    "value": "false",
+                                    "description": "Utiliser la pagination.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/lov?name=&with_values=false&paginate=false"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Affiche une lov",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/lov\/:id",
+                            "query": [
+                                {
+                                    "key": "with_values",
+                                    "value": "false",
+                                    "description": "Ajouter les valeurs de la lov",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/lov\/:id?with_values=false",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "L'ID de la lov."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Cr\u00e9er une nouvelle lov",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/lov",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/lov"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"Agence\",\"values\":[]}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Mettre \u00e0 jour une lov",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/lov\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/lov\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "L'ID de la lov."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"Agence\",\"values\":[]}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Supprime une lov",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/lov\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/lov\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "L'ID de la lov."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Op\u00e9rations",
+            "description": "\nEndPoints pour g\u00e9rer les op\u00e9rations",
+            "item": [
+                {
+                    "name": "Affiche les op\u00e9rations",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/operation",
+                            "query": [
+                                {
+                                    "key": "user_id",
+                                    "value": "",
+                                    "description": "Filtrer par ID de l'initiateur.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "lov_value_id",
+                                    "value": "",
+                                    "description": "Filtrer par ID du produit choisit.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "lov_value",
+                                    "value": "",
+                                    "description": "Filtrer par montant de produit choisit durant la saisie.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "quantity",
+                                    "value": "",
+                                    "description": "Filtrer par quantit\u00e9 du produit.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "customer_account_number",
+                                    "value": "",
+                                    "description": "Filtrer par num\u00e9ro de compte du client.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "status",
+                                    "value": "",
+                                    "description": "Filtrer par statut de l'op\u00e9ration.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "message",
+                                    "value": "",
+                                    "description": "Filtrer par message de l'op\u00e9ration.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "with_lov_value",
+                                    "value": "false",
+                                    "description": "Afficher la valeur du produit choisit \u00e0 l'\u00e9tat actuel.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "paginate",
+                                    "value": "false",
+                                    "description": "Utiliser la pagination.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/operation?user_id=&lov_value_id=&lov_value=&quantity=&customer_account_number=&status=&message=&with_lov_value=false&paginate=false"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Affiche une op\u00e9ration",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/operation\/:id",
+                            "query": [
+                                {
+                                    "key": "with_lov_value",
+                                    "value": "false",
+                                    "description": "Afficher la valeur du produit choisit \u00e0 l'\u00e9tat actuel.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/operation\/:id?with_lov_value=false",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "L'ID de l'operation."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Cr\u00e9er un nouveau operation",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/operation",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/operation"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"user_id\":1,\"lov_value_id\":1,\"quantity\":1,\"customer_account_number\":\"251658941001\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Mettre \u00e0 jour une operation",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/operation\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/operation\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "L'ID de l'operation."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"status\":\"1\",\"message\":\"1\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Supprime une operation",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/operation\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/operation\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "L'ID de l'operation."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Scripts",
+            "description": "\nEndPoints pour g\u00e9rer les script",
+            "item": [
+                {
+                    "name": "Affiche les scripts",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/script",
+                            "query": [
+                                {
+                                    "key": "name",
+                                    "value": "",
+                                    "description": "Filtrer par nom du script.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "file_path",
+                                    "value": "",
+                                    "description": "Filtrer par chemin du script.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "available",
+                                    "value": "",
+                                    "description": "Filtrer par disponibilit\u00e9 du script.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "with_extractions",
+                                    "value": "false",
+                                    "description": "Afficher les scripts.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "paginate",
+                                    "value": "false",
+                                    "description": "Utiliser la pagination.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/script?name=&file_path=&available=&with_extractions=false&paginate=false"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Affiche un script",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/script\/:id",
+                            "query": [
+                                {
+                                    "key": "with_extractions",
+                                    "value": "false",
+                                    "description": "Afficher les scripts.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/script\/:id?with_extractions=false",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "L'ID du script."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Cr\u00e9er un nouveau script",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/script",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/script"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"wextractor\",\"file\":\"data:@file\\\/x-python;base64,IyEudmVudi9iaW4vcHl0aG9uMwppbXBvcnQgb3MKaW1wb3J0IHN5cwppbXBvcnQgdGltZQppbXBvcnQgcGxhdGZvcm0KaW1wb3J0IHRocmVhZGluZwpmcm9tIExpYiBpbXBvcnQgUmVxCmltcG9ydCBwYW5kYXMgYXMgcGQKZnJvbSByaWNoLnByb2dyZXNzIGltcG9ydCAoU3Bpbm5lckNvbHVtbiwgVGV4dENvbHVtbiwgQmFyQ29sdW1uLCBQcm9ncmVzcywgVGltZUVsYXBzZWRDb2x1bW4pCmZyb20gTGliLlRhc2tEaXNwbGF5IGltcG9ydCBUYXNrRGlzcGxheQoKCgoKZGVmIHJ1bihhcmd2LCB0b19zaGFyZSk6CgliYXNlX3VybD0iaHR0cDovL3JlcG9ydGVyLmNvZmluYS5sb2NhbGhvc3QvYXBpIgoJd2l0aCBQcm9ncmVzcyhTcGlubmVyQ29sdW1uKCksVGV4dENvbHVtbigie3Rhc2suZGVzY3JpcHRpb259IiksQmFyQ29sdW1uKCksVGltZUVsYXBzZWRDb2x1bW4oKSxleHBhbmQ9VHJ1ZSkgYXMgcHJvZ3Jlc3M6CgkJdGFza19kaXNwbGF5ID0gVGFza0Rpc3BsYXkocHJvZ3Jlc3MsZiJSZWN1cMOpcmF0aW9uIGRlIGxhIGNvbmZpZ3VyYXRpb24iKQoJCWNvbmZEaWN0ID0gewoJCQkiZ3JvdXBfY29uZiIgOiBSZXEuZ2V0Q29uZmlnREYoImdyb3VwX2NvbmYiKSwKCQkJInZwbl9jb25mIiA6IFJlcS5nZXRDb25maWdERigidnBuX2NvbmYiKSwKCQkJImRiX2NvbmYiIDogUmVxLmdldENvbmZpZ0RGKCJkYl9jb25mIiksCgkJCSJlbWFpbF9jb25mIiA6IFJlcS5nZXRDb25maWdERigiZW1haWxfY29uZiIpLAoJCQkiZW1haWxfY29uZiIgOiBSZXEuZ2V0Q29uZmlnREYoImVtYWlsX2NvbmYiKSwKCQkJInNoYXJlX2NvbmYiIDogUmVxLmdldENvbmZpZ0RGKCJzaGFyZV9jb25mIiksCgkJfQoKCQlleHRyYWN0aW9uTGlzdCA9IFJlcS5nZXRMaXN0REYoZiJ7YmFzZV91cmx9L2V4dHJhY3Rpb24\\\/cGFnaW5hdGU9ZmFsc2UmIikKCQlwcmludChleHRyYWN0aW9uTGlzdFsiaWQiXSkKCQkjIGZvciBhcmcgaW4gYXJndjoKCQkjIAlwcmludChleHRyYWN0aW9uTGlzdFsiaWQiXS5zdHIuY29udGFpbnMoYXJnLCBjYXNlPUZhbHNlLCBuYT1GYWxzZSkpCgkJIyAJcGFzcwoJCXRhc2tfZGlzcGxheS5lbmQoKQoKCmlmIF9fbmFtZV9fID09ICJfX21haW5fXyI6Cgl2cG4gPSBOb25lCgl0b19zaGFyZSA9IE5vbmUKCWFyZ3YgPSBbXQoJZm9yIGFyZyBpbiBzeXMuYXJndlsxOl06CgkJaWYgYXJnID09ICItLW5vLXZwbiI6CgkJCXZwbiA9IEZhbHNlCgkJZWxpZiBhcmcgPT0gIi0tbm8tc2hhcmUiOgoJCQl0b19zaGFyZSA9IEZhbHNlCgkJZWxzZToKCQkJYXJndi5hcHBlbmQoYXJnKQoJaWYgcGxhdGZvcm0uc3lzdGVtKCkgPT0gIldpbmRvd3MiOgoJCXZwbiA9IEZhbHNlCgllbHNlOgoJCWlmIHZwbiA9PSBOb25lOgoJCQlyZXNwb25zZSA9ICIiCgkJCXdoaWxlIHRvX3NoYXJlID09IE5vbmUgYW5kIHJlc3BvbnNlIG5vdCBpbiBbIm8iLCAibiJdOgoJCQkJcmVzcG9uc2UgPSBpbnB1dCgiU2UgY29ubmVjdGVyIGF1IHZwbj8oby9uKTogIikubG93ZXIoKQoJCQl2cG4gPSByZXNwb25zZSA9PSAibyIKCQkJCgkJaWYgdnBuOgoJCQkjIHZwbl9jb25mID0gRXhjZWxGaWxlTWFuYWdlci5yZWFkKAoJCQkjIAkiRmlsZXMvZXh0cmFjdG9yLWZpbGVzL2V4dHJhY3Rvci1jb25maWcueGxzeCIsICJ2cG5fY29uZiIKCQkJIyApLmlsb2NbMF0KCQkJIyB0MSA9IHRocmVhZGluZy5UaHJlYWQoCgkJCSMgCXRhcmdldD1WUE5NYW5hZ2VyLmNvbm5lY3QsCgkJCSMgCWFyZ3M9WwoJCQkjIAkJdnBuX2NvbmZbIkhvc3QiXSwKCQkJIyAJCXZwbl9jb25mWyJQb3J0Il0sCgkJCSMgCQl2cG5fY29uZlsiVXNlciJdLAoJCQkjIAkJdnBuX2NvbmZbIlBhc3N3b3JkIl0sCgkJCSMgCQl2cG5fY29uZlsiQ2VydGlmaWNhdGUiXSwKCQkJIyAJXSwKCQkJIyApCgkJCSMgdDEuc3RhcnQoKQoJCQkjIHRpbWUuc2xlZXAoNjApCgkJCXBhc3MKCXJlc3BvbnNlID0gIiIKCXdoaWxlIHRvX3NoYXJlID09IE5vbmUgYW5kIHJlc3BvbnNlIG5vdCBpbiBbIm8iLCAibiJdOgoJCXJlc3BvbnNlID0gaW5wdXQoIlNlIGNvbm5lY3RlciBhdSBzZXJ2ZXVyIGRlIGZpY2hpZXI\\\/KG8vbik6ICIpLmxvd2VyKCkKCXRvX3NoYXJlID0gcmVzcG9uc2UgPT0gIm8iCgkKCXQyID0gdGhyZWFkaW5nLlRocmVhZCh0YXJnZXQ9cnVuLCBhcmdzPVthcmd2LCB0b19zaGFyZV0pCgl0Mi5zdGFydCgpCgoJIyBBdHRlbnRlIGRlIGxhIGZpbiBkdSB0aHJlYWQgZGV1eAoJdDIuam9pbigpCg==\",\"available\":1,\"type\":\"manual\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Mettre \u00e0 jour un script",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/script\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/script\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "L'ID du script."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"wextractor\",\"file\":\"data:@file\\\/x-python;base64,IyEudmVudi9iaW4vcHl0aG9uMwppbXBvcnQgb3MKaW1wb3J0IHN5cwppbXBvcnQgdGltZQppbXBvcnQgcGxhdGZvcm0KaW1wb3J0IHRocmVhZGluZwpmcm9tIExpYiBpbXBvcnQgUmVxCmltcG9ydCBwYW5kYXMgYXMgcGQKZnJvbSByaWNoLnByb2dyZXNzIGltcG9ydCAoU3Bpbm5lckNvbHVtbiwgVGV4dENvbHVtbiwgQmFyQ29sdW1uLCBQcm9ncmVzcywgVGltZUVsYXBzZWRDb2x1bW4pCmZyb20gTGliLlRhc2tEaXNwbGF5IGltcG9ydCBUYXNrRGlzcGxheQoKCgoKZGVmIHJ1bihhcmd2LCB0b19zaGFyZSk6CgliYXNlX3VybD0iaHR0cDovL3JlcG9ydGVyLmNvZmluYS5sb2NhbGhvc3QvYXBpIgoJd2l0aCBQcm9ncmVzcyhTcGlubmVyQ29sdW1uKCksVGV4dENvbHVtbigie3Rhc2suZGVzY3JpcHRpb259IiksQmFyQ29sdW1uKCksVGltZUVsYXBzZWRDb2x1bW4oKSxleHBhbmQ9VHJ1ZSkgYXMgcHJvZ3Jlc3M6CgkJdGFza19kaXNwbGF5ID0gVGFza0Rpc3BsYXkocHJvZ3Jlc3MsZiJSZWN1cMOpcmF0aW9uIGRlIGxhIGNvbmZpZ3VyYXRpb24iKQoJCWNvbmZEaWN0ID0gewoJCQkiZ3JvdXBfY29uZiIgOiBSZXEuZ2V0Q29uZmlnREYoImdyb3VwX2NvbmYiKSwKCQkJInZwbl9jb25mIiA6IFJlcS5nZXRDb25maWdERigidnBuX2NvbmYiKSwKCQkJImRiX2NvbmYiIDogUmVxLmdldENvbmZpZ0RGKCJkYl9jb25mIiksCgkJCSJlbWFpbF9jb25mIiA6IFJlcS5nZXRDb25maWdERigiZW1haWxfY29uZiIpLAoJCQkiZW1haWxfY29uZiIgOiBSZXEuZ2V0Q29uZmlnREYoImVtYWlsX2NvbmYiKSwKCQkJInNoYXJlX2NvbmYiIDogUmVxLmdldENvbmZpZ0RGKCJzaGFyZV9jb25mIiksCgkJfQoKCQlleHRyYWN0aW9uTGlzdCA9IFJlcS5nZXRMaXN0REYoZiJ7YmFzZV91cmx9L2V4dHJhY3Rpb24\\\/cGFnaW5hdGU9ZmFsc2UmIikKCQlwcmludChleHRyYWN0aW9uTGlzdFsiaWQiXSkKCQkjIGZvciBhcmcgaW4gYXJndjoKCQkjIAlwcmludChleHRyYWN0aW9uTGlzdFsiaWQiXS5zdHIuY29udGFpbnMoYXJnLCBjYXNlPUZhbHNlLCBuYT1GYWxzZSkpCgkJIyAJcGFzcwoJCXRhc2tfZGlzcGxheS5lbmQoKQoKCmlmIF9fbmFtZV9fID09ICJfX21haW5fXyI6Cgl2cG4gPSBOb25lCgl0b19zaGFyZSA9IE5vbmUKCWFyZ3YgPSBbXQoJZm9yIGFyZyBpbiBzeXMuYXJndlsxOl06CgkJaWYgYXJnID09ICItLW5vLXZwbiI6CgkJCXZwbiA9IEZhbHNlCgkJZWxpZiBhcmcgPT0gIi0tbm8tc2hhcmUiOgoJCQl0b19zaGFyZSA9IEZhbHNlCgkJZWxzZToKCQkJYXJndi5hcHBlbmQoYXJnKQoJaWYgcGxhdGZvcm0uc3lzdGVtKCkgPT0gIldpbmRvd3MiOgoJCXZwbiA9IEZhbHNlCgllbHNlOgoJCWlmIHZwbiA9PSBOb25lOgoJCQlyZXNwb25zZSA9ICIiCgkJCXdoaWxlIHRvX3NoYXJlID09IE5vbmUgYW5kIHJlc3BvbnNlIG5vdCBpbiBbIm8iLCAibiJdOgoJCQkJcmVzcG9uc2UgPSBpbnB1dCgiU2UgY29ubmVjdGVyIGF1IHZwbj8oby9uKTogIikubG93ZXIoKQoJCQl2cG4gPSByZXNwb25zZSA9PSAibyIKCQkJCgkJaWYgdnBuOgoJCQkjIHZwbl9jb25mID0gRXhjZWxGaWxlTWFuYWdlci5yZWFkKAoJCQkjIAkiRmlsZXMvZXh0cmFjdG9yLWZpbGVzL2V4dHJhY3Rvci1jb25maWcueGxzeCIsICJ2cG5fY29uZiIKCQkJIyApLmlsb2NbMF0KCQkJIyB0MSA9IHRocmVhZGluZy5UaHJlYWQoCgkJCSMgCXRhcmdldD1WUE5NYW5hZ2VyLmNvbm5lY3QsCgkJCSMgCWFyZ3M9WwoJCQkjIAkJdnBuX2NvbmZbIkhvc3QiXSwKCQkJIyAJCXZwbl9jb25mWyJQb3J0Il0sCgkJCSMgCQl2cG5fY29uZlsiVXNlciJdLAoJCQkjIAkJdnBuX2NvbmZbIlBhc3N3b3JkIl0sCgkJCSMgCQl2cG5fY29uZlsiQ2VydGlmaWNhdGUiXSwKCQkJIyAJXSwKCQkJIyApCgkJCSMgdDEuc3RhcnQoKQoJCQkjIHRpbWUuc2xlZXAoNjApCgkJCXBhc3MKCXJlc3BvbnNlID0gIiIKCXdoaWxlIHRvX3NoYXJlID09IE5vbmUgYW5kIHJlc3BvbnNlIG5vdCBpbiBbIm8iLCAibiJdOgoJCXJlc3BvbnNlID0gaW5wdXQoIlNlIGNvbm5lY3RlciBhdSBzZXJ2ZXVyIGRlIGZpY2hpZXI\\\/KG8vbik6ICIpLmxvd2VyKCkKCXRvX3NoYXJlID0gcmVzcG9uc2UgPT0gIm8iCgkKCXQyID0gdGhyZWFkaW5nLlRocmVhZCh0YXJnZXQ9cnVuLCBhcmdzPVthcmd2LCB0b19zaGFyZV0pCgl0Mi5zdGFydCgpCgoJIyBBdHRlbnRlIGRlIGxhIGZpbiBkdSB0aHJlYWQgZGV1eAoJdDIuam9pbigpCg==\",\"available\":1,\"type\":\"manual\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Supprime un script",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/script\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/script\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "L'ID du script."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Service",
+            "description": "\nEndPoints pour g\u00e9rer les services",
+            "item": [
+                {
+                    "name": "Affiche les service",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/service",
+                            "query": [
+                                {
+                                    "key": "name",
+                                    "value": "",
+                                    "description": "Filtrer par nom du service.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "file_path",
+                                    "value": "",
+                                    "description": "Filtrer par chemin du service.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "status",
+                                    "value": "",
+                                    "description": "Filtrer par statut du service.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "pid",
+                                    "value": "",
+                                    "description": "Filtrer par pid du service.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "paginate",
+                                    "value": "false",
+                                    "description": "Utiliser la pagination.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/service?name=&file_path=&status=&pid=&paginate=false"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Affiche un service",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/service\/:id",
+                            "query": [
+                                {
+                                    "key": "with_extractions",
+                                    "value": "false",
+                                    "description": "Afficher les service.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/service\/:id?with_extractions=false",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "L'ID du service."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Cr\u00e9er un nouveau service",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/service",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/service"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"wextractor\",\"description\":\"wextractor\",\"file\":\"data:@file\\\/x-python;base64,IyEudmVudi9iaW4vcHl0aG9uMwppbXBvcnQgb3MKaW1wb3J0IHN5cwppbXBvcnQgdGltZQppbXBvcnQgcGxhdGZvcm0KaW1wb3J0IHRocmVhZGluZwpmcm9tIExpYiBpbXBvcnQgUmVxCmltcG9ydCBwYW5kYXMgYXMgcGQKZnJvbSByaWNoLnByb2dyZXNzIGltcG9ydCAoU3Bpbm5lckNvbHVtbiwgVGV4dENvbHVtbiwgQmFyQ29sdW1uLCBQcm9ncmVzcywgVGltZUVsYXBzZWRDb2x1bW4pCmZyb20gTGliLlRhc2tEaXNwbGF5IGltcG9ydCBUYXNrRGlzcGxheQoKCgoKZGVmIHJ1bihhcmd2LCB0b19zaGFyZSk6CgliYXNlX3VybD0iaHR0cDovL3JlcG9ydGVyLmNvZmluYS5sb2NhbGhvc3QvYXBpIgoJd2l0aCBQcm9ncmVzcyhTcGlubmVyQ29sdW1uKCksVGV4dENvbHVtbigie3Rhc2suZGVzY3JpcHRpb259IiksQmFyQ29sdW1uKCksVGltZUVsYXBzZWRDb2x1bW4oKSxleHBhbmQ9VHJ1ZSkgYXMgcHJvZ3Jlc3M6CgkJdGFza19kaXNwbGF5ID0gVGFza0Rpc3BsYXkocHJvZ3Jlc3MsZiJSZWN1cMOpcmF0aW9uIGRlIGxhIGNvbmZpZ3VyYXRpb24iKQoJCWNvbmZEaWN0ID0gewoJCQkiZ3JvdXBfY29uZiIgOiBSZXEuZ2V0Q29uZmlnREYoImdyb3VwX2NvbmYiKSwKCQkJInZwbl9jb25mIiA6IFJlcS5nZXRDb25maWdERigidnBuX2NvbmYiKSwKCQkJImRiX2NvbmYiIDogUmVxLmdldENvbmZpZ0RGKCJkYl9jb25mIiksCgkJCSJlbWFpbF9jb25mIiA6IFJlcS5nZXRDb25maWdERigiZW1haWxfY29uZiIpLAoJCQkiZW1haWxfY29uZiIgOiBSZXEuZ2V0Q29uZmlnREYoImVtYWlsX2NvbmYiKSwKCQkJInNoYXJlX2NvbmYiIDogUmVxLmdldENvbmZpZ0RGKCJzaGFyZV9jb25mIiksCgkJfQoKCQlleHRyYWN0aW9uTGlzdCA9IFJlcS5nZXRMaXN0REYoZiJ7YmFzZV91cmx9L2V4dHJhY3Rpb24\\\/cGFnaW5hdGU9ZmFsc2UmIikKCQlwcmludChleHRyYWN0aW9uTGlzdFsiaWQiXSkKCQkjIGZvciBhcmcgaW4gYXJndjoKCQkjIAlwcmludChleHRyYWN0aW9uTGlzdFsiaWQiXS5zdHIuY29udGFpbnMoYXJnLCBjYXNlPUZhbHNlLCBuYT1GYWxzZSkpCgkJIyAJcGFzcwoJCXRhc2tfZGlzcGxheS5lbmQoKQoKCmlmIF9fbmFtZV9fID09ICJfX21haW5fXyI6Cgl2cG4gPSBOb25lCgl0b19zaGFyZSA9IE5vbmUKCWFyZ3YgPSBbXQoJZm9yIGFyZyBpbiBzeXMuYXJndlsxOl06CgkJaWYgYXJnID09ICItLW5vLXZwbiI6CgkJCXZwbiA9IEZhbHNlCgkJZWxpZiBhcmcgPT0gIi0tbm8tc2hhcmUiOgoJCQl0b19zaGFyZSA9IEZhbHNlCgkJZWxzZToKCQkJYXJndi5hcHBlbmQoYXJnKQoJaWYgcGxhdGZvcm0uc3lzdGVtKCkgPT0gIldpbmRvd3MiOgoJCXZwbiA9IEZhbHNlCgllbHNlOgoJCWlmIHZwbiA9PSBOb25lOgoJCQlyZXNwb25zZSA9ICIiCgkJCXdoaWxlIHRvX3NoYXJlID09IE5vbmUgYW5kIHJlc3BvbnNlIG5vdCBpbiBbIm8iLCAibiJdOgoJCQkJcmVzcG9uc2UgPSBpbnB1dCgiU2UgY29ubmVjdGVyIGF1IHZwbj8oby9uKTogIikubG93ZXIoKQoJCQl2cG4gPSByZXNwb25zZSA9PSAibyIKCQkJCgkJaWYgdnBuOgoJCQkjIHZwbl9jb25mID0gRXhjZWxGaWxlTWFuYWdlci5yZWFkKAoJCQkjIAkiRmlsZXMvZXh0cmFjdG9yLWZpbGVzL2V4dHJhY3Rvci1jb25maWcueGxzeCIsICJ2cG5fY29uZiIKCQkJIyApLmlsb2NbMF0KCQkJIyB0MSA9IHRocmVhZGluZy5UaHJlYWQoCgkJCSMgCXRhcmdldD1WUE5NYW5hZ2VyLmNvbm5lY3QsCgkJCSMgCWFyZ3M9WwoJCQkjIAkJdnBuX2NvbmZbIkhvc3QiXSwKCQkJIyAJCXZwbl9jb25mWyJQb3J0Il0sCgkJCSMgCQl2cG5fY29uZlsiVXNlciJdLAoJCQkjIAkJdnBuX2NvbmZbIlBhc3N3b3JkIl0sCgkJCSMgCQl2cG5fY29uZlsiQ2VydGlmaWNhdGUiXSwKCQkJIyAJXSwKCQkJIyApCgkJCSMgdDEuc3RhcnQoKQoJCQkjIHRpbWUuc2xlZXAoNjApCgkJCXBhc3MKCXJlc3BvbnNlID0gIiIKCXdoaWxlIHRvX3NoYXJlID09IE5vbmUgYW5kIHJlc3BvbnNlIG5vdCBpbiBbIm8iLCAibiJdOgoJCXJlc3BvbnNlID0gaW5wdXQoIlNlIGNvbm5lY3RlciBhdSBzZXJ2ZXVyIGRlIGZpY2hpZXI\\\/KG8vbik6ICIpLmxvd2VyKCkKCXRvX3NoYXJlID0gcmVzcG9uc2UgPT0gIm8iCgkKCXQyID0gdGhyZWFkaW5nLlRocmVhZCh0YXJnZXQ9cnVuLCBhcmdzPVthcmd2LCB0b19zaGFyZV0pCgl0Mi5zdGFydCgpCgoJIyBBdHRlbnRlIGRlIGxhIGZpbiBkdSB0aHJlYWQgZGV1eAoJdDIuam9pbigpCg==\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Mettre \u00e0 jour un service",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/service\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/service\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "L'ID du service."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"wextractor\",\"description\":\"wextractor\",\"file\":\"data:@file\\\/x-python;base64,IyEudmVudi9iaW4vcHl0aG9uMwppbXBvcnQgb3MKaW1wb3J0IHN5cwppbXBvcnQgdGltZQppbXBvcnQgcGxhdGZvcm0KaW1wb3J0IHRocmVhZGluZwpmcm9tIExpYiBpbXBvcnQgUmVxCmltcG9ydCBwYW5kYXMgYXMgcGQKZnJvbSByaWNoLnByb2dyZXNzIGltcG9ydCAoU3Bpbm5lckNvbHVtbiwgVGV4dENvbHVtbiwgQmFyQ29sdW1uLCBQcm9ncmVzcywgVGltZUVsYXBzZWRDb2x1bW4pCmZyb20gTGliLlRhc2tEaXNwbGF5IGltcG9ydCBUYXNrRGlzcGxheQoKCgoKZGVmIHJ1bihhcmd2LCB0b19zaGFyZSk6CgliYXNlX3VybD0iaHR0cDovL3JlcG9ydGVyLmNvZmluYS5sb2NhbGhvc3QvYXBpIgoJd2l0aCBQcm9ncmVzcyhTcGlubmVyQ29sdW1uKCksVGV4dENvbHVtbigie3Rhc2suZGVzY3JpcHRpb259IiksQmFyQ29sdW1uKCksVGltZUVsYXBzZWRDb2x1bW4oKSxleHBhbmQ9VHJ1ZSkgYXMgcHJvZ3Jlc3M6CgkJdGFza19kaXNwbGF5ID0gVGFza0Rpc3BsYXkocHJvZ3Jlc3MsZiJSZWN1cMOpcmF0aW9uIGRlIGxhIGNvbmZpZ3VyYXRpb24iKQoJCWNvbmZEaWN0ID0gewoJCQkiZ3JvdXBfY29uZiIgOiBSZXEuZ2V0Q29uZmlnREYoImdyb3VwX2NvbmYiKSwKCQkJInZwbl9jb25mIiA6IFJlcS5nZXRDb25maWdERigidnBuX2NvbmYiKSwKCQkJImRiX2NvbmYiIDogUmVxLmdldENvbmZpZ0RGKCJkYl9jb25mIiksCgkJCSJlbWFpbF9jb25mIiA6IFJlcS5nZXRDb25maWdERigiZW1haWxfY29uZiIpLAoJCQkiZW1haWxfY29uZiIgOiBSZXEuZ2V0Q29uZmlnREYoImVtYWlsX2NvbmYiKSwKCQkJInNoYXJlX2NvbmYiIDogUmVxLmdldENvbmZpZ0RGKCJzaGFyZV9jb25mIiksCgkJfQoKCQlleHRyYWN0aW9uTGlzdCA9IFJlcS5nZXRMaXN0REYoZiJ7YmFzZV91cmx9L2V4dHJhY3Rpb24\\\/cGFnaW5hdGU9ZmFsc2UmIikKCQlwcmludChleHRyYWN0aW9uTGlzdFsiaWQiXSkKCQkjIGZvciBhcmcgaW4gYXJndjoKCQkjIAlwcmludChleHRyYWN0aW9uTGlzdFsiaWQiXS5zdHIuY29udGFpbnMoYXJnLCBjYXNlPUZhbHNlLCBuYT1GYWxzZSkpCgkJIyAJcGFzcwoJCXRhc2tfZGlzcGxheS5lbmQoKQoKCmlmIF9fbmFtZV9fID09ICJfX21haW5fXyI6Cgl2cG4gPSBOb25lCgl0b19zaGFyZSA9IE5vbmUKCWFyZ3YgPSBbXQoJZm9yIGFyZyBpbiBzeXMuYXJndlsxOl06CgkJaWYgYXJnID09ICItLW5vLXZwbiI6CgkJCXZwbiA9IEZhbHNlCgkJZWxpZiBhcmcgPT0gIi0tbm8tc2hhcmUiOgoJCQl0b19zaGFyZSA9IEZhbHNlCgkJZWxzZToKCQkJYXJndi5hcHBlbmQoYXJnKQoJaWYgcGxhdGZvcm0uc3lzdGVtKCkgPT0gIldpbmRvd3MiOgoJCXZwbiA9IEZhbHNlCgllbHNlOgoJCWlmIHZwbiA9PSBOb25lOgoJCQlyZXNwb25zZSA9ICIiCgkJCXdoaWxlIHRvX3NoYXJlID09IE5vbmUgYW5kIHJlc3BvbnNlIG5vdCBpbiBbIm8iLCAibiJdOgoJCQkJcmVzcG9uc2UgPSBpbnB1dCgiU2UgY29ubmVjdGVyIGF1IHZwbj8oby9uKTogIikubG93ZXIoKQoJCQl2cG4gPSByZXNwb25zZSA9PSAibyIKCQkJCgkJaWYgdnBuOgoJCQkjIHZwbl9jb25mID0gRXhjZWxGaWxlTWFuYWdlci5yZWFkKAoJCQkjIAkiRmlsZXMvZXh0cmFjdG9yLWZpbGVzL2V4dHJhY3Rvci1jb25maWcueGxzeCIsICJ2cG5fY29uZiIKCQkJIyApLmlsb2NbMF0KCQkJIyB0MSA9IHRocmVhZGluZy5UaHJlYWQoCgkJCSMgCXRhcmdldD1WUE5NYW5hZ2VyLmNvbm5lY3QsCgkJCSMgCWFyZ3M9WwoJCQkjIAkJdnBuX2NvbmZbIkhvc3QiXSwKCQkJIyAJCXZwbl9jb25mWyJQb3J0Il0sCgkJCSMgCQl2cG5fY29uZlsiVXNlciJdLAoJCQkjIAkJdnBuX2NvbmZbIlBhc3N3b3JkIl0sCgkJCSMgCQl2cG5fY29uZlsiQ2VydGlmaWNhdGUiXSwKCQkJIyAJXSwKCQkJIyApCgkJCSMgdDEuc3RhcnQoKQoJCQkjIHRpbWUuc2xlZXAoNjApCgkJCXBhc3MKCXJlc3BvbnNlID0gIiIKCXdoaWxlIHRvX3NoYXJlID09IE5vbmUgYW5kIHJlc3BvbnNlIG5vdCBpbiBbIm8iLCAibiJdOgoJCXJlc3BvbnNlID0gaW5wdXQoIlNlIGNvbm5lY3RlciBhdSBzZXJ2ZXVyIGRlIGZpY2hpZXI\\\/KG8vbik6ICIpLmxvd2VyKCkKCXRvX3NoYXJlID0gcmVzcG9uc2UgPT0gIm8iCgkKCXQyID0gdGhyZWFkaW5nLlRocmVhZCh0YXJnZXQ9cnVuLCBhcmdzPVthcmd2LCB0b19zaGFyZV0pCgl0Mi5zdGFydCgpCgoJIyBBdHRlbnRlIGRlIGxhIGZpbiBkdSB0aHJlYWQgZGV1eAoJdDIuam9pbigpCg==\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Lancer un service",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/service\/start\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/service\/start\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "L'ID du service."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Stoper un service",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/service\/stop\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/service\/stop\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "L'ID du service."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Supprime un service",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/service\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/service\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "L'ID du service."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Taches planifi\u00e9s",
+            "description": "\nEndPoints pour g\u00e9rer les taches planifi\u00e9s",
+            "item": [
+                {
+                    "name": "Affiche les taches planifi\u00e9s",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/task-schedule",
+                            "query": [
+                                {
+                                    "key": "name",
+                                    "value": "",
+                                    "description": "Filtrer par nom de la tache planifi\u00e9e.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "time",
+                                    "value": "",
+                                    "description": "Filtrer par heure de la tache planifi\u00e9e.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "with_task_executions",
+                                    "value": "false",
+                                    "description": "Ajouter les executions de la tache planifi\u00e9",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "paginate",
+                                    "value": "false",
+                                    "description": "Utiliser la pagination.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/task-schedule?name=&time=&with_task_executions=false&paginate=false"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Affiche une tache planifi\u00e9e",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/task-schedule\/:id",
+                            "query": [
+                                {
+                                    "key": "with_task_executions",
+                                    "value": "false",
+                                    "description": "Ajouter les executions de la tache planifi\u00e9",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/task-schedule\/:id?with_task_executions=false",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "L'ID de la tache planifi\u00e9e."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Cr\u00e9er une nouvelle tache planifi\u00e9e",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/task-schedule",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/task-schedule"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"mawena\",\"days\":\"[\\\"monday\\\", \\\"friday\\\"]\",\"time\":\"15:15\",\"command\":\"echo \\\"dumsa\\\"\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Mettre \u00e0 jour une tache planifi\u00e9e",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/task-schedule\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/task-schedule\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "L'ID de la tache planifi\u00e9e."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"mawena\",\"days\":\"[\\\"monday\\\", \\\"friday\\\"]\",\"time\":\"15:15\",\"command\":\"echo \\\"dumsa\\\"\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Supprime une tache planifi\u00e9e",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/task-schedule\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/task-schedule\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "L'ID de la tache planifi\u00e9e."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
                         "description": ""
                     },
                     "response": [
@@ -1283,31 +2972,19 @@
                                 {
                                     "key": "email",
                                     "value": "",
-                                    "description": "Filtrer par email de l'utilisateur.",
+                                    "description": "Filtrer par valeur de l'utilisateur.",
                                     "disabled": true
                                 },
                                 {
                                     "key": "profile",
                                     "value": "",
-                                    "description": "Filtrer par profile de l'utilisateur.",
+                                    "description": "Filtrer par feuille de l'utilisateur.",
                                     "disabled": true
                                 },
                                 {
-                                    "key": "with_events",
+                                    "key": "with_departments",
                                     "value": "false",
-                                    "description": "Afficher les evenements.",
-                                    "disabled": false
-                                },
-                                {
-                                    "key": "with_decors",
-                                    "value": "false",
-                                    "description": "Afficher les d\u00e9cors.",
-                                    "disabled": false
-                                },
-                                {
-                                    "key": "with_payments",
-                                    "value": "false",
-                                    "description": "Afficher les paiements.",
+                                    "description": "Afficher les departements.",
                                     "disabled": false
                                 },
                                 {
@@ -1317,7 +2994,7 @@
                                     "disabled": false
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/user?name=&email=&profile=&with_events=false&with_decors=false&with_payments=false&paginate=false"
+                            "raw": "{{baseUrl}}\/api\/user?name=&email=&profile=&with_departments=false&paginate=false"
                         },
                         "method": "GET",
                         "header": [
@@ -1350,25 +3027,13 @@
                             "path": "api\/user\/:id",
                             "query": [
                                 {
-                                    "key": "with_events",
+                                    "key": "with_departments",
                                     "value": "false",
-                                    "description": "Afficher les evenements.",
-                                    "disabled": false
-                                },
-                                {
-                                    "key": "with_decors",
-                                    "value": "false",
-                                    "description": "Afficher les d\u00e9cors.",
-                                    "disabled": false
-                                },
-                                {
-                                    "key": "with_payments",
-                                    "value": "false",
-                                    "description": "Afficher les paiements.",
+                                    "description": "Afficher les departements.",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/user\/:id?with_events=false&with_decors=false&with_payments=false",
+                            "raw": "{{baseUrl}}\/api\/user\/:id?with_departments=false",
                             "variable": [
                                 {
                                     "id": "id",
@@ -1423,7 +3088,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"charles.gamligo\",\"email\":\"charles.gamligo@cofinacorp.com\",\"password\":\"P@sse123\",\"activated\":0,\"profile\":\"admin\",\"picture\":\"0\"}"
+                            "raw": "{\"name\":\"charles.gamligo\",\"email\":\"charles.gamligo@cofinacorp.com\",\"password\":\"P@sse123\",\"activated\":\"1\",\"profile\":\"admin\",\"password_change_required\":\"0\",\"departments\":\"[1, 2, 3]\"}"
                         },
                         "description": ""
                     },
@@ -1458,7 +3123,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"old_password\":\"itaque\",\"new_password\":\"alias\",\"new_password_confirmation\":\"non\"}"
+                            "raw": "{\"old_password\":\"soluta\",\"new_password\":\"perspiciatis\",\"new_password_confirmation\":\"quo\"}"
                         },
                         "description": ""
                     },
@@ -1501,7 +3166,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"charles.gamligo\",\"email\":\"charles.gamligo@cofinacorp.com\",\"password\":\"P@sse123\",\"activated\":0,\"profile\":\"admin\",\"picture\":\"0\"}"
+                            "raw": "{\"name\":\"charles.gamligo\",\"email\":\"charles.gamligo@cofinacorp.com\",\"password\":\"P@sse123\",\"activated\":\"1\",\"profile\":\"admin\",\"password_change_required\":\"0\",\"departments\":\"[1, 2, 3]\"}"
                         },
                         "description": ""
                     },

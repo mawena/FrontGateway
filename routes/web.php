@@ -10,9 +10,10 @@ use App\Http\Controllers\Front\UserController;
 use App\Http\Controllers\Front\Visitor\HomeController;
 use Illuminate\Support\Facades\Route;
 
-Route::get("test", function(){
-	return view("test");
-});
+
+Route::get('admin/v2/{any?}', function () {
+	return view('application');
+})->where('any', '.*');
 
 Route::controller(HomeController::class)->as('visitor.')->group(function () {
 	Route::get('/', function () {
