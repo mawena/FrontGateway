@@ -1,47 +1,21 @@
 openapi: 3.0.3
 info:
-  title: Reporter
+  title: Pecorator
   description: ''
   version: 1.0.0
 servers:
   -
-    url: 'https://reporter.cofina.localhost'
+    url: 'http://pecorator.ulrich.client'
 paths:
-  /api/auth/login:
+  /api/auth/register:
     post:
-      summary: 'Connecte un utilisateur'
-      operationId: connecteUnUtilisateur
+      summary: ''
+      operationId: postApiAuthRegister
       description: ''
       parameters: []
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example: {  }
-                properties: {  }
+      responses: {  }
       tags:
         - Authentification
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                email:
-                  type: string
-                  description: "L'email de l'utilsateur."
-                  example: admin@cofinacorp.com
-                password:
-                  type: string
-                  description: "Le mot de passe complet de l'utilisateur."
-                  example: 'Coftg@20$*21ù!ad'
-              required:
-                - email
-                - password
   /api/auth/show:
     get:
       summary: "Affiche l'utilisateur connecté"
@@ -78,44 +52,26 @@ paths:
       parameters:
         -
           in: query
-          name: name
-          description: 'Filtrer par nom de la configuration.'
+          name: key
+          description: Clé.
           example: null
           required: false
           schema:
             type: string
-            description: 'Filtrer par nom de la configuration.'
+            description: Clé.
             example: null
+            nullable: false
         -
           in: query
           name: value
-          description: 'Filtrer par valeur de la configuration.'
+          description: Valeur.
           example: null
           required: false
           schema:
             type: string
-            description: 'Filtrer par valeur de la configuration.'
+            description: Valeur.
             example: null
-        -
-          in: query
-          name: sheet
-          description: 'Filtrer par feuille de la configuration.'
-          example: null
-          required: false
-          schema:
-            type: string
-            description: 'Filtrer par feuille de la configuration.'
-            example: null
-        -
-          in: query
-          name: line
-          description: 'Filtrer par ligne dans la feuille de la configuration.'
-          example: null
-          required: false
-          schema:
-            type: integer
-            description: 'Filtrer par ligne dans la feuille de la configuration.'
-            example: null
+            nullable: false
         -
           in: query
           name: paginate
@@ -126,6 +82,7 @@ paths:
             type: string
             description: 'Utiliser la pagination.'
             example: 'false'
+            nullable: false
       responses:
         200:
           description: ''
@@ -136,7 +93,7 @@ paths:
                 example: {  }
                 properties: {  }
       tags:
-        - Configurations
+        - Configuration
     post:
       summary: 'Créer une nouvelle configuration'
       operationId: crerUneNouvelleConfiguration
@@ -152,7 +109,7 @@ paths:
                 example: {  }
                 properties: {  }
       tags:
-        - Configurations
+        - Configuration
       requestBody:
         required: false
         content:
@@ -160,22 +117,20 @@ paths:
             schema:
               type: object
               properties:
-                name:
+                key:
                   type: string
-                  description: 'Le nom de la configuration.'
-                  example: ServerAddress
+                  description: Clé.
+                  example: decor_unit_price
+                  nullable: false
                 value:
                   type: string
-                  description: 'La valeur de la configuration.'
-                  example: 10.228.50.12
-                sheet:
-                  type: string
-                  description: "L'heure de l'ancement de la configuration."
-                  example: db_config
+                  description: Valeur.
+                  example: '25'
+                  nullable: false
   '/api/configuration/{id}':
     get:
-      summary: 'Affiche une configuration'
-      operationId: afficheUneConfiguration
+      summary: 'Affiche un configuration'
+      operationId: afficheUnConfiguration
       description: ''
       parameters: []
       responses:
@@ -188,7 +143,7 @@ paths:
                 example: {  }
                 properties: {  }
       tags:
-        - Configurations
+        - Configuration
     put:
       summary: 'Mettre à jour une configuration'
       operationId: mettreJourUneConfiguration
@@ -204,7 +159,7 @@ paths:
                 example: {  }
                 properties: {  }
       tags:
-        - Configurations
+        - Configuration
       requestBody:
         required: false
         content:
@@ -212,22 +167,11 @@ paths:
             schema:
               type: object
               properties:
-                name:
-                  type: string
-                  description: 'Le nom de la configuration.'
-                  example: ServerAddress
                 value:
                   type: string
-                  description: 'La valeur de la configuration.'
-                  example: 10.228.50.15
-                sheet:
-                  type: string
-                  description: "L'heure de l'ancement de la configuration."
-                  example: db_config
-                line:
-                  type: integer
-                  description: 'La ligne de la feuille de la configuration.'
-                  example: 1
+                  description: Valeur.
+                  example: '25'
+                  nullable: false
     delete:
       summary: 'Supprime une configuration'
       operationId: supprimeUneConfiguration
@@ -243,12 +187,12 @@ paths:
                 example: {  }
                 properties: {  }
       tags:
-        - Configurations
+        - Configuration
     parameters:
       -
         in: path
         name: id
-        description: "Optional parameter. L'ID de la configuration."
+        description: 'Optional parameter. Configuration.'
         required: true
         schema:
           type: integer
@@ -259,42 +203,89 @@ paths:
           present:
             summary: 'When the value is present'
             value: 1
-  /api/department:
+  /api/decor:
     get:
-      summary: 'Affiche les départements'
-      operationId: afficheLesDpartements
+      summary: 'Affiche les decors'
+      operationId: afficheLesDecors
       description: ''
       parameters:
         -
           in: query
           name: name
-          description: 'Filtrer par nom du département.'
+          description: Nom.
           example: null
           required: false
           schema:
             type: string
-            description: 'Filtrer par nom du département.'
+            description: Nom.
             example: null
+            nullable: false
         -
           in: query
-          name: with_extractions
-          description: 'Afficher les extractions.'
+          name: start_use
+          description: "Date début d'utilisation."
+          example: null
+          required: false
+          schema:
+            type: string
+            description: "Date début d'utilisation."
+            example: null
+            nullable: false
+        -
+          in: query
+          name: end_use
+          description: "Date fin d'utilisation."
+          example: null
+          required: false
+          schema:
+            type: string
+            description: "Date fin d'utilisation."
+            example: null
+            nullable: false
+        -
+          in: query
+          name: event_id
+          description: Evenement.
+          example: null
+          required: false
+          schema:
+            type: string
+            description: Evenement.
+            example: null
+            nullable: false
+        -
+          in: query
+          name: user_id
+          description: Créateur.
+          example: null
+          required: false
+          schema:
+            type: string
+            description: Créateur.
+            example: null
+            nullable: false
+        -
+          in: query
+          name: with_event
+          description: "Afficher l'décor."
           example: 'false'
           required: false
           schema:
             type: string
-            description: 'Afficher les extractions.'
+            description: "Afficher l'décor."
             example: 'false'
+            nullable: false
         -
           in: query
-          name: with_users
-          description: 'Afficher les utilisateurs.'
+          name: with_promoter
+          description: 'Afficher le promoteur.'
           example: 'false'
           required: false
           schema:
             type: string
-            description: 'Afficher les utilisateurs.'
+            description: 'Afficher le promoteur.'
             example: 'false'
+            nullable: false
         -
           in: query
           name: paginate
@@ -305,6 +296,7 @@ paths:
             type: string
             description: 'Utiliser la pagination.'
             example: 'false'
+            nullable: false
       responses:
         200:
           description: ''
@@ -315,10 +307,10 @@ paths:
                 example: {  }
                 properties: {  }
       tags:
-        - Départements
+        - Decors
     post:
-      summary: 'Créer un nouveau departement'
-      operationId: crerUnNouveauDepartement
+      summary: 'Créer un nouveau decor'
+      operationId: crerUnNouveauDecor
       description: ''
       parameters: []
       responses:
@@ -331,7 +323,7 @@ paths:
                 example: {  }
                 properties: {  }
       tags:
-        - Départements
+        - Decors
       requestBody:
         required: false
         content:
@@ -341,34 +333,57 @@ paths:
               properties:
                 name:
                   type: string
-                  description: 'Le nom du département.'
-                  example: IT
-  '/api/department/{id}':
+                  description: Nom.
+                  example: Base
+                  nullable: false
+                file:
+                  type: string
+                  description: 'Le décor.'
+                  example: ...
+                  nullable: false
+                start_use:
+                  type: string
+                  description: "Date début d'utilisation."
+                  example: '2024-10-01'
+                  nullable: false
+                end_use:
+                  type: string
+                  description: "Date fin d'utilisation."
+                  example: '2025-01-31'
+                  nullable: false
+                event_id:
+                  type: string
+                  description: Evenement.
+                  example: '1'
+                  nullable: false
+  '/api/decor/{id}':
     get:
-      summary: 'Affiche un departement'
-      operationId: afficheUnDepartement
+      summary: 'Affiche un décor'
+      operationId: afficheUnDcor
       description: ''
       parameters:
         -
           in: query
-          name: with_extractions
-          description: 'Afficher les extractions.'
+          name: with_event
+          description: "Afficher l'décor."
           example: 'false'
           required: false
           schema:
             type: string
-            description: 'Afficher les extractions.'
+            description: "Afficher l'décor."
             example: 'false'
+            nullable: false
         -
           in: query
-          name: with_users
-          description: 'Afficher les utilisateurs.'
+          name: with_user
+          description: 'Afficher le créateur.'
           example: 'false'
           required: false
           schema:
             type: string
-            description: 'Afficher les utilisateurs.'
+            description: 'Afficher le créateur.'
             example: 'false'
+            nullable: false
       responses:
         200:
           description: ''
@@ -379,10 +394,10 @@ paths:
                 example: {  }
                 properties: {  }
       tags:
-        - Départements
+        - Decors
     put:
-      summary: 'Mettre à jour un departement'
-      operationId: mettreJourUnDepartement
+      summary: 'Mettre à jour un decor'
+      operationId: mettreJourUnDecor
       description: ''
       parameters: []
       responses:
@@ -395,7 +410,7 @@ paths:
                 example: {  }
                 properties: {  }
       tags:
-        - Départements
+        - Decors
       requestBody:
         required: false
         content:
@@ -405,11 +420,32 @@ paths:
               properties:
                 name:
                   type: string
-                  description: 'Le nom du département.'
-                  example: IT
+                  description: Nom.
+                  example: Base
+                  nullable: false
+                file:
+                  type: string
+                  description: 'Le décor.'
+                  example: ...
+                  nullable: false
+                start_use:
+                  type: string
+                  description: "Date début d'utilisation."
+                  example: '2024-10-01'
+                  nullable: false
+                end_use:
+                  type: string
+                  description: "Date fin d'utilisation."
+                  example: '2025-01-31'
+                  nullable: false
+                event_id:
+                  type: string
+                  description: Evenement.
+                  example: '1'
+                  nullable: false
     delete:
-      summary: 'Supprime un departement'
-      operationId: supprimeUnDepartement
+      summary: 'Supprime un decor'
+      operationId: supprimeUnDecor
       description: ''
       parameters: []
       responses:
@@ -422,12 +458,12 @@ paths:
                 example: {  }
                 properties: {  }
       tags:
-        - Départements
+        - Decors
     parameters:
       -
         in: path
         name: id
-        description: "Optional parameter. L'ID du département."
+        description: "Optional parameter. L'ID du decor."
         required: true
         schema:
           type: integer
@@ -438,1105 +474,279 @@ paths:
           present:
             summary: 'When the value is present'
             value: 1
-  /api/test:
-    get:
-      summary: ''
-      operationId: getApiTest
+  '/api/decor/change-validation/{id}':
+    put:
+      summary: "Mettre à jour la validation d'un décor"
+      operationId: mettreJourLaValidationDunDcor
       description: ''
       parameters: []
       responses:
         200:
           description: ''
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
-                example: ''
+                type: object
+                example: {  }
+                properties: {  }
+      tags:
+        - Decors
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                validation:
+                  type: string
+                  description: 'Nouveau statut.'
+                  example: validated
+                  nullable: false
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'Le décor.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/decor/use/{id}':
+    put:
+      summary: "Informer le backend de l'utilisation d'un decor"
+      operationId: informerLeBackendDeLutilisationDunDecor
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {  }
+                properties: {  }
+      tags:
+        - Decors
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                validation:
+                  type: string
+                  description: 'Nouveau statut.'
+                  example: validated
+                  nullable: false
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'Le décor.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/manage-project:
+    post:
+      summary: ''
+      operationId: postApiManageProject
+      description: ''
+      parameters: []
+      responses: {  }
       tags:
         - Endpoints
-  /api/extraction:
-    get:
-      summary: 'Affiche les extractions'
-      operationId: afficheLesExtractions
-      description: ''
-      parameters:
-        -
-          in: query
-          name: department_id
-          description: "Filtrer par ID de département de l'extraction."
-          example: null
-          required: false
-          schema:
-            type: string
-            description: "Filtrer par ID de département de l'extraction."
-            example: null
-        -
-          in: query
-          name: name
-          description: "Filtrer par nom de l'extraction."
-          example: null
-          required: false
-          schema:
-            type: string
-            description: "Filtrer par nom de l'extraction."
-            example: null
-        -
-          in: query
-          name: script_id
-          description: "Filtrer par script lanceur de l'extraction."
-          example: null
-          required: false
-          schema:
-            type: string
-            description: "Filtrer par script lanceur de l'extraction."
-            example: null
-        -
-          in: query
-          name: with_filters
-          description: "Ajouter les filtres de l'extraction"
-          example: 'false'
-          required: false
-          schema:
-            type: string
-            description: "Ajouter les filtres de l'extraction"
-            example: 'false'
-        -
-          in: query
-          name: with_department
-          description: "Ajouter le département de l'extraction"
-          example: 'false'
-          required: false
-          schema:
-            type: string
-            description: "Ajouter le département de l'extraction"
-            example: 'false'
-        -
-          in: query
-          name: with_launches
-          description: "Ajouter les lancements de l'extraction"
-          example: 'false'
-          required: false
-          schema:
-            type: string
-            description: "Ajouter les lancements de l'extraction"
-            example: 'false'
-        -
-          in: query
-          name: with_script
-          description: "Ajouter le script lanceur de l'extraction"
-          example: 'false'
-          required: false
-          schema:
-            type: string
-            description: "Ajouter le script lanceur de l'extraction"
-            example: 'false'
-        -
-          in: query
-          name: paginate
-          description: 'Utiliser la pagination.'
-          example: 'false'
-          required: false
-          schema:
-            type: string
-            description: 'Utiliser la pagination.'
-            example: 'false'
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example: {  }
-                properties: {  }
-      tags:
-        - Extractions
-    post:
-      summary: 'Créer une nouvelle extraction'
-      operationId: crerUneNouvelleExtraction
-      description: ''
-      parameters: []
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example: {  }
-                properties: {  }
-      tags:
-        - Extractions
       requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                department_id:
-                  type: integer
-                  description: "ID de département de l'extraction."
-                  example: 1
-                name:
-                  type: string
-                  description: "nom de l'extraction."
-                  example: 'Balance-:j-1'
-                script_id:
-                  type: integer
-                  description: "ID du script lanceur de l'extraction."
-                  example: 0
-                filters:
-                  type: array
-                  description: "les filtres de l'extraction."
-                  example: []
-                  items:
-                    type: string
-  '/api/extraction/{id}':
-    get:
-      summary: 'Affiche une extraction'
-      operationId: afficheUneExtraction
-      description: ''
-      parameters:
-        -
-          in: query
-          name: with_filters
-          description: "Ajouter les filtres de l'extraction"
-          example: 'false'
-          required: false
-          schema:
-            type: string
-            description: "Ajouter les filtres de l'extraction"
-            example: 'false'
-        -
-          in: query
-          name: with_department
-          description: "Ajouter le département de l'extraction"
-          example: 'false'
-          required: false
-          schema:
-            type: string
-            description: "Ajouter le département de l'extraction"
-            example: 'false'
-        -
-          in: query
-          name: with_launches
-          description: "Ajouter les lancements de l'extraction"
-          example: 'false'
-          required: false
-          schema:
-            type: string
-            description: "Ajouter les lancements de l'extraction"
-            example: 'false'
-        -
-          in: query
-          name: with_script
-          description: "Ajouter le script lanceur de l'extraction"
-          example: 'false'
-          required: false
-          schema:
-            type: string
-            description: "Ajouter le script lanceur de l'extraction"
-            example: 'false'
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example: {  }
-                properties: {  }
-      tags:
-        - Extractions
-    put:
-      summary: 'Mettre à jour une extraction'
-      operationId: mettreJourUneExtraction
-      description: ''
-      parameters: []
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example: {  }
-                properties: {  }
-      tags:
-        - Extractions
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                department_id:
-                  type: integer
-                  description: "ID de département de l'extraction."
-                  example: 1
-                name:
-                  type: string
-                  description: "nom de l'extraction."
-                  example: 'Balance-:j-1'
-                script_id:
-                  type: integer
-                  description: "ID du script lanceur de l'extraction."
-                  example: 0
-                filters:
-                  type: array
-                  description: "les filtres de l'extraction."
-                  example: []
-                  items:
-                    type: string
-    delete:
-      summary: 'Supprime une extraction'
-      operationId: supprimeUneExtraction
-      description: ''
-      parameters: []
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example: {  }
-                properties: {  }
-      tags:
-        - Extractions
-    parameters:
-      -
-        in: path
-        name: id
-        description: "Optional parameter. L'ID de l'extraction."
         required: true
-        schema:
-          type: integer
-        examples:
-          omitted:
-            summary: 'When the value is omitted'
-            value: ''
-          present:
-            summary: 'When the value is present'
-            value: 1
-  /api/automatic-extraction:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                action:
+                  type: string
+                  description: ''
+                  example: transfer
+                  nullable: false
+                  enum:
+                    - download
+                    - transfer
+                    - delete
+                project_path:
+                  type: string
+                  description: ''
+                  example: non
+                  nullable: false
+                target_server:
+                  type: string
+                  description: ''
+                  example: distinctio
+                  nullable: true
+                target_path:
+                  type: string
+                  description: ''
+                  example: sapiente
+                  nullable: true
+                target_port:
+                  type: string
+                  description: ''
+                  example: recusandae
+                  nullable: true
+              required:
+                - action
+                - project_path
+  /api/event:
     get:
-      summary: 'Affiche les extractions automatiques'
-      operationId: afficheLesExtractionsAutomatiques
+      summary: 'Affiche les événement'
+      operationId: afficheLesvnement
       description: ''
       parameters:
         -
           in: query
           name: name
-          description: "name Filtrer par de l'extraction automatique."
+          description: Nom.
           example: null
           required: false
           schema:
             type: string
-            description: "name Filtrer par de l'extraction automatique."
+            description: Nom.
             example: null
+            nullable: false
         -
           in: query
-          name: automatic_extraction_group_id
-          description: "Filtrer par ID du groupe d'extraction automatique."
+          name: start_date
+          description: 'Date de début.'
           example: null
           required: false
           schema:
-            type: integer
-            description: "Filtrer par ID du groupe d'extraction automatique."
+            type: string
+            description: 'Date de début.'
             example: null
+            nullable: false
         -
           in: query
-          name: extraction_id
-          description: "Filtrer par ID de l'extraction."
+          name: end_date
+          description: 'Date de fin.'
           example: null
           required: false
           schema:
-            type: integer
-            description: "Filtrer par ID de l'extraction."
+            type: string
+            description: 'Date de fin.'
             example: null
+            nullable: false
         -
           in: query
-          name: active
-          description: "Filtrer par activation l'extraction."
-          example: null
-          required: false
-          schema:
-            type: integer
-            description: "Filtrer par activation l'extraction."
-            example: null
-        -
-          in: query
-          name: script_id
-          description: 'Filtrer par ID du robot.'
+          name: user_id
+          description: Créateur.
           example: null
           required: false
           schema:
             type: integer
-            description: 'Filtrer par ID du robot.'
+            description: Créateur.
             example: null
+            nullable: false
         -
           in: query
-          name: with_automatic_extraction_group
-          description: "Ajouter le group d'extractions automatiques"
-          example: 'false'
-          required: false
-          schema:
-            type: string
-            description: "Ajouter le group d'extractions automatiques"
-            example: 'false'
-        -
-          in: query
-          name: with_extraction
-          description: "Ajouter l'extraction"
-          example: 'false'
-          required: false
-          schema:
-            type: string
-            description: "Ajouter l'extraction"
-            example: 'false'
-        -
-          in: query
-          name: with_script
-          description: 'Ajouter le robot'
-          example: 'false'
-          required: false
-          schema:
-            type: string
-            description: 'Ajouter le robot'
-            example: 'false'
-        -
-          in: query
-          name: paginate
-          description: 'Utiliser la pagination.'
-          example: 'false'
-          required: false
-          schema:
-            type: string
-            description: 'Utiliser la pagination.'
-            example: 'false'
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example: {  }
-                properties: {  }
-      tags:
-        - 'Extractions automatiques'
-    post:
-      summary: 'Créer une nouvelle extraction automatique'
-      operationId: crerUneNouvelleExtractionAutomatique
-      description: ''
-      parameters: []
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example: {  }
-                properties: {  }
-      tags:
-        - 'Extractions automatiques'
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  description: "nom de l'extraction automatique."
-                  example: DAT
-                automatic_extraction_group_id:
-                  type: integer
-                  description: "ID du groupe d'extraction automatique."
-                  example: 1
-                extraction_id:
-                  type: integer
-                  description: "ID de l'extraction."
-                  example: 1
-                active:
-                  type: integer
-                  description: "L'activation de l'extraction automatique."
-                  example: 1
-                automatic_extraction_filter_maps:
-                  type: array
-                  description: "Le mapping des filtres de l'extraction."
-                  example: []
-                  items:
-                    type: string
-                script_id:
-                  type: integer
-                  description: 'ID du robot.'
-                  example: 1
-  '/api/automatic-extraction/{id}':
-    get:
-      summary: 'Affiche une extraction automatique'
-      operationId: afficheUneExtractionAutomatique
-      description: ''
-      parameters:
-        -
-          in: query
-          name: with_automatic_extraction_group
-          description: "Ajouter le group d'extractions automatiques"
-          example: 'false'
-          required: false
-          schema:
-            type: string
-            description: "Ajouter le group d'extractions automatiques"
-            example: 'false'
-        -
-          in: query
-          name: with_extraction
-          description: "Ajouter l'extraction"
-          example: 'false'
-          required: false
-          schema:
-            type: string
-            description: "Ajouter l'extraction"
-            example: 'false'
-        -
-          in: query
-          name: with_script
-          description: 'Ajouter le robot'
-          example: 'false'
-          required: false
-          schema:
-            type: string
-            description: 'Ajouter le robot'
-            example: 'false'
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example: {  }
-                properties: {  }
-      tags:
-        - 'Extractions automatiques'
-    put:
-      summary: "Mettre à jour un groupe d'extraction automatique"
-      operationId: mettreJourUnGroupeDextractionAutomatique
-      description: ''
-      parameters: []
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example: {  }
-                properties: {  }
-      tags:
-        - 'Extractions automatiques'
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  description: "nom de l'extraction automatique."
-                  example: DAT
-                automatic_extraction_group_id:
-                  type: integer
-                  description: "ID du groupe d'extraction automatique."
-                  example: 1
-                extraction_id:
-                  type: integer
-                  description: "ID de l'extraction."
-                  example: 1
-                active:
-                  type: integer
-                  description: "l'activation de l'extraction automatique."
-                  example: 1
-                automatic_extraction_filter_maps:
-                  type: array
-                  description: "Le mapping des filtres de l'extraction."
-                  example: []
-                  items:
-                    type: string
-                script_id:
-                  type: integer
-                  description: 'ID du robot.'
-                  example: 1
-    delete:
-      summary: 'Supprime une automatic-extraction-group'
-      operationId: supprimeUneAutomaticExtractionGroup
-      description: ''
-      parameters: []
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example: {  }
-                properties: {  }
-      tags:
-        - 'Extractions automatiques'
-    parameters:
-      -
-        in: path
-        name: id
-        description: "Optional parameter. L'ID du groupe."
-        required: true
-        schema:
-          type: integer
-        examples:
-          omitted:
-            summary: 'When the value is omitted'
-            value: ''
-          present:
-            summary: 'When the value is present'
-            value: 1
-  /api/automatic-extraction-group:
-    get:
-      summary: "Affiche les groupes d'extraction automatique"
-      operationId: afficheLesGroupesDextractionAutomatique
-      description: ''
-      parameters:
-        -
-          in: query
-          name: name
-          description: 'Filtrer par nom du groupe.'
+          name: place
+          description: Lieu.
           example: null
           required: false
           schema:
             type: string
-            description: 'Filtrer par nom du groupe.'
+            description: Lieu.
             example: null
-        -
-          in: query
-          name: active
-          description: 'Filtrer par activité du groupe.'
-          example: null
-          required: false
-          schema:
-            type: string
-            description: 'Filtrer par activité du groupe.'
-            example: null
-        -
-          in: query
-          name: mail_subject
-          description: 'Filtrer par objet du mail associé au groupe.'
-          example: null
-          required: false
-          schema:
-            type: string
-            description: 'Filtrer par objet du mail associé au groupe.'
-            example: null
-        -
-          in: query
-          name: mail_content
-          description: 'Filtrer par contenu du mail associé au groupe.'
-          example: null
-          required: false
-          schema:
-            type: string
-            description: 'Filtrer par contenu du mail associé au groupe.'
-            example: null
-        -
-          in: query
-          name: receivers_mail
-          description: 'Filtrer par receveurs du mail associé au groupe.'
-          example: null
-          required: false
-          schema:
-            type: string
-            description: 'Filtrer par receveurs du mail associé au groupe.'
-            example: null
-        -
-          in: query
-          name: receivers_cc_mail
-          description: 'Filtrer par receveurs en copie du mail associé au groupe.'
-          example: null
-          required: false
-          schema:
-            type: string
-            description: 'Filtrer par receveurs en copie du mail associé au groupe.'
-            example: null
-        -
-          in: query
-          name: with_automatic_extraction
-          description: 'Ajouter les extractions automatiques'
-          example: 'false'
-          required: false
-          schema:
-            type: string
-            description: 'Ajouter les extractions automatiques'
-            example: 'false'
-        -
-          in: query
-          name: paginate
-          description: 'Utiliser la pagination.'
-          example: 'false'
-          required: false
-          schema:
-            type: string
-            description: 'Utiliser la pagination.'
-            example: 'false'
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example: {  }
-                properties: {  }
-      tags:
-        - "Groupe d'extraction automatique"
-    post:
-      summary: "Créer une nouveau groupe d'extraction automatique"
-      operationId: crerUneNouveauGroupeDextractionAutomatique
-      description: ''
-      parameters: []
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example: {  }
-                properties: {  }
-      tags:
-        - "Groupe d'extraction automatique"
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  description: 'Nom du groupe.'
-                  example: Normal
-                active:
-                  type: integer
-                  description: 'activation du groupe.'
-                  example: 1
-                mail_subject:
-                  type: string
-                  description: 'Objet du mail associé au groupe.'
-                  example: 'Extraction journalière normale'
-                mail_content:
-                  type: string
-                  description: 'contenu du mail associé au groupe.'
-                  example: dums
-                receivers_mail:
-                  type: array
-                  description: 'Liste des destinataire du mail associé au groupe.'
-                  example: null
-                  items:
-                    type: string
-                receivers_cc_mail:
-                  type: array
-                  description: 'Liste des destinataire en copie du mail associé au groupe.'
-                  example: null
-                  items:
-                    type: string
-  '/api/automatic-extraction-group/{id}':
-    get:
-      summary: "Affiche un groupe d'extraction automatique"
-      operationId: afficheUnGroupeDextractionAutomatique
-      description: ''
-      parameters:
-        -
-          in: query
-          name: with_automatic_extraction
-          description: 'Ajouter les extractions automatiques'
-          example: 'false'
-          required: false
-          schema:
-            type: string
-            description: 'Ajouter les extractions automatiques'
-            example: 'false'
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example: {  }
-                properties: {  }
-      tags:
-        - "Groupe d'extraction automatique"
-    put:
-      summary: "Mettre à jour un groupe d'extraction automatique"
-      operationId: mettreJourUnGroupeDextractionAutomatique
-      description: ''
-      parameters: []
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example: {  }
-                properties: {  }
-      tags:
-        - "Groupe d'extraction automatique"
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  description: 'Nom du groupe.'
-                  example: Normal
-                active:
-                  type: integer
-                  description: 'activation du groupe.'
-                  example: 1
-                mail_subject:
-                  type: string
-                  description: 'Objet du mail associé au groupe.'
-                  example: 'Extraction journalière normale'
-                mail_content:
-                  type: string
-                  description: 'contenu du mail associé au groupe.'
-                  example: dums
-                receivers_mail:
-                  type: array
-                  description: 'Liste des destinataire du mail associé au groupe.'
-                  example: null
-                  items:
-                    type: string
-                receivers_cc_mail:
-                  type: array
-                  description: 'Liste des destinataire en copie du mail associé au groupe.'
-                  example: null
-                  items:
-                    type: string
-    delete:
-      summary: 'Supprime une automatic-extraction-group'
-      operationId: supprimeUneAutomaticExtractionGroup
-      description: ''
-      parameters: []
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example: {  }
-                properties: {  }
-      tags:
-        - "Groupe d'extraction automatique"
-    parameters:
-      -
-        in: path
-        name: id
-        description: "Optional parameter. L'ID du groupe."
-        required: true
-        schema:
-          type: integer
-        examples:
-          omitted:
-            summary: 'When the value is omitted'
-            value: ''
-          present:
-            summary: 'When the value is present'
-            value: 1
-  /api/launch:
-    get:
-      summary: 'Affiche les lancements'
-      operationId: afficheLesLancements
-      description: ''
-      parameters:
-        -
-          in: query
-          name: extraction_id
-          description: "Filtrer par ID de l'extraction."
-          example: null
-          required: false
-          schema:
-            type: integer
-            description: "Filtrer par ID de l'extraction."
-            example: null
-        -
-          in: query
-          name: extraction_file_name
-          description: "Filtrer par nom du fichier de l'extraction."
-          example: null
-          required: false
-          schema:
-            type: string
-            description: "Filtrer par nom du fichier de l'extraction."
-            example: null
-        -
-          in: query
-          name: status
-          description: 'Filtrer par status du lancement.'
-          example: null
-          required: false
-          schema:
-            type: string
-            description: 'Filtrer par status du lancement.'
-            example: null
+            nullable: false
         -
           in: query
           name: type
-          description: 'Filtrer par type du lancement.'
+          description: Type.
           example: null
           required: false
           schema:
             type: string
-            description: 'Filtrer par type du lancement.'
+            description: Type.
             example: null
+            nullable: false
         -
           in: query
-          name: file_path
-          description: 'Filtrer par chemin du fichier extrait.'
-          example: null
-          required: false
-          schema:
-            type: string
-            description: 'Filtrer par chemin du fichier extrait.'
-            example: null
-        -
-          in: query
-          name: launcher_id
-          description: 'Filtrer par ID du lanceur.'
+          name: nb_expected
+          description: 'Nombre de personne attendu.'
           example: null
           required: false
           schema:
             type: integer
-            description: 'Filtrer par ID du lanceur.'
+            description: 'Nombre de personne attendu.'
             example: null
+            nullable: false
         -
           in: query
-          name: with_extraction
-          description: "Afficher l'extraction du lancement."
-          example: 'false'
-          required: false
-          schema:
-            type: string
-            description: "Afficher l'extraction du lancement."
-            example: 'false'
-        -
-          in: query
-          name: with_launch_data
-          description: 'Afficher les données du lancement.'
-          example: 'false'
-          required: false
-          schema:
-            type: string
-            description: 'Afficher les données du lancement.'
-            example: 'false'
-        -
-          in: query
-          name: paginate
-          description: 'Utiliser la pagination.'
-          example: 'false'
-          required: false
-          schema:
-            type: string
-            description: 'Utiliser la pagination.'
-            example: 'false'
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example: {  }
-                properties: {  }
-      tags:
-        - Lancements
-    post:
-      summary: 'Créer un nouveau lancement'
-      operationId: crerUnNouveauLancement
-      description: ''
-      parameters: []
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example: {  }
-                properties: {  }
-      tags:
-        - Lancements
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                extraction_id:
-                  type: integer
-                  description: "L'ID de l'extraction."
-                  example: 1
-                extraction_file_name:
-                  type: string
-                  description: "Le nom du fichier de l'extraction."
-                  example: DAT-04-05-2024
-                launch_data:
-                  type: array
-                  description: "Les données pour les filtres de l'extraction."
-                  example:
-                    -
-                      filter_id: 1
-                      value: Damso
-                  items:
-                    type: string
-  '/api/launch/{id}':
-    get:
-      summary: 'Affiche un lancement'
-      operationId: afficheUnLancement
-      description: ''
-      parameters:
-        -
-          in: query
-          name: with_extraction
-          description: "Afficher l'extraction du lancement."
-          example: 'false'
-          required: false
-          schema:
-            type: string
-            description: "Afficher l'extraction du lancement."
-            example: 'false'
-        -
-          in: query
-          name: with_launch_data
-          description: 'Afficher les données du lancement.'
-          example: 'false'
-          required: false
-          schema:
-            type: string
-            description: 'Afficher les données du lancement.'
-            example: 'false'
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example: {  }
-                properties: {  }
-      tags:
-        - Lancements
-    put:
-      summary: 'Mettre à jour un lancement'
-      operationId: mettreJourUnLancement
-      description: ''
-      parameters: []
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example: {  }
-                properties: {  }
-      tags:
-        - Lancements
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                status:
-                  type: string
-                  description: 'Le nouveau statut du lancement.'
-                  example: in-treatment
-                file_path:
-                  type: string
-                  description: "Le nouveau chemin vers le fichier d'extraction."
-                  example: ...
-                error_message:
-                  type: string
-                  description: "Le nouveau message d'erreur du lancement."
-                  example: ...
-    delete:
-      summary: 'Supprime un lancement'
-      operationId: supprimeUnLancement
-      description: ''
-      parameters: []
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example: {  }
-                properties: {  }
-      tags:
-        - Lancements
-    parameters:
-      -
-        in: path
-        name: id
-        description: "Optional parameter. L'ID du lancement."
-        required: true
-        schema:
-          type: integer
-        examples:
-          omitted:
-            summary: 'When the value is omitted'
-            value: ''
-          present:
-            summary: 'When the value is present'
-            value: 1
-  /api/lov:
-    get:
-      summary: 'Affiche les lov'
-      operationId: afficheLesLov
-      description: ''
-      parameters:
-        -
-          in: query
-          name: name
-          description: 'Filtrer par nom de la lov.'
+          name: entrance
+          description: "Type d'entrée."
           example: null
           required: false
           schema:
             type: string
-            description: 'Filtrer par nom de la lov.'
+            description: "Type d'entrée."
             example: null
+            nullable: false
         -
           in: query
-          name: with_values
-          description: 'Ajouter les valeurs de la lov'
+          name: entry_price
+          description: "Prix d'entrée."
+          example: null
+          required: false
+          schema:
+            type: integer
+            description: "Prix d'entrée."
+            example: null
+            nullable: false
+        -
+          in: query
+          name: contact
+          description: Contact.
+          example: null
+          required: false
+          schema:
+            type: string
+            description: Contact.
+            example: null
+            nullable: false
+        -
+          in: query
+          name: description
+          description: 'Description detaillée.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Description detaillée.'
+            example: null
+            nullable: false
+        -
+          in: query
+          name: description_summary
+          description: 'Description résumé.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Description résumé.'
+            example: null
+            nullable: false
+        -
+          in: query
+          name: with_promoter
+          description: 'Afficher le promoteur.'
           example: 'false'
           required: false
           schema:
             type: string
-            description: 'Ajouter les valeurs de la lov'
+            description: 'Afficher le promoteur.'
             example: 'false'
+            nullable: false
         -
           in: query
           name: paginate
@@ -1547,6 +757,7 @@ paths:
             type: string
             description: 'Utiliser la pagination.'
             example: 'false'
+            nullable: false
       responses:
         200:
           description: ''
@@ -1557,10 +768,10 @@ paths:
                 example: {  }
                 properties: {  }
       tags:
-        - Lov
+        - Evenements
     post:
-      summary: 'Créer une nouvelle lov'
-      operationId: crerUneNouvelleLov
+      summary: 'Créer un nouveau decor'
+      operationId: crerUnNouveauDecor
       description: ''
       parameters: []
       responses:
@@ -1573,7 +784,7 @@ paths:
                 example: {  }
                 properties: {  }
       tags:
-        - Lov
+        - Evenements
       requestBody:
         required: false
         content:
@@ -1583,30 +794,81 @@ paths:
               properties:
                 name:
                   type: string
-                  description: 'nom de la lov.'
-                  example: Agence
-                values:
-                  type: array
-                  description: 'les valeurs de la lov.'
-                  example: []
-                  items:
-                    type: string
-  '/api/lov/{id}':
+                  description: Nom.
+                  example: 'Hiver Togo'
+                  nullable: false
+                start_date:
+                  type: string
+                  description: 'Date de début.'
+                  example: '2024-12-01'
+                  nullable: false
+                end_date:
+                  type: string
+                  description: 'La date de début.'
+                  example: '2024-12-01'
+                  nullable: false
+                place:
+                  type: string
+                  description: Lieu.
+                  example: Lomé
+                  nullable: false
+                type:
+                  type: string
+                  description: Type.
+                  example: Dance
+                  nullable: false
+                nb_expected:
+                  type: integer
+                  description: 'Nombre de personne attendu.'
+                  example: 45
+                  nullable: false
+                entrance:
+                  type: string
+                  description: "Type d'entrée."
+                  example: free
+                  nullable: false
+                entry_price:
+                  type: integer
+                  description: "Prix d'entrée."
+                  example: null
+                  nullable: false
+                contact:
+                  type: string
+                  description: Contact.
+                  example: '+228 90 90 90 90'
+                  nullable: false
+                description:
+                  type: string
+                  description: 'Description detaillée.'
+                  example: 'description détaillé'
+                  nullable: false
+                description_summary:
+                  type: string
+                  description: 'Description résumé.'
+                  example: 'description résumé'
+                  nullable: false
+                poster:
+                  type: string
+                  description: Affiche.
+                  example: ...
+                  nullable: false
+  '/api/event/{id}':
     get:
-      summary: 'Affiche une lov'
-      operationId: afficheUneLov
+      summary: 'Affiche un décor'
+      operationId: afficheUnDcor
       description: ''
       parameters:
         -
           in: query
-          name: with_values
-          description: 'Ajouter les valeurs de la lov'
+          name: with_promoter
+          description: 'Afficher le promoteur.'
           example: 'false'
           required: false
           schema:
             type: string
-            description: 'Ajouter les valeurs de la lov'
+            description: 'Afficher le promoteur.'
             example: 'false'
+            nullable: false
       responses:
         200:
           description: ''
@@ -1617,10 +879,10 @@ paths:
                 example: {  }
                 properties: {  }
       tags:
-        - Lov
+        - Evenements
     put:
-      summary: 'Mettre à jour une lov'
-      operationId: mettreJourUneLov
+      summary: 'Mettre à jour un événement'
+      operationId: mettreJourUnvnement
       description: ''
       parameters: []
       responses:
@@ -1633,7 +895,7 @@ paths:
                 example: {  }
                 properties: {  }
       tags:
-        - Lov
+        - Evenements
       requestBody:
         required: false
         content:
@@ -1643,17 +905,67 @@ paths:
               properties:
                 name:
                   type: string
-                  description: 'nom de la lov.'
-                  example: Agence
-                values:
-                  type: array
-                  description: 'les valeurs de la lov.'
-                  example: []
-                  items:
-                    type: string
+                  description: Nom.
+                  example: 'Hiver Togo'
+                  nullable: false
+                start_date:
+                  type: string
+                  description: 'Date de début.'
+                  example: '2024-12-01'
+                  nullable: false
+                end_date:
+                  type: string
+                  description: 'La date de début.'
+                  example: '2024-12-01'
+                  nullable: false
+                place:
+                  type: string
+                  description: Lieu.
+                  example: Lomé
+                  nullable: false
+                type:
+                  type: string
+                  description: Type.
+                  example: Dance
+                  nullable: false
+                nb_expected:
+                  type: integer
+                  description: 'Nombre de personne attendu.'
+                  example: 45
+                  nullable: false
+                entrance:
+                  type: string
+                  description: "Type d'entrée."
+                  example: free
+                  nullable: false
+                entry_price:
+                  type: integer
+                  description: "Prix d'entrée."
+                  example: null
+                  nullable: false
+                contact:
+                  type: string
+                  description: Contact.
+                  example: '+228 90 90 90 90'
+                  nullable: false
+                description:
+                  type: string
+                  description: 'Description detaillée.'
+                  example: 'description détaillé'
+                  nullable: false
+                description_summary:
+                  type: string
+                  description: 'Description résumé.'
+                  example: 'description résumé'
+                  nullable: false
+                poster:
+                  type: string
+                  description: Affiche.
+                  example: ...
+                  nullable: false
     delete:
-      summary: 'Supprime une lov'
-      operationId: supprimeUneLov
+      summary: 'Supprime un événement'
+      operationId: supprimeUnvnement
       description: ''
       parameters: []
       responses:
@@ -1666,12 +978,12 @@ paths:
                 example: {  }
                 properties: {  }
       tags:
-        - Lov
+        - Evenements
     parameters:
       -
         in: path
         name: id
-        description: "Optional parameter. L'ID de la lov."
+        description: "Optional parameter. L'événement."
         required: true
         schema:
           type: integer
@@ -1682,92 +994,127 @@ paths:
           present:
             summary: 'When the value is present'
             value: 1
-  /api/operation:
+  '/api/event/change-validation/{id}':
+    put:
+      summary: "Mettre à jour la validation d'un événement"
+      operationId: mettreJourLaValidationDunvnement
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {  }
+                properties: {  }
+      tags:
+        - Evenements
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                validation:
+                  type: string
+                  description: 'Nouveau statut.'
+                  example: validated
+                  nullable: false
+    parameters:
+      -
+        in: path
+        name: id
+        description: "L'événement."
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/payment:
     get:
-      summary: 'Affiche les opérations'
-      operationId: afficheLesOprations
+      summary: 'Affiche les paiements'
+      operationId: afficheLesPaiements
       description: ''
       parameters:
         -
           in: query
           name: user_id
-          description: "Filtrer par ID de l'initiateur."
+          description: Promoteur.
           example: null
           required: false
           schema:
             type: integer
-            description: "Filtrer par ID de l'initiateur."
+            description: Promoteur.
             example: null
+            nullable: false
         -
           in: query
-          name: lov_value_id
-          description: 'Filtrer par ID du produit choisit.'
+          name: nb_uses
+          description: "Nombre d'utilisation de décor."
           example: null
           required: false
           schema:
             type: integer
-            description: 'Filtrer par ID du produit choisit.'
+            description: "Nombre d'utilisation de décor."
             example: null
+            nullable: false
         -
           in: query
-          name: lov_value
-          description: 'Filtrer par montant de produit choisit durant la saisie.'
+          name: amount
+          description: Montant.
+          example: null
+          required: false
+          schema:
+            type: integer
+            description: Montant.
+            example: null
+            nullable: false
+        -
+          in: query
+          name: currency
+          description: Devise.
           example: null
           required: false
           schema:
             type: string
-            description: 'Filtrer par montant de produit choisit durant la saisie.'
+            description: Devise.
             example: null
+            nullable: false
         -
           in: query
-          name: quantity
-          description: 'Filtrer par quantité du produit.'
+          name: description
+          description: Description.
           example: null
           required: false
           schema:
             type: string
-            description: 'Filtrer par quantité du produit.'
+            description: Description.
             example: null
-        -
-          in: query
-          name: customer_account_number
-          description: 'Filtrer par numéro de compte du client.'
-          example: null
-          required: false
-          schema:
-            type: string
-            description: 'Filtrer par numéro de compte du client.'
-            example: null
+            nullable: false
         -
           in: query
           name: status
-          description: "Filtrer par statut de l'opération."
+          description: Statut.
           example: null
           required: false
           schema:
             type: string
-            description: "Filtrer par statut de l'opération."
+            description: Statut.
             example: null
+            nullable: false
         -
           in: query
-          name: message
-          description: "Filtrer par message de l'opération."
-          example: null
-          required: false
-          schema:
-            type: string
-            description: "Filtrer par message de l'opération."
-            example: null
-        -
-          in: query
-          name: with_lov_value
-          description: "Afficher la valeur du produit choisit à l'état actuel."
+          name: with_user
+          description: 'Afficher le promoteur.'
           example: 'false'
           required: false
           schema:
             type: string
-            description: "Afficher la valeur du produit choisit à l'état actuel."
+            description: 'Afficher le promoteur.'
             example: 'false'
+            nullable: false
         -
           in: query
           name: paginate
@@ -1778,6 +1125,7 @@ paths:
             type: string
             description: 'Utiliser la pagination.'
             example: 'false'
+            nullable: false
       responses:
         200:
           description: ''
@@ -1788,10 +1136,10 @@ paths:
                 example: {  }
                 properties: {  }
       tags:
-        - Opérations
+        - Paiements
     post:
-      summary: 'Créer un nouveau operation'
-      operationId: crerUnNouveauOperation
+      summary: 'Créer un nouveau paiement'
+      operationId: crerUnNouveauPaiement
       description: ''
       parameters: []
       responses:
@@ -1804,7 +1152,7 @@ paths:
                 example: {  }
                 properties: {  }
       tags:
-        - Opérations
+        - Paiements
       requestBody:
         required: false
         content:
@@ -1812,38 +1160,38 @@ paths:
             schema:
               type: object
               properties:
-                user_id:
-                  type: integer
-                  description: "ID de l'initiateur."
-                  example: 1
-                lov_value_id:
-                  type: integer
-                  description: 'ID du produit choisit.'
-                  example: 1
-                quantity:
-                  type: integer
-                  description: 'quantité du produit.'
-                  example: 1
-                customer_account_number:
+                country_code:
                   type: string
-                  description: 'numéro de compte du client.'
-                  example: '251658941001'
-  '/api/operation/{id}':
+                  description: Pays.
+                  example: '228'
+                  nullable: false
+                phone_number:
+                  type: string
+                  description: Tel.
+                  example: '91611135'
+                  nullable: false
+                nb_uses:
+                  type: integer
+                  description: "Nombre d'utilisation de décor."
+                  example: 5
+                  nullable: false
+  '/api/payment/{id}':
     get:
-      summary: 'Affiche une opération'
-      operationId: afficheUneOpration
+      summary: 'Affiche un paiement'
+      operationId: afficheUnPaiement
       description: ''
       parameters:
         -
           in: query
-          name: with_lov_value
-          description: "Afficher la valeur du produit choisit à l'état actuel."
+          name: with_user
+          description: 'Afficher le promoteur.'
           example: 'false'
           required: false
           schema:
             type: string
-            description: "Afficher la valeur du produit choisit à l'état actuel."
+            description: 'Afficher le promoteur.'
             example: 'false'
+            nullable: false
       responses:
         200:
           description: ''
@@ -1854,59 +1202,12 @@ paths:
                 example: {  }
                 properties: {  }
       tags:
-        - Opérations
-    put:
-      summary: 'Mettre à jour une operation'
-      operationId: mettreJourUneOperation
-      description: ''
-      parameters: []
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example: {  }
-                properties: {  }
-      tags:
-        - Opérations
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                status:
-                  type: string
-                  description: "statut de l'opération."
-                  example: '1'
-                message:
-                  type: string
-                  description: "message de l'opération."
-                  example: '1'
-    delete:
-      summary: 'Supprime une operation'
-      operationId: supprimeUneOperation
-      description: ''
-      parameters: []
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example: {  }
-                properties: {  }
-      tags:
-        - Opérations
+        - Paiements
     parameters:
       -
         in: path
         name: id
-        description: "Optional parameter. L'ID de l'operation."
+        description: 'Optional parameter. Le paiement.'
         required: true
         schema:
           type: integer
@@ -1917,649 +1218,15 @@ paths:
           present:
             summary: 'When the value is present'
             value: 1
-  /api/script:
-    get:
-      summary: 'Affiche les scripts'
-      operationId: afficheLesScripts
-      description: ''
-      parameters:
-        -
-          in: query
-          name: name
-          description: 'Filtrer par nom du script.'
-          example: null
-          required: false
-          schema:
-            type: string
-            description: 'Filtrer par nom du script.'
-            example: null
-        -
-          in: query
-          name: file_path
-          description: 'Filtrer par chemin du script.'
-          example: null
-          required: false
-          schema:
-            type: string
-            description: 'Filtrer par chemin du script.'
-            example: null
-        -
-          in: query
-          name: available
-          description: 'Filtrer par disponibilité du script.'
-          example: null
-          required: false
-          schema:
-            type: string
-            description: 'Filtrer par disponibilité du script.'
-            example: null
-        -
-          in: query
-          name: with_extractions
-          description: 'Afficher les scripts.'
-          example: 'false'
-          required: false
-          schema:
-            type: string
-            description: 'Afficher les scripts.'
-            example: 'false'
-        -
-          in: query
-          name: paginate
-          description: 'Utiliser la pagination.'
-          example: 'false'
-          required: false
-          schema:
-            type: string
-            description: 'Utiliser la pagination.'
-            example: 'false'
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example: {  }
-                properties: {  }
-      tags:
-        - Scripts
+  /api/payment/callback:
     post:
-      summary: 'Créer un nouveau script'
-      operationId: crerUnNouveauScript
+      summary: ''
+      operationId: postApiPaymentCallback
       description: ''
       parameters: []
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example: {  }
-                properties: {  }
+      responses: {  }
       tags:
-        - Scripts
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  description: 'Le nom du script.'
-                  example: wextractor
-                file:
-                  type: string
-                  description: 'Le fichier du script.'
-                  example: 'data:@file/x-python;base64,IyEudmVudi9iaW4vcHl0aG9uMwppbXBvcnQgb3MKaW1wb3J0IHN5cwppbXBvcnQgdGltZQppbXBvcnQgcGxhdGZvcm0KaW1wb3J0IHRocmVhZGluZwpmcm9tIExpYiBpbXBvcnQgUmVxCmltcG9ydCBwYW5kYXMgYXMgcGQKZnJvbSByaWNoLnByb2dyZXNzIGltcG9ydCAoU3Bpbm5lckNvbHVtbiwgVGV4dENvbHVtbiwgQmFyQ29sdW1uLCBQcm9ncmVzcywgVGltZUVsYXBzZWRDb2x1bW4pCmZyb20gTGliLlRhc2tEaXNwbGF5IGltcG9ydCBUYXNrRGlzcGxheQoKCgoKZGVmIHJ1bihhcmd2LCB0b19zaGFyZSk6CgliYXNlX3VybD0iaHR0cDovL3JlcG9ydGVyLmNvZmluYS5sb2NhbGhvc3QvYXBpIgoJd2l0aCBQcm9ncmVzcyhTcGlubmVyQ29sdW1uKCksVGV4dENvbHVtbigie3Rhc2suZGVzY3JpcHRpb259IiksQmFyQ29sdW1uKCksVGltZUVsYXBzZWRDb2x1bW4oKSxleHBhbmQ9VHJ1ZSkgYXMgcHJvZ3Jlc3M6CgkJdGFza19kaXNwbGF5ID0gVGFza0Rpc3BsYXkocHJvZ3Jlc3MsZiJSZWN1cMOpcmF0aW9uIGRlIGxhIGNvbmZpZ3VyYXRpb24iKQoJCWNvbmZEaWN0ID0gewoJCQkiZ3JvdXBfY29uZiIgOiBSZXEuZ2V0Q29uZmlnREYoImdyb3VwX2NvbmYiKSwKCQkJInZwbl9jb25mIiA6IFJlcS5nZXRDb25maWdERigidnBuX2NvbmYiKSwKCQkJImRiX2NvbmYiIDogUmVxLmdldENvbmZpZ0RGKCJkYl9jb25mIiksCgkJCSJlbWFpbF9jb25mIiA6IFJlcS5nZXRDb25maWdERigiZW1haWxfY29uZiIpLAoJCQkiZW1haWxfY29uZiIgOiBSZXEuZ2V0Q29uZmlnREYoImVtYWlsX2NvbmYiKSwKCQkJInNoYXJlX2NvbmYiIDogUmVxLmdldENvbmZpZ0RGKCJzaGFyZV9jb25mIiksCgkJfQoKCQlleHRyYWN0aW9uTGlzdCA9IFJlcS5nZXRMaXN0REYoZiJ7YmFzZV91cmx9L2V4dHJhY3Rpb24/cGFnaW5hdGU9ZmFsc2UmIikKCQlwcmludChleHRyYWN0aW9uTGlzdFsiaWQiXSkKCQkjIGZvciBhcmcgaW4gYXJndjoKCQkjIAlwcmludChleHRyYWN0aW9uTGlzdFsiaWQiXS5zdHIuY29udGFpbnMoYXJnLCBjYXNlPUZhbHNlLCBuYT1GYWxzZSkpCgkJIyAJcGFzcwoJCXRhc2tfZGlzcGxheS5lbmQoKQoKCmlmIF9fbmFtZV9fID09ICJfX21haW5fXyI6Cgl2cG4gPSBOb25lCgl0b19zaGFyZSA9IE5vbmUKCWFyZ3YgPSBbXQoJZm9yIGFyZyBpbiBzeXMuYXJndlsxOl06CgkJaWYgYXJnID09ICItLW5vLXZwbiI6CgkJCXZwbiA9IEZhbHNlCgkJZWxpZiBhcmcgPT0gIi0tbm8tc2hhcmUiOgoJCQl0b19zaGFyZSA9IEZhbHNlCgkJZWxzZToKCQkJYXJndi5hcHBlbmQoYXJnKQoJaWYgcGxhdGZvcm0uc3lzdGVtKCkgPT0gIldpbmRvd3MiOgoJCXZwbiA9IEZhbHNlCgllbHNlOgoJCWlmIHZwbiA9PSBOb25lOgoJCQlyZXNwb25zZSA9ICIiCgkJCXdoaWxlIHRvX3NoYXJlID09IE5vbmUgYW5kIHJlc3BvbnNlIG5vdCBpbiBbIm8iLCAibiJdOgoJCQkJcmVzcG9uc2UgPSBpbnB1dCgiU2UgY29ubmVjdGVyIGF1IHZwbj8oby9uKTogIikubG93ZXIoKQoJCQl2cG4gPSByZXNwb25zZSA9PSAibyIKCQkJCgkJaWYgdnBuOgoJCQkjIHZwbl9jb25mID0gRXhjZWxGaWxlTWFuYWdlci5yZWFkKAoJCQkjIAkiRmlsZXMvZXh0cmFjdG9yLWZpbGVzL2V4dHJhY3Rvci1jb25maWcueGxzeCIsICJ2cG5fY29uZiIKCQkJIyApLmlsb2NbMF0KCQkJIyB0MSA9IHRocmVhZGluZy5UaHJlYWQoCgkJCSMgCXRhcmdldD1WUE5NYW5hZ2VyLmNvbm5lY3QsCgkJCSMgCWFyZ3M9WwoJCQkjIAkJdnBuX2NvbmZbIkhvc3QiXSwKCQkJIyAJCXZwbl9jb25mWyJQb3J0Il0sCgkJCSMgCQl2cG5fY29uZlsiVXNlciJdLAoJCQkjIAkJdnBuX2NvbmZbIlBhc3N3b3JkIl0sCgkJCSMgCQl2cG5fY29uZlsiQ2VydGlmaWNhdGUiXSwKCQkJIyAJXSwKCQkJIyApCgkJCSMgdDEuc3RhcnQoKQoJCQkjIHRpbWUuc2xlZXAoNjApCgkJCXBhc3MKCXJlc3BvbnNlID0gIiIKCXdoaWxlIHRvX3NoYXJlID09IE5vbmUgYW5kIHJlc3BvbnNlIG5vdCBpbiBbIm8iLCAibiJdOgoJCXJlc3BvbnNlID0gaW5wdXQoIlNlIGNvbm5lY3RlciBhdSBzZXJ2ZXVyIGRlIGZpY2hpZXI/KG8vbik6ICIpLmxvd2VyKCkKCXRvX3NoYXJlID0gcmVzcG9uc2UgPT0gIm8iCgkKCXQyID0gdGhyZWFkaW5nLlRocmVhZCh0YXJnZXQ9cnVuLCBhcmdzPVthcmd2LCB0b19zaGFyZV0pCgl0Mi5zdGFydCgpCgoJIyBBdHRlbnRlIGRlIGxhIGZpbiBkdSB0aHJlYWQgZGV1eAoJdDIuam9pbigpCg=='
-                available:
-                  type: integer
-                  description: 'La disponibilité du script.'
-                  example: 1
-                type:
-                  type: string
-                  description: 'Le type du script.'
-                  example: manual
-  '/api/script/{id}':
-    get:
-      summary: 'Affiche un script'
-      operationId: afficheUnScript
-      description: ''
-      parameters:
-        -
-          in: query
-          name: with_extractions
-          description: 'Afficher les scripts.'
-          example: 'false'
-          required: false
-          schema:
-            type: string
-            description: 'Afficher les scripts.'
-            example: 'false'
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example: {  }
-                properties: {  }
-      tags:
-        - Scripts
-    put:
-      summary: 'Mettre à jour un script'
-      operationId: mettreJourUnScript
-      description: ''
-      parameters: []
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example: {  }
-                properties: {  }
-      tags:
-        - Scripts
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  description: 'Le nom du script.'
-                  example: wextractor
-                file:
-                  type: string
-                  description: 'Le fichier du script.'
-                  example: 'data:@file/x-python;base64,IyEudmVudi9iaW4vcHl0aG9uMwppbXBvcnQgb3MKaW1wb3J0IHN5cwppbXBvcnQgdGltZQppbXBvcnQgcGxhdGZvcm0KaW1wb3J0IHRocmVhZGluZwpmcm9tIExpYiBpbXBvcnQgUmVxCmltcG9ydCBwYW5kYXMgYXMgcGQKZnJvbSByaWNoLnByb2dyZXNzIGltcG9ydCAoU3Bpbm5lckNvbHVtbiwgVGV4dENvbHVtbiwgQmFyQ29sdW1uLCBQcm9ncmVzcywgVGltZUVsYXBzZWRDb2x1bW4pCmZyb20gTGliLlRhc2tEaXNwbGF5IGltcG9ydCBUYXNrRGlzcGxheQoKCgoKZGVmIHJ1bihhcmd2LCB0b19zaGFyZSk6CgliYXNlX3VybD0iaHR0cDovL3JlcG9ydGVyLmNvZmluYS5sb2NhbGhvc3QvYXBpIgoJd2l0aCBQcm9ncmVzcyhTcGlubmVyQ29sdW1uKCksVGV4dENvbHVtbigie3Rhc2suZGVzY3JpcHRpb259IiksQmFyQ29sdW1uKCksVGltZUVsYXBzZWRDb2x1bW4oKSxleHBhbmQ9VHJ1ZSkgYXMgcHJvZ3Jlc3M6CgkJdGFza19kaXNwbGF5ID0gVGFza0Rpc3BsYXkocHJvZ3Jlc3MsZiJSZWN1cMOpcmF0aW9uIGRlIGxhIGNvbmZpZ3VyYXRpb24iKQoJCWNvbmZEaWN0ID0gewoJCQkiZ3JvdXBfY29uZiIgOiBSZXEuZ2V0Q29uZmlnREYoImdyb3VwX2NvbmYiKSwKCQkJInZwbl9jb25mIiA6IFJlcS5nZXRDb25maWdERigidnBuX2NvbmYiKSwKCQkJImRiX2NvbmYiIDogUmVxLmdldENvbmZpZ0RGKCJkYl9jb25mIiksCgkJCSJlbWFpbF9jb25mIiA6IFJlcS5nZXRDb25maWdERigiZW1haWxfY29uZiIpLAoJCQkiZW1haWxfY29uZiIgOiBSZXEuZ2V0Q29uZmlnREYoImVtYWlsX2NvbmYiKSwKCQkJInNoYXJlX2NvbmYiIDogUmVxLmdldENvbmZpZ0RGKCJzaGFyZV9jb25mIiksCgkJfQoKCQlleHRyYWN0aW9uTGlzdCA9IFJlcS5nZXRMaXN0REYoZiJ7YmFzZV91cmx9L2V4dHJhY3Rpb24/cGFnaW5hdGU9ZmFsc2UmIikKCQlwcmludChleHRyYWN0aW9uTGlzdFsiaWQiXSkKCQkjIGZvciBhcmcgaW4gYXJndjoKCQkjIAlwcmludChleHRyYWN0aW9uTGlzdFsiaWQiXS5zdHIuY29udGFpbnMoYXJnLCBjYXNlPUZhbHNlLCBuYT1GYWxzZSkpCgkJIyAJcGFzcwoJCXRhc2tfZGlzcGxheS5lbmQoKQoKCmlmIF9fbmFtZV9fID09ICJfX21haW5fXyI6Cgl2cG4gPSBOb25lCgl0b19zaGFyZSA9IE5vbmUKCWFyZ3YgPSBbXQoJZm9yIGFyZyBpbiBzeXMuYXJndlsxOl06CgkJaWYgYXJnID09ICItLW5vLXZwbiI6CgkJCXZwbiA9IEZhbHNlCgkJZWxpZiBhcmcgPT0gIi0tbm8tc2hhcmUiOgoJCQl0b19zaGFyZSA9IEZhbHNlCgkJZWxzZToKCQkJYXJndi5hcHBlbmQoYXJnKQoJaWYgcGxhdGZvcm0uc3lzdGVtKCkgPT0gIldpbmRvd3MiOgoJCXZwbiA9IEZhbHNlCgllbHNlOgoJCWlmIHZwbiA9PSBOb25lOgoJCQlyZXNwb25zZSA9ICIiCgkJCXdoaWxlIHRvX3NoYXJlID09IE5vbmUgYW5kIHJlc3BvbnNlIG5vdCBpbiBbIm8iLCAibiJdOgoJCQkJcmVzcG9uc2UgPSBpbnB1dCgiU2UgY29ubmVjdGVyIGF1IHZwbj8oby9uKTogIikubG93ZXIoKQoJCQl2cG4gPSByZXNwb25zZSA9PSAibyIKCQkJCgkJaWYgdnBuOgoJCQkjIHZwbl9jb25mID0gRXhjZWxGaWxlTWFuYWdlci5yZWFkKAoJCQkjIAkiRmlsZXMvZXh0cmFjdG9yLWZpbGVzL2V4dHJhY3Rvci1jb25maWcueGxzeCIsICJ2cG5fY29uZiIKCQkJIyApLmlsb2NbMF0KCQkJIyB0MSA9IHRocmVhZGluZy5UaHJlYWQoCgkJCSMgCXRhcmdldD1WUE5NYW5hZ2VyLmNvbm5lY3QsCgkJCSMgCWFyZ3M9WwoJCQkjIAkJdnBuX2NvbmZbIkhvc3QiXSwKCQkJIyAJCXZwbl9jb25mWyJQb3J0Il0sCgkJCSMgCQl2cG5fY29uZlsiVXNlciJdLAoJCQkjIAkJdnBuX2NvbmZbIlBhc3N3b3JkIl0sCgkJCSMgCQl2cG5fY29uZlsiQ2VydGlmaWNhdGUiXSwKCQkJIyAJXSwKCQkJIyApCgkJCSMgdDEuc3RhcnQoKQoJCQkjIHRpbWUuc2xlZXAoNjApCgkJCXBhc3MKCXJlc3BvbnNlID0gIiIKCXdoaWxlIHRvX3NoYXJlID09IE5vbmUgYW5kIHJlc3BvbnNlIG5vdCBpbiBbIm8iLCAibiJdOgoJCXJlc3BvbnNlID0gaW5wdXQoIlNlIGNvbm5lY3RlciBhdSBzZXJ2ZXVyIGRlIGZpY2hpZXI/KG8vbik6ICIpLmxvd2VyKCkKCXRvX3NoYXJlID0gcmVzcG9uc2UgPT0gIm8iCgkKCXQyID0gdGhyZWFkaW5nLlRocmVhZCh0YXJnZXQ9cnVuLCBhcmdzPVthcmd2LCB0b19zaGFyZV0pCgl0Mi5zdGFydCgpCgoJIyBBdHRlbnRlIGRlIGxhIGZpbiBkdSB0aHJlYWQgZGV1eAoJdDIuam9pbigpCg=='
-                available:
-                  type: integer
-                  description: 'La disponibilité du script.'
-                  example: 1
-                type:
-                  type: string
-                  description: 'Le type du script.'
-                  example: manual
-    delete:
-      summary: 'Supprime un script'
-      operationId: supprimeUnScript
-      description: ''
-      parameters: []
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example: {  }
-                properties: {  }
-      tags:
-        - Scripts
-    parameters:
-      -
-        in: path
-        name: id
-        description: "Optional parameter. L'ID du script."
-        required: true
-        schema:
-          type: integer
-        examples:
-          omitted:
-            summary: 'When the value is omitted'
-            value: ''
-          present:
-            summary: 'When the value is present'
-            value: 1
-  /api/service:
-    get:
-      summary: 'Affiche les service'
-      operationId: afficheLesService
-      description: ''
-      parameters:
-        -
-          in: query
-          name: name
-          description: 'Filtrer par nom du service.'
-          example: null
-          required: false
-          schema:
-            type: string
-            description: 'Filtrer par nom du service.'
-            example: null
-        -
-          in: query
-          name: file_path
-          description: 'Filtrer par chemin du service.'
-          example: null
-          required: false
-          schema:
-            type: string
-            description: 'Filtrer par chemin du service.'
-            example: null
-        -
-          in: query
-          name: status
-          description: 'Filtrer par statut du service.'
-          example: null
-          required: false
-          schema:
-            type: string
-            description: 'Filtrer par statut du service.'
-            example: null
-        -
-          in: query
-          name: pid
-          description: 'Filtrer par pid du service.'
-          example: null
-          required: false
-          schema:
-            type: string
-            description: 'Filtrer par pid du service.'
-            example: null
-        -
-          in: query
-          name: paginate
-          description: 'Utiliser la pagination.'
-          example: 'false'
-          required: false
-          schema:
-            type: string
-            description: 'Utiliser la pagination.'
-            example: 'false'
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example: {  }
-                properties: {  }
-      tags:
-        - Service
-    post:
-      summary: 'Créer un nouveau service'
-      operationId: crerUnNouveauService
-      description: ''
-      parameters: []
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example: {  }
-                properties: {  }
-      tags:
-        - Service
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  description: 'Le nom du service.'
-                  example: wextractor
-                description:
-                  type: string
-                  description: 'La description du service.'
-                  example: wextractor
-                file:
-                  type: string
-                  description: 'Le fichier du service.'
-                  example: 'data:@file/x-python;base64,IyEudmVudi9iaW4vcHl0aG9uMwppbXBvcnQgb3MKaW1wb3J0IHN5cwppbXBvcnQgdGltZQppbXBvcnQgcGxhdGZvcm0KaW1wb3J0IHRocmVhZGluZwpmcm9tIExpYiBpbXBvcnQgUmVxCmltcG9ydCBwYW5kYXMgYXMgcGQKZnJvbSByaWNoLnByb2dyZXNzIGltcG9ydCAoU3Bpbm5lckNvbHVtbiwgVGV4dENvbHVtbiwgQmFyQ29sdW1uLCBQcm9ncmVzcywgVGltZUVsYXBzZWRDb2x1bW4pCmZyb20gTGliLlRhc2tEaXNwbGF5IGltcG9ydCBUYXNrRGlzcGxheQoKCgoKZGVmIHJ1bihhcmd2LCB0b19zaGFyZSk6CgliYXNlX3VybD0iaHR0cDovL3JlcG9ydGVyLmNvZmluYS5sb2NhbGhvc3QvYXBpIgoJd2l0aCBQcm9ncmVzcyhTcGlubmVyQ29sdW1uKCksVGV4dENvbHVtbigie3Rhc2suZGVzY3JpcHRpb259IiksQmFyQ29sdW1uKCksVGltZUVsYXBzZWRDb2x1bW4oKSxleHBhbmQ9VHJ1ZSkgYXMgcHJvZ3Jlc3M6CgkJdGFza19kaXNwbGF5ID0gVGFza0Rpc3BsYXkocHJvZ3Jlc3MsZiJSZWN1cMOpcmF0aW9uIGRlIGxhIGNvbmZpZ3VyYXRpb24iKQoJCWNvbmZEaWN0ID0gewoJCQkiZ3JvdXBfY29uZiIgOiBSZXEuZ2V0Q29uZmlnREYoImdyb3VwX2NvbmYiKSwKCQkJInZwbl9jb25mIiA6IFJlcS5nZXRDb25maWdERigidnBuX2NvbmYiKSwKCQkJImRiX2NvbmYiIDogUmVxLmdldENvbmZpZ0RGKCJkYl9jb25mIiksCgkJCSJlbWFpbF9jb25mIiA6IFJlcS5nZXRDb25maWdERigiZW1haWxfY29uZiIpLAoJCQkiZW1haWxfY29uZiIgOiBSZXEuZ2V0Q29uZmlnREYoImVtYWlsX2NvbmYiKSwKCQkJInNoYXJlX2NvbmYiIDogUmVxLmdldENvbmZpZ0RGKCJzaGFyZV9jb25mIiksCgkJfQoKCQlleHRyYWN0aW9uTGlzdCA9IFJlcS5nZXRMaXN0REYoZiJ7YmFzZV91cmx9L2V4dHJhY3Rpb24/cGFnaW5hdGU9ZmFsc2UmIikKCQlwcmludChleHRyYWN0aW9uTGlzdFsiaWQiXSkKCQkjIGZvciBhcmcgaW4gYXJndjoKCQkjIAlwcmludChleHRyYWN0aW9uTGlzdFsiaWQiXS5zdHIuY29udGFpbnMoYXJnLCBjYXNlPUZhbHNlLCBuYT1GYWxzZSkpCgkJIyAJcGFzcwoJCXRhc2tfZGlzcGxheS5lbmQoKQoKCmlmIF9fbmFtZV9fID09ICJfX21haW5fXyI6Cgl2cG4gPSBOb25lCgl0b19zaGFyZSA9IE5vbmUKCWFyZ3YgPSBbXQoJZm9yIGFyZyBpbiBzeXMuYXJndlsxOl06CgkJaWYgYXJnID09ICItLW5vLXZwbiI6CgkJCXZwbiA9IEZhbHNlCgkJZWxpZiBhcmcgPT0gIi0tbm8tc2hhcmUiOgoJCQl0b19zaGFyZSA9IEZhbHNlCgkJZWxzZToKCQkJYXJndi5hcHBlbmQoYXJnKQoJaWYgcGxhdGZvcm0uc3lzdGVtKCkgPT0gIldpbmRvd3MiOgoJCXZwbiA9IEZhbHNlCgllbHNlOgoJCWlmIHZwbiA9PSBOb25lOgoJCQlyZXNwb25zZSA9ICIiCgkJCXdoaWxlIHRvX3NoYXJlID09IE5vbmUgYW5kIHJlc3BvbnNlIG5vdCBpbiBbIm8iLCAibiJdOgoJCQkJcmVzcG9uc2UgPSBpbnB1dCgiU2UgY29ubmVjdGVyIGF1IHZwbj8oby9uKTogIikubG93ZXIoKQoJCQl2cG4gPSByZXNwb25zZSA9PSAibyIKCQkJCgkJaWYgdnBuOgoJCQkjIHZwbl9jb25mID0gRXhjZWxGaWxlTWFuYWdlci5yZWFkKAoJCQkjIAkiRmlsZXMvZXh0cmFjdG9yLWZpbGVzL2V4dHJhY3Rvci1jb25maWcueGxzeCIsICJ2cG5fY29uZiIKCQkJIyApLmlsb2NbMF0KCQkJIyB0MSA9IHRocmVhZGluZy5UaHJlYWQoCgkJCSMgCXRhcmdldD1WUE5NYW5hZ2VyLmNvbm5lY3QsCgkJCSMgCWFyZ3M9WwoJCQkjIAkJdnBuX2NvbmZbIkhvc3QiXSwKCQkJIyAJCXZwbl9jb25mWyJQb3J0Il0sCgkJCSMgCQl2cG5fY29uZlsiVXNlciJdLAoJCQkjIAkJdnBuX2NvbmZbIlBhc3N3b3JkIl0sCgkJCSMgCQl2cG5fY29uZlsiQ2VydGlmaWNhdGUiXSwKCQkJIyAJXSwKCQkJIyApCgkJCSMgdDEuc3RhcnQoKQoJCQkjIHRpbWUuc2xlZXAoNjApCgkJCXBhc3MKCXJlc3BvbnNlID0gIiIKCXdoaWxlIHRvX3NoYXJlID09IE5vbmUgYW5kIHJlc3BvbnNlIG5vdCBpbiBbIm8iLCAibiJdOgoJCXJlc3BvbnNlID0gaW5wdXQoIlNlIGNvbm5lY3RlciBhdSBzZXJ2ZXVyIGRlIGZpY2hpZXI/KG8vbik6ICIpLmxvd2VyKCkKCXRvX3NoYXJlID0gcmVzcG9uc2UgPT0gIm8iCgkKCXQyID0gdGhyZWFkaW5nLlRocmVhZCh0YXJnZXQ9cnVuLCBhcmdzPVthcmd2LCB0b19zaGFyZV0pCgl0Mi5zdGFydCgpCgoJIyBBdHRlbnRlIGRlIGxhIGZpbiBkdSB0aHJlYWQgZGV1eAoJdDIuam9pbigpCg=='
-  '/api/service/{id}':
-    get:
-      summary: 'Affiche un service'
-      operationId: afficheUnService
-      description: ''
-      parameters:
-        -
-          in: query
-          name: with_extractions
-          description: 'Afficher les service.'
-          example: 'false'
-          required: false
-          schema:
-            type: string
-            description: 'Afficher les service.'
-            example: 'false'
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example: {  }
-                properties: {  }
-      tags:
-        - Service
-    put:
-      summary: 'Mettre à jour un service'
-      operationId: mettreJourUnService
-      description: ''
-      parameters: []
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example: {  }
-                properties: {  }
-      tags:
-        - Service
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  description: 'Le nom du service.'
-                  example: wextractor
-                description:
-                  type: string
-                  description: 'La description du service.'
-                  example: wextractor
-                file:
-                  type: string
-                  description: 'Le fichier du service.'
-                  example: 'data:@file/x-python;base64,IyEudmVudi9iaW4vcHl0aG9uMwppbXBvcnQgb3MKaW1wb3J0IHN5cwppbXBvcnQgdGltZQppbXBvcnQgcGxhdGZvcm0KaW1wb3J0IHRocmVhZGluZwpmcm9tIExpYiBpbXBvcnQgUmVxCmltcG9ydCBwYW5kYXMgYXMgcGQKZnJvbSByaWNoLnByb2dyZXNzIGltcG9ydCAoU3Bpbm5lckNvbHVtbiwgVGV4dENvbHVtbiwgQmFyQ29sdW1uLCBQcm9ncmVzcywgVGltZUVsYXBzZWRDb2x1bW4pCmZyb20gTGliLlRhc2tEaXNwbGF5IGltcG9ydCBUYXNrRGlzcGxheQoKCgoKZGVmIHJ1bihhcmd2LCB0b19zaGFyZSk6CgliYXNlX3VybD0iaHR0cDovL3JlcG9ydGVyLmNvZmluYS5sb2NhbGhvc3QvYXBpIgoJd2l0aCBQcm9ncmVzcyhTcGlubmVyQ29sdW1uKCksVGV4dENvbHVtbigie3Rhc2suZGVzY3JpcHRpb259IiksQmFyQ29sdW1uKCksVGltZUVsYXBzZWRDb2x1bW4oKSxleHBhbmQ9VHJ1ZSkgYXMgcHJvZ3Jlc3M6CgkJdGFza19kaXNwbGF5ID0gVGFza0Rpc3BsYXkocHJvZ3Jlc3MsZiJSZWN1cMOpcmF0aW9uIGRlIGxhIGNvbmZpZ3VyYXRpb24iKQoJCWNvbmZEaWN0ID0gewoJCQkiZ3JvdXBfY29uZiIgOiBSZXEuZ2V0Q29uZmlnREYoImdyb3VwX2NvbmYiKSwKCQkJInZwbl9jb25mIiA6IFJlcS5nZXRDb25maWdERigidnBuX2NvbmYiKSwKCQkJImRiX2NvbmYiIDogUmVxLmdldENvbmZpZ0RGKCJkYl9jb25mIiksCgkJCSJlbWFpbF9jb25mIiA6IFJlcS5nZXRDb25maWdERigiZW1haWxfY29uZiIpLAoJCQkiZW1haWxfY29uZiIgOiBSZXEuZ2V0Q29uZmlnREYoImVtYWlsX2NvbmYiKSwKCQkJInNoYXJlX2NvbmYiIDogUmVxLmdldENvbmZpZ0RGKCJzaGFyZV9jb25mIiksCgkJfQoKCQlleHRyYWN0aW9uTGlzdCA9IFJlcS5nZXRMaXN0REYoZiJ7YmFzZV91cmx9L2V4dHJhY3Rpb24/cGFnaW5hdGU9ZmFsc2UmIikKCQlwcmludChleHRyYWN0aW9uTGlzdFsiaWQiXSkKCQkjIGZvciBhcmcgaW4gYXJndjoKCQkjIAlwcmludChleHRyYWN0aW9uTGlzdFsiaWQiXS5zdHIuY29udGFpbnMoYXJnLCBjYXNlPUZhbHNlLCBuYT1GYWxzZSkpCgkJIyAJcGFzcwoJCXRhc2tfZGlzcGxheS5lbmQoKQoKCmlmIF9fbmFtZV9fID09ICJfX21haW5fXyI6Cgl2cG4gPSBOb25lCgl0b19zaGFyZSA9IE5vbmUKCWFyZ3YgPSBbXQoJZm9yIGFyZyBpbiBzeXMuYXJndlsxOl06CgkJaWYgYXJnID09ICItLW5vLXZwbiI6CgkJCXZwbiA9IEZhbHNlCgkJZWxpZiBhcmcgPT0gIi0tbm8tc2hhcmUiOgoJCQl0b19zaGFyZSA9IEZhbHNlCgkJZWxzZToKCQkJYXJndi5hcHBlbmQoYXJnKQoJaWYgcGxhdGZvcm0uc3lzdGVtKCkgPT0gIldpbmRvd3MiOgoJCXZwbiA9IEZhbHNlCgllbHNlOgoJCWlmIHZwbiA9PSBOb25lOgoJCQlyZXNwb25zZSA9ICIiCgkJCXdoaWxlIHRvX3NoYXJlID09IE5vbmUgYW5kIHJlc3BvbnNlIG5vdCBpbiBbIm8iLCAibiJdOgoJCQkJcmVzcG9uc2UgPSBpbnB1dCgiU2UgY29ubmVjdGVyIGF1IHZwbj8oby9uKTogIikubG93ZXIoKQoJCQl2cG4gPSByZXNwb25zZSA9PSAibyIKCQkJCgkJaWYgdnBuOgoJCQkjIHZwbl9jb25mID0gRXhjZWxGaWxlTWFuYWdlci5yZWFkKAoJCQkjIAkiRmlsZXMvZXh0cmFjdG9yLWZpbGVzL2V4dHJhY3Rvci1jb25maWcueGxzeCIsICJ2cG5fY29uZiIKCQkJIyApLmlsb2NbMF0KCQkJIyB0MSA9IHRocmVhZGluZy5UaHJlYWQoCgkJCSMgCXRhcmdldD1WUE5NYW5hZ2VyLmNvbm5lY3QsCgkJCSMgCWFyZ3M9WwoJCQkjIAkJdnBuX2NvbmZbIkhvc3QiXSwKCQkJIyAJCXZwbl9jb25mWyJQb3J0Il0sCgkJCSMgCQl2cG5fY29uZlsiVXNlciJdLAoJCQkjIAkJdnBuX2NvbmZbIlBhc3N3b3JkIl0sCgkJCSMgCQl2cG5fY29uZlsiQ2VydGlmaWNhdGUiXSwKCQkJIyAJXSwKCQkJIyApCgkJCSMgdDEuc3RhcnQoKQoJCQkjIHRpbWUuc2xlZXAoNjApCgkJCXBhc3MKCXJlc3BvbnNlID0gIiIKCXdoaWxlIHRvX3NoYXJlID09IE5vbmUgYW5kIHJlc3BvbnNlIG5vdCBpbiBbIm8iLCAibiJdOgoJCXJlc3BvbnNlID0gaW5wdXQoIlNlIGNvbm5lY3RlciBhdSBzZXJ2ZXVyIGRlIGZpY2hpZXI/KG8vbik6ICIpLmxvd2VyKCkKCXRvX3NoYXJlID0gcmVzcG9uc2UgPT0gIm8iCgkKCXQyID0gdGhyZWFkaW5nLlRocmVhZCh0YXJnZXQ9cnVuLCBhcmdzPVthcmd2LCB0b19zaGFyZV0pCgl0Mi5zdGFydCgpCgoJIyBBdHRlbnRlIGRlIGxhIGZpbiBkdSB0aHJlYWQgZGV1eAoJdDIuam9pbigpCg=='
-    delete:
-      summary: 'Supprime un service'
-      operationId: supprimeUnService
-      description: ''
-      parameters: []
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example: {  }
-                properties: {  }
-      tags:
-        - Service
-    parameters:
-      -
-        in: path
-        name: id
-        description: "Optional parameter. L'ID du service."
-        required: true
-        schema:
-          type: integer
-        examples:
-          omitted:
-            summary: 'When the value is omitted'
-            value: ''
-          present:
-            summary: 'When the value is present'
-            value: 1
-  '/api/service/start/{id}':
-    put:
-      summary: 'Lancer un service'
-      operationId: lancerUnService
-      description: ''
-      parameters: []
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example: {  }
-                properties: {  }
-      tags:
-        - Service
-    parameters:
-      -
-        in: path
-        name: id
-        description: "L'ID du service."
-        example: 1
-        required: true
-        schema:
-          type: integer
-  '/api/service/stop/{id}':
-    put:
-      summary: 'Stoper un service'
-      operationId: stoperUnService
-      description: ''
-      parameters: []
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example: {  }
-                properties: {  }
-      tags:
-        - Service
-    parameters:
-      -
-        in: path
-        name: id
-        description: "L'ID du service."
-        example: 1
-        required: true
-        schema:
-          type: integer
-  /api/task-schedule:
-    get:
-      summary: 'Affiche les taches planifiés'
-      operationId: afficheLesTachesPlanifis
-      description: ''
-      parameters:
-        -
-          in: query
-          name: name
-          description: 'Filtrer par nom de la tache planifiée.'
-          example: null
-          required: false
-          schema:
-            type: string
-            description: 'Filtrer par nom de la tache planifiée.'
-            example: null
-        -
-          in: query
-          name: time
-          description: 'Filtrer par heure de la tache planifiée.'
-          example: null
-          required: false
-          schema:
-            type: string
-            description: 'Filtrer par heure de la tache planifiée.'
-            example: null
-        -
-          in: query
-          name: with_task_executions
-          description: 'Ajouter les executions de la tache planifié'
-          example: 'false'
-          required: false
-          schema:
-            type: string
-            description: 'Ajouter les executions de la tache planifié'
-            example: 'false'
-        -
-          in: query
-          name: paginate
-          description: 'Utiliser la pagination.'
-          example: 'false'
-          required: false
-          schema:
-            type: string
-            description: 'Utiliser la pagination.'
-            example: 'false'
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example: {  }
-                properties: {  }
-      tags:
-        - 'Taches planifiés'
-    post:
-      summary: 'Créer une nouvelle tache planifiée'
-      operationId: crerUneNouvelleTachePlanifie
-      description: ''
-      parameters: []
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example: {  }
-                properties: {  }
-      tags:
-        - 'Taches planifiés'
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  description: 'Le nom de la tache planifiée.'
-                  example: mawena
-                days:
-                  type: string
-                  description: 'Les jours de lancement de la tache planifiée.'
-                  example: '["monday", "friday"]'
-                time:
-                  type: string
-                  description: "L'heure de l'ancement de la tache planifiée."
-                  example: '15:15'
-                command:
-                  type: string
-                  description: 'La commande de la tache planifiée.'
-                  example: 'echo "dumsa"'
-  '/api/task-schedule/{id}':
-    get:
-      summary: 'Affiche une tache planifiée'
-      operationId: afficheUneTachePlanifie
-      description: ''
-      parameters:
-        -
-          in: query
-          name: with_task_executions
-          description: 'Ajouter les executions de la tache planifié'
-          example: 'false'
-          required: false
-          schema:
-            type: string
-            description: 'Ajouter les executions de la tache planifié'
-            example: 'false'
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example: {  }
-                properties: {  }
-      tags:
-        - 'Taches planifiés'
-    put:
-      summary: 'Mettre à jour une tache planifiée'
-      operationId: mettreJourUneTachePlanifie
-      description: ''
-      parameters: []
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example: {  }
-                properties: {  }
-      tags:
-        - 'Taches planifiés'
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  description: 'Le nom de la tache planifiée.'
-                  example: mawena
-                days:
-                  type: string
-                  description: 'Les jours de lancement de la tache planifiée.'
-                  example: '["monday", "friday"]'
-                time:
-                  type: string
-                  description: "L'heure de l'ancement de la tache planifiée."
-                  example: '15:15'
-                command:
-                  type: string
-                  description: 'La commande de la tache planifiée.'
-                  example: 'echo "dumsa"'
-    delete:
-      summary: 'Supprime une tache planifiée'
-      operationId: supprimeUneTachePlanifie
-      description: ''
-      parameters: []
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example: {  }
-                properties: {  }
-      tags:
-        - 'Taches planifiés'
-    parameters:
-      -
-        in: path
-        name: id
-        description: "Optional parameter. L'ID de la tache planifiée."
-        required: true
-        schema:
-          type: integer
-        examples:
-          omitted:
-            summary: 'When the value is omitted'
-            value: ''
-          present:
-            summary: 'When the value is present'
-            value: 1
+        - Paiements
   /api/user:
     get:
       summary: 'Affiche les utilisateurs'
@@ -2576,36 +1243,62 @@ paths:
             type: string
             description: "Filtrer par nom de l'utilisateur."
             example: null
+            nullable: false
         -
           in: query
           name: email
-          description: "Filtrer par valeur de l'utilisateur."
+          description: "Filtrer par email de l'utilisateur."
           example: null
           required: false
           schema:
             type: string
-            description: "Filtrer par valeur de l'utilisateur."
+            description: "Filtrer par email de l'utilisateur."
             example: null
+            nullable: false
         -
           in: query
           name: profile
-          description: "Filtrer par feuille de l'utilisateur."
+          description: "Filtrer par profile de l'utilisateur."
           example: null
           required: false
           schema:
             type: string
-            description: "Filtrer par feuille de l'utilisateur."
+            description: "Filtrer par profile de l'utilisateur."
             example: null
+            nullable: false
         -
           in: query
-          name: with_departments
-          description: 'Afficher les departements.'
+          name: with_events
+          description: 'Afficher les evenements.'
           example: 'false'
           required: false
           schema:
             type: string
-            description: 'Afficher les departements.'
+            description: 'Afficher les evenements.'
             example: 'false'
+            nullable: false
+        -
+          in: query
+          name: with_decors
+          description: 'Afficher les décors.'
+          example: 'false'
+          required: false
+          schema:
+            type: string
+            description: 'Afficher les décors.'
+            example: 'false'
+            nullable: false
+        -
+          in: query
+          name: with_payments
+          description: 'Afficher les paiements.'
+          example: 'false'
+          required: false
+          schema:
+            type: string
+            description: 'Afficher les paiements.'
+            example: 'false'
+            nullable: false
         -
           in: query
           name: paginate
@@ -2616,6 +1309,7 @@ paths:
             type: string
             description: 'Utiliser la pagination.'
             example: 'false'
+            nullable: false
       responses:
         200:
           description: ''
@@ -2654,30 +1348,32 @@ paths:
                   type: string
                   description: "Le nom de l'utilisateur."
                   example: charles.gamligo
+                  nullable: false
                 email:
                   type: string
                   description: "La valeur de l'utilisateur."
                   example: charles.gamligo@cofinacorp.com
+                  nullable: false
                 password:
                   type: string
                   description: "L'heure de l'ancement de l'utilisateur."
                   example: P@sse123
+                  nullable: false
                 activated:
-                  type: string
-                  description: "L'activation de l'utilisateur."
-                  example: '1'
+                  type: integer
+                  description: "L'activation."
+                  example: 0
+                  nullable: false
                 profile:
                   type: string
-                  description: "La ligne de la feuille de l'utilisateur."
+                  description: "Le profile de l'utilisateur."
                   example: admin
-                password_change_required:
+                  nullable: false
+                picture:
                   type: string
-                  description: "L'obligation de changer le mot de passe de l'utilisateur."
+                  description: "L'image de l'utilisateur."
                   example: '0'
-                departments:
-                  type: string
-                  description: "La ligne de la feuille de l'utilisateur."
-                  example: '[1, 2, 3]'
+                  nullable: false
   '/api/user/{id}':
     get:
       summary: 'Affiche un utilsateur'
@@ -2686,14 +1382,37 @@ paths:
       parameters:
         -
           in: query
-          name: with_departments
-          description: 'Afficher les departements.'
+          name: with_events
+          description: 'Afficher les evenements.'
           example: 'false'
           required: false
           schema:
             type: string
-            description: 'Afficher les departements.'
+            description: 'Afficher les evenements.'
             example: 'false'
+            nullable: false
+        -
+          in: query
+          name: with_decors
+          description: 'Afficher les décors.'
+          example: 'false'
+          required: false
+          schema:
+            type: string
+            description: 'Afficher les décors.'
+            example: 'false'
+            nullable: false
+        -
+          in: query
+          name: with_payments
+          description: 'Afficher les paiements.'
+          example: 'false'
+          required: false
+          schema:
+            type: string
+            description: 'Afficher les paiements.'
+            example: 'false'
+            nullable: false
       responses:
         200:
           description: ''
@@ -2732,30 +1451,32 @@ paths:
                   type: string
                   description: "Le nom de l'utilisateur."
                   example: charles.gamligo
+                  nullable: false
                 email:
                   type: string
                   description: "La valeur de l'utilisateur."
                   example: charles.gamligo@cofinacorp.com
+                  nullable: false
                 password:
                   type: string
                   description: "L'heure de l'ancement de l'utilisateur."
                   example: P@sse123
+                  nullable: false
                 activated:
-                  type: string
-                  description: "L'activation de l'utilisateur."
-                  example: '1'
+                  type: integer
+                  description: "L'activation."
+                  example: 0
+                  nullable: false
                 profile:
                   type: string
-                  description: "La ligne de la feuille de l'utilisateur."
+                  description: "Le profile de l'utilisateur."
                   example: admin
-                password_change_required:
+                  nullable: false
+                picture:
                   type: string
-                  description: "L'obligation de changer le mot de passe de l'utilisateur."
+                  description: "L'image de l'utilisateur."
                   example: '0'
-                departments:
-                  type: string
-                  description: "La ligne de la feuille de l'utilisateur."
-                  example: '[1, 2, 3]'
+                  nullable: false
     delete:
       summary: 'Supprime un utilisateur'
       operationId: supprimeUnUtilisateur
@@ -2814,15 +1535,18 @@ paths:
                 old_password:
                   type: string
                   description: "L'ancien mot de passe de l'utilisateur."
-                  example: soluta
+                  example: id
+                  nullable: false
                 new_password:
                   type: string
                   description: "Le nouveau mot de passe de l'utilisateur."
-                  example: perspiciatis
+                  example: et
+                  nullable: false
                 new_password_confirmation:
                   type: string
                   description: "La confirmation du nouveau mot de passe de l'utilisateur."
-                  example: quo
+                  example: at
+                  nullable: false
               required:
                 - old_password
                 - new_password
@@ -2832,41 +1556,20 @@ tags:
     name: Authentification
     description: "\nEndPoints pour gérer l'authentification"
   -
-    name: Configurations
+    name: Configuration
     description: "\nEndPoints pour gérer les configurations"
   -
-    name: Départements
-    description: "\nEndPoints pour gérer les départements"
+    name: Decors
+    description: "\nEndPoints pour gérer les décors"
   -
     name: Endpoints
     description: ''
   -
-    name: Extractions
-    description: "\nEndPoints pour gérer les extractions"
+    name: Evenements
+    description: "\nEndPoints pour gérer les événements"
   -
-    name: 'Extractions automatiques'
-    description: "\nEndPoints pour gérer les extractions automatiques"
-  -
-    name: "Groupe d'extraction automatique"
-    description: "\nEndPoints pour gérer les groupes d'extraction automatique"
-  -
-    name: Lancements
-    description: "\nEndPoints pour gérer les lancement"
-  -
-    name: Lov
-    description: "\nEndPoints pour gérer les lov"
-  -
-    name: Opérations
-    description: "\nEndPoints pour gérer les opérations"
-  -
-    name: Scripts
-    description: "\nEndPoints pour gérer les script"
-  -
-    name: Service
-    description: "\nEndPoints pour gérer les services"
-  -
-    name: 'Taches planifiés'
-    description: "\nEndPoints pour gérer les taches planifiés"
+    name: Paiements
+    description: "\nEndPoints pour gérer les paiements"
   -
     name: Utilisateurs
     description: "\nEndPoints pour gérer les utilisateurs"
