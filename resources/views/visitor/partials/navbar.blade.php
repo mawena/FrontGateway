@@ -144,9 +144,12 @@
 										</nav> <button type="button" class="th-menu-toggle d-block d-xl-none"><i class="far fa-bars"></i></button>
 									</div>
 									<div class="col-auto d-none d-xl-block">
-										<div class="header-button"><a href="#soumettre" class="th-btn style3 th-icon">Soumettre event / lieu /
-												décor</a></div>
+										{{-- <div class="header-button"><a href="#soumettre" class="th-btn style3 th-icon">Soumettre event / lieu / décor</a></div> --}}
+												<a href="{{route('admin.decor.index')}}" class="th-btn style3 th-icon">
+													Soumettre un décor
+												</a>
 									</div>
+
 								</div>
 							</div>
 						</div>
