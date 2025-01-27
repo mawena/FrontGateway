@@ -1,0 +1,1 @@
+import{z as u,D as i,f}from"./main-8456ba95.js";const m=(t,a,s,o,e=!1)=>{const r=u(),{global:n}=i();return f(()=>{if(n.name.value==="light")return r.skin==="bordered"&&e?s:t;if(n.name.value==="dark")return r.skin==="bordered"&&e?o:a})};export{m as u};

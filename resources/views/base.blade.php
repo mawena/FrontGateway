@@ -12,7 +12,7 @@
 	<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon.png">
 	<title>Pecorator</title>
 	<!-- This page plugin CSS -->
-	<link href="{{ asset('/assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css') }}" rel="stylesheet">
+	<link href="/assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
 	<!-- Custom CSS -->
 	<link href="/dist/css/style.min.css" rel="stylesheet">
 	<link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet">
@@ -190,26 +190,26 @@
 	<!-- ============================================================== -->
 	<!-- All Jquery -->
 	<!-- ============================================================== -->
-	<script src="{{ asset('/assets/libs/jquery/dist/jquery.min.js') }}"></script>
+	<script src="/assets/libs/jquery/dist/jquery.min.js"></script>
 	<!-- Bootstrap tether Core JavaScript -->
-	<script src="{{ asset('/assets/libs/popper.js/dist/umd/popper.min.js') }}"></script>
-	<script src="{{ asset('/assets/libs/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+	<script src="/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+	<script src="/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
 	<!-- apps -->
 	<!-- apps -->
-	<script src="{{ asset('/dist/js/app-style-switcher.js') }}"></script>
-	<script src="{{ asset('/dist/js/feather.min.js') }}"></script>
+	<script src="/dist/js/app-style-switcher.js"></script>
+	<script src="/dist/js/feather.min.js"></script>
 	<!-- slimscrollbar scrollbar JavaScript -->
-	<script src="{{ asset('/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js') }}"></script>
-	<script src="{{ asset('/assets/extra-libs/sparkline/sparkline.js') }}"></script>
+	<script src="/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+	<script src="/assets/extra-libs/sparkline/sparkline.js"></script>
 	<!--Wave Effects -->
 	<!-- themejs -->
 	<!--Menu sidebar -->
-	<script src="{{ asset('/dist/js/sidebarmenu.js') }}"></script>
+	<script src="/dist/js/sidebarmenu.js"></script>
 	<!--Custom JavaScript -->
-	<script src="{{ asset('/dist/js/custom.min.js') }}"></script>
+	<script src="/dist/js/custom.min.js"></script>
 	<!--This page plugins -->
-	<script src="{{ asset('/assets/extra-libs/datatables.net/js/jquery.dataTables.min.js') }}"></script>
-	<script src="{{ asset('/dist/js/pages/datatable/datatable-basic.init.js') }}"></script>
+	<script src="/assets/extra-libs/datatables.net/js/jquery.dataTables.min.js"></script>
+	<script src="/dist/js/pages/datatable/datatable-basic.init.js"></script>
 </body>
 
 </html>
