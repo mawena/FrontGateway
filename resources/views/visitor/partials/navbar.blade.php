@@ -32,11 +32,12 @@
 							<ul id="menu-primary-menu" class="">
 								<li id="menu-item-19324"
 									class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-548 current_page_item menu-item-19324">
-									<a href="https://wakabileguide.com/" aria-current="page">Accueil</a></li>
+									<a href="https://wakabileguide.com/" aria-current="page">Accueil</a>
+								</li>
 								<li id="menu-item-19468" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-19468"><a
-										href="https://wakabileguide.com/evenements-wakabi/">Évènements</a></li>
+										href="/evenements/">Évènements</a></li>
 								<li id="menu-item-20374" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20374"><a
-										href="https://wakabileguide.com/decors/">Décors</a></li>
+										href="/decors/">Décors</a></li>
 								<li id="menu-item-20349"
 									class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-20349 th-item-has-children">
 									<a href="#">Destinations</a>
@@ -95,11 +96,14 @@
 										<div class="header-links">
 											<ul id="menu-header-top" class="tourm-menu">
 												<li id="menu-item-20352" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20352">
-													<a href="https://wakabileguide.com/a-propos-wakabi/">A Propos</a></li>
+													<a href="https://wakabileguide.com/a-propos-wakabi/">A Propos</a>
+												</li>
 												<li id="menu-item-21297" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-21297">
-													<a href="https://wakabileguide.com/contact/">Contacts</a></li>
+													<a href="https://wakabileguide.com/contact/">Contacts</a>
+												</li>
 												<li id="menu-item-20377" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20377">
-													<a href="https://wakabileguide.com/connexion/">Connexion</a></li>
+													<a href="https://wakabileguide.com/connexion/">Connexion</a>
+												</li>
 											</ul>
 										</div>
 									</div>
@@ -122,11 +126,12 @@
 											<ul id="menu-primary-menu-1" class="tourm-menu">
 												<li
 													class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-548 current_page_item menu-item-19324">
-													<a href="https://wakabileguide.com/" aria-current="page">Accueil</a></li>
+													<a href="https://wakabileguide.com/" aria-current="page">Accueil</a>
+												</li>
 												<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-19468"><a
-														href="https://wakabileguide.com/evenements-wakabi/">Évènements</a></li>
+														href="/evenements/">Évènements</a></li>
 												<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20374"><a
-														href="https://wakabileguide.com/decors/">Décors</a></li>
+														href="/decors/">Décors</a></li>
 												<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-20349">
 													<a href="#">Destinations</a>
 													<ul class="sub-menu">
@@ -145,9 +150,9 @@
 									</div>
 									<div class="col-auto d-none d-xl-block">
 										{{-- <div class="header-button"><a href="#soumettre" class="th-btn style3 th-icon">Soumettre event / lieu / décor</a></div> --}}
-												<a href="{{route('admin.decor.index')}}" class="th-btn style3 th-icon">
-													Soumettre un décor
-												</a>
+										<a href="{{ route('admin.decor.index') }}" class="th-btn style3 th-icon">
+											Soumettre un décor
+										</a>
 									</div>
 
 								</div>
