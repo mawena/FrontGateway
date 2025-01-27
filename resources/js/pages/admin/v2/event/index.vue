@@ -24,6 +24,7 @@ const actionButtonText = ref("")
 const actionFunction = ref()
 const actionComment = ref("cancel")
 const commentPresence = ref(false)
+const actionStatus = ref("waiting");
 const validationFilter = ref(null)
 const headers = [
 	{
@@ -46,7 +47,7 @@ const headers = [
 ]
 const {
 	data: userListData,
-	execute: fetchUserList,
+	execute: fetchEventList,
 } = await useApi(createUrl('/event', {
 	query: {
 		search: searchQuery,
@@ -87,8 +88,34 @@ const apiDelete = async id => {
 			})
 		}
 	}
-	await fetchUserList();
+	await fetchEventList();
 	isSnackbarScrollReverseVisible.value = true
+}
+
+const apiChangeStatus = async id => {
+	const response = await $api(`event/change-validation/${id}`, {
+		method: "PUT",
+		body: { status: actionStatus.value },
+	});
+	if (response.status == 200) {
+		isSnackbarScrollReverseVisible.value = true
+		snackbarCollor.value = "success"
+		actionComment.value = ""
+		snackbarMessage.value = ""
+		snackbarMessage.value = "Evenement " + actionStatus.value == "validated" ? "Validé" : "Rejeté"
+	} else {
+		snackbarCollor.value = "error"
+		isSnackbarScrollReverseVisible.value = true
+		snackbarMessage.value = ""
+		for (const key in response.errors) {
+			response.errors[key].forEach(message => {
+				snackbarMessage.value += "" + message + "<br>";
+			})
+		}
+	}
+	await fetchEventList();
+	isSnackbarScrollReverseVisible.value = true
+
 }
 
 
@@ -101,6 +128,7 @@ const snackbarCollor = ref("success")
 const userList = computed(() => userListData.value.data)
 
 const localUserData = useCookie('userData').value
+
 </script>
 
 <template>
@@ -125,7 +153,7 @@ const localUserData = useCookie('userData').value
 					<VCol cols="12" sm="12">
 						<AppSelect v-model="validationFilter" placeholder="Validation" item-title="name"
 							item-value="key"
-							:items="[{ 'key': 'waiting', 'name': 'En attente' }, { 'key': 'validated', 'name': 'Validés' }, { 'key': 'rejected', 'name': 'Rejetés' }]"
+							:items="[{ 'key': 'pending', 'name': 'En attente' }, { 'key': 'validated', 'name': 'Validés' }, { 'key': 'rejected', 'name': 'Rejetés' }]"
 							clearable clear-icon="tabler-x" />
 					</VCol>
 				</VRow>
@@ -147,7 +175,7 @@ const localUserData = useCookie('userData').value
 						Nouveau
 					</VBtn>
 					<VBtn :loading="loadings[3]" :disabled="loadings[3]" prepend-icon="tabler-refresh"
-						@click="fetchUserList(); load(3)">
+						@click="fetchEventList(); load(3)">
 						Recharger
 						<template #loader>
 							<span class="custom-loader">
@@ -199,19 +227,19 @@ const localUserData = useCookie('userData').value
 								<VIcon icon="tabler-trash" color='error' />
 							</IconBtn>
 						</div>
-						<div>
+						<div v-if="localUserData.role == 'admin'">
 							<VDivider />
 							<IconBtn
-								v-if="$can('validate', 'event') && localUserData.profil == 'admin' && item.validation != 'validated'"
-								@click="selectedItemId = item.id; (actionTitle = 'Valider l\'evenement'), (actionText = 'Voulez vous vraiment valider cet evenement?'), (actionFunction = apiChangeStatus); actionButtonText = 'Valider'; commentPresence = false; actionStatus = 'validated'; isActionDialogVisible = true;">
-								<VTooltip activator="parent" transition="scroll-x-transition" location="end">Valider
+								v-if="$can('reject', 'event') && localUserData.role == 'admin' && item.validation != 'rejected'"
+								@click="selectedItemId = item.id; (actionTitle = 'Rejeter l\'evenement'), (actionText = 'Voulez vous vraiment rejeter cet evenement?'), (actionFunction = apiChangeStatus); actionButtonText = 'Rejeter'; commentPresence = false; actionStatus = 'rejected'; isActionDialogVisible = true;">
+								<VTooltip activator="parent" transition="scroll-x-transition" location="start">Rejeter
 								</VTooltip>
-								<VIcon icon="tabler-check" color="success" />
+								<VIcon icon="tabler-x" color="error" />
 							</IconBtn>
 							<IconBtn
-								v-if="$can('reject', 'event') && localUserData.profil == 'admin' && item.validation != 'rejected'"
-								@click="selectedItemId = item.id; (actionTitle = 'Rejeter l\'evenement'), (actionText = 'Voulez vous vraiment rejeter cet evenement?'), (actionFunction = apiChangeStatus); actionButtonText = 'Rejeter'; commentPresence = false; actionStatus = 'rejected'; isActionDialogVisible = true;">
-								<VTooltip activator="parent" transition="scroll-x-transition" location="end">Rejeter
+								v-if="$can('validate', 'event') && localUserData.role == 'admin' && item.validation != 'validated'"
+								@click="selectedItemId = item.id; (actionTitle = 'Valider l\'evenement'), (actionText = 'Voulez vous vraiment valider cet evenement?'), (actionFunction = apiChangeStatus); actionButtonText = 'Valider'; commentPresence = false; actionStatus = 'validated'; isActionDialogVisible = true;">
+								<VTooltip activator="parent" transition="scroll-x-transition" location="end">Valider
 								</VTooltip>
 								<VIcon icon="tabler-check" color="success" />
 							</IconBtn>
