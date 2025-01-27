@@ -8,7 +8,7 @@ definePage({
 })
 const router = useRouter()
 const route = useRoute("user-id")
-let nextRoute = "/user";
+let nextRoute = "/admin/v2/user";
 
 
 const { data: user } = await useApi(
@@ -34,7 +34,8 @@ if (user.value.status == 200) {
 					<!-- SECTION Header -->
 					<VCardText class="d-flex flex-wrap justify-space-between flex-column flex-sm-row print-row text-lg">
 						<VCol cols="10">
-							<VBtn prepend-icon="tabler-arrow-narrow-left" :to="nextRoute">
+							<VBtn :to="nextRoute">
+								<VIcon start icon="tabler-users-group" />
 								BackOfficiers
 							</VBtn>
 						</VCol>

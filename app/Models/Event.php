@@ -30,7 +30,7 @@ class Event extends Model
 		"validation",
 	];
 
-	public $appends = ["entrance_fr", "short_name", "short_place"];
+	public $appends = ["entrance_fr", "short_name", "short_place", "entry_price_formated"];
 
 	public function toArray()
 	{
@@ -70,5 +70,10 @@ class Event extends Model
 	public function getShortPlaceAttribute()
 	{
 		return substr($this->place, 0, 50) . (strlen($this->place) > 50 ? "..." : "");
+	}
+
+	public function getEntryPriceFormatedAttribute()
+	{
+		return number_format($this->entry_price, 0, ",", " ") . " XOF";
 	}
 }
