@@ -578,22 +578,38 @@ paths:
                 project_path:
                   type: string
                   description: ''
+<<<<<<< HEAD
                   example: sint
+=======
+                  example: nihil
+>>>>>>> Charles
                   nullable: false
                 target_server:
                   type: string
                   description: ''
+<<<<<<< HEAD
                   example: quas
+=======
+                  example: doloribus
+>>>>>>> Charles
                   nullable: true
                 target_path:
                   type: string
                   description: ''
+<<<<<<< HEAD
                   example: nobis
+=======
+                  example: dolores
+>>>>>>> Charles
                   nullable: true
                 target_port:
                   type: string
                   description: ''
+<<<<<<< HEAD
                   example: laboriosam
+=======
+                  example: voluptatem
+>>>>>>> Charles
                   nullable: true
               required:
                 - action
@@ -1535,17 +1551,29 @@ paths:
                 old_password:
                   type: string
                   description: "L'ancien mot de passe de l'utilisateur."
+<<<<<<< HEAD
                   example: quae
+=======
+                  example: nihil
+>>>>>>> Charles
                   nullable: false
                 new_password:
                   type: string
                   description: "Le nouveau mot de passe de l'utilisateur."
+<<<<<<< HEAD
                   example: sed
+=======
+                  example: veritatis
+>>>>>>> Charles
                   nullable: false
                 new_password_confirmation:
                   type: string
                   description: "La confirmation du nouveau mot de passe de l'utilisateur."
+<<<<<<< HEAD
                   example: voluptatibus
+=======
+                  example: fugit
+>>>>>>> Charles
                   nullable: false
               required:
                 - old_password

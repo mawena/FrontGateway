@@ -23,6 +23,7 @@ const itemData = ref({
 	contact: null,
 	description_summary: null,
 	description: null,
+	poster: null,
 })
 
 const getResetTransferError = () => {
@@ -38,6 +39,7 @@ const getResetTransferError = () => {
 		contact: "",
 		description_summary: "",
 		description: "",
+		poster: "",
 	}
 }
 const itemError = ref(getResetTransferError())
@@ -73,6 +75,7 @@ const onSubmit = () => {
 					contact: itemData.value.contact,
 					description_summary: itemData.value.description_summary,
 					description: itemData.value.description,
+					poster: itemData.value.poster,
 				},
 			})
 
@@ -153,7 +156,6 @@ const onSubmit = () => {
 const isSnackbarScrollReverseVisible = ref(false)
 const snackbarMessage = ref("")
 const snackbarCollor = ref("success")
-
 const localUserData = useCookie('userData').value
 </script>
 
@@ -210,14 +212,17 @@ const localUserData = useCookie('userData').value
 								<VCol cols="12" md="12" lg="12">
 									<VTextarea v-model="itemData.description" :error-messages="itemError.description" label="Description Detaillé" />
 								</VCol>
-								
 							</VRow>
 						</VCardText>
 					</VCard>
 				</VCol>
 				<VCol cols="12">
 					<div class="d-flex flex-wrap justify-start justify-sm-space-between gap-y-4 gap-x-6 mb-6">
-						<div class="d-flex flex-column justify-center" />
+						<div class="d-flex flex-column justify-center">
+								<VBtn :to="{ name: 'admin-v2-event' }">
+									Evenements
+								</VBtn>
+							</div>
 						<div class="d-flex gap-4 align-center flex-wrap">
 							<VBtn type="reset" variant="tonal" color="primary">
 								<VIcon start icon="tabler-circle-minus" />

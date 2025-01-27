@@ -3,77 +3,121 @@
 definePage({
 	meta: {
 		action: 'update',
-		subject: 'user',
+		subject: 'event',
 	},
 })
 const router = useRouter()
-const route = useRoute("user-edit-id")
-let nextRoute = "/admin/v2/user";
+const route = useRoute("event-edit-id")
+let nextRoute = "/admin/v2/event";
 
 const getEmptyError = () => {
 	return {
 		name: "",
-		email: "",
-		password: "",
-		profile: "",
-		activated: "",
+		start_date: "",
+		end_date: "",
+		place: "",
+		type: "",
+		nb_expected: "",
+		entrance: "",
+		entry_price: "",
+		contact: "",
+		description_summary: "",
+		description: "",
+		poster: "",
 	}
 }
 
-const userError = ref(getEmptyError())
+const itemError = ref(getEmptyError())
 
 const {
-	data: userData,
-} = await useApi(createUrl(`/user/${route.params.id}`, {
+	data: itemData,
+} = await useApi(createUrl(`/event/${route.params.id}`, {
 	query: {
 	},
 }))
-const user = ref(userData.value.data.User)
+const item = ref(itemData.value.data.Event)
 const refForm = ref()
 
 const onSubmit = () => {
 	refForm.value?.validate().then(async ({ valid }) => {
 		if (valid) {
-			const res = await $api(`/user/${route.params.id}`, {
+			const res = await $api(`/event/${route.params.id}`, {
 				method: 'PUT',
 				body: {
-					name: user.value.name,
-					email: user.value.email,
-					password: user.value.password,
-					profile: user.value.profile,
-					activated: user.value.activated,
+					name: item.value.name,
+					start_date: item.value.start_date,
+					end_date: item.value.end_date,
+					place: item.value.place,
+					type: item.value.type,
+					nb_expected: item.value.nb_expected,
+					entrance: item.value.entrance,
+					entry_price: item.value.entry_price,
+					contact: item.value.contact,
+					description_summary: item.value.description_summary,
+					description: item.value.description,
+					poster: item.value.poster,
 				},
 			})
 
-			userError.value = getEmptyError()
+			itemError.value = getEmptyError()
 			if (res.status == 200) {
 				router.push(nextRoute)
 			} else {
+				if (res.errors.poster) {
+					itemError.value["poster"] = res.errors.poster
+					res.errors.poster = null
+				}
 				if (res.errors.name) {
-					userError.value["name"] = res.errors.name[0]
+					itemError.value["name"] = res.errors.name
 					res.errors.name = null
 				}
-				if (res.errors.email) {
-					userError.value["email"] = res.errors.email[0]
-					res.errors.email = null
+				if (res.errors.start_date) {
+					itemError.value["start_date"] = res.errors.start_date
+					res.errors.start_date = null
 				}
-				if (res.errors.password) {
-					userError.value["password"] = res.errors.password[0]
-					res.errors.password = null
+				if (res.errors.end_date) {
+					itemError.value["end_date"] = res.errors.end_date
+					res.errors.end_date = null
 				}
-				if (res.errors.profile) {
-					userError.value["profile"] = res.errors.profile[0]
-					res.errors.profile = null
+				if (res.errors.place) {
+					itemError.value["place"] = res.errors.place
+					res.errors.place = null
+				}
+				if (res.errors.type) {
+					itemError.value["type"] = res.errors.type
+					res.errors.type = null
+				}
+				if (res.errors.nb_expected) {
+					itemError.value["nb_expected"] = res.errors.nb_expected
+					res.errors.nb_expected = null
+				}
+				if (res.errors.entrance) {
+					itemError.value["entrance"] = res.errors.entrance
+					res.errors.entrance = null
+				}
+				if (res.errors.entry_price) {
+					itemError.value["entry_price"] = res.errors.entry_price
+					res.errors.entry_price = null
+				}
+				if (res.errors.contact) {
+					itemError.value["contact"] = res.errors.contact
+					res.errors.contact = null
+				}
+				if (res.errors.description_summary) {
+					itemError.value["description_summary"] = res.errors.description_summary
+					res.errors.description_summary = null
+				}
+				if (res.errors.description) {
+					itemError.value["description"] = res.errors.description
+					res.errors.description = null
 				}
 				snackbarMessage.value = ""
 				let show = false
 				for (const key in res.errors) {
 					if (res.errors[key] != null) {
+						show = true;
 						snackbarCollor.value = "error"
-						res.errors[key].forEach(message => {
-							show = true;
-							snackbarMessage.value += key + ": " + message + "<br>";
-						})
+						snackbarMessage.value += res.errors[key] + "<br>";
 					}
 				}
 				isSnackbarScrollReverseVisible.value = show
@@ -90,6 +134,7 @@ const isSnackbarScrollReverseVisible = ref(false)
 const snackbarMessage = ref("")
 const snackbarCollor = ref("success")
 const isPasswordVisible = ref(false)
+
 const localUserData = useCookie('userData').value
 </script>
 
@@ -99,12 +144,9 @@ const localUserData = useCookie('userData').value
 			<VForm ref="refForm" @submit.prevent="onSubmit">
 				<VRow>
 					<VCol cols="11">
-						<VBtn prepend-icon="tabler-arrow-narrow-left" :to="nextRoute">
-							Utilisateurs
-						</VBtn>
 					</VCol>
 					<VCol cols="1" class="text-right">
-						<VBtn append-icon="tabler-eye" :to="{ name: 'admin-v2-user-id', params: { id: route.params.id } }">
+						<VBtn append-icon="tabler-eye" :to="{ name: 'admin-v2-event-id', params: { id: route.params.id } }">
 							Voir
 						</VBtn>
 					</VCol>
@@ -115,31 +157,41 @@ const localUserData = useCookie('userData').value
 						<VCard class="mb-6" title="Modification du l'utilisateur">
 							<VCardText>
 								<VRow>
-									<VCol cols="12" md="12" lg="6">
-										<VTextField v-model="user.name" :error-messages="userError.name" label="Nom" />
+									<VCol cols="12" md="12" lg="2">
+										<VFileInput accept=".png,.jpg,.jpeg,.webp" label="Poster" :error-messages="itemError.file" @input="changeFile" required />
+									</VCol>
+									<VCol cols="12" md="12" lg="10">
+										<VTextField v-model="item.name" :error-messages="itemError.name" label="Nom" />
 									</VCol>
 									<VCol cols="12" md="12" lg="6">
-										<VTextField v-model="user.email" :error-messages="userError.email" type="email"
-											label="Email" />
+										<AppDateTimePicker v-model="item.start_date" :error-messages="itemError.start_date" label="Date de debut" />
 									</VCol>
 									<VCol cols="12" md="12" lg="6">
-										<VSelect v-model="user.activated"
-											:items="[{ 'name': 'Activé', 'id': true }, { 'name': 'Désactivé', 'id': false }]"
-											:error-messages="userError.activated" label="Activation" item-title="name"
-											item-value="id" required />
+										<AppDateTimePicker v-model="item.end_date" :error-messages="itemError.end_date" label="Date de fin" />
 									</VCol>
-									<VCol cols="12" md="12" lg="6">
-										<VSelect v-model="user.profile"
-											:items="localUserData.profileCanCreate"
-											:error-messages="userError.profile" label="Profile" item-title="name"
-											item-value="key" required />
+									<VCol cols="12" md="12" lg="4">
+										<VTextField v-model="item.place" :error-messages="itemError.place" label="Lieu" />
+									</VCol>
+									<VCol cols="12" md="12" lg="4">
+										<VTextField v-model="item.type" :error-messages="itemError.type" label="Type" />
+									</VCol>
+									<VCol cols="12" md="12" lg="4">
+										<VTextField v-model="item.nb_expected" :error-messages="itemError.nb_expected" label="Nombre de personnes attendus" type="number" />
 									</VCol>
 									<VCol cols="12" md="12" lg="12">
-										<VTextField v-model="user.password" label="Password" placeholder="············"
-											:type="isPasswordVisible ? 'text' : 'password'"
-											:error-messages="userError.password"
-											:append-inner-icon="isPasswordVisible ? 'tabler-eye-off' : 'tabler-eye'"
-											@click:append-inner="isPasswordVisible = !isPasswordVisible" class="mb-8" />
+										<VAutocomplete v-model="item.entrance" :error-messages="itemError.entrance" label="Entrée" :items="[{'key': 'paid', 'name': 'Payante'}, {'key': 'free', 'name': 'Gratuite'}]" item-title="name" item-value="key"/>
+									</VCol>
+									<VCol cols="12" md="12" lg="12" v-if="item.entrance == 'paid'">
+										<VTextField v-model="item.entry_price" :error-messages="itemError.entry_price" label="Prix d'entrée" type="number" />
+									</VCol>
+									<VCol cols="12" md="12" lg="8">
+										<VTextField v-model="item.description_summary" :error-messages="itemError.description_summary" label="Description résumé" />
+									</VCol>
+									<VCol cols="12" md="12" lg="4">
+										<VTextField v-model="item.contact" :error-messages="itemError.contact" label="Contact" />
+									</VCol>
+									<VCol cols="12" md="12" lg="12">
+										<VTextarea v-model="item.description" :error-messages="itemError.description" label="Description Detaillé" />
 									</VCol>
 								</VRow>
 							</VCardText>
@@ -148,7 +200,11 @@ const localUserData = useCookie('userData').value
 					</VCol>
 					<VCol cols="12">
 						<div class="d-flex flex-wrap justify-start justify-sm-space-between gap-y-4 gap-x-6 mb-6">
-							<div class="d-flex flex-column justify-center" />
+							<div class="d-flex flex-column justify-center">
+								<VBtn :to="{ name: 'admin-v2-user' }">
+									Evenements
+								</VBtn>
+							</div>
 							<div class="d-flex gap-4 align-center flex-wrap">
 								<VBtn type="reset" variant="tonal" color="primary">
 									<VIcon start icon="tabler-circle-minus" />

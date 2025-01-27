@@ -113,7 +113,7 @@ const localUserData = useCookie('userData').value
 				<VRow>
 					<VCardText>
 						<h2>
-							Liste des utilisateurs
+							Liste des Backofficiers
 						</h2>
 					</VCardText>
 				</VRow>
