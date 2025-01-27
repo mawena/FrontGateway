@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('admin/v2/{any?}', function () {
 	return view('application');
 })->where('any', '.*');
+Route::get('build/admin/v2/{any?}', function () {
+	return view('application');
+})->where('any', '.*');
 
 Route::controller(HomeController::class)->as('visitor.')->group(function () {
 	Route::get('/', function () {
@@ -23,7 +26,6 @@ Route::controller(HomeController::class)->as('visitor.')->group(function () {
 	Route::get('/evenements/details/{id}', 'event_details')->name('events.details');
 	Route::get('/decors', 'decors')->name('decors');
 	Route::get("/decors/use/{id}", "use_decor")->name("decors.use");
-
 });
 
 Route::prefix("admin")->name("admin.")->controller(AuthControler::class)->group(function () {
