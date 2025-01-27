@@ -1,11 +1,9 @@
 cofina_credit.sql
 package.json
 public/mockServiceWorker.js
-public/docs
 /.scribe
 /.phpunit.cache
 /node_modules
-/public/hot
 /public/storage
 /storage/framework
 /storage/app/public/upload/scripts-2024-09-20
@@ -52,8 +50,6 @@ lerna-debug.log*
 
 node_modules
 .DS_Store
-dist
-dist-ssr
 *.local
 
 /cypress/videos/
