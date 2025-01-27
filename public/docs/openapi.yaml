@@ -578,22 +578,22 @@ paths:
                 project_path:
                   type: string
                   description: ''
-                  example: nihil
+                  example: et
                   nullable: false
                 target_server:
                   type: string
                   description: ''
-                  example: doloribus
+                  example: temporibus
                   nullable: true
                 target_path:
                   type: string
                   description: ''
-                  example: dolores
+                  example: corporis
                   nullable: true
                 target_port:
                   type: string
                   description: ''
-                  example: voluptatem
+                  example: nihil
                   nullable: true
               required:
                 - action
@@ -1535,17 +1535,17 @@ paths:
                 old_password:
                   type: string
                   description: "L'ancien mot de passe de l'utilisateur."
-                  example: nihil
+                  example: totam
                   nullable: false
                 new_password:
                   type: string
                   description: "Le nouveau mot de passe de l'utilisateur."
-                  example: veritatis
+                  example: excepturi
                   nullable: false
                 new_password_confirmation:
                   type: string
                   description: "La confirmation du nouveau mot de passe de l'utilisateur."
-                  example: fugit
+                  example: officia
                   nullable: false
               required:
                 - old_password
