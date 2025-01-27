@@ -38,6 +38,19 @@ const {
 const item = ref(itemData.value.data.Event)
 const refForm = ref()
 
+const changeFile = file => {
+	const fileReader = new FileReader()
+	const { files } = file.target
+	if (files && files.length) {
+		fileReader.readAsDataURL(files[0])
+		fileReader.onload = () => {
+			if (typeof fileReader.result === 'string') {
+				item.value.poster = fileReader.result
+			}
+		}
+	}
+}
+
 const onSubmit = () => {
 	refForm.value?.validate().then(async ({ valid }) => {
 		if (valid) {
@@ -61,7 +74,7 @@ const onSubmit = () => {
 
 			itemError.value = getEmptyError()
 			if (res.status == 200) {
-				router.push(nextRoute)
+				router.push({ name: 'admin-v2-event-id', params: { id: route.params.id } })
 			} else {
 				if (res.errors.poster) {
 					itemError.value["poster"] = res.errors.poster
@@ -146,7 +159,8 @@ const localUserData = useCookie('userData').value
 					<VCol cols="11">
 					</VCol>
 					<VCol cols="1" class="text-right">
-						<VBtn append-icon="tabler-eye" :to="{ name: 'admin-v2-event-id', params: { id: route.params.id } }">
+						<VBtn append-icon="tabler-eye"
+							:to="{ name: 'admin-v2-event-id', params: { id: route.params.id } }">
 							Voir
 						</VBtn>
 					</VCol>
@@ -158,40 +172,53 @@ const localUserData = useCookie('userData').value
 							<VCardText>
 								<VRow>
 									<VCol cols="12" md="12" lg="2">
-										<VFileInput accept=".png,.jpg,.jpeg,.webp" label="Poster" :error-messages="itemError.file" @input="changeFile" required />
+										<VFileInput accept=".png,.jpg,.jpeg,.webp" label="Poster"
+											:error-messages="itemError.file" @input="changeFile" required />
 									</VCol>
 									<VCol cols="12" md="12" lg="10">
 										<VTextField v-model="item.name" :error-messages="itemError.name" label="Nom" />
 									</VCol>
 									<VCol cols="12" md="12" lg="6">
-										<AppDateTimePicker v-model="item.start_date" :error-messages="itemError.start_date" label="Date de debut" />
+										<AppDateTimePicker v-model="item.start_date"
+											:error-messages="itemError.start_date" label="Date de debut" />
 									</VCol>
 									<VCol cols="12" md="12" lg="6">
-										<AppDateTimePicker v-model="item.end_date" :error-messages="itemError.end_date" label="Date de fin" />
+										<AppDateTimePicker v-model="item.end_date" :error-messages="itemError.end_date"
+											label="Date de fin" />
 									</VCol>
 									<VCol cols="12" md="12" lg="4">
-										<VTextField v-model="item.place" :error-messages="itemError.place" label="Lieu" />
+										<VTextField v-model="item.place" :error-messages="itemError.place"
+											label="Lieu" />
 									</VCol>
 									<VCol cols="12" md="12" lg="4">
 										<VTextField v-model="item.type" :error-messages="itemError.type" label="Type" />
 									</VCol>
 									<VCol cols="12" md="12" lg="4">
-										<VTextField v-model="item.nb_expected" :error-messages="itemError.nb_expected" label="Nombre de personnes attendus" type="number" />
+										<VTextField v-model="item.nb_expected" :error-messages="itemError.nb_expected"
+											label="Nombre de personnes attendus" type="number" />
 									</VCol>
 									<VCol cols="12" md="12" lg="12">
-										<VAutocomplete v-model="item.entrance" :error-messages="itemError.entrance" label="Entrée" :items="[{'key': 'paid', 'name': 'Payante'}, {'key': 'free', 'name': 'Gratuite'}]" item-title="name" item-value="key"/>
+										<VAutocomplete v-model="item.entrance" :error-messages="itemError.entrance"
+											label="Entrée"
+											:items="[{ 'key': 'paid', 'name': 'Payante' }, { 'key': 'free', 'name': 'Gratuite' }]"
+											item-title="name" item-value="key" />
 									</VCol>
 									<VCol cols="12" md="12" lg="12" v-if="item.entrance == 'paid'">
-										<VTextField v-model="item.entry_price" :error-messages="itemError.entry_price" label="Prix d'entrée" type="number" />
+										<VTextField v-model="item.entry_price" :error-messages="itemError.entry_price"
+											label="Prix d'entrée" type="number" />
 									</VCol>
 									<VCol cols="12" md="12" lg="8">
-										<VTextField v-model="item.description_summary" :error-messages="itemError.description_summary" label="Description résumé" />
+										<VTextField v-model="item.description_summary"
+											:error-messages="itemError.description_summary"
+											label="Description résumé" />
 									</VCol>
 									<VCol cols="12" md="12" lg="4">
-										<VTextField v-model="item.contact" :error-messages="itemError.contact" label="Contact" />
+										<VTextField v-model="item.contact" :error-messages="itemError.contact"
+											label="Contact" />
 									</VCol>
 									<VCol cols="12" md="12" lg="12">
-										<VTextarea v-model="item.description" :error-messages="itemError.description" label="Description Detaillé" />
+										<VTextarea v-model="item.description" :error-messages="itemError.description"
+											label="Description Detaillé" />
 									</VCol>
 								</VRow>
 							</VCardText>
@@ -201,7 +228,8 @@ const localUserData = useCookie('userData').value
 					<VCol cols="12">
 						<div class="d-flex flex-wrap justify-start justify-sm-space-between gap-y-4 gap-x-6 mb-6">
 							<div class="d-flex flex-column justify-center">
-								<VBtn :to="{ name: 'admin-v2-user' }">
+								<VBtn :to="{ name: 'admin-v2-event' }">
+									<VIcon start icon="tabler-calendar-event" />
 									Evenements
 								</VBtn>
 							</div>
