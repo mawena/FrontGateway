@@ -569,11 +569,7 @@ paths:
                 action:
                   type: string
                   description: ''
-<<<<<<< HEAD
-                  example: delete
-=======
                   example: transfer
->>>>>>> Charles
                   nullable: false
                   enum:
                     - download
@@ -582,38 +578,22 @@ paths:
                 project_path:
                   type: string
                   description: ''
-<<<<<<< HEAD
-                  example: vel
-=======
-                  example: ipsam
->>>>>>> Charles
+                  example: harum
                   nullable: false
                 target_server:
                   type: string
                   description: ''
-<<<<<<< HEAD
-                  example: in
-=======
-                  example: explicabo
->>>>>>> Charles
+                  example: aliquam
                   nullable: true
                 target_path:
                   type: string
                   description: ''
-<<<<<<< HEAD
-                  example: aliquam
-=======
-                  example: velit
->>>>>>> Charles
+                  example: tempore
                   nullable: true
                 target_port:
                   type: string
                   description: ''
-<<<<<<< HEAD
-                  example: illum
-=======
-                  example: dolore
->>>>>>> Charles
+                  example: modi
                   nullable: true
               required:
                 - action
@@ -1555,29 +1535,17 @@ paths:
                 old_password:
                   type: string
                   description: "L'ancien mot de passe de l'utilisateur."
-<<<<<<< HEAD
-                  example: illum
-=======
-                  example: non
->>>>>>> Charles
+                  example: sit
                   nullable: false
                 new_password:
                   type: string
                   description: "Le nouveau mot de passe de l'utilisateur."
-<<<<<<< HEAD
-                  example: et
-=======
-                  example: est
->>>>>>> Charles
+                  example: eum
                   nullable: false
                 new_password_confirmation:
                   type: string
                   description: "La confirmation du nouveau mot de passe de l'utilisateur."
-<<<<<<< HEAD
-                  example: molestiae
-=======
-                  example: aut
->>>>>>> Charles
+                  example: dolores
                   nullable: false
               required:
                 - old_password

@@ -10,11 +10,7 @@
     ],
     "info": {
         "name": "Pecorator",
-<<<<<<< HEAD
-        "_postman_id": "eb7d6577-c63a-43bc-9274-311f9306149a",
-=======
-        "_postman_id": "6e39fa76-003c-4301-a944-e3867d7c2040",
->>>>>>> Charles
+        "_postman_id": "ad30c8df-8c1c-4b88-8da8-19c82c2613f8",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -699,11 +695,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-<<<<<<< HEAD
-                            "raw": "{\"action\":\"delete\",\"project_path\":\"vel\",\"target_server\":\"in\",\"target_path\":\"aliquam\",\"target_port\":\"illum\"}"
-=======
-                            "raw": "{\"action\":\"transfer\",\"project_path\":\"ipsam\",\"target_server\":\"explicabo\",\"target_path\":\"velit\",\"target_port\":\"dolore\"}"
->>>>>>> Charles
+                            "raw": "{\"action\":\"transfer\",\"project_path\":\"harum\",\"target_server\":\"aliquam\",\"target_path\":\"tempore\",\"target_port\":\"modi\"}"
                         },
                         "description": ""
                     },
@@ -1431,11 +1423,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-<<<<<<< HEAD
-                            "raw": "{\"old_password\":\"illum\",\"new_password\":\"et\",\"new_password_confirmation\":\"molestiae\"}"
-=======
-                            "raw": "{\"old_password\":\"non\",\"new_password\":\"est\",\"new_password_confirmation\":\"aut\"}"
->>>>>>> Charles
+                            "raw": "{\"old_password\":\"sit\",\"new_password\":\"eum\",\"new_password_confirmation\":\"dolores\"}"
                         },
                         "description": ""
                     },
