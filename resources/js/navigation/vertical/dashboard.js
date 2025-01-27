@@ -1,7 +1,7 @@
 export default [
 	{
 		icon: { icon: 'tabler-users-group' },
-		title: 'Utilisateurs',
+		title: 'BackOfficiers',
 		subject: 'user',
 		action: 'historical',
 		to: 'admin-v2-user',

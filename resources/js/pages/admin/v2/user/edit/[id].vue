@@ -69,11 +69,9 @@ const onSubmit = () => {
 				let show = false
 				for (const key in res.errors) {
 					if (res.errors[key] != null) {
+						show = true;
 						snackbarCollor.value = "error"
-						res.errors[key].forEach(message => {
-							show = true;
-							snackbarMessage.value += key + ": " + message + "<br>";
-						})
+						snackbarMessage.value += res.errors[key] + "<br>";
 					}
 				}
 				isSnackbarScrollReverseVisible.value = show
@@ -99,12 +97,10 @@ const localUserData = useCookie('userData').value
 			<VForm ref="refForm" @submit.prevent="onSubmit">
 				<VRow>
 					<VCol cols="11">
-						<VBtn prepend-icon="tabler-arrow-narrow-left" :to="nextRoute">
-							Utilisateurs
-						</VBtn>
 					</VCol>
 					<VCol cols="1" class="text-right">
-						<VBtn append-icon="tabler-eye" :to="{ name: 'admin-v2-user-id', params: { id: route.params.id } }">
+						<VBtn append-icon="tabler-eye"
+							:to="{ name: 'admin-v2-user-id', params: { id: route.params.id } }">
 							Voir
 						</VBtn>
 					</VCol>
@@ -129,8 +125,7 @@ const localUserData = useCookie('userData').value
 											item-value="id" required />
 									</VCol>
 									<VCol cols="12" md="12" lg="6">
-										<VSelect v-model="user.profile"
-											:items="localUserData.profileCanCreate"
+										<VSelect v-model="user.profile" :items="localUserData.profileCanCreate"
 											:error-messages="userError.profile" label="Profile" item-title="name"
 											item-value="key" required />
 									</VCol>
@@ -148,7 +143,11 @@ const localUserData = useCookie('userData').value
 					</VCol>
 					<VCol cols="12">
 						<div class="d-flex flex-wrap justify-start justify-sm-space-between gap-y-4 gap-x-6 mb-6">
-							<div class="d-flex flex-column justify-center" />
+							<div class="d-flex flex-column justify-center">
+								<VBtn :to="{ name: 'admin-v2-user' }">
+									Backofficiers
+								</VBtn>
+							</div>
 							<div class="d-flex gap-4 align-center flex-wrap">
 								<VBtn type="reset" variant="tonal" color="primary">
 									<VIcon start icon="tabler-circle-minus" />

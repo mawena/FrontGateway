@@ -77,11 +77,9 @@ const onSubmit = () => {
 				let show = false
 				for (const key in res.errors) {
 					if (res.errors[key] != null) {
+						show = true;
 						snackbarCollor.value = "error"
-						res.errors[key].forEach(message => {
-							show = true;
-							snackbarMessage.value += key + ": " + message + "<br>";
-						})
+						snackbarMessage.value += res.errors[key] + "<br>";
 					}
 				}
 				isSnackbarScrollReverseVisible.value = show
@@ -107,16 +105,16 @@ const localUserData = useCookie('userData').value
 		<div class="d-flex flex-wrap justify-start justify-sm-space-between gap-y-4 gap-x-6 mb-6">
 			<div class="d-flex flex-column justify-center">
 				<h4 class="text-h4 font-weight-medium">
-					Ajouter un utilisateur
+					Ajouter un backofficier
 				</h4>
-				<span>Informations sur l'utilisateur</span>
+				<span>Informations sur le backofficier</span>
 			</div>
 		</div>
 		<VForm ref="refForm" @submit.prevent="onSubmit">
 			<VRow>
 				<VCol md="12">
 					<!-- 👉 PV Information -->
-					<VCard class="mb-6" title="Informations de l'utilisateur">
+					<VCard class="mb-6" title="Informations de le backofficier">
 						<VCardText>
 							<VRow>
 								<VCol cols="12" md="12" lg="6">
@@ -151,7 +149,11 @@ const localUserData = useCookie('userData').value
 				</VCol>
 				<VCol cols="12">
 					<div class="d-flex flex-wrap justify-start justify-sm-space-between gap-y-4 gap-x-6 mb-6">
-						<div class="d-flex flex-column justify-center" />
+						<div class="d-flex flex-column justify-center">
+							<VBtn :to="{ name: 'admin-v2-user' }">
+								Utilisateurs
+							</VBtn>
+						</div>
 						<div class="d-flex gap-4 align-center flex-wrap">
 							<VBtn type="reset" variant="tonal" color="primary">
 								<VIcon start icon="tabler-circle-minus" />
