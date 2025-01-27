@@ -12,7 +12,7 @@
 	<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon.png">
 	<title>Pecorator</title>
 	<!-- This page plugin CSS -->
-	<link href="/assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
+	<link href="{{ asset('/assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css') }}" rel="stylesheet">
 	<!-- Custom CSS -->
 	<link href="/dist/css/style.min.css" rel="stylesheet">
 	<link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet">
@@ -56,9 +56,9 @@
 						<a href="/admin">
 							<b class="logo-icon">
 								<!-- Dark Logo icon -->
-								<img src="/assets/images/logo-icon.png" alt="homepage" class="dark-logo" width="100"/>
+								<img src="/assets/images/logo-icon.png" alt="homepage" class="dark-logo" width="100" />
 								<!-- Light Logo icon -->
-								<img src="/assets/images/logo-icon.png" alt="homepage" class="light-logo" width="100"/>
+								<img src="/assets/images/logo-icon.png" alt="homepage" class="light-logo" width="100" />
 							</b>
 						</a>
 					</div>
@@ -85,9 +85,11 @@
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true"
 								aria-expanded="false">
-								<img src="/storage/{{ session('userData')["picture_path"] }}" alt="user" class="rounded-circle" width="40">
-								<span class="ml-2 d-none d-lg-inline-block"><span>Bonjour,</span> <span class="text-dark">{{session('userData')['name']}}</span> <i
-										data-feather="chevron-down" class="svg-icon"></i></span>
+								<img src="/storage/{{ session('userData')['picture_path'] }}" alt="user" class="rounded-circle"
+									width="40">
+								<span class="ml-2 d-none d-lg-inline-block"><span>Bonjour,</span> <span
+										class="text-dark">{{ session('userData')['name'] }}</span> <i data-feather="chevron-down"
+										class="svg-icon"></i></span>
 							</a>
 							<div class="dropdown-menu dropdown-menu-right user-dd animated flipInY p-0">
 								<form action="{{ route('admin.logout') }}" method="POST" class="p-0 w-100" style="display:inline-block;">
@@ -120,8 +122,9 @@
 				<nav class="sidebar-nav">
 					<ul id="sidebarnav">
 						@can(['read'], 'configuration', session('userData'))
-							<li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="/admin/configuration" aria-expanded="false"><i
-										data-feather="settings" class="feather-icon"></i><span class="hide-menu">Configurations</span></a></li>
+							<li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="/admin/configuration"
+									aria-expanded="false"><i data-feather="settings" class="feather-icon"></i><span
+										class="hide-menu">Configurations</span></a></li>
 						@endcan
 						@can(['read'], 'payment', session('userData'))
 							<li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="/admin/payment" aria-expanded="false"><i
@@ -139,9 +142,8 @@
 						@endcan
 						@can(['read'], 'event', session('userData'))
 							<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-19468"></li>
-								<li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
-									aria-expanded="false"><i data-feather="calendar" class="feather-icon"></i><span
-										class="hide-menu">Evenements</span></a>
+							<li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false"><i
+										data-feather="calendar" class="feather-icon"></i><span class="hide-menu">Evenements</span></a>
 								<ul aria-expanded="false" class="collapse  first-level base-level-line">
 									<li class="sidebar-item"><a href="/admin/event?validation=pending" class="sidebar-link"><span
 												class="hide-menu"> En attente
@@ -188,26 +190,26 @@
 	<!-- ============================================================== -->
 	<!-- All Jquery -->
 	<!-- ============================================================== -->
-	<script src="/assets/libs/jquery/dist/jquery.min.js"></script>
+	<script src="{{ asset('/assets/libs/jquery/dist/jquery.min.js') }}"></script>
 	<!-- Bootstrap tether Core JavaScript -->
-	<script src="/assets/libs/popper.js/dist/umd/popper.min.js"></script>
-	<script src="/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="{{ asset('/assets/libs/popper.js/dist/umd/popper.min.js') }}"></script>
+	<script src="{{ asset('/assets/libs/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 	<!-- apps -->
 	<!-- apps -->
-	<script src="/dist/js/app-style-switcher.js"></script>
-	<script src="/dist/js/feather.min.js"></script>
+	<script src="{{ asset('/dist/js/app-style-switcher.js') }}"></script>
+	<script src="{{ asset('/dist/js/feather.min.js') }}"></script>
 	<!-- slimscrollbar scrollbar JavaScript -->
-	<script src="/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
-	<script src="/assets/extra-libs/sparkline/sparkline.js"></script>
+	<script src="{{ asset('/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js') }}"></script>
+	<script src="{{ asset('/assets/extra-libs/sparkline/sparkline.js') }}"></script>
 	<!--Wave Effects -->
 	<!-- themejs -->
 	<!--Menu sidebar -->
-	<script src="/dist/js/sidebarmenu.js"></script>
+	<script src="{{ asset('/dist/js/sidebarmenu.js') }}"></script>
 	<!--Custom JavaScript -->
-	<script src="/dist/js/custom.min.js"></script>
+	<script src="{{ asset('/dist/js/custom.min.js') }}"></script>
 	<!--This page plugins -->
-	<script src="/assets/extra-libs/datatables.net/js/jquery.dataTables.min.js"></script>
-	<script src="/dist/js/pages/datatable/datatable-basic.init.js"></script>
+	<script src="{{ asset('/assets/extra-libs/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+	<script src="{{ asset('/dist/js/pages/datatable/datatable-basic.init.js') }}"></script>
 </body>
 
 </html>

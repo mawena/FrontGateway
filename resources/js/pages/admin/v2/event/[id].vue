@@ -102,7 +102,7 @@ const createDealBackground = useGenerateImageVariant(CreateDealBackgroundLight, 
 						<VCol v-if="eventData.data.Event.description_summary" cols="12">
 							<h2>Description Résumé : </h2>
 							<br>
-							<pre class="scroll-container">{{ eventData.data.Event.description_summary ?? '-' }}</pre>
+							<p>{{ eventData.data.Event.description_summary ?? '-' }}</p>
 						</VCol>
 
 						<VCol v-if="eventData.data.Event.description" cols="12">
