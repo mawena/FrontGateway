@@ -14,15 +14,12 @@ let nextRoute = "/user";
 const { data: user } = await useApi(
 	createUrl(`/user/${Number(route.params.id)}`, {
 		query: {
-			with_agency: 'true',
-			with_departments: 'true',
-			with_environments: 'true',
 		},
 	})
 )
 
 if (user.value.status == 200) {
-	user.value = user.value.data.user
+	user.value = user.value.data.User
 } else {
 	router.push("/user")
 }
@@ -38,7 +35,7 @@ if (user.value.status == 200) {
 					<VCardText class="d-flex flex-wrap justify-space-between flex-column flex-sm-row print-row text-lg">
 						<VCol cols="10">
 							<VBtn prepend-icon="tabler-arrow-narrow-left" :to="nextRoute">
-								Utilisateurs
+								BackOfficiers
 							</VBtn>
 						</VCol>
 					</VCardText>
@@ -51,7 +48,7 @@ if (user.value.status == 200) {
 										:variant="!avatar ? 'tonal' : undefined">
 										<VImg v-if="avatar" :src="avatar" />
 										<span v-else class="text-5xl font-weight-medium">
-											{{ avatarText(user.fullName) }}
+											{{ avatarText(user.name) }}
 										</span>
 									</VAvatar>
 
@@ -94,60 +91,8 @@ if (user.value.status == 200) {
 											</div>
 										</div>
 
-										<div class="d-flex align-center me-4">
-											<VAvatar :size="38" rounded color="primary" variant="tonal" class="me-4">
-												<VIcon icon="tabler-app-window" size="24" />
-											</VAvatar>
-											<div>
-												<h5 class="text-h5">
-													{{ user.flexcube_user_id ?? '-' }}
-												</h5>
-												<span class="text-sm">FLEXCUBE</span>
-											</div>
-										</div>
 									</div>
 
-									<!-- 👉 Details -->
-									<h5 class="text-h5">
-										Départements
-									</h5>
-
-									<VDivider class="my-4" />
-
-									<!-- 👉 User Details list -->
-									<VList class="card-list mt-2">
-										<VListItem>
-											<VListItemTitle class="text-center" v-for="department in user.departments"
-												:key="department">
-												<h6 class="text-h6">
-													<div class="d-inline-block text-body-1">
-														{{ department.name }}
-													</div>
-												</h6>
-											</VListItemTitle>
-										</VListItem>
-									</VList>
-
-									<!-- 👉 Details -->
-									<h5 class="text-h5">
-										Environements
-									</h5>
-
-									<VDivider class="my-4" />
-
-									<!-- 👉 User Details list -->
-									<VList class="card-list mt-2">
-										<VListItem>
-											<VListItemTitle class="text-center" v-for="environment in user.environments"
-												:key="environment">
-												<h6 class="text-h6">
-													<div class="d-inline-block text-body-1">
-														{{ environment.name }}
-													</div>
-												</h6>
-											</VListItemTitle>
-										</VListItem>
-									</VList>
 								</VCardText>
 							</VCard>
 						</VCol>
