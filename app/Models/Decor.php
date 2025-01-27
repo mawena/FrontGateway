@@ -24,7 +24,7 @@ class Decor extends Model
 		"nb_use",
 	];
 
-	public $appends = ["days_remaining"];
+	public $appends = ["days_remaining", "short_name"];
 
 	public function toArray()
 	{
@@ -59,5 +59,10 @@ class Decor extends Model
 			$result = Str::beforeLast($return, 'et ');
 		}
 		return $return;
+	}
+
+	public function getShortNameAttribute()
+	{
+		return substr($this->name, 0, 50) . (strlen($this->name) > 50 ? "..." : "");
 	}
 }

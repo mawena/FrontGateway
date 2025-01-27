@@ -40,6 +40,10 @@ import type {
 declare module 'vue-router/auto/routes' {
   export interface RouteNamedMap {
     'admin-v2$error': RouteRecordInfo<'admin-v2$error', '/admin/v2/:error(.*)', { error: ParamValue<true> }, { error: ParamValue<false> }>,
+    'admin-v2-decor': RouteRecordInfo<'admin-v2-decor', '/admin/v2/decor', Record<never, never>, Record<never, never>>,
+    'admin-v2-decor-id': RouteRecordInfo<'admin-v2-decor-id', '/admin/v2/decor/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
+    'admin-v2-decor-add': RouteRecordInfo<'admin-v2-decor-add', '/admin/v2/decor/add', Record<never, never>, Record<never, never>>,
+    'admin-v2-decor-edit-id': RouteRecordInfo<'admin-v2-decor-edit-id', '/admin/v2/decor/edit/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
     'admin-v2-event': RouteRecordInfo<'admin-v2-event', '/admin/v2/event', Record<never, never>, Record<never, never>>,
     'admin-v2-event-id': RouteRecordInfo<'admin-v2-event-id', '/admin/v2/event/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
     'admin-v2-event-add': RouteRecordInfo<'admin-v2-event-add', '/admin/v2/event/add', Record<never, never>, Record<never, never>>,

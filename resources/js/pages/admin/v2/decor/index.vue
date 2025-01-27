@@ -4,7 +4,7 @@
 definePage({
 	meta: {
 		action: 'read',
-		subject: 'event',
+		subject: 'decor',
 	},
 })
 import { VDataTableServer } from 'vuetify/labs/VDataTable'
@@ -31,23 +31,16 @@ const headers = [
 		key: 'short_name'
 	},
 	{
-		title: 'Lieu',
-		key: 'short_place'
-	},
-	{
-		title: 'Date de début',
-		key: 'start_date_fr'
-	},
-	{
 		title: 'Actions',
 		key: 'actions',
 		sortable: false,
+		align: "end"
 	},
 ]
 const {
 	data: userListData,
 	execute: fetchUserList,
-} = await useApi(createUrl('/event', {
+} = await useApi(createUrl('/decor', {
 	query: {
 		search: searchQuery,
 		page: page,
@@ -68,7 +61,7 @@ const updateOptions = options => {
 
 
 const apiDelete = async id => {
-	const response = await $api(`event/${id}`, {
+	const response = await $api(`decor/${id}`, {
 		method: 'DELETE'
 	})
 	if (response.status == 200) {
@@ -111,7 +104,7 @@ const localUserData = useCookie('userData').value
 				<VRow>
 					<VCardText>
 						<h2>
-							Liste des Evenements
+							Liste des Decors
 						</h2>
 					</VCardText>
 				</VRow>
@@ -136,14 +129,14 @@ const localUserData = useCookie('userData').value
 			<div class="d-flex flex-wrap gap-4 mx-5">
 				<!-- Barre de recherche -->
 				<div class="flex-grow-1">
-					<AppTextField v-model="searchQuery" placeholder="Rechercher un evenement" density="compact"
+					<AppTextField v-model="searchQuery" placeholder="Rechercher un decor" density="compact"
 						class="w-100" />
 				</div>
 
 				<!-- Boutons "Nouveau" et "Recharger" -->
 				<div class="d-flex gap-4">
-					<VBtn v-if="$can('create', 'event')" color="primary" prepend-icon="tabler-plus"
-						:to="{ name: 'admin-v2-event-add' }">
+					<VBtn v-if="$can('create', 'decor')" color="primary" prepend-icon="tabler-plus"
+						:to="{ name: 'admin-v2-decor-add' }">
 						Nouveau
 					</VBtn>
 					<VBtn :loading="loadings[3]" :disabled="loadings[3]" prepend-icon="tabler-refresh"
@@ -177,43 +170,26 @@ const localUserData = useCookie('userData').value
 				</template>
 
 				<template #item.actions="{ item }">
-					<div class="text-center">
+					<div class="text-end">
 						<div>
-							<IconBtn v-if="$can('read', 'event') || $can('historical', 'event')"
-								:to="{ name: 'admin-v2-event-id', params: { id: item.id } }">
+							<IconBtn v-if="$can('read', 'decor') || $can('historical', 'decor')"
+								:to="{ name: 'admin-v2-decor-id', params: { id: item.id } }">
 								<VTooltip activator="parent" transition="scroll-x-transition" location="start">Details
 								</VTooltip>
 								<VIcon icon=" tabler-eye" />
 							</IconBtn>
-							<IconBtn v-if="$can('update', 'event')"
-								:to="{ name: 'admin-v2-event-edit-id', params: { id: item.id } }">
+							<IconBtn v-if="$can('update', 'decor')"
+								:to="{ name: 'admin-v2-decor-edit-id', params: { id: item.id } }">
 								<VTooltip activator="parent" transition="scroll-x-transition" location="top">Modifier
 								</VTooltip>
 								<VIcon icon=" tabler-edit" />
 							</IconBtn>
-							<IconBtn v-if="$can('delete', 'event')" @click="selectedItemId = item.id; actionTitle = 'Supprimer le Evenement',
+							<IconBtn v-if="$can('delete', 'decor')" @click="selectedItemId = item.id; actionTitle = 'Supprimer le Evenement',
 								actionText = 'Voulez vous vraiment supprimer cet Evenement?', actionFunction = apiDelete;
 							actionButtonText = 'Supprimer'; commentPresence = false; isActionDialogVisible = true;">
 								<VTooltip activator="parent" transition="scroll-x-transition" location="end">Supprimer
 								</VTooltip>
 								<VIcon icon="tabler-trash" color='error' />
-							</IconBtn>
-						</div>
-						<div>
-							<VDivider />
-							<IconBtn
-								v-if="$can('validate', 'event') && localUserData.profil == 'admin' && item.validation != 'validated'"
-								@click="selectedItemId = item.id; (actionTitle = 'Valider l\'evenement'), (actionText = 'Voulez vous vraiment valider cet evenement?'), (actionFunction = apiChangeStatus); actionButtonText = 'Valider'; commentPresence = false; actionStatus = 'validated'; isActionDialogVisible = true;">
-								<VTooltip activator="parent" transition="scroll-x-transition" location="end">Valider
-								</VTooltip>
-								<VIcon icon="tabler-check" color="success" />
-							</IconBtn>
-							<IconBtn
-								v-if="$can('reject', 'event') && localUserData.profil == 'admin' && item.validation != 'rejected'"
-								@click="selectedItemId = item.id; (actionTitle = 'Rejeter l\'evenement'), (actionText = 'Voulez vous vraiment rejeter cet evenement?'), (actionFunction = apiChangeStatus); actionButtonText = 'Rejeter'; commentPresence = false; actionStatus = 'rejected'; isActionDialogVisible = true;">
-								<VTooltip activator="parent" transition="scroll-x-transition" location="end">Rejeter
-								</VTooltip>
-								<VIcon icon="tabler-check" color="success" />
 							</IconBtn>
 						</div>
 					</div>

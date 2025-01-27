@@ -13,4 +13,11 @@ export default [
 		action: 'historical',
 		to: 'admin-v2-event',
 	},
+	{
+		icon: { icon: 'tabler-photo' },
+		title: 'Decors',
+		subject: 'decor',
+		action: 'historical',
+		to: 'admin-v2-decor',
+	},
 ]
