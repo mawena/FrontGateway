@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Pecorator",
-        "_postman_id": "6e39fa76-003c-4301-a944-e3867d7c2040",
+        "_postman_id": "896834d0-6bcc-4617-a11e-ed8d64dd485b",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -695,7 +695,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"action\":\"transfer\",\"project_path\":\"ipsam\",\"target_server\":\"explicabo\",\"target_path\":\"velit\",\"target_port\":\"dolore\"}"
+                            "raw": "{\"action\":\"transfer\",\"project_path\":\"necessitatibus\",\"target_server\":\"nihil\",\"target_path\":\"distinctio\",\"target_port\":\"sint\"}"
                         },
                         "description": ""
                     },
@@ -1423,7 +1423,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"old_password\":\"non\",\"new_password\":\"est\",\"new_password_confirmation\":\"aut\"}"
+                            "raw": "{\"old_password\":\"autem\",\"new_password\":\"maiores\",\"new_password_confirmation\":\"voluptas\"}"
                         },
                         "description": ""
                     },
