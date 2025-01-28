@@ -217,11 +217,10 @@
 			decorImage.src = "/storage/{{ $decor['file_path'] }}";
 
 			decorImage.onload = () => {
-				const decorWidth = decorImage.naturalWidth; // Largeur réelle du décor
-				const decorHeight = decorImage.naturalHeight; // Hauteur réelle du décor
-				const decorAspectRatio = decorWidth / decorHeight; // Ratio du décor
+				const decorWidth = decorImage.naturalWidth;
+				const decorHeight = decorImage.naturalHeight;
+				const decorAspectRatio = decorWidth / decorHeight;
 
-				// Configurez le canvas avec la taille exacte du décor
 				canvas.width = decorWidth;
 				canvas.height = decorHeight;
 
@@ -242,7 +241,6 @@
 								cropper.destroy();
 							}
 
-							// Configurez le Cropper.js avec le ratio du décor
 							cropper = new Cropper(imageElement, {
 								aspectRatio: decorAspectRatio,
 								viewMode: 1,
@@ -274,6 +272,24 @@
 						// Superposez le décor sur le canvas
 						canvasContext.drawImage(decorImage, 0, 0, decorWidth, decorHeight);
 
+						// Ajoutez la mention "fait sur Wakabi"
+						const text = "*Créé sur Wakabi";
+						canvasContext.font = "bold 150px Times New Romans"; // Taille et style du texte
+						canvasContext.fillStyle = "white"; // Couleur du texte
+						canvasContext.strokeStyle = "black"; // Couleur du contour
+						canvasContext.lineWidth = 3; // Épaisseur du contour
+
+						// Positionnement du texte (en bas à droite avec marge)
+						// const textX = canvas.width - canvasContext.measureText(text).width - 20;
+						// const textY = canvas.height - 30; // Décalé de 30px du bas
+
+						const textX = 20; // Décalage de 20px à partir du bord gauche
+						const textY = canvas.height - 50; // Décalage de 50px à partir du bord bas
+
+						// Dessinez le contour et le texte
+						canvasContext.strokeText(text, textX, textY); // Contour du texte
+						canvasContext.fillText(text, textX, textY); // Texte rempli
+
 						// Préparez l'image finale
 						const finalImage = canvas.toDataURL("image/png");
 						modalImage.src = finalImage;
@@ -285,7 +301,7 @@
 						downloadButton.addEventListener("click", () => {
 							axios.put("/api/decor/use/{{ $decor['id'] }}", {}, {
 									headers: {
-										'Content-Type': 'application/json', // Indique que le corps est en JSON
+										'Content-Type': 'application/json',
 									}
 								})
 								.then(response => {
@@ -295,9 +311,8 @@
 										a.download = "{{ $decor['name'] }}.png";
 										a.click();
 									} else {
-										alert("Ce décor n'est plus utilisable")
+										alert("Ce décor n'est plus utilisable");
 									}
-									console.log('Réponse du serveur :', response.data);
 								})
 								.catch(error => {
 									console.error('Erreur lors de la requête PUT :', error.response
