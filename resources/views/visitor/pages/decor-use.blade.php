@@ -99,88 +99,98 @@
 		data-bg-src="{{ asset('/visitor/assets/img/bg/tour_bg_1.jpg') }}">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-6 offset-lg-3">
-					<div class="title-area text-center"><span class="sub-title">Utilisez ce décor</span>
-						<h2 class="sec-title">Choisissez votre photo</h2>
-						<p class="sec-text">
-							Recadrer votre photo dans le décor choisi, puis téléchargez le résultat !
-						</p>
+				<div class="row">
+					<div class="col-lg-6 offset-lg-3">
+						<div class="title-area text-center"><span class="sub-title">Utilisez ce décor</span>
+							<h2 class="sec-title">Choisissez votre photo</h2>
+							<p class="sec-text">
+								Recadrer votre photo dans le décor choisi, puis téléchargez le résultat !
+							</p>
+						</div>
 					</div>
 				</div>
-			</div>
 
-			<div class="mt-5 pt-5">
-				<div class="px-4 py-3 rounded shadow mb-2 bg-white" id="chooseBar" style="display: none">
-					<div class="row align-items-center justify-content-center g-3">
-						<div class="col-auto col-md-12">
-							<label id="reselectImageBtn" style="cursor: pointer" class="th-btn style2 m-0 th-icon border text-dark"
-								for="imageInput">
-								<span class="">
-									<span class="me-2">
-										<svg xmlns="http://www.w3.org/2000/svg" fill="none" style="width: 20px; height:20px" viewBox="0 0 24 24"
-											stroke-width="2" stroke="currentColor" class="mb-1">
-											<path stroke-linecap="round" stroke-linejoin="round"
-												d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
-										</svg>
-									</span>
-									<span>
-										Choisir une nouvelle photo
-									</span>
+				<div class="col-md-4 text-center mt-5 pt-5">
+					<div class="shadow p-3 rounded bg-white">
+						<h4 class="mb-3">{{ $decor['name'] }}</h4>
+						<img src="/storage/{{ $decor['file_path'] }}" alt="Décor utilisé" class="img-fluid">
+						<!-- Remplacez 'path/to/decor/image.jpg' par le chemin réel du décor -->
+					</div>
+				</div>
+
+				<div class="col-md-8">
+					<div class="mt-5 pt-5 row">
+						<div class="px-4 py-3 rounded shadow mb-2 bg-white" id="chooseBar" style="display: none">
+							<div class="row align-items-center justify-content-center g-3">
+								<div class="col-auto col-md-12">
+									<label id="reselectImageBtn" style="cursor: pointer" class="th-btn style2 m-0 th-icon border text-dark"
+										for="imageInput">
+										<span class="">
+											<span class="me-2">
+												<svg xmlns="http://www.w3.org/2000/svg" fill="none" style="width: 20px; height:20px" viewBox="0 0 24 24"
+													stroke-width="2" stroke="currentColor" class="mb-1">
+													<path stroke-linecap="round" stroke-linejoin="round"
+														d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+												</svg>
+											</span>
+											<span>
+												Choisir une nouvelle photo
+											</span>
+										</span>
+									</label>
+								</div>
+							</div>
+						</div>
+						<label style="cursor: pointer" class="shadow bg-white rounded mb-4" for="imageInput" id="imgLabel">
+							<div style="width: 100%; height: 50vh;" class="d-flex align-items-center justify-content-center">
+								<span>
+									<svg xmlns="http://www.w3.org/2000/svg" fill="none" style="width: 100px; height:100px" viewBox="0 0 24 24"
+										stroke-width="1.5" stroke="currentColor" class="size-6">
+										<path stroke-linecap="round" stroke-linejoin="round"
+											d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+									</svg>
+									<br>
+									Choisissez une photo
 								</span>
-							</label>
+							</div>
+						</label>
+						<input type="file" hidden id="imageInput" accept="image/*">
+					</div>
+
+					<div>
+						<img id="image" style="display: none;">
+					</div>
+					<canvas id="canvas" class="shadow bg-white rounded mb-4" width="800" height="600"
+						style="display: none;"></canvas>
+
+
+					<div class="mt-1 pt-1">
+						<div class="px-4 py-3 rounded shadow mb-2 bg-white" id="applyDecor" style="display: none">
+							<div class="row align-items-center justify-content-center g-3">
+								<div class="col-auto col-md-12">
+									<button id="addDecorButton" disabled class="th-btn th-icon m-0">Appliquer le décor</button>
+								</div>
+							</div>
 						</div>
 					</div>
-				</div>
-				<label style="cursor: pointer" class="shadow bg-white rounded mb-4" for="imageInput" id="imgLabel">
-					<div style="width: 100%; height: 50vh;" class="d-flex align-items-center justify-content-center">
-						<span>
-							<svg xmlns="http://www.w3.org/2000/svg" fill="none" style="width: 100px; height:100px" viewBox="0 0 24 24"
-								stroke-width="1.5" stroke="currentColor" class="size-6">
-								<path stroke-linecap="round" stroke-linejoin="round"
-									d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
-							</svg>
+
+					<!-- Modal -->
+					<div id="modal" class="modal">
+						<div class="modal-content">
+							<h4>Résultat final</h4>
+							<img id="modalImage" src="" alt="Aperçu" style="object-fit: cover">
 							<br>
-							Choisissez une photo
-						</span>
-					</div>
-				</label>
-				<input type="file" hidden id="imageInput" accept="image/*">
-			</div>
-
-
-
-
-			<div>
-				<img id="image" style="display: none;">
-			</div>
-			<canvas id="canvas" class="shadow bg-white rounded mb-4" width="800" height="600"
-				style="display: none;"></canvas>
-
-
-			<div class="mt-1 pt-1">
-				<div class="px-4 py-3 rounded shadow mb-2 bg-white" id="applyDecor" style="display: none">
-					<div class="row align-items-center justify-content-center g-3">
-						<div class="col-auto col-md-12">
-							<button id="addDecorButton" disabled class="th-btn th-icon m-0">Appliquer le décor</button>
+							<div class="d-flex align-items-center">
+								<button id="closeModalButton" class="close-btn me-2">Annuler</button>
+								<button id="downloadButton" class="close-btn-t w-100" style="background-color: #1CA8CB">Télécharger</button>
+							</div>
+							<br>
 						</div>
 					</div>
 				</div>
+
 			</div>
 
-			<!-- Modal -->
-			<div id="modal" class="modal">
-				<div class="modal-content">
-					<h4>Résultat final</h4>
-					<img id="modalImage" src="" alt="Aperçu" style="object-fit: cover">
-					<br>
-					<div class="d-flex align-items-center">
-						<button id="closeModalButton" class="close-btn me-2">Annuler</button>
-						<button id="downloadButton" class="close-btn-t w-100" style="background-color: #1CA8CB">Télécharger</button>
-					</div>
-					<br>
-				</div>
-			</div>
-		</div>
 		</div>
 	@endsection
 
