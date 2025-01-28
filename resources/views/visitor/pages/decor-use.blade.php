@@ -292,7 +292,7 @@
 									if (response.data.status == 200) {
 										const a = document.createElement("a");
 										a.href = finalImage;
-										a.download = "image-avec-decor.png";
+										a.download = "{{ $decor['name'] }}.png";
 										a.click();
 									} else {
 										alert("Ce décor n'est plus utilisable")
