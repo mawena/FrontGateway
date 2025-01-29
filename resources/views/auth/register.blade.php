@@ -114,8 +114,8 @@
 									<div class="form-group">
 										<label for="sex">Sexe</label>
 										<select class="form-control" id="sex" name="sex" required="">
-											<option value="M" selected>Homme</option>
-											<option value="F">Femme</option>
+											<option value="H" selected>Homme</option>
+											<option value="M">Femme</option>
 										</select>
 										@error('sex')
 											<span class="text-danger">{{ $message }}</span>
