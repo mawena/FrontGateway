@@ -58,7 +58,7 @@ class AuthController extends Controller
 			"structure" => "required|min:2",
 			"phone_number" => "required|min:2",
 			"birth_date" => "required|date",
-			"sex" => "required|in:M,F",
+			"sex" => "required|in:M,H",
 			"picture" => "nullable",
 			"password" => "required|min:8",
 		];
