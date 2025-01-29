@@ -22,7 +22,7 @@ class HomeController
 			]
 		)->json();
 		$query = Event::query();
-		$eventList = $query->where('validation', 'validated')->with("decors")->get();
+		$eventList = $query->where('validation', 'validated')->with("decors")->where('end_date', '>', now())->get();
 		return view("visitor.pages.events", ["events" => $eventList ?? []]);
 	}
 

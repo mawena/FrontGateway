@@ -5,6 +5,7 @@ public/mockServiceWorker.js
 /.phpunit.cache
 /node_modules
 /public/storage
+public/hot
 /storage/framework
 /storage/app/public/upload/scripts-2024-09-20
 /storage/app/public/upload/scripts-2024-09-23
