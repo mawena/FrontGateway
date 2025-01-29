@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Front\Visitor;
 
+use App\Models\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
@@ -20,7 +21,9 @@ class HomeController
 				"validation" => "validated",
 			]
 		)->json();
-		return view("visitor.pages.events", ["events" => $event_response["data"] ?? []]);
+		$query = Event::query();
+		$eventList = $query->where('validation', 'validated')->with("decors")->get();
+		return view("visitor.pages.events", ["events" => $eventList ?? []]);
 	}
 
 	public function decors()
