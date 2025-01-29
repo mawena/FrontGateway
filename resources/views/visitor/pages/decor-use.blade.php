@@ -274,7 +274,7 @@
 
 						// Ajoutez la mention "fait sur Wakabi"
 						const text = "*Créé sur Wakabi";
-						canvasContext.font = "bold 150px Times New Romans"; // Taille et style du texte
+						canvasContext.font = "bold 75px Times New Romans"; // Taille et style du texte
 						canvasContext.fillStyle = "white"; // Couleur du texte
 						canvasContext.strokeStyle = "black"; // Couleur du contour
 						canvasContext.lineWidth = 3; // Épaisseur du contour
