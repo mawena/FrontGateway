@@ -72,17 +72,11 @@ class AuthControler
 				->withInput()
 				->withErrors($response["errors"]);
 		}
-		session([
-			'userToken' => $response["data"]["user"]["userToken"],
-			"userData" => $response["data"]["user"],
-		]);
-		return redirect()->route(
-			[
-				"admin" => "admin.user.index",
-				"supervisor" => "admin.promoter.index",
-				"promoter" => "admin.event.index",
-			][$response["data"]["user"]["profile"]]
-		);
+		// session([
+		// 	'userToken' => $response["data"]["user"]["userToken"],
+		// 	"userData" => $response["data"]["user"],
+		// ]);
+		return redirect()->route("admin.login");
 	}
 
 	public function logout()

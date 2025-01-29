@@ -93,7 +93,7 @@ class AuthController extends Controller
 			return $model;
 		};
 		$this->storeAfterCommitFunction = function ($model, $requestData) {
-			$model["userToken"] = $model->createToken($model->name)->plainTextToken;
+			// $model["userToken"] = $model->createToken($model->name)->plainTextToken;
 			return $model;
 		};
 		$this->storeRelationArray = ["with_events" => "true", "with_promoter" => "true"];
