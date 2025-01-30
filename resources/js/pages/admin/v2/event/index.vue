@@ -45,11 +45,12 @@ const headers = [
 	{
 		title: 'Actions',
 		key: 'actions',
+		align: "center",
 		sortable: false,
 	},
 ]
 const {
-	data: userListData,
+	data: eventListData,
 	execute: fetchEventList,
 } = await useApi(createUrl('/event', {
 	query: {
@@ -121,10 +122,10 @@ const apiChangeStatus = async id => {
 }
 
 
-const totalTransfer = computed(() => userListData.value.total)
-const lastPage = computed(() => userListData.value.last_page)
+const totalTransfer = computed(() => eventListData.value.total)
+const lastPage = computed(() => eventListData.value.last_page)
 // Math.min(Math.ceil(totalTransfer / itemsPerPage), 5)
-const userList = computed(() => userListData.value.data)
+const eventList = computed(() => eventListData.value.data)
 
 const localUserData = useCookie('userData').value
 
@@ -145,7 +146,7 @@ const localUserData = useCookie('userData').value
 			</VCardText>
 		</VCard>
 
-		<!-- 👉 users -->
+		<!-- 👉 events -->
 		<VCard title="Filtres" class="mb-6">
 			<VCardText>
 				<VRow>
@@ -190,7 +191,7 @@ const localUserData = useCookie('userData').value
 
 			<!-- 👉 Datatable  -->
 			<VDataTableServer v-model:items-per-page="itemsPerPage" v-model:page="page" :headers="headers"
-				:items="userList" :items-length="totalTransfer" class="text-no-wrap" @update:options="updateOptions">
+				:items="eventList" :items-length="totalTransfer" class="text-no-wrap" @update:options="updateOptions">
 
 				<template #item.activated="{ item }">
 					<VAvatar variant="tonal" :color="{ true: 'success', false: 'error' }[item.activated]" class="me-4"

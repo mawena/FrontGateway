@@ -42,6 +42,7 @@ const headers = [
 	{
 		title: 'Actions',
 		key: 'actions',
+		align: "center",
 		sortable: false,
 	},
 ]
