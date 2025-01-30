@@ -6,10 +6,22 @@ definePage({
 		subject: 'event',
 	},
 })
+
 const router = useRouter()
 const route = useRoute('event-id')
-const loadings = ref([])
 
+const selectedItemId = ref(0)
+const isActionDialogVisible = ref(false)
+const actionTitle = ref("")
+const actionText = ref("")
+const actionButtonText = ref("")
+const actionFunction = ref()
+const actionComment = ref("cancel")
+const commentPresence = ref(false)
+const actionStatus = ref("waiting");
+const isSnackbarScrollReverseVisible = ref(false)
+const snackbarMessage = ref("")
+const snackbarCollor = ref("success")
 
 const {
 	data: eventData,
@@ -24,12 +36,32 @@ if (eventData.value.status != 200) {
 	router.push("/event")
 }
 
-const load = i => {
-	loadings.value[i] = true
-	setTimeout(() => {
-		loadings.value[i] = false
-	}, 1000)
+
+const apiChangeStatus = async id => {
+	const response = await $api(`event/change-validation/${id}`, {
+		method: "PUT",
+		body: { validation: actionStatus.value },
+	});
+	if (response.status == 200) {
+		isSnackbarScrollReverseVisible.value = true
+		snackbarCollor.value = "success"
+		actionComment.value = ""
+		snackbarMessage.value = ""
+		snackbarMessage.value = "Evenement " + actionStatus.value == "validated" ? "Validé" : "Rejeté"
+	} else {
+		snackbarCollor.value = "error"
+		isSnackbarScrollReverseVisible.value = true
+		snackbarMessage.value = ""
+		for (const key in response.errors) {
+			response.errors[key].forEach(message => {
+				snackbarMessage.value += "" + message + "<br>";
+			})
+		}
+	}
+	await fetchEvent();
+	isSnackbarScrollReverseVisible.value = true
 }
+
 
 const tableData = computed(() => [
 	{ "title": "Nom", "value": eventData.value.data.Event.name },
@@ -110,11 +142,57 @@ const createDealBackground = useGenerateImageVariant(CreateDealBackgroundLight, 
 							<br>
 							<p>{{ eventData.data.Event.description ?? '-' }}</p>
 						</VCol>
+
+						<VRow>
+							<VCol cols="10">
+								<VBtn v-if="$can('reject', 'event') && eventData.data.Event.validation != 'rejected'"
+									color="error"
+									@click="selectedItemId = eventData.data.Event.id; (actionTitle = 'Rejeter l\'evenement'), (actionText = 'Voulez vous vraiment rejeter cet evenement?'), (actionFunction = apiChangeStatus); actionButtonText = 'Rejeter'; commentPresence = false; actionStatus = 'rejected'; isActionDialogVisible = true;">
+									<VIcon start icon="tabler-x" />
+									Rejeter
+								</VBtn>
+							</VCol>
+							<VCol cols="2" class="text-right"
+								v-if="$can('validate', 'event') && eventData.data.Event.validation != 'validated'">
+								<VBtn color="success"
+									@click="selectedItemId = eventData.data.Event.id; (actionTitle = 'Valider l\'evenement'), (actionText = 'Voulez vous vraiment valider cet evenement?'), (actionFunction = apiChangeStatus); actionButtonText = 'Valider'; commentPresence = false; actionStatus = 'validated'; isActionDialogVisible = true;">
+									Valider
+									<VIcon end icon="tabler-check" />
+								</VBtn>
+							</VCol>
+						</VRow>
 					</VCardText>
 				</VCard>
 			</VCol>
 		</VRow>
 	</section>
+	<VDialog v-model="isActionDialogVisible" class="v-dialog-sm">
+		<!-- Dialog close btn -->
+		<DialogCloseBtn @click="isActionDialogVisible = !isActionDialogVisible" />
+
+		<!-- Dialog De suppression -->
+		<VCard :title="actionTitle">
+			<VCardText>
+				{{ actionText }}
+
+				<VTextarea v-if="commentPresence" class="mt-3" v-model="actionComment" label="Commentaire"
+					placeholder="Ex: RAS" />
+			</VCardText>
+
+			<VCardText class="d-flex justify-end gap-3 flex-wrap">
+				<VBtn color="secondary" variant="tonal" @click="isActionDialogVisible = false">
+					Retour
+				</VBtn>
+				<VBtn @click="actionFunction(selectedItemId); isActionDialogVisible = false">
+					{{ actionButtonText }}
+				</VBtn>
+			</VCardText>
+		</VCard>
+	</VDialog>
+	<VSnackbar v-model="isSnackbarScrollReverseVisible" transition="scale-transition" location="top end"
+		:color="snackbarCollor">
+		<div v-html="snackbarMessage"></div>
+	</VSnackbar>
 </template>
 
 <style lang="scss">

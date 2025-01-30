@@ -25,6 +25,9 @@ const actionFunction = ref()
 const actionComment = ref("cancel")
 const commentPresence = ref(false)
 const actionStatus = ref("waiting");
+const isSnackbarScrollReverseVisible = ref(false)
+const snackbarMessage = ref("")
+const snackbarCollor = ref("success")
 const validationFilter = ref(null)
 const headers = [
 	{
@@ -95,7 +98,7 @@ const apiDelete = async id => {
 const apiChangeStatus = async id => {
 	const response = await $api(`event/change-validation/${id}`, {
 		method: "PUT",
-		body: { status: actionStatus.value },
+		body: { validation: actionStatus.value },
 	});
 	if (response.status == 200) {
 		isSnackbarScrollReverseVisible.value = true
@@ -115,16 +118,12 @@ const apiChangeStatus = async id => {
 	}
 	await fetchEventList();
 	isSnackbarScrollReverseVisible.value = true
-
 }
 
 
 const totalTransfer = computed(() => userListData.value.total)
 const lastPage = computed(() => userListData.value.last_page)
 // Math.min(Math.ceil(totalTransfer / itemsPerPage), 5)
-const isSnackbarScrollReverseVisible = ref(false)
-const snackbarMessage = ref("")
-const snackbarCollor = ref("success")
 const userList = computed(() => userListData.value.data)
 
 const localUserData = useCookie('userData').value
