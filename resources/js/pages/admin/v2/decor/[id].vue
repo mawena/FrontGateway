@@ -3,12 +3,12 @@
 definePage({
 	meta: {
 		action: 'read',
-		subject: 'event',
+		subject: 'decor',
 	},
 })
 
 const router = useRouter()
-const route = useRoute('event-id')
+const route = useRoute('decor-id')
 
 const selectedItemId = ref(0)
 const isActionDialogVisible = ref(false)
@@ -24,21 +24,21 @@ const snackbarMessage = ref("")
 const snackbarCollor = ref("success")
 
 const {
-	data: eventData,
-	execute: fetchEvent,
-} = await useApi(createUrl(`/event/${route.params.id}`, {
+	data: decorData,
+	execute: fetchDecor,
+} = await useApi(createUrl(`/decor/${route.params.id}`, {
 	query: {
 
 	},
 }))
 
-if (eventData.value.status != 200) {
-	router.push("/event")
+if (decorData.value.status != 200) {
+	router.push("/decor")
 }
 
 
 const apiChangeStatus = async id => {
-	const response = await $api(`event/change-validation/${id}`, {
+	const response = await $api(`decor/change-validation/${id}`, {
 		method: "PUT",
 		body: { validation: actionStatus.value },
 	});
@@ -58,22 +58,15 @@ const apiChangeStatus = async id => {
 			})
 		}
 	}
-	await fetchEvent();
+	await fetchDecor();
 	isSnackbarScrollReverseVisible.value = true
 }
 
 
 const tableData = computed(() => [
-	{ "title": "Nom", "value": eventData.value.data.Event.name },
-	{ "title": "Date de debut", "value": eventData.value.data.Event.start_date_fr },
-	{ "title": "Date de fin", "value": eventData.value.data.Event.end_date_fr },
-	{ "title": "Lieu", "value": eventData.value.data.Event.place },
-	{ "title": "Type", "value": eventData.value.data.Event.type },
-	{ "title": "Nombre de personnes attendus", "value": eventData.value.data.Event.nb_expected },
-	{ "title": "Entrée", "value": eventData.value.data.Event.entrance_fr },
-	{ "title": "Prix d'entrée", "value": eventData.value.data.Event.entrance == "paid" ? eventData.value.data.Event.entry_price_formated : '-' },
+	{ "title": "Nom", "value": decorData.value.data.Decor.name },
 ])
-const backRoute = "admin-v2-event"
+const backRoute = "admin-v2-decor"
 
 import CreateDealBackgroundDark from '@images/pages/DealTypeBackground-dark.png'
 import CreateDealBackgroundLight from '@images/pages/DealTypeBackground-light.png'
@@ -82,32 +75,32 @@ const createDealBackground = useGenerateImageVariant(CreateDealBackgroundLight, 
 </script>
 
 <template>
-	<section v-if="eventData">
+	<section v-if="decorData">
 		<VRow>
 			<VCol cols="12">
 				<VCard>
 					<VCardText class="d-flex flex-wrap justify-space-between flex-column flex-sm-row print-row text-lg">
 						<VCol cols="10">
 							<VBtn :to="{ name: backRoute }">
-								<VIcon start icon="tabler-calendar-event" />
-								Evenements
+								<VIcon start icon="tabler-photo" />
+								Decors
 							</VBtn>
 						</VCol>
 						<VCol cols="2" class="text-right">
-							<VBtn :to="{ name: 'admin-v2-event-edit-id', params: { id: route.params.id } }"
+							<VBtn :to="{ name: 'admin-v2-decor-edit-id', params: { id: route.params.id } }"
 								color="primary">
 								Modifier
 								<VIcon end icon="tabler-edit" />
 							</VBtn>
 						</VCol>
 
-						<VCol v-if="eventData.data.Event.poster_path" cols="12">
-							<h2>Poster : </h2>
+						<VCol v-if="decorData.data.Decor.poster_path" cols="12">
+							<h2>Image : </h2>
 							<br>
 							<div
 								class="d-flex align-center justify-center w-100 deal-type-image-wrapper border rounded px-5 pt-2 pb-5">
 
-								<VImg :src="'/storage/' + eventData.data.Event.poster_path" />
+								<VImg :src="'/storage/' + decorData.data.Decor.poster_path" />
 								<VImg :src="createDealBackground"
 									class="position-absolute deal-type-background-img d-md-block d-none" />
 							</div>
@@ -131,31 +124,19 @@ const createDealBackground = useGenerateImageVariant(CreateDealBackgroundLight, 
 							</VTable>
 						</VCol>
 
-						<VCol v-if="eventData.data.Event.description_summary" cols="12">
-							<h2>Description Résumé : </h2>
-							<br>
-							<p>{{ eventData.data.Event.description_summary ?? '-' }}</p>
-						</VCol>
-
-						<VCol v-if="eventData.data.Event.description" cols="12">
-							<h2>Description Complète : </h2>
-							<br>
-							<p>{{ eventData.data.Event.description ?? '-' }}</p>
-						</VCol>
-
 						<VRow>
 							<VCol cols="10">
-								<VBtn v-if="$can('reject', 'event') && eventData.data.Event.validation != 'rejected'"
+								<VBtn v-if="$can('reject', 'decor') && decorData.data.Decor.validation != 'rejected'"
 									color="error"
-									@click="selectedItemId = eventData.data.Event.id; (actionTitle = 'Rejeter l\'evenement'), (actionText = 'Voulez vous vraiment rejeter cet evenement?'), (actionFunction = apiChangeStatus); actionButtonText = 'Rejeter'; commentPresence = false; actionStatus = 'rejected'; isActionDialogVisible = true;">
+									@click="selectedItemId = decorData.data.Decor.id; (actionTitle = 'Rejeter l\'evenement'), (actionText = 'Voulez vous vraiment rejeter cet evenement?'), (actionFunction = apiChangeStatus); actionButtonText = 'Rejeter'; commentPresence = false; actionStatus = 'rejected'; isActionDialogVisible = true;">
 									<VIcon start icon="tabler-x" />
 									Rejeter
 								</VBtn>
 							</VCol>
 							<VCol cols="2" class="text-right"
-								v-if="$can('validate', 'event') && eventData.data.Event.validation != 'validated'">
+								v-if="$can('validate', 'decor') && decorData.data.Decor.validation != 'validated'">
 								<VBtn color="success"
-									@click="selectedItemId = eventData.data.Event.id; (actionTitle = 'Valider l\'evenement'), (actionText = 'Voulez vous vraiment valider cet evenement?'), (actionFunction = apiChangeStatus); actionButtonText = 'Valider'; commentPresence = false; actionStatus = 'validated'; isActionDialogVisible = true;">
+									@click="selectedItemId = decorData.data.Decor.id; (actionTitle = 'Valider l\'evenement'), (actionText = 'Voulez vous vraiment valider cet evenement?'), (actionFunction = apiChangeStatus); actionButtonText = 'Valider'; commentPresence = false; actionStatus = 'validated'; isActionDialogVisible = true;">
 									Valider
 									<VIcon end icon="tabler-check" />
 								</VBtn>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Front\Visitor;
 
+use App\Models\Decor;
 use App\Models\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -10,37 +11,16 @@ class HomeController
 {
 	public function events()
 	{
-		$event_response = Http::withHeaders([
-			'Authorization' => 'Bearer ' . session('userToken'),
-			'Accept' => 'application/json',
-		])->get(
-			config('app.url') . "/api/event",
-			[
-				"paginate" => "false",
-				"with_decors" => "true",
-				"validation" => "validated",
-			]
-		)->json();
 		$query = Event::query();
-		$eventList = $query->where('validation', 'validated')->with("decors")->where('end_date', '>', now())->get();
+		$eventList = $query->where('validation', 'validated')->with("decors")->where('end_date', '>', now())->paginate(12);
 		return view("visitor.pages.events", ["events" => $eventList ?? []]);
 	}
 
 	public function decors()
 	{
-		$decor_response = Http::withHeaders([
-			'Authorization' => 'Bearer ' . session('userToken'),
-			'Accept' => 'application/json',
-		])->get(
-			config('app.url') . "/api/decor",
-			[
-				"paginate" => "false",
-				"with_promoter<user" => "true",
-				"with_event" => "true",
-				"in_validation" => "validated-pending",
-			]
-		)->json();
-		return view("visitor.pages.decors", ["decors" => $decor_response["data"] ?? []]);
+		$query = Decor::query();
+		$decorList = $query->where('validation', 'validated')->with(["user", "event"])->whereIn('validation', ['validated', 'pending'])->where('end_use', '>', now())->paginate(12);
+		return view("visitor.pages.decors", ["decors" => $decorList ?? []]);
 	}
 
 	public function event_details(Request $request, $id)
