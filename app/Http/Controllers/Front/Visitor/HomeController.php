@@ -13,9 +13,9 @@ class HomeController
 	use ControllerHelperTrait;
 	public function events(Request $request)
 	{
-		$query = Event::query();
-		$list = $query->where('validation', 'validated')->with("decors")->where('end_date', '>', now())->paginate(12);
+		$list = Event::query();
 		($search = $request->search) ? $list = $this->querySearch($list, ["name"], $search) : null;
+		$list = $list->where('validation', 'validated')->with("decors")->where('end_date', '>', now())->paginate(12);
 		return view("visitor.pages.events", ["events" => $list ?? [], "search" => $request->$search]);
 	}
 

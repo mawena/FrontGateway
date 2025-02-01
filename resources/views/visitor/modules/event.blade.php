@@ -6,7 +6,7 @@
 		<div class="blog-box_content">
 			<div class="blog-meta">
 				<a class="author"
-					href="{{ route('visitor.events.details', ['id' => $event['id']]) }}">{{ $event['start_date_fr'] }}</a>
+					href="{{ route('visitor.events.details', ['id' => $event['id']]) }}">{{ $event->toArray()['start_date_fr'] }}</a>
 				<a href="{{ route('visitor.events.details', ['id' => $event['id']]) }}">{{ $event['place'] }}</a>
 				<a href="{{ route('visitor.events.details', ['id' => $event['id']]) }}">{{ count($event['decors']) }} Décors</a>
 			</div>
