@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Front\Visitor;
 
+use App\Http\Traits\ControllerHelperTrait;
 use App\Models\Decor;
 use App\Models\Event;
 use Illuminate\Http\Request;
@@ -9,11 +10,13 @@ use Illuminate\Support\Facades\Http;
 
 class HomeController
 {
-	public function events()
+	use ControllerHelperTrait;
+	public function events(Request $request)
 	{
 		$query = Event::query();
-		$eventList = $query->where('validation', 'validated')->with("decors")->where('end_date', '>', now())->paginate(12);
-		return view("visitor.pages.events", ["events" => $eventList ?? []]);
+		$list = $query->where('validation', 'validated')->with("decors")->where('end_date', '>', now())->paginate(12);
+		($search = $request->search) ? $list = $this->querySearch($list, ["name"], $search) : null;
+		return view("visitor.pages.events", ["events" => $list ?? [], "search" => $request->$search]);
 	}
 
 	public function decors()
