@@ -94,7 +94,7 @@ class DecorController extends Controller
 		};
 		$this->storeBeforeCreateFunction = function ($requestData, $data) use ($connectedUser) {
 			$requestData["file_path"] = $data["file_path"];
-			$requestData["validation"] = 'pending';
+			$requestData["validation"] = $connectedUser->profile == "admin" ? 'validated' : 'pending';
 			$requestData["nb_uses"] = 0;
 			$requestData["user_id"] = $connectedUser->id;
 			return $requestData;
@@ -120,6 +120,7 @@ class DecorController extends Controller
 	 */
 	public function update(Request $request, int $id)
 	{
+		$connectedUser = $request->user();
 		$this->updateGetValidationArrayFunction = function ($id) {
 			return [
 				"name" => "required|min:2",
@@ -144,10 +145,11 @@ class DecorController extends Controller
 			}
 		};
 
-		$this->updateBeforeUpdateFunction = function ($model, $requestData, $data) {
+		$this->updateBeforeUpdateFunction = function ($model, $requestData, $data) use ($connectedUser) {
 			if (isset($data["file_path"])) {
 				$requestData["file_path"] = $data["file_path"];
 			}
+			$requestData["validation"] = $connectedUser->profile == "admin" ? 'validated' : 'pending';
 			return $requestData;
 		};
 
@@ -193,11 +195,9 @@ class DecorController extends Controller
 	{
 		$this->updateAuthName = null;
 		$this->updateGetValidationArrayFunction = function ($id) {
-			return [
-			];
+			return [];
 		};
-		$this->updateManualValidationsFunction = function ($requestData, $model) {
-			;
+		$this->updateManualValidationsFunction = function ($requestData, $model) {;
 			if ($model->user->nb_decor_not_used <= 0 && $model->user->profile == "promoter") {
 				return ["errors" => ["nb_decor_not_used" => ["Ce décor n'est plus utilisable"]]];
 			}
