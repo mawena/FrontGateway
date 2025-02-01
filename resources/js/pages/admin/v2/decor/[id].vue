@@ -28,7 +28,8 @@ const {
 	execute: fetchDecor,
 } = await useApi(createUrl(`/decor/${route.params.id}`, {
 	query: {
-
+		"with_event": true,
+		"with_user": true,
 	},
 }))
 
@@ -65,6 +66,10 @@ const apiChangeStatus = async id => {
 
 const tableData = computed(() => [
 	{ "title": "Nom", "value": decorData.value.data.Decor.name },
+	{ "title": "Evenement", "value": decorData.value.data.Decor.event?.name },
+	{ "title": "Créateur", "value": decorData.value.data.Decor.user.name },
+	{ "title": "Date de début de disponibilité", "value": decorData.value.data.Decor.start_use_fr },
+	{ "title": "Date de fin de disponibilité", "value": decorData.value.data.Decor.end_use_fr },
 ])
 const backRoute = "admin-v2-decor"
 
@@ -94,13 +99,13 @@ const createDealBackground = useGenerateImageVariant(CreateDealBackgroundLight, 
 							</VBtn>
 						</VCol>
 
-						<VCol v-if="decorData.data.Decor.poster_path" cols="12">
+						<VCol v-if="decorData.data.Decor.file_path" cols="12">
 							<h2>Image : </h2>
 							<br>
 							<div
 								class="d-flex align-center justify-center w-100 deal-type-image-wrapper border rounded px-5 pt-2 pb-5">
 
-								<VImg :src="'/storage/' + decorData.data.Decor.poster_path" />
+								<VImg :src="'/storage/' + decorData.data.Decor.file_path" />
 								<VImg :src="createDealBackground"
 									class="position-absolute deal-type-background-img d-md-block d-none" />
 							</div>

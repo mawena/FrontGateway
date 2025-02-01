@@ -41,10 +41,6 @@ const headers = [
 		key: 'user.name'
 	},
 	{
-		title: 'Disponibilité(Fin)',
-		key: 'end_use_fr'
-	},
-	{
 		title: 'Actions',
 		key: 'actions',
 		align: "center",

@@ -3,27 +3,20 @@
 definePage({
 	meta: {
 		action: 'update',
-		subject: 'event',
+		subject: 'decor',
 	},
 })
 const router = useRouter()
-const route = useRoute("event-edit-id")
-let nextRoute = "/admin/v2/event";
+const route = useRoute("decor-edit-id")
+let nextRoute = "/admin/v2/decor";
 
 const getEmptyError = () => {
 	return {
+		event_id: "",
 		name: "",
-		start_date: "",
-		end_date: "",
-		place: "",
-		type: "",
-		nb_expected: "",
-		entrance: "",
-		entry_price: "",
-		contact: "",
-		description_summary: "",
-		description: "",
-		poster: "",
+		start_use: "",
+		end_use: "",
+		file: "",
 	}
 }
 
@@ -31,12 +24,22 @@ const itemError = ref(getEmptyError())
 
 const {
 	data: itemData,
-} = await useApi(createUrl(`/event/${route.params.id}`, {
+} = await useApi(createUrl(`/decor/${route.params.id}`, {
 	query: {
 	},
 }))
-const item = ref(itemData.value.data.Event)
+const item = ref(itemData.value.data.Decor)
 const refForm = ref()
+
+
+const { data: eventListData } = await useApi(
+	createUrl(`/event`, {
+		query: {
+			paginate: "false",
+		},
+	})
+);
+const eventList = computed(() => eventListData.value.data);
 
 const changeFile = file => {
 	const fileReader = new FileReader()
@@ -45,7 +48,7 @@ const changeFile = file => {
 		fileReader.readAsDataURL(files[0])
 		fileReader.onload = () => {
 			if (typeof fileReader.result === 'string') {
-				item.value.poster = fileReader.result
+				item.value.file = fileReader.result
 			}
 		}
 	}
@@ -54,75 +57,40 @@ const changeFile = file => {
 const onSubmit = () => {
 	refForm.value?.validate().then(async ({ valid }) => {
 		if (valid) {
-			const res = await $api(`/event/${route.params.id}`, {
+			const res = await $api(`/decor/${route.params.id}`, {
 				method: 'PUT',
 				body: {
+					event_id: item.value.event_id,
 					name: item.value.name,
-					start_date: item.value.start_date,
-					end_date: item.value.end_date,
-					place: item.value.place,
-					type: item.value.type,
-					nb_expected: item.value.nb_expected,
-					entrance: item.value.entrance,
-					entry_price: item.value.entry_price,
-					contact: item.value.contact,
-					description_summary: item.value.description_summary,
-					description: item.value.description,
-					poster: item.value.poster,
+					start_use: item.value.start_use,
+					end_use: item.value.end_use,
+					file: item.value.file,
 				},
 			})
 
 			itemError.value = getEmptyError()
 			if (res.status == 200) {
-				router.push({ name: 'admin-v2-event-id', params: { id: route.params.id } })
+				router.push({ name: 'admin-v2-decor-id', params: { id: route.params.id } })
 			} else {
-				if (res.errors.poster) {
-					itemError.value["poster"] = res.errors.poster
-					res.errors.poster = null
+				if (res.errors.event_id) {
+					itemError.value["event_id"] = res.errors.event_id
+					res.errors.event_id = null
 				}
 				if (res.errors.name) {
 					itemError.value["name"] = res.errors.name
 					res.errors.name = null
 				}
-				if (res.errors.start_date) {
-					itemError.value["start_date"] = res.errors.start_date
-					res.errors.start_date = null
+				if (res.errors.start_use) {
+					itemError.value["start_use"] = res.errors.start_use
+					res.errors.start_use = null
 				}
-				if (res.errors.end_date) {
-					itemError.value["end_date"] = res.errors.end_date
-					res.errors.end_date = null
+				if (res.errors.end_use) {
+					itemError.value["end_use"] = res.errors.end_use
+					res.errors.end_use = null
 				}
-				if (res.errors.place) {
-					itemError.value["place"] = res.errors.place
-					res.errors.place = null
-				}
-				if (res.errors.type) {
-					itemError.value["type"] = res.errors.type
-					res.errors.type = null
-				}
-				if (res.errors.nb_expected) {
-					itemError.value["nb_expected"] = res.errors.nb_expected
-					res.errors.nb_expected = null
-				}
-				if (res.errors.entrance) {
-					itemError.value["entrance"] = res.errors.entrance
-					res.errors.entrance = null
-				}
-				if (res.errors.entry_price) {
-					itemError.value["entry_price"] = res.errors.entry_price
-					res.errors.entry_price = null
-				}
-				if (res.errors.contact) {
-					itemError.value["contact"] = res.errors.contact
-					res.errors.contact = null
-				}
-				if (res.errors.description_summary) {
-					itemError.value["description_summary"] = res.errors.description_summary
-					res.errors.description_summary = null
-				}
-				if (res.errors.description) {
-					itemError.value["description"] = res.errors.description
-					res.errors.description = null
+				if (res.errors.file) {
+					itemError.value["file"] = res.errors.file
+					res.errors.file = null
 				}
 				snackbarMessage.value = ""
 				let show = false
@@ -171,54 +139,27 @@ const localUserData = useCookie('userData').value
 						<VCard class="mb-6" title="Modification du l'utilisateur">
 							<VCardText>
 								<VRow>
+
 									<VCol cols="12" md="12" lg="2">
-										<VFileInput accept=".png,.jpg,.jpeg,.webp" label="Poster"
+										<VFileInput accept=".png,.jpg,.jpeg,.webp" label="Decor"
 											:error-messages="itemError.file" @input="changeFile" required />
 									</VCol>
-									<VCol cols="12" md="12" lg="10">
-										<VTextField v-model="item.name" :error-messages="itemError.name" label="Nom" />
+									<VCol cols="12" md="12" lg="5">
+										<VAutocomplete v-model="item.event_id" :error-messages="itemError.event_id"
+											label="Evenement" :items="eventList" item-title="name" item-value="id"
+											clearable />
+									</VCol>
+									<VCol cols="12" md="12" lg="5">
+										<VTextField v-model="item.name" :error-messages="itemError.name" label="Nom"
+											required />
 									</VCol>
 									<VCol cols="12" md="12" lg="6">
-										<AppDateTimePicker v-model="item.start_date"
-											:error-messages="itemError.start_date" label="Date de debut" />
+										<AppDateTimePicker v-model="item.start_use"
+											:error-messages="itemError.start_use" label="Date de début" required />
 									</VCol>
 									<VCol cols="12" md="12" lg="6">
-										<AppDateTimePicker v-model="item.end_date" :error-messages="itemError.end_date"
+										<AppDateTimePicker v-model="item.end_use" :error-messages="itemError.end_use"
 											label="Date de fin" />
-									</VCol>
-									<VCol cols="12" md="12" lg="4">
-										<VTextField v-model="item.place" :error-messages="itemError.place"
-											label="Lieu" />
-									</VCol>
-									<VCol cols="12" md="12" lg="4">
-										<VTextField v-model="item.type" :error-messages="itemError.type" label="Type" />
-									</VCol>
-									<VCol cols="12" md="12" lg="4">
-										<VTextField v-model="item.nb_expected" :error-messages="itemError.nb_expected"
-											label="Nombre de personnes attendus" type="number" />
-									</VCol>
-									<VCol cols="12" md="12" lg="12">
-										<VAutocomplete v-model="item.entrance" :error-messages="itemError.entrance"
-											label="Entrée"
-											:items="[{ 'key': 'paid', 'name': 'Payante' }, { 'key': 'free', 'name': 'Gratuite' }]"
-											item-title="name" item-value="key" />
-									</VCol>
-									<VCol cols="12" md="12" lg="12" v-if="item.entrance == 'paid'">
-										<VTextField v-model="item.entry_price" :error-messages="itemError.entry_price"
-											label="Prix d'entrée" type="number" />
-									</VCol>
-									<VCol cols="12" md="12" lg="8">
-										<VTextField v-model="item.description_summary"
-											:error-messages="itemError.description_summary"
-											label="Description résumé" />
-									</VCol>
-									<VCol cols="12" md="12" lg="4">
-										<VTextField v-model="item.contact" :error-messages="itemError.contact"
-											label="Contact" />
-									</VCol>
-									<VCol cols="12" md="12" lg="12">
-										<VTextarea v-model="item.description" :error-messages="itemError.description"
-											label="Description Detaillé" />
 									</VCol>
 								</VRow>
 							</VCardText>
@@ -230,7 +171,7 @@ const localUserData = useCookie('userData').value
 							<div class="d-flex flex-column justify-center">
 								<VBtn :to="{ name: 'admin-v2-event' }">
 									<VIcon start icon="tabler-calendar-event" />
-									Evenements
+									Decors
 								</VBtn>
 							</div>
 							<div class="d-flex gap-4 align-center flex-wrap">

@@ -33,7 +33,7 @@ trait ControllerHelperTrait
 		}
 		return $query;
 	}
-	
+
 	/**
 	 * Permet d'ajouter des filtres sur un objet Eloquent avec in
 	 * @param 	mixed 	$query				L'objet Eloquent
@@ -45,8 +45,8 @@ trait ControllerHelperTrait
 	{
 		$modelPath = "\App\Models\\$modelName";
 		foreach ($requestData as $filter => $value) {
-			
-			if(Str::startsWith($filter, "in_")){
+
+			if (Str::startsWith($filter, "in_")) {
 				$filter_name = Str::after($filter, "in_");
 				if (in_array($filter_name, Schema::getColumnListing((new $modelPath)->getTable())) && $requestData[$filter]) {
 					$filters = explode('-', $requestData[$filter]);
@@ -127,7 +127,7 @@ trait ControllerHelperTrait
 			$relation = $filterData[0];
 			$filter = $filterData[1];
 			$valueArray = array_filter(explode('-', $value));
-			if($valueArray){
+			if ($valueArray) {
 				if ($filterMethod == "in") {
 					$query->whereHas($relation, function ($query) use ($filter, $valueArray, $filterMethod) {
 						$query->whereIn($filter, $valueArray);
