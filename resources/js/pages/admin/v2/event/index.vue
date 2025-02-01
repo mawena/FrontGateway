@@ -29,6 +29,8 @@ const isSnackbarScrollReverseVisible = ref(false)
 const snackbarMessage = ref("")
 const snackbarCollor = ref("success")
 const validationFilter = ref(null)
+const localUserData = useCookie('userData').value
+const userIdFilter = localUserData.role == "promoter" ? localUserData.id : null
 const headers = [
 	{
 		title: 'Nom',
@@ -56,6 +58,7 @@ const {
 	query: {
 		search: searchQuery,
 		page: page,
+		user_id: userIdFilter,
 		validation: validationFilter,
 	},
 }))
@@ -126,9 +129,6 @@ const totalTransfer = computed(() => eventListData.value.total)
 const lastPage = computed(() => eventListData.value.last_page)
 // Math.min(Math.ceil(totalTransfer / itemsPerPage), 5)
 const eventList = computed(() => eventListData.value.data)
-
-const localUserData = useCookie('userData').value
-
 </script>
 
 <template>

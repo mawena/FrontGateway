@@ -11,6 +11,8 @@ export const redirects = [
 			const userRole = userData.value?.role
 			if (userRole === 'admin')
 				return { name: 'admin-v2-user' }
+			if (userRole === 'promoter')
+				return { name: 'admin-v2-event' }
 
 			return { name: 'admin-v2-login', query: to.query }
 		},

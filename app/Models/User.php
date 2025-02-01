@@ -82,13 +82,16 @@ class User extends Authenticatable
 		return $data;
 	}
 
-	public function getNbDecorPayedAttribute(){
+	public function getNbDecorPayedAttribute()
+	{
 		return Payment::where("user_id", $this->id)->where("status", "validated")->sum("nb_uses");
 	}
-	public function getNbDecorUsedAttribute(){
+	public function getNbDecorUsedAttribute()
+	{
 		return Decor::where("user_id", $this->id)->sum("nb_use");
 	}
-	public function getNbDecorNotUsedAttribute(){
+	public function getNbDecorNotUsedAttribute()
+	{
 		return $this->nb_decor_payed - $this->nb_decor_used;
 	}
 	public function getProfileFrAttribute()
@@ -114,7 +117,7 @@ class User extends Authenticatable
 			'supervisor' => [
 				[
 					'action' => ['read'],
-					'subject' => ['user', 'promoter', 'event', 'decor', 'payment', 'supervisor']
+					'subject' => ['user', 'promoter', 'event', 'decor', 'payment', 'supervisor', 'backofficier']
 				],
 				[
 					'action' => ['create'],
@@ -230,14 +233,15 @@ class User extends Authenticatable
 		][$this->profile];
 	}
 
-	public function getProfilesCanCreateAttribute(){
+	public function getProfilesCanCreateAttribute()
+	{
 		$profileList = [
-			'admin' => ['key' =>'admin', "name" => "Super Admin"],
-			'supervisor' => ['key' =>'supervisor', "name" => "Superviseur"],
-			'money_manager' => ['key' =>'money_manager', "name" => "Gestionnaire de paiement"],
-			'event_planner' => ['key' =>'event_planner', "name" => "Planificateur d'evenement"],
-			'promoter' => ['key' =>'promoter', "name" => "Organisateur"],
-			'visitor' => ['key' =>'visitor', "name" => "Visiteur"],
+			'admin' => ['key' => 'admin', "name" => "Super Admin"],
+			'supervisor' => ['key' => 'supervisor', "name" => "Superviseur"],
+			'money_manager' => ['key' => 'money_manager', "name" => "Gestionnaire de paiement"],
+			'event_planner' => ['key' => 'event_planner', "name" => "Planificateur d'evenement"],
+			'promoter' => ['key' => 'promoter', "name" => "Organisateur"],
+			'visitor' => ['key' => 'visitor', "name" => "Visiteur"],
 		];
 		return [
 			"admin" => [$profileList["admin"], $profileList["supervisor"], $profileList["money_manager"], $profileList["event_planner"], $profileList["visitor"]],

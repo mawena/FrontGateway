@@ -30,12 +30,14 @@ const {
 }))
 const item = ref(itemData.value.data.Decor)
 const refForm = ref()
-
+const localUserData = useCookie('userData').value
+const userIdFilter = localUserData.role == "promoter" ? localUserData.id : null
 
 const { data: eventListData } = await useApi(
 	createUrl(`/event`, {
 		query: {
 			paginate: "false",
+			user_id: userIdFilter
 		},
 	})
 );
@@ -114,9 +116,6 @@ const onSubmit = () => {
 const isSnackbarScrollReverseVisible = ref(false)
 const snackbarMessage = ref("")
 const snackbarCollor = ref("success")
-const isPasswordVisible = ref(false)
-
-const localUserData = useCookie('userData').value
 </script>
 
 <template>
