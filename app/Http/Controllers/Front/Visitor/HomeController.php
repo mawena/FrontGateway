@@ -22,7 +22,7 @@ class HomeController
 	public function decors()
 	{
 		$query = Decor::query();
-		$decorList = $query->where('validation', 'validated')->with(["user", "event"])->whereIn('validation', ['validated', 'pending'])->where('end_use', '>', now())->paginate(12);
+		$decorList = $query->whereIn('validation', ['validated', 'pending'])->where('end_use', '>', now())->with(["user", "event"])->paginate(12);
 		return view("visitor.pages.decors", ["decors" => $decorList ?? []]);
 	}
 
