@@ -140,7 +140,7 @@ const snackbarCollor = ref("success")
 								<VRow>
 
 									<VCol cols="12" md="12" lg="2">
-										<VFileInput accept=".png,.jpg,.jpeg,.webp" label="Decor"
+										<VFileInput accept=".png,.jpg,.jpeg,.webp" label="Décdor en PNG"
 											:error-messages="itemError.file" @input="changeFile" required />
 									</VCol>
 									<VCol cols="12" md="12" lg="5">

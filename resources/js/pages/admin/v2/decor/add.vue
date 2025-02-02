@@ -139,7 +139,7 @@ const snackbarCollor = ref("success")
 						<VCardText>
 							<VRow>
 								<VCol cols="12" md="12" lg="2">
-									<VFileInput accept=".png,.jpg,.jpeg,.webp" label="Decor"
+									<VFileInput accept=".png,.jpg,.jpeg,.webp" label="Décor en PNG"
 										:error-messages="itemError.file" @input="changeFile" required />
 								</VCol>
 								<VCol cols="12" md="12" lg="5">
