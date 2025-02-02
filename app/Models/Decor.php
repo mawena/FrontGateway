@@ -24,7 +24,7 @@ class Decor extends Model
 		"nb_use",
 	];
 
-	public $appends = ["days_remaining", "short_name"];
+	public $appends = ["days_remaining", "short_name", "validation_fr"];
 
 	public function toArray()
 	{
@@ -64,5 +64,14 @@ class Decor extends Model
 	public function getShortNameAttribute()
 	{
 		return substr($this->name, 0, 50) . (strlen($this->name) > 50 ? "..." : "");
+	}
+
+	public function getValidationFrAttribute()
+	{
+		return [
+			"pending" => "En attente",
+			"validated" => "Validée",
+			"rejected" => "Rejetée",
+		][$this->validation];
 	}
 }
