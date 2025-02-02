@@ -1,5 +1,11 @@
 export default [
 	{
+		icon: { icon: 'tabler-currency-dollar' },
+		title: 'Achats',
+		subject: 'payment',
+		action: 'read',
+	},
+	{
 		icon: { icon: 'tabler-users-group' },
 		title: 'BackOfficiers',
 		subject: 'backofficier',

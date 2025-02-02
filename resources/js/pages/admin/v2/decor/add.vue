@@ -176,7 +176,7 @@ const snackbarCollor = ref("success")
 								Effacer
 							</VBtn>
 							<VBtn type="submit" class="me-3">
-								Enregistrer
+								Soumettre
 								<VIcon end icon="tabler-checkbox" />
 							</VBtn>
 						</div>
