@@ -170,7 +170,7 @@ const snackbarCollor = ref("success")
 							<div class="d-flex flex-column justify-center">
 								<VBtn :to="{ name: 'admin-v2-event' }">
 									<VIcon start icon="tabler-calendar-event" />
-									Decors
+									Liste des décors
 								</VBtn>
 							</div>
 							<div class="d-flex gap-4 align-center flex-wrap">

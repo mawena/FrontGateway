@@ -91,7 +91,7 @@ const createDealBackground = useGenerateImageVariant(CreateDealBackgroundLight, 
 						<VCol cols="10">
 							<VBtn :to="{ name: backRoute }">
 								<VIcon start icon="tabler-calendar-event" />
-								Evenements
+								Liste des évenements
 							</VBtn>
 						</VCol>
 						<VCol cols="2" class="text-right">

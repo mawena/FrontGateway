@@ -167,7 +167,7 @@ const snackbarCollor = ref("success")
 					<div class="d-flex flex-wrap justify-start justify-sm-space-between gap-y-4 gap-x-6 mb-6">
 						<div class="d-flex flex-column justify-center">
 							<VBtn :to="{ name: 'admin-v2-decor' }">
-								Decors
+								Liste des décors
 							</VBtn>
 						</div>
 						<div class="d-flex gap-4 align-center flex-wrap">
