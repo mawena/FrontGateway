@@ -72,7 +72,7 @@ const login = async () => {
 			}
 			useCookie('userToken').value = userToken
 			await nextTick(() => {
-				router.push({name: 'admin-v2'})
+				router.push({ name: 'admin-v2' })
 				router.replace(route.query.to ? String(route.query.to) : '/admin/v2')
 			})
 		} else {
@@ -86,7 +86,7 @@ const login = async () => {
 					isSnackbarScrollReverseVisible.value = true
 					snackbarMessage.value = ""
 					for (const key in res.errors) {
-						if (key != "sub_code"){
+						if (key != "sub_code") {
 							res.errors[key].forEach(message => {
 								snackbarMessage.value += message + "\n";
 							})
@@ -130,7 +130,7 @@ const snackbarMessage = ref("")
 					<VNodeRenderer :nodes="themeConfig.app.logo" class="mb-6" />
 
 					<h4 class="text-h4 mb-1">
-						Bienvenue sur <span class="text-capitalize"> {{ themeConfig.app.title }} </span>! 👋🏻
+						Bienvenue sur <span class="text-capitalize"> {{ themeConfig.app.title }} </span>!
 					</h4>
 					<p class="mb-0">
 						Veuillez vous connecter

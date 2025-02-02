@@ -172,7 +172,7 @@ const localUserData = useCookie('userData').value
 							<VCardText>
 								<VRow>
 									<VCol cols="12" md="12" lg="2">
-										<VFileInput accept=".png,.jpg,.jpeg,.webp" label="Poster"
+										<VFileInput accept=".png,.jpg,.jpeg,.webp" label="Affiche"
 											:error-messages="itemError.file" @input="changeFile" required />
 									</VCol>
 									<VCol cols="12" md="12" lg="10">
@@ -187,8 +187,10 @@ const localUserData = useCookie('userData').value
 											label="Date de fin" />
 									</VCol>
 									<VCol cols="12" md="12" lg="4">
-										<VTextField v-model="item.place" :error-messages="itemError.place"
-											label="Lieu" />
+										<VAutocomplete v-model="item.entrance" :error-messages="itemError.entrance"
+											label="Entrée"
+											:items="[{ 'key': 'paid', 'name': 'Payante' }, { 'key': 'free', 'name': 'Gratuite' }]"
+											item-title="name" item-value="key" />
 									</VCol>
 									<VCol cols="12" md="12" lg="4">
 										<VTextField v-model="item.type" :error-messages="itemError.type" label="Type" />
@@ -198,10 +200,8 @@ const localUserData = useCookie('userData').value
 											label="Nombre de personnes attendus" type="number" />
 									</VCol>
 									<VCol cols="12" md="12" lg="12">
-										<VAutocomplete v-model="item.entrance" :error-messages="itemError.entrance"
-											label="Entrée"
-											:items="[{ 'key': 'paid', 'name': 'Payante' }, { 'key': 'free', 'name': 'Gratuite' }]"
-											item-title="name" item-value="key" />
+										<VTextField v-model="item.place" :error-messages="itemError.place"
+											label="Lieu" />
 									</VCol>
 									<VCol cols="12" md="12" lg="12" v-if="item.entrance == 'paid'">
 										<VTextField v-model="item.entry_price" :error-messages="itemError.entry_price"

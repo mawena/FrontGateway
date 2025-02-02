@@ -66,20 +66,7 @@ const LazyAppBarSearch = defineAsyncComponent(() => import('@core/components/App
 </script>
 
 <template>
-	<div class="d-flex align-center cursor-pointer" v-bind="$attrs" style="user-select: none;"
-		@click="isAppSearchBarVisible = !isAppSearchBarVisible">
-		<!-- 👉 Search Trigger button -->
-		<!-- close active tour while opening search bar using icon -->
-		<IconBtn class="me-1" @click="Shepherd.activeTour?.cancel()">
-			<VIcon size="26" icon="tabler-search" />
-		</IconBtn>
 
-		<span v-if="configStore.appContentLayoutNav === 'vertical'" class="d-none d-md-flex align-center text-disabled"
-			@click="Shepherd.activeTour?.cancel()">
-			<span class="me-3">Search</span>
-			<span class="meta-key">&#8984;K</span>
-		</span>
-	</div>
 
 	<!-- 👉 App Bar Search -->
 	<LazyAppBarSearch v-model:isDialogVisible="isAppSearchBarVisible" :search-results="searchResult"
