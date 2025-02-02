@@ -117,7 +117,7 @@ class User extends Authenticatable
 			'supervisor' => [
 				[
 					'action' => ['read'],
-					'subject' => ['user', 'promoter', 'event', 'decor', 'payment', 'supervisor', 'backofficier']
+					'subject' => ['user', 'promoter', 'event', 'decor', 'payment', 'supervisor', 'backofficier', 'settings-user']
 				],
 				[
 					'action' => ['create'],
@@ -147,7 +147,7 @@ class User extends Authenticatable
 			'money_manager' => [
 				[
 					'action' => ['read'],
-					'subject' => ['user', 'promoter', 'event', 'decor', 'payment']
+					'subject' => ['user', 'promoter', 'event', 'decor', 'payment', 'settings-user']
 				],
 				[
 					'action' => ['create'],
@@ -177,7 +177,7 @@ class User extends Authenticatable
 			'event_planner' => [
 				[
 					'action' => ['read'],
-					'subject' => ['user', 'promoter', 'event', 'decor']
+					'subject' => ['user', 'promoter', 'event', 'decor', 'settings-user']
 				],
 				[
 					'action' => ['create'],
@@ -207,7 +207,7 @@ class User extends Authenticatable
 			'promoter' => [
 				[
 					'action' => ['read'],
-					'subject' => ['user', 'event', 'decor', 'payment']
+					'subject' => ['user', 'event', 'decor', 'payment', 'settings-user']
 				],
 				[
 					'action' => ['create'],
