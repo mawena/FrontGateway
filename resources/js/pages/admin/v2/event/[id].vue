@@ -68,6 +68,7 @@ const tableData = computed(() => [
 	{ "title": "Date de debut", "value": eventData.value.data.Event.start_date_fr },
 	{ "title": "Date de fin", "value": eventData.value.data.Event.end_date_fr },
 	{ "title": "Lieu", "value": eventData.value.data.Event.place },
+	{ "title": "Etat", "value": eventData.value.data.Event.validation_fr },
 	{ "title": "Type", "value": eventData.value.data.Event.type },
 	{ "title": "Nombre de personnes attendus", "value": eventData.value.data.Event.nb_expected },
 	{ "title": "Entrée", "value": eventData.value.data.Event.entrance_fr },

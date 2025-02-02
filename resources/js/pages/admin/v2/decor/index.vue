@@ -41,6 +41,10 @@ const headers = [
 		key: 'user.name'
 	},
 	{
+		title: 'Etat',
+		key: 'validation_fr'
+	},
+	{
 		title: 'Actions',
 		key: 'actions',
 		align: "center",
@@ -193,14 +197,16 @@ const decorList = computed(() => decorListData.value.data)
 			<VDataTableServer v-model:items-per-page="itemsPerPage" v-model:page="page" :headers="headers"
 				:items="decorList" :items-length="totalTransfer" class="text-no-wrap" @update:options="updateOptions">
 
-				<template #item.activated="{ item }">
-					<VAvatar variant="tonal" :color="{ true: 'success', false: 'error' }[item.activated]" class="me-4"
-						size="40">
-						<VIcon :icon="{ false: 'tabler-lock-check', true: 'tabler-lock-open' }[item.activated]"
+				<template #item.validation_fr="{ item }">
+					<VAvatar variant="tonal"
+						:color="{ 'pending': 'warning', 'validated': 'success', 'rejected': 'error' }[item.validation]"
+						class="me-4" size="40">
+						<VIcon
+							:icon="{ 'pending': 'tabler-clock', 'validated': 'tabler-check', 'rejected': 'tabler-x' }[item.validation]"
 							size="28" />
 					</VAvatar>
 					<div class="text-link text-base font-weight-medium d-inline-block">
-						{{ { false: 'Désactivé', true: 'Activé' }[item.activated] }}
+						{{ item.validation_fr }}
 					</div>
 				</template>
 

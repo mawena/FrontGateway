@@ -30,7 +30,7 @@ class Event extends Model
 		"validation",
 	];
 
-	public $appends = ["entrance_fr", "short_name", "short_place", "entry_price_formated"];
+	public $appends = ["entrance_fr", "short_name", "short_place", "entry_price_formated", "validation_fr"];
 
 	public function toArray()
 	{
@@ -75,5 +75,13 @@ class Event extends Model
 	public function getEntryPriceFormatedAttribute()
 	{
 		return number_format($this->entry_price, 0, ",", " ") . " XOF";
+	}
+	public function getValidationFrAttribute()
+	{
+		return [
+			"pending" => "En attente",
+			"validated" => "Validée",
+			"rejected" => "Rejetée",
+		][$this->validation];
 	}
 }

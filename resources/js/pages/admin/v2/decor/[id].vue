@@ -68,6 +68,7 @@ const tableData = computed(() => [
 	{ "title": "Nom", "value": decorData.value.data.Decor.name },
 	{ "title": "Evenement", "value": decorData.value.data.Decor.event?.name },
 	{ "title": "Créateur", "value": decorData.value.data.Decor.user.name },
+	{ "title": "Etat", "value": decorData.value.data.Decor.validation_fr },
 	{ "title": "Date de début de disponibilité", "value": decorData.value.data.Decor.start_use_fr },
 	{ "title": "Date de fin de disponibilité", "value": decorData.value.data.Decor.end_use_fr },
 ])
