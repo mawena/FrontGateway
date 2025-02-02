@@ -36,10 +36,9 @@ const headers = [
 		title: 'Nom',
 		key: 'short_name'
 	},
-	{
-		title: 'Promoteur',
-		key: 'user.name'
-	},
+	...(localUserData.role !== "promoter"
+		? [{ title: 'Promoteur', key: 'user.name' }]
+		: []),
 	{
 		title: 'Etat',
 		key: 'validation_fr'
