@@ -41,8 +41,8 @@ class HomeController
 		$sortList = [
 			"created_at.desc" => "Les plus récents",
 			'created_at.asc'  => "Les plus anciens",
-			'nb_use.asc'  => "utilisations croisant",
-			'nb_use.desc'  => "utilisations décroisant",
+			'nb_use.desc'  => "Les plus utilisés",
+			'nb_use.asc'  => "Les moins utilisés",
 			'end_use.asc'  => "Jours restants croisant",
 			'end_use.desc'  => "Jours restants décroisant",
 		];
