@@ -15,7 +15,7 @@ class HomeController
 	{
 		$list = Event::query();
 		($search = $request->search) ? $list = $this->querySearch($list, ["name"], $search) : null;
-		$list = $list->where('validation', 'validated')->with("decors")->where('end_date', '>', now())->paginate(12);
+		$list = $list->where('validation', 'validated')->with("decors")->where('end_date', '>=', now())->paginate(12);
 		return view("visitor.pages.events", ["events" => $list ?? [], "search" => $request->search, "search_text" => "Rechercher des événements"]);
 	}
 
@@ -23,7 +23,7 @@ class HomeController
 	{
 		$list = Decor::query();
 		($search = $request->search) ? $list = $this->querySearch($list, ["name"], $search) : null;
-		$decorList = $list->whereIn('validation', ['validated'])->where('end_use', '>', now())->with(["user", "event"])->paginate(12);
+		$decorList = $list->whereIn('validation', ['validated'])->where('start_use', '<=', now())->where('end_use', '>=', now())->with(["user", "event"])->paginate(12);
 		return view("visitor.pages.decors", ["decors" => $decorList ?? [], "search" => $request->search, "search_text" => "Rechercher des décors"]);
 	}
 
