@@ -15,16 +15,38 @@ class HomeController
 	{
 		$list = Event::query();
 		($search = $request->search) ? $list = $this->querySearch($list, ["name"], $search) : null;
-		$list = $list->where('validation', 'validated')->with("decors")->where('end_date', '>=', now())->paginate(12);
-		return view("visitor.pages.events", ["events" => $list ?? [], "search" => $request->search, "search_text" => "Rechercher des événements"]);
+		$list = $list->where('validation', 'validated')->with("decors")->where('end_date', '>=', now());
+		$sort = $request->sort ?? 'created_at.desc';
+		$parts = explode(".", $sort);
+		$list->orderBy($parts[0], $parts[1]);
+		$list = $list->paginate(12);
+		$sortList = [
+			"created_at.desc" => "Les plus récents",
+			'created_at.asc'  => "Les plus anciens",
+			'start_date.asc'  => "Les plus proches",
+			'start_date.desc'  => "Les moins proches",
+		];
+		return view("visitor.pages.events", ["events" => $list ?? [], "search" => $request->search, "sort" => $sort, "sortList" => $sortList, "search_text" => "Rechercher des événements"]);
 	}
 
 	public function decors(Request $request)
 	{
 		$list = Decor::query();
 		($search = $request->search) ? $list = $this->querySearch($list, ["name"], $search) : null;
-		$decorList = $list->whereIn('validation', ['validated'])->where('start_use', '<=', now())->where('end_use', '>=', now())->with(["user", "event"])->paginate(12);
-		return view("visitor.pages.decors", ["decors" => $decorList ?? [], "search" => $request->search, "search_text" => "Rechercher des décors"]);
+		$decorList = $list->whereIn('validation', ['validated'])->where('start_use', '<=', now())->where('end_use', '>=', now())->with(["user", "event"]);
+		$sort = $request->sort ?? 'created_at.desc';
+		$parts = explode(".", $sort);
+		$list->orderBy($parts[0], $parts[1]);
+		$list = $list->paginate(12);
+		$sortList = [
+			"created_at.desc" => "Les plus récents",
+			'created_at.asc'  => "Les plus anciens",
+			'nb_use.asc'  => "utilisations croisant",
+			'nb_use.desc'  => "utilisations décroisant",
+			'end_use.asc'  => "Jours restants croisant",
+			'end_use.desc'  => "Jours restants décroisant",
+		];
+		return view("visitor.pages.decors", ["decors" => $list ?? [], "search" => $request->search, "sort" => $sort, "sortList" => $sortList, "search_text" => "Rechercher des décors"]);
 	}
 
 	public function event_details(Request $request, $id)
