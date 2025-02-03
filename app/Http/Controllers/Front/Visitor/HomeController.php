@@ -33,7 +33,7 @@ class HomeController
 	{
 		$list = Decor::query();
 		($search = $request->search) ? $list = $this->querySearch($list, ["name"], $search) : null;
-		$decorList = $list->whereIn('validation', ['validated'])->where('start_use', '<=', now())->where('end_use', '>=', now())->with(["user", "event"]);
+		$decorList = $list->whereIn('validation', ['validated'])->where('start_use', '<=', now()->toDateString())->where('end_use', '>=', now()->toDateString())->with(["user", "event"]);
 		$sort = $request->sort ?? 'created_at.desc';
 		$parts = explode(".", $sort);
 		$list->orderBy($parts[0], $parts[1]);
