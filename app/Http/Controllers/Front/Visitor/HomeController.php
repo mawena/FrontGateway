@@ -16,14 +16,15 @@ class HomeController
 		$list = Event::query();
 		($search = $request->search) ? $list = $this->querySearch($list, ["name"], $search) : null;
 		$list = $list->where('validation', 'validated')->with("decors")->where('end_date', '>', now())->paginate(12);
-		return view("visitor.pages.events", ["events" => $list ?? [], "search" => $request->$search]);
+		return view("visitor.pages.events", ["events" => $list ?? [], "search" => $request->search, "search_text" => "Rechercher des événements"]);
 	}
 
-	public function decors()
+	public function decors(Request $request)
 	{
-		$query = Decor::query();
-		$decorList = $query->whereIn('validation', ['validated'])->where('end_use', '>', now())->with(["user", "event"])->paginate(12);
-		return view("visitor.pages.decors", ["decors" => $decorList ?? []]);
+		$list = Decor::query();
+		($search = $request->search) ? $list = $this->querySearch($list, ["name"], $search) : null;
+		$decorList = $list->whereIn('validation', ['validated'])->where('end_use', '>', now())->with(["user", "event"])->paginate(12);
+		return view("visitor.pages.decors", ["decors" => $decorList ?? [], "search" => $request->search, "search_text" => "Rechercher des décors"]);
 	}
 
 	public function event_details(Request $request, $id)

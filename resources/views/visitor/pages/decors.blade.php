@@ -6,7 +6,11 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6 offset-lg-3">
-					<div class="title-area text-center"><span class="sub-title">Décors Trouvés</span>
+					<div class="title-area text-center">
+						@if ($search)
+							<span class="sub-title">Décors Trouvés</span>
+						@endif
+
 						<h2 class="sec-title">Choisissez Un Décor</h2>
 						<p class="sec-text">
 							Voici la liste des décors actuellement disponibles sur {{ config('app.name') }}.

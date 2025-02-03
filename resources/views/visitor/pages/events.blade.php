@@ -6,7 +6,10 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6 offset-lg-3">
-					<div class="title-area text-center"><span class="sub-title">Événements Trouvés</span>
+					<div class="title-area text-center">
+						@if ($search)
+							<span class="sub-title">Événements Trouvés</span>
+						@endif
 						<h2 class="sec-title">Choisissez Un Événement</h2>
 						<p class="sec-text">
 							Voici la liste des événements actuellement disponibles sur {{ config('app.name') }}.
@@ -97,8 +100,6 @@
 							</nav>
 						</div>
 					@endif
-
-
 				</div>
 			</div>
 			<div class="shape-mockup shape1 d-none d-xxl-block" data-bottom="20%" data-left="-17%"><img
