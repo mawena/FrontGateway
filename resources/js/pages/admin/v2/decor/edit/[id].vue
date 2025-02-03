@@ -127,7 +127,7 @@ const snackbarCollor = ref("success")
 					</VCol>
 					<VCol cols="1" class="text-right">
 						<VBtn append-icon="tabler-eye"
-							:to="{ name: 'admin-v2-event-id', params: { id: route.params.id } }">
+							:to="{ name: 'admin-v2-decor-id', params: { id: route.params.id } }">
 							Voir
 						</VBtn>
 					</VCol>
@@ -168,8 +168,8 @@ const snackbarCollor = ref("success")
 					<VCol cols="12">
 						<div class="d-flex flex-wrap justify-start justify-sm-space-between gap-y-4 gap-x-6 mb-6">
 							<div class="d-flex flex-column justify-center">
-								<VBtn :to="{ name: 'admin-v2-event' }">
-									<VIcon start icon="tabler-calendar-event" />
+								<VBtn :to="{ name: 'admin-v2-decor' }">
+									<VIcon start icon="tabler-photo" />
 									Liste des décors
 								</VBtn>
 							</div>
