@@ -56,12 +56,12 @@ class Controller extends BaseController
 
 	public function index(Request $request)
 	{
-		dd("dadada");
 		if($this->indexAbilityName){
 			if (!($authorisation = Gate::inspect($this->indexAbilityName, $this->modelClass))->allowed()) {
 				return $this->responseError(["auth" => [$authorisation->message()]], 403);
 			}
 		}
+		dd("dadada");
 		$list = call_user_func([$this->modelClass, 'query']);
 
 		$requestData = $request->all();
