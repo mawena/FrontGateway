@@ -56,6 +56,7 @@ class Controller extends BaseController
 
 	public function index(Request $request)
 	{
+		dd("dadada");
 		if($this->indexAbilityName){
 			if (!($authorisation = Gate::inspect($this->indexAbilityName, $this->modelClass))->allowed()) {
 				return $this->responseError(["auth" => [$authorisation->message()]], 403);
@@ -68,7 +69,6 @@ class Controller extends BaseController
 		$list = $this->queryFilter($list, $requestData, $this->modelName);
 		$list = $this->queryFilterIn($list, $requestData, $this->modelName);
 		$list = $this->queryRelationAdd($list, $requestData, $this->modelName);
-		dd($list->get());
 		$connectedUser = $request->user();
 		if ($this->indexManualFilter) {
 			$list = ($this->indexManualFilter)($list, $connectedUser);
