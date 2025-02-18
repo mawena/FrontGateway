@@ -61,10 +61,10 @@ class Controller extends BaseController
 				return $this->responseError(["auth" => [$authorisation->message()]], 403);
 			}
 		}
-		dd("dadadassss");
 		$list = call_user_func([$this->modelClass, 'query']);
-
+		
 		$requestData = $request->all();
+		dd("dadadassss");
 		($search = $request->search) ? $list = $this->querySearch($list, $this->indexSearchFieldList, $search) : null;
 		$list = $this->queryFilter($list, $requestData, $this->modelName);
 		$list = $this->queryFilterIn($list, $requestData, $this->modelName);
