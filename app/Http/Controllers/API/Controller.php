@@ -177,7 +177,7 @@ class Controller extends BaseController
 		$model = ($afterCommit) ? $afterCommit($model, $requestData, $manualValidationsReturn["data"]) : $model;
 		$model = $relations ? $this->modelRelationLoad($model, $relations, end($modelClassExployed)) : $model;
 		return $this->responseOk([
-			lcfirst(end($modelClassExployed)) => $model
+			lcfirst(end($modelClassExployed)) => $model->toArray()
 		], status: 201);
 	}
 
@@ -227,7 +227,7 @@ class Controller extends BaseController
 				DB::commit();
 				$model = ($afterCommit) ? $afterCommit($model, $requestData, $manualValidationsReturn["data"]) : $model;
 				return $this->responseOk([
-					$modelClassName => $model
+					$modelClassName => $model->toArray()
 				]);
 			} else {
 				return $this->responseError(["id" => ["$elementName n'existe pas"]], 404);

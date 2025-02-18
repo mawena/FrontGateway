@@ -43,7 +43,7 @@ class AuthController extends Controller
 		if (Hash::check($request->password, $user->password)) {
 			return $this->responseOk([
 				"userToken" => $user->createToken($request->email)->plainTextToken,
-				"user" => $user,
+				"user" => $user->toArray(),
 			]);
 		} else {
 			return $this->responseError(["password" => ["Mot de passe incorrect"]], 400);
@@ -107,7 +107,7 @@ class AuthController extends Controller
 	 */
 	public function show(Request $request, int $id)
 	{
-		return $this->responseOk($request->user());
+		return $this->responseOk($request->user()->toArray());
 	}
 
 	/**
