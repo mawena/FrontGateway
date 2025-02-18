@@ -68,7 +68,7 @@ class Controller extends BaseController
 		$list = $this->queryFilter($list, $requestData, $this->modelName);
 		$list = $this->queryFilterIn($list, $requestData, $this->modelName);
 		$list = $this->queryRelationAdd($list, $requestData, $this->modelName);
-
+		dd($list->get());
 		$connectedUser = $request->user();
 		if ($this->indexManualFilter) {
 			$list = ($this->indexManualFilter)($list, $connectedUser);
