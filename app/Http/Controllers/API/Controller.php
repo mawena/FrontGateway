@@ -61,7 +61,7 @@ class Controller extends BaseController
 				return $this->responseError(["auth" => [$authorisation->message()]], 403);
 			}
 		}
-		dd("dadada");
+		dd("dadadassss");
 		$list = call_user_func([$this->modelClass, 'query']);
 
 		$requestData = $request->all();
