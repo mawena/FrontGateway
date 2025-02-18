@@ -64,11 +64,11 @@ class Controller extends BaseController
 		$list = call_user_func([$this->modelClass, 'query']);
 		
 		$requestData = $request->all();
-		dd("dadadassss");
 		($search = $request->search) ? $list = $this->querySearch($list, $this->indexSearchFieldList, $search) : null;
 		$list = $this->queryFilter($list, $requestData, $this->modelName);
 		$list = $this->queryFilterIn($list, $requestData, $this->modelName);
 		$list = $this->queryRelationAdd($list, $requestData, $this->modelName);
+		dd("da");
 		$connectedUser = $request->user();
 		if ($this->indexManualFilter) {
 			$list = ($this->indexManualFilter)($list, $connectedUser);
