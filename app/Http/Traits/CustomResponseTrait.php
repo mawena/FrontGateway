@@ -60,6 +60,7 @@ trait CustomResponseTrait
 	 */
 	public function responseOk($data = [], $messages = [], $status = 200)
 	{
+		$data = mb_convert_encoding($data, 'UTF-8', 'UTF-8');
 		return FunctionType::json(
 			[
 				"status" => $status,
@@ -78,6 +79,7 @@ trait CustomResponseTrait
 	 */
 	public function responseOkPaginate($data = [], $messages = [], $status = 200)
 	{
+		$data = mb_convert_encoding($data, 'UTF-8', 'UTF-8');
 		return FunctionType::json(
 			array_merge(["status" => $status, "messages" => $messages], $data),
 		);

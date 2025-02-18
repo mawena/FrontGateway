@@ -86,7 +86,7 @@ class Controller extends BaseController
 				}
 			}
 			$model = $this->modelRelationLoad($model, $requestData, $this->modelName);
-			return $this->responseOk([$this->modelName => $model]);
+			return $this->responseOk([$this->modelName => $model->toArray()]);
 		} else {
 			return $this->responseError(["id" => ["l'élément n'existe pas"]], 404);
 		}
