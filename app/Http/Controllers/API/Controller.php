@@ -72,7 +72,6 @@ class Controller extends BaseController
 		if ($this->indexManualFilter) {
 			$list = ($this->indexManualFilter)($list, $connectedUser);
 		}
-		dd("dat");
 		return $this->responseIndexOk($list, $requestData, $this->modelName);
 	}
 
