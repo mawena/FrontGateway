@@ -60,6 +60,7 @@ trait CustomResponseTrait
 	 */
 	public function responseOk($data = [], $messages = [], $status = 200)
 	{
+		dd($data);
 		$data = mb_convert_encoding($data, 'UTF-8', 'UTF-8');
 		return FunctionType::json(
 			[
