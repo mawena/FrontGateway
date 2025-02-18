@@ -44,11 +44,11 @@ trait CustomResponseTrait
 		$perPage = isset($requestData["per_page"]) ? (int) $requestData["per_page"] : 8;
 		if (isset($requestData["paginate"]) && $requestData["paginate"] == "false") {
 			$data = $query->get();
-			dd($data);
 			$data = ["data" => $data, "total" => count($data)];
 		} else {
 			$data = $query->paginate($perPage)->toArray();
 		}
+		dd($data);
 		return $this->responseOkPaginate(data: $data, status: $status, messages: $messages);
 	}
 
