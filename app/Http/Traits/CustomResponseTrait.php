@@ -78,8 +78,7 @@ trait CustomResponseTrait
 	 */
 	public function responseOkPaginate($data = [], $messages = [], $status = 200)
 	{
-		dump("bla bla bla");
-		dd(array_merge(["status" => $status, "messages" => $messages], $data));
+		return array_merge(["status" => $status, "messages" => $messages], $data);
 		return FunctionType::json(
 			array_merge(["status" => $status, "messages" => $messages], $data),
 		);
