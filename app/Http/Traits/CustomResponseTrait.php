@@ -48,7 +48,6 @@ trait CustomResponseTrait
 		} else {
 			$data = $query->paginate($perPage)->toArray();
 		}
-		dd($data);
 		return $this->responseOkPaginate(data: $data, status: $status, messages: $messages);
 	}
 
@@ -79,6 +78,8 @@ trait CustomResponseTrait
 	 */
 	public function responseOkPaginate($data = [], $messages = [], $status = 200)
 	{
+		dump("dddddd");
+		dd($data);
 		return FunctionType::json(
 			array_merge(["status" => $status, "messages" => $messages], $data),
 		);
