@@ -31,7 +31,7 @@ class DecorController extends Controller
 	 * @queryParam  end_use										string			Date fin d'utilisation.														 No-example
 	 * @queryParam  event_id									string			Evenement.																	 No-example
 	 * @queryParam  user_id										string			Créateur.																	 No-example
-	 * 
+	 * j
 	 * @queryParam  with_event									string			Afficher l'décor.														Example: false
 	 * @queryParam  with_promoter								string			Afficher le promoteur.														Example: false
 	 * 

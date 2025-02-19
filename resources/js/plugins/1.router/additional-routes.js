@@ -13,6 +13,10 @@ export const redirects = [
 				return { name: 'admin-v2-user' }
 			if (userRole === 'promoter')
 				return { name: 'admin-v2-event' }
+			if (userRole === 'supervisor')
+				return { name: 'admin-v2-event' }
+			if (userRole === 'event_planner')
+				return { name: 'admin-v2-event' }
 
 			return { name: 'admin-v2-login', query: to.query }
 		},

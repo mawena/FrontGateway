@@ -184,6 +184,10 @@ class User extends Authenticatable
 					'subject' => ['event', 'decor']
 				],
 				[
+					'action' => ['update'],
+					'subject' => ['event', 'decor']
+				],
+				[
 					'action' => ['edit'],
 					'subject' => ['event', 'decor']
 				],

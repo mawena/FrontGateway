@@ -43,7 +43,7 @@ trait CustomResponseTrait
 
 		$perPage = isset($requestData["per_page"]) ? (int) $requestData["per_page"] : 8;
 		if (isset($requestData["paginate"]) && $requestData["paginate"] == "false") {
-			$data = $query->get();
+			$data = $query->get()->toArray();
 			$data = ["data" => $data, "total" => count($data)];
 		} else {
 			$data = $query->paginate($perPage)->toArray();
@@ -60,7 +60,6 @@ trait CustomResponseTrait
 	 */
 	public function responseOk($data = [], $messages = [], $status = 200)
 	{
-		dd($data);
 		$data = mb_convert_encoding($data, 'UTF-8', 'UTF-8');
 		return FunctionType::json(
 			[
