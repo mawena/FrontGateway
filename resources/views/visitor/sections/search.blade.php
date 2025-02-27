@@ -1,3 +1,5 @@
+{{-- ----------------------------------------------V01---------------------------------------------- --}}
+
 {{-- <div class="booking-sec">
 	<div class="container mb-0">
 		<form id="searchForm" action="{{ $_link }}/#searchForm" method="GET" class="booking-form">
@@ -20,6 +22,7 @@
 	</div>
 </div> --}}
 
+{{-- ----------------------------------------------V02---------------------------------------------- --}}
 
 {{-- <div class="booking-sec">
 	<div class="container mb-0">
@@ -56,7 +59,9 @@
 	</div>
 </div> --}}
 
-<div class="booking-sec">
+{{-- ----------------------------------------------V03---------------------------------------------- --}}
+
+{{-- <div class="booking-sec">
 	<div class="container mb-0">
 		<form id="search-form" action="{{ $_link }}#search-form" method="GET" class="booking-form">
 			<div class="input-wrap">
@@ -80,6 +85,48 @@
 					<select id="sort-by" name="sort" class="form-select">
 						@foreach ($sortList as $key => $value)
 							<option value="{{ $key }}" @if ($sort == '{{ $key }}') selected @endif>{{ $value }}
+							</option>
+						@endforeach
+					</select>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+<script>
+	document.getElementById('sort-by').addEventListener('change', function() {
+		document.getElementById('search-form').submit();
+	});
+</script> --}}
+
+{{-- ----------------------------------------------V04---------------------------------------------- --}}
+
+<div class="booking-sec">
+	<div class="container mb-0">
+		<form id="search-form" action="{{ $_link }}#search-form" method="GET" class="booking-form">
+			<div class="input-wrap">
+				<div class="row align-items-center">
+					<div class="form-group col-12 position-relative">
+						<div class="search-input w-100">
+							<input class="form-control w-100 pr-5" type="text" name="search" placeholder="{{ $search_text }}"
+								value="{{ request('search', '') }}" />
+							<button type="submit" class="th-btn position-absolute end-0 top-50 translate-middle-y">
+								<img src="{{ asset('/visitor/assets/img/icon/search.svg') }}" alt="Rechercher">
+								Rechercher
+							</button>
+						</div>
+					</div>
+				</div>
+				<p class="form-messages mb-0 mt-3"></p>
+			</div>
+
+			<div class="row mt-3">
+				<div class="col-12">
+					<label for="sort-by" class="fw-bold me-2">Trier par :</label>
+					<select id="sort-by" name="sort" class="form-select">
+						@foreach ($sortList as $key => $value)
+							<option value="{{ $key }}" @if ($sort == $key) selected @endif>{{ $value }}
 							</option>
 						@endforeach
 					</select>

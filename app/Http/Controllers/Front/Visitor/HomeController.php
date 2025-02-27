@@ -16,37 +16,64 @@ class HomeController
 		$list = Event::query();
 		($search = $request->search) ? $list = $this->querySearch($list, ["name"], $search) : null;
 		$list = $list->where('validation', 'validated')->with("decors")->where('end_date', '>=', now());
+
 		$sort = $request->sort ?? 'created_at.desc';
 		$parts = explode(".", $sort);
 		$list->orderBy($parts[0], $parts[1]);
-		$list = $list->paginate(12);
+
+		// Ajout de appends pour conserver les filtres dans la pagination
+		$list = $list->paginate(12)->appends($request->query());
+
 		$sortList = [
 			"created_at.desc" => "Les plus récents",
 			'created_at.asc'  => "Les plus anciens",
 			'start_date.asc'  => "Les plus proches",
 			'start_date.desc'  => "Les moins proches",
 		];
-		return view("visitor.pages.events", ["events" => $list ?? [], "search" => $request->search, "sort" => $sort, "sortList" => $sortList, "search_text" => "Rechercher des événements"]);
+
+		return view("visitor.pages.events", [
+			"events" => $list ?? [],
+			"search" => $request->search,
+			"sort" => $sort,
+			"sortList" => $sortList,
+			"search_text" => "Rechercher des événements"
+		]);
 	}
+
 
 	public function decors(Request $request)
 	{
 		$list = Decor::query();
 		($search = $request->search) ? $list = $this->querySearch($list, ["name"], $search) : null;
-		$decorList = $list->whereIn('validation', ['validated'])->where('start_use', '<=', now()->toDateString())->where('end_use', '>=', now()->toDateString())->with(["user", "event"]);
+
+		$decorList = $list->whereIn('validation', ['validated'])
+			->where('start_use', '<=', now()->toDateString())
+			->where('end_use', '>=', now()->toDateString())
+			->with(["user", "event"]);
+
 		$sort = $request->sort ?? 'created_at.desc';
 		$parts = explode(".", $sort);
 		$list->orderBy($parts[0], $parts[1]);
-		$list = $list->paginate(12);
+
+		// Ajout de appends pour conserver les filtres dans la pagination
+		$list = $list->paginate(12)->appends($request->query());
+
 		$sortList = [
 			"created_at.desc" => "Les plus récents",
 			'created_at.asc'  => "Les plus anciens",
 			'nb_use.desc'  => "Les plus utilisés",
 			'nb_use.asc'  => "Les moins utilisés",
-			'end_use.asc'  => "Jours restants croisant",
-			'end_use.desc'  => "Jours restants décroisant",
+			'end_use.asc'  => "Jours restants croissant",
+			'end_use.desc'  => "Jours restants décroissant",
 		];
-		return view("visitor.pages.decors", ["decors" => $list ?? [], "search" => $request->search, "sort" => $sort, "sortList" => $sortList, "search_text" => "Rechercher des décors"]);
+
+		return view("visitor.pages.decors", [
+			"decors" => $list ?? [],
+			"search" => $request->search,
+			"sort" => $sort,
+			"sortList" => $sortList,
+			"search_text" => "Rechercher des décors"
+		]);
 	}
 
 	public function event_details(Request $request, $id)
