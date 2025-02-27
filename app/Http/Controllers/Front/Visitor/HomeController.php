@@ -17,7 +17,7 @@ class HomeController
 		($search = $request->search) ? $list = $this->querySearch($list, ["name"], $search) : null;
 		$list = $list->where('validation', 'validated')->with("decors")->where('end_date', '>=', now());
 
-		$sort = $request->sort ?? 'created_at.desc';
+		$sort = $request->sort ?? 'start_date.desc';
 		$parts = explode(".", $sort);
 		$list->orderBy($parts[0], $parts[1]);
 
@@ -51,7 +51,7 @@ class HomeController
 			->where('end_use', '>=', now()->toDateString())
 			->with(["user", "event"]);
 
-		$sort = $request->sort ?? 'created_at.desc';
+		$sort = $request->sort ?? 'end_use.desc';
 		$parts = explode(".", $sort);
 		$list->orderBy($parts[0], $parts[1]);
 
