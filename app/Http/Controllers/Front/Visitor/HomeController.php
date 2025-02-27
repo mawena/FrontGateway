@@ -17,7 +17,7 @@ class HomeController
 		($search = $request->search) ? $list = $this->querySearch($list, ["name"], $search) : null;
 		$list = $list->where('validation', 'validated')->with("decors")->where('end_date', '>=', now());
 
-		$sort = $request->sort ?? 'start_date.desc';
+		$sort = $request->sort ?? 'start_date.asc';
 		$parts = explode(".", $sort);
 		$list->orderBy($parts[0], $parts[1]);
 
@@ -25,8 +25,8 @@ class HomeController
 		$list = $list->paginate(12)->appends($request->query());
 
 		$sortList = [
-			"created_at.desc" => "Les plus récents",
-			'created_at.asc'  => "Les plus anciens",
+			// "created_at.desc" => "Les plus récents",
+			// 'created_at.asc'  => "Les plus anciens",
 			'start_date.asc'  => "Les plus proches",
 			'start_date.desc'  => "Les moins proches",
 		];
@@ -51,7 +51,7 @@ class HomeController
 			->where('end_use', '>=', now()->toDateString())
 			->with(["user", "event"]);
 
-		$sort = $request->sort ?? 'end_use.desc';
+		$sort = $request->sort ?? 'created_at.desc';
 		$parts = explode(".", $sort);
 		$list->orderBy($parts[0], $parts[1]);
 
