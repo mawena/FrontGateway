@@ -4,7 +4,7 @@
 definePage({
 	meta: {
 		action: 'read',
-		subject: 'user',
+		subject: 'client',
 	},
 })
 import { VDataTableServer } from 'vuetify/labs/VDataTable'
@@ -48,21 +48,21 @@ const headers = [
 ]
 
 const {
-	data: userListData,
+	data: clientListData,
 	isLoading,
 	error,
-	execute: fetchUserList
-} = useAxios('http://localhost:8888/SERVICE-CLIENTS/clients', {
+	execute: fetchClientList
+} = await useAxios('http://localhost:8888/SERVICE-CLIENTS/clients', {
 	immediate: false, // on ne fait pas la requête tout de suite
 })
 
 
 // const {
-// 	data: userListData,
-// 	execute: fetchUserList,
+// 	data: clientListData,
+// 	execute: fetchClientList,
 // } = await useApiE(createUrl('/SERVICE-CLIENTS/clients', {
 // 	query: {
-// 		search: searchQuery,console.log(userListData.value)
+// 		search: searchQuery,console.log(clientListData.value)
 
 // 		page: page,
 // 	},
@@ -82,7 +82,7 @@ const updateOptions = options => {
 
 
 const apiDelete = async id => {
-	const response = await useAxios(`http://localhost:8888/SERVICE-CLIENTS/clients/${id}`, {
+	const response = await useAxios(`/SERVICE/SERVICE-CLIENTS/clients/${id}`, {
 		method: 'DELETE',
 		immediate: false, // on ne fait pas la requête tout de suite
 	})
@@ -103,7 +103,8 @@ const apiDelete = async id => {
 	// 		})
 	// 	}
 	// }
-	await fetchUserList();
+	await fetchClientList();
+	snackbarMessage.value = "Succès de la suppression";
 	isSnackbarScrollReverseVisible.value = true
 }
 
@@ -114,9 +115,7 @@ const lastPage = 1
 const isSnackbarScrollReverseVisible = ref(false)
 const snackbarMessage = ref("")
 const snackbarCollor = ref("success")
-const userList = computed(() => userListData.value)
-
-console.log(userList.value)
+const clientList = computed(() => clientListData.value)
 
 const localUserData = useCookie('userData').value
 </script>
@@ -136,7 +135,6 @@ const localUserData = useCookie('userData').value
 			</VCardText>
 		</VCard>
 
-		<!-- 👉 users -->
 		<VCard title="" class="mb-6">
 			<div class="d-flex flex-wrap gap-4 mx-5 mt-5">
 				<!-- Barre de recherche -->
@@ -147,12 +145,12 @@ const localUserData = useCookie('userData').value
 
 				<!-- Boutons "Nouveau" et "Recharger" -->
 				<div class="d-flex gap-4">
-					<VBtn v-if="$can('create', 'user')" color="primary" prepend-icon="tabler-plus"
-						:to="{ name: 'user-add' }">
+					<VBtn v-if="$can('create', 'client')" color="primary" prepend-icon="tabler-plus"
+						:to="{ name: 'client-add' }">
 						Nouveau
 					</VBtn>
 					<VBtn :loading="loadings[3]" :disabled="loadings[3]" prepend-icon="tabler-refresh"
-						@click="fetchUserList(); load(3)">
+						@click="fetchClientList(); load(3)">
 						Recharger
 						<template #loader>
 							<span class="custom-loader">
@@ -168,7 +166,7 @@ const localUserData = useCookie('userData').value
 
 			<!-- 👉 Datatable  -->
 			<VDataTableServer v-model:items-per-page="itemsPerPage" v-model:page="page" :headers="headers"
-				:items="userList" :items-length="totalTransfer" class="text-no-wrap" @update:options="updateOptions">
+				:items="clientList" :items-length="totalTransfer" class="text-no-wrap" @update:options="updateOptions">
 
 				<template #item.activated="{ item }">
 					<VAvatar variant="tonal" :color="{ true: 'success', false: 'error' }[item.activated]" class="me-4"
@@ -184,20 +182,14 @@ const localUserData = useCookie('userData').value
 				<template #item.actions="{ item }">
 					<div class="text-center">
 						<div>
-							<IconBtn v-if="$can('read', 'user') || $can('historical', 'user')"
-								:to="{ name: 'user-id', params: { id: item.id } }">
-								<VTooltip activator="parent" transition="scroll-x-transition" location="start">Details
-								</VTooltip>
-								<VIcon icon=" tabler-eye" />
-							</IconBtn>
-							<IconBtn v-if="$can('update', 'user')"
-								:to="{ name: 'user-edit-id', params: { id: item.id } }">
+							<IconBtn v-if="$can('update', 'client')"
+								:to="{ name: 'client-edit-id', params: { id: item.id } }">
 								<VTooltip activator="parent" transition="scroll-x-transition" location="top">Modifier
 								</VTooltip>
 								<VIcon icon=" tabler-edit" />
 							</IconBtn>
-							<IconBtn v-if="$can('delete', 'user')" @click="selectedItemId = item.id; actionTitle = 'Supprimer le utilisateur',
-								actionText = 'Voulez vous vraiment supprimer cet utilisateur?', actionFunction = apiDelete;
+							<IconBtn v-if="$can('delete', 'client')" @click="selectedItemId = item.id; actionTitle = 'Supprimer le client',
+								actionText = 'Voulez vous vraiment supprimer ce client?', actionFunction = apiDelete;
 							actionButtonText = 'Supprimer'; commentPresence = false; isActionDialogVisible = true;">
 								<VTooltip activator="parent" transition="scroll-x-transition" location="end">Supprimer
 								</VTooltip>

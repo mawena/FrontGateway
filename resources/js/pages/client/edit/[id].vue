@@ -6,70 +6,85 @@ definePage({
 		subject: 'user',
 	},
 })
+import { useAxios } from '@vueuse/integrations/useAxios'
 const router = useRouter()
 const route = useRoute("user-edit-id")
 let nextRoute = "/user";
-
-const getEmptyError = () => {
-	return {
-		name: "",
-		email: "",
-		password: "",
-		activated: "",
-	}
-}
-
-const userError = ref(getEmptyError())
+import { onMounted } from 'vue'
 
 const {
 	data: userData,
-} = await useApi(createUrl(`/user/${route.params.id}`, {
-	query: {
-	},
-}))
-const user = ref(userData.value.data.User)
-const refForm = ref()
+	isLoading,
+	error,
+	execute: fetchUser
+} = await useAxios(`http://localhost:8888/SERVICE-CLIENTS/clients/${route.params.id}`, {
+	immediate: true, // on ne fait pas la requête tout de suite
+})
 
+const user = ref(userData.value)
+
+// const {
+// 	data: userData,
+// 	execute: fetchUser
+// } = useAxios(`http://localhost:8888/SERVICE-CLIENTS/clients/${route.params.id}`, {
+// 	immediate: false, // on ne fait pas la requête tout de suite
+// })
+
+console.log("userData", userData.value)
+
+const refForm = ref()
 const onSubmit = () => {
 	refForm.value?.validate().then(async ({ valid }) => {
 		if (valid) {
-			const res = await $api(`/user/${route.params.id}`, {
+			// const res = await $api(`/user/${route.params.id}`, {
+			// 	method: 'PUT',
+			// 	body: {
+			// 		name: user.value.name,
+			// 		email: user.value.email,
+			// 		password: user.value.password,
+			// 		activated: user.value.activated,
+			// 	},
+			// })
+
+			const response = await useAxios(`/SERVICE/SERVICE-CLIENTS/clients/${route.params.id}`, {
 				method: 'PUT',
+				// immediate: false,
 				body: {
-					name: user.value.name,
+					nom: user.value.nom,
+					prenom: user.value.prenom,
 					email: user.value.email,
-					password: user.value.password,
-					activated: user.value.activated,
 				},
 			})
 
-			userError.value = getEmptyError()
-			if (res.status == 200) {
-				router.push(nextRoute)
-			} else {
-				if (res.errors.name) {
-					userError.value["name"] = res.errors.name
-					res.errors.name = null
-				}
-				if (res.errors.email) {
-					userError.value["email"] = res.errors.email
-					res.errors.email = null
-				}
-				if (res.errors.password) {
-					userError.value["password"] = res.errors.password
-					res.errors.password = null
-				}
-				snackbarMessage.value = ""
-				let show = false
-				for (const key in res.errors) {
-					if (res.errors[key] != null) {
-						show = true;
-						snackbarCollor.value = "error"
-						snackbarMessage.value += res.errors[key] + "<br>";
-					}
-				}
-				isSnackbarScrollReverseVisible.value = show
-			}
+			// userError.value = getEmptyError()
+			// if (res.status == 200) {
+			// 	router.push(nextRoute)
+			// } else {
+			// 	if (res.errors.name) {
+			// 		userError.value["name"] = res.errors.name
+			// 		res.errors.name = null
+			// 	}
+			// 	if (res.errors.email) {
+			// 		userError.value["email"] = res.errors.email
+			// 		res.errors.email = null
+			// 	}
+			// 	if (res.errors.password) {
+			// 		userError.value["password"] = res.errors.password
+			// 		res.errors.password = null
+			// 	}
+			// 	snackbarMessage.value = ""
+			// 	let show = false
+			// 	for (const key in res.errors) {
+			// 		if (res.errors[key] != null) {
+			// 			show = true;
+			// 			snackbarCollor.value = "error"
+			// 			snackbarMessage.value += res.errors[key] + "<br>";
+			// 		}
+			// 	}
+
+			// }
+			snackbarMessage.value = "Insertion effectuée avec succès";
+			isSnackbarScrollReverseVisible.value = true;
 			nextTick(() => {
 				// refForm.value?.reset()
 				// refForm.value?.resetValidation()
@@ -81,8 +96,14 @@ const onSubmit = () => {
 const isSnackbarScrollReverseVisible = ref(false)
 const snackbarMessage = ref("")
 const snackbarCollor = ref("success")
-const isPasswordVisible = ref(false)
 const localUserData = useCookie('userData').value
+
+onMounted(() => {
+	fetchUser()
+})
+watch(userData, (newVal) => {
+	console.log('userData updated:', newVal)
+})
 </script>
 
 <template>
@@ -104,25 +125,14 @@ const localUserData = useCookie('userData').value
 						<VCard class="mb-6" title="Modification du l'utilisateur">
 							<VCardText>
 								<VRow>
-									<VCol cols="12" md="12" lg="6">
-										<VTextField v-model="user.name" :error-messages="userError.name" label="Nom" />
+									<VCol cols="12" md="12" lg="12">
+										<VTextField v-model="user.nom" label="Nom" />
 									</VCol>
-									<VCol cols="12" md="12" lg="6">
-										<VTextField v-model="user.email" :error-messages="userError.email" type="email"
-											label="Email" />
+									<VCol cols="12" md="12" lg="12">
+										<VTextField v-model="user.prenom" label="Prenom" />
 									</VCol>
-									<VCol cols="12" md="12" lg="6">
-										<VSelect v-model="user.activated"
-											:items="[{ 'name': 'Activé', 'id': true }, { 'name': 'Désactivé', 'id': false }]"
-											:error-messages="userError.activated" label="Activation" item-title="name"
-											item-value="id" required />
-									</VCol>
-									<VCol cols="12" md="12" lg="6">
-										<VTextField v-model="user.password" label="Mot de passe"
-											placeholder="············" :type="isPasswordVisible ? 'text' : 'password'"
-											:error-messages="userError.password"
-											:append-inner-icon="isPasswordVisible ? 'tabler-eye-off' : 'tabler-eye'"
-											@click:append-inner="isPasswordVisible = !isPasswordVisible" class="mb-8" />
+									<VCol cols="12" md="12" lg="12">
+										<VTextField v-model="user.email" type="email" label="Email" />
 									</VCol>
 								</VRow>
 							</VCardText>
@@ -132,8 +142,8 @@ const localUserData = useCookie('userData').value
 					<VCol cols="12">
 						<div class="d-flex flex-wrap justify-start justify-sm-space-between gap-y-4 gap-x-6 mb-6">
 							<div class="d-flex flex-column justify-center">
-								<VBtn :to="{ name: 'user' }">
-									Backofficiers
+								<VBtn :to="{ name: 'client' }">
+									Clients
 								</VBtn>
 							</div>
 							<div class="d-flex gap-4 align-center flex-wrap">
