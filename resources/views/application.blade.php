@@ -5,7 +5,7 @@
 	<meta charset="UTF-8" />
 	<link rel="icon" href="{{ asset('favicon.ico') }}" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>WAKABI</title>
+	<title>FrontGateway</title>
 	<link rel="stylesheet" type="text/css" href="{{ asset('loader.css') }}" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai.min.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
@@ -35,11 +35,11 @@
 
 		if (primaryColor)
 			document.documentElement.style.setProperty('--initial-loader-color', primaryColor)
-			// document.addEventListener("DOMContentLoaded", () => {
-			// 	document.querySelectorAll('pre code').forEach((block) => {
-			// 		hljs.highlightElement(block);
-			// 	});
-			// });
+		// document.addEventListener("DOMContentLoaded", () => {
+		// 	document.querySelectorAll('pre code').forEach((block) => {
+		// 		hljs.highlightElement(block);
+		// 	});
+		// });
 	</script>
 </body>
 

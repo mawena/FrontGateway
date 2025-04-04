@@ -10,7 +10,7 @@ import { h } from 'vue'
 
 export const { themeConfig, layoutConfig } = defineThemeConfig({
 	app: {
-		title: 'Wakabi',
+		title: 'FrontGateway',
 		logo: h('img', { src: logo, alt: 'app-logo', with: 200, height: 50 }),
 		contentWidth: ContentWidth.Boxed,
 		contentLayoutNav: AppContentLayoutNav.Vertical,

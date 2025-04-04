@@ -49,7 +49,7 @@ const onSubmit = () => {
 			const response = await useAxios(`/SERVICE/SERVICE-CLIENTS/clients/${route.params.id}`, {
 				method: 'PUT',
 				// immediate: false,
-				body: {
+				data: {
 					nom: user.value.nom,
 					prenom: user.value.prenom,
 					email: user.value.email,

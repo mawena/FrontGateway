@@ -21,7 +21,6 @@ use Illuminate\Http\Request;
 
 Route::any('/SERVICE/{any}', function (Request $request, $any) {
 	$url = "http://localhost:8888/{$any}";
-
 	// Requête vers le vrai backend
 	$response = Http::withoutVerifying() // utile si certificat SSL invalide
 		->withHeaders($request->headers->all())
