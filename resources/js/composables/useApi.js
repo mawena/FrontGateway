@@ -59,7 +59,7 @@ const useApi = createFetch({
 				useCookie('userToken').value = null
 				useCookie('userData').value = null
 				useCookie('userAbilityRules').value = null
-				window.location.href = '/admin/v2/login';
+				window.location.href = '/login';
 			}
 		}
 	},

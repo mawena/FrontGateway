@@ -39,22 +39,22 @@ import type {
 
 declare module 'vue-router/auto/routes' {
   export interface RouteNamedMap {
-    'admin-v2$error': RouteRecordInfo<'admin-v2$error', '/admin/v2/:error(.*)', { error: ParamValue<true> }, { error: ParamValue<false> }>,
-    'admin-v2-decor': RouteRecordInfo<'admin-v2-decor', '/admin/v2/decor', Record<never, never>, Record<never, never>>,
-    'admin-v2-decor-id': RouteRecordInfo<'admin-v2-decor-id', '/admin/v2/decor/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
-    'admin-v2-decor-add': RouteRecordInfo<'admin-v2-decor-add', '/admin/v2/decor/add', Record<never, never>, Record<never, never>>,
-    'admin-v2-decor-edit-id': RouteRecordInfo<'admin-v2-decor-edit-id', '/admin/v2/decor/edit/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
-    'admin-v2-event': RouteRecordInfo<'admin-v2-event', '/admin/v2/event', Record<never, never>, Record<never, never>>,
-    'admin-v2-event-id': RouteRecordInfo<'admin-v2-event-id', '/admin/v2/event/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
-    'admin-v2-event-add': RouteRecordInfo<'admin-v2-event-add', '/admin/v2/event/add', Record<never, never>, Record<never, never>>,
-    'admin-v2-event-edit-id': RouteRecordInfo<'admin-v2-event-edit-id', '/admin/v2/event/edit/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
-    'admin-v2-login': RouteRecordInfo<'admin-v2-login', '/admin/v2/login', Record<never, never>, Record<never, never>>,
-    'admin-v2-not-authorized': RouteRecordInfo<'admin-v2-not-authorized', '/admin/v2/not-authorized', Record<never, never>, Record<never, never>>,
-    'admin-v2-settings-user-tab': RouteRecordInfo<'admin-v2-settings-user-tab', '/admin/v2/settings/user/:tab', { tab: ParamValue<true> }, { tab: ParamValue<false> }>,
-    'admin-v2-user': RouteRecordInfo<'admin-v2-user', '/admin/v2/user', Record<never, never>, Record<never, never>>,
-    'admin-v2-user-id': RouteRecordInfo<'admin-v2-user-id', '/admin/v2/user/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
-    'admin-v2-user-add': RouteRecordInfo<'admin-v2-user-add', '/admin/v2/user/add', Record<never, never>, Record<never, never>>,
-    'admin-v2-user-edit-id': RouteRecordInfo<'admin-v2-user-edit-id', '/admin/v2/user/edit/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
+    '$error': RouteRecordInfo<'$error', '/:error(.*)', { error: ParamValue<true> }, { error: ParamValue<false> }>,
+    'decor': RouteRecordInfo<'decor', '/decor', Record<never, never>, Record<never, never>>,
+    'decor-id': RouteRecordInfo<'decor-id', '/decor/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
+    'decor-add': RouteRecordInfo<'decor-add', '/decor/add', Record<never, never>, Record<never, never>>,
+    'decor-edit-id': RouteRecordInfo<'decor-edit-id', '/decor/edit/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
+    'event': RouteRecordInfo<'event', '/event', Record<never, never>, Record<never, never>>,
+    'event-id': RouteRecordInfo<'event-id', '/event/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
+    'event-add': RouteRecordInfo<'event-add', '/event/add', Record<never, never>, Record<never, never>>,
+    'event-edit-id': RouteRecordInfo<'event-edit-id', '/event/edit/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
+    'login': RouteRecordInfo<'login', '/login', Record<never, never>, Record<never, never>>,
+    'not-authorized': RouteRecordInfo<'not-authorized', '/not-authorized', Record<never, never>, Record<never, never>>,
+    'settings-user-tab': RouteRecordInfo<'settings-user-tab', '/settings/user/:tab', { tab: ParamValue<true> }, { tab: ParamValue<false> }>,
+    'user': RouteRecordInfo<'user', '/user', Record<never, never>, Record<never, never>>,
+    'user-id': RouteRecordInfo<'user-id', '/user/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
+    'user-add': RouteRecordInfo<'user-add', '/user/add', Record<never, never>, Record<never, never>>,
+    'user-edit-id': RouteRecordInfo<'user-edit-id', '/user/edit/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
   }
 }
 

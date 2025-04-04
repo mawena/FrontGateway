@@ -8,15 +8,15 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
-    public function run(): void
-    {
+	/**
+	 * Seed the application's database.
+	 */
+	public function run(): void
+	{
 		$this->call(UserSeeder::class);
-		$this->call(PromoterSeeder::class);
-		$this->call(EventSeeder::class);
-		$this->call(DecorSeeder::class);
-		$this->call(ConfigurationSeeder::class);
-    }
+		// $this->call(PromoterSeeder::class);
+		// $this->call(EventSeeder::class);
+		// $this->call(DecorSeeder::class);
+		// $this->call(ConfigurationSeeder::class);
+	}
 }

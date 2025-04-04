@@ -24,16 +24,16 @@ export const setupGuards = router => {
 		*/
 		if (to.meta.unauthenticatedOnly) {
 			if (isLoggedIn)
-				return '/admin/v2'
+				return '/'
 			else
 				return undefined
 		}
 		if (!canNavigate(to)) {
 			/* eslint-disable indent */
 			return isLoggedIn
-				? { name: 'admin-v2-not-authorized' }
+				? { name: 'not-authorized' }
 				: {
-					name: 'admin-v2-login',
+					name: 'login',
 					query: {
 						...to.query,
 						to: to.fullPath !== '/' ? to.path : undefined,

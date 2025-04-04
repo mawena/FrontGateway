@@ -1,11 +1,11 @@
 openapi: 3.0.3
 info:
-  title: Pecorator
+  title: FrontGateway
   description: ''
   version: 1.0.0
 servers:
   -
-    url: 'http://pecorator.ulrich.client'
+    url: 'http://front-gateway.ulrich.client'
 paths:
   /api/auth/register:
     post:
@@ -256,12 +256,12 @@ paths:
         -
           in: query
           name: user_id
-          description: Créateur.
+          description: "Créateur.\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t \nj"
           example: null
           required: false
           schema:
             type: string
-            description: Créateur.
+            description: "Créateur.\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t \nj"
             example: null
             nullable: false
         -
@@ -578,22 +578,22 @@ paths:
                 project_path:
                   type: string
                   description: ''
-                  example: culpa
+                  example: velit
                   nullable: false
                 target_server:
                   type: string
                   description: ''
-                  example: qui
+                  example: ut
                   nullable: true
                 target_path:
                   type: string
                   description: ''
-                  example: possimus
+                  example: totam
                   nullable: true
                 target_port:
                   type: string
                   description: ''
-                  example: ex
+                  example: pariatur
                   nullable: true
               required:
                 - action
@@ -1535,17 +1535,17 @@ paths:
                 old_password:
                   type: string
                   description: "L'ancien mot de passe de l'utilisateur."
-                  example: amet
+                  example: modi
                   nullable: false
                 new_password:
                   type: string
                   description: "Le nouveau mot de passe de l'utilisateur."
-                  example: illum
+                  example: quas
                   nullable: false
                 new_password_confirmation:
                   type: string
                   description: "La confirmation du nouveau mot de passe de l'utilisateur."
-                  example: quidem
+                  example: quas
                   nullable: false
               required:
                 - old_password

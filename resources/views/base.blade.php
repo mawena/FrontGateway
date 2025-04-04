@@ -10,7 +10,7 @@
 	<meta name="author" content="">
 	<!-- Favicon icon -->
 	<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon.png">
-	<title>Pecorator</title>
+	<title>FrontGateway</title>
 	<!-- This page plugin CSS -->
 	<link href="{{ asset('assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css') }}" rel="stylesheet">
 	<!-- Custom CSS -->

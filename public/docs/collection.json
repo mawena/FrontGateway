@@ -5,12 +5,12 @@
             "key": "baseUrl",
             "type": "string",
             "name": "string",
-            "value": "http:\/\/pecorator.ulrich.client"
+            "value": "http:\/\/front-gateway.ulrich.client"
         }
     ],
     "info": {
-        "name": "Pecorator",
-        "_postman_id": "fbe9cd5b-7b33-473a-90d0-fc30c7b6609b",
+        "name": "FrontGateway",
+        "_postman_id": "97626512-6c8f-497e-8bfc-1caee41f00a7",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -363,7 +363,7 @@
                                 {
                                     "key": "user_id",
                                     "value": "",
-                                    "description": "Cr\u00e9ateur.",
+                                    "description": "Cr\u00e9ateur.\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t \nj",
                                     "disabled": true
                                 },
                                 {
@@ -695,7 +695,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"action\":\"download\",\"project_path\":\"culpa\",\"target_server\":\"qui\",\"target_path\":\"possimus\",\"target_port\":\"ex\"}"
+                            "raw": "{\"action\":\"download\",\"project_path\":\"velit\",\"target_server\":\"ut\",\"target_path\":\"totam\",\"target_port\":\"pariatur\"}"
                         },
                         "description": ""
                     },
@@ -1423,7 +1423,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"old_password\":\"amet\",\"new_password\":\"illum\",\"new_password_confirmation\":\"quidem\"}"
+                            "raw": "{\"old_password\":\"modi\",\"new_password\":\"quas\",\"new_password_confirmation\":\"quas\"}"
                         },
                         "description": ""
                     },

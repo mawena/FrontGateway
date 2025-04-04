@@ -16,7 +16,7 @@ const logout = async () => {
 	userData.value = null
 
 	// Redirect to login page
-	await router.push('/admin/v2/login')
+	await router.push('/login')
 
 	// ℹ️ We had to remove abilities in then block because if we don't nav menu items mutation is visible while redirecting user to login page
 
@@ -34,7 +34,7 @@ const userProfileList = [
 		icon: 'tabler-settings',
 		title: 'Paramètres',
 		to: {
-			name: 'admin-v2-settings-user-tab',
+			name: 'settings-user-tab',
 			params: { tab: 'account' },
 		},
 	},

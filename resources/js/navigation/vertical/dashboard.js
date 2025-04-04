@@ -1,29 +1,39 @@
 export default [
 	{
-		icon: { icon: 'tabler-currency-dollar' },
-		title: 'Achats',
-		subject: 'payment',
-		action: 'read',
-	},
-	{
 		icon: { icon: 'tabler-users-group' },
-		title: 'BackOfficiers',
-		subject: 'backofficier',
+		title: 'Utilisateurs',
+		subject: 'user',
 		action: 'read',
-		to: 'admin-v2-user',
+		to: 'user',
 	},
 	{
-		icon: { icon: 'tabler-calendar-event' },
-		title: 'Evenements',
-		subject: 'event',
+		icon: {
+			icon: 'tabler-creative-commons-by'
+		},
+		title: 'Clients',
+		subject: 'user',
 		action: 'read',
-		to: 'admin-v2-event',
+		to: 'user',
 	},
 	{
-		icon: { icon: 'tabler-photo' },
-		title: 'Decors',
-		subject: 'decor',
+		icon: { icon: 'tabler-shopping-bag' },
+		title: 'Produits',
+		subject: 'user',
 		action: 'read',
-		to: 'admin-v2-decor',
+		to: 'user',
+	},
+	{
+		icon: { icon: 'tabler-receipt' },
+		title: 'Factures',
+		subject: 'user',
+		action: 'read',
+		to: 'user',
+	},
+	{
+		icon: { icon: 'tabler-file-invoice' },
+		title: 'Details de factures',
+		subject: 'user',
+		action: 'read',
+		to: 'user',
 	},
 ]

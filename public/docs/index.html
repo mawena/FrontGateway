@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Pecorator Documentation</title>
+    <title>FrontGateway Documentation</title>
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
 
@@ -26,7 +26,7 @@
             </style>
 
     <script>
-        var tryItOutBaseUrl = "http://pecorator.ulrich.client";
+        var tryItOutBaseUrl = "http://front-gateway.ulrich.client";
         var useCsrf = Boolean();
         var csrfUrl = "/sanctum/csrf-cookie";
     </script>
@@ -220,7 +220,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: January 27, 2025</li>
+        <li>Last updated: April 4, 2025</li>
     </ul>
 </div>
 
@@ -229,7 +229,7 @@
     <div class="content">
         <h1 id="introduction">Introduction</h1>
 <aside>
-    <strong>Base URL</strong>: <code>http://pecorator.ulrich.client</code>
+    <strong>Base URL</strong>: <code>http://front-gateway.ulrich.client</code>
 </aside>
 <p>This documentation aims to provide all the information you need to work with our API.</p>
 <aside>As you scroll, you'll see code examples for working with the API in different programming languages in the dark area to the right (or as part of the content on mobile).
@@ -258,7 +258,7 @@ You can switch the language used with the tabs at the top right (or from the nav
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://pecorator.ulrich.client/api/auth/register" \
+    "http://front-gateway.ulrich.client/api/auth/register" \
     --header "Authorization: Bearer 1|c96jDUWBogbtZRsU6Oo9ZbzL3ZB5ry2spd3PC5RHd9464644" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -266,7 +266,7 @@ You can switch the language used with the tabs at the top right (or from the nav
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.ulrich.client/api/auth/register"
+    "http://front-gateway.ulrich.client/api/auth/register"
 );
 
 const headers = {
@@ -380,7 +380,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://pecorator.ulrich.client/api/auth/show" \
+    --get "http://front-gateway.ulrich.client/api/auth/show" \
     --header "Authorization: Bearer 1|c96jDUWBogbtZRsU6Oo9ZbzL3ZB5ry2spd3PC5RHd9464644" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -388,7 +388,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.ulrich.client/api/auth/show"
+    "http://front-gateway.ulrich.client/api/auth/show"
 );
 
 const headers = {
@@ -509,7 +509,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://pecorator.ulrich.client/api/auth/logout" \
+    "http://front-gateway.ulrich.client/api/auth/logout" \
     --header "Authorization: Bearer 1|c96jDUWBogbtZRsU6Oo9ZbzL3ZB5ry2spd3PC5RHd9464644" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -517,7 +517,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.ulrich.client/api/auth/logout"
+    "http://front-gateway.ulrich.client/api/auth/logout"
 );
 
 const headers = {
@@ -641,7 +641,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://pecorator.ulrich.client/api/configuration?paginate=false" \
+    --get "http://front-gateway.ulrich.client/api/configuration?paginate=false" \
     --header "Authorization: Bearer 1|c96jDUWBogbtZRsU6Oo9ZbzL3ZB5ry2spd3PC5RHd9464644" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -649,7 +649,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.ulrich.client/api/configuration"
+    "http://front-gateway.ulrich.client/api/configuration"
 );
 
 const params = {
@@ -810,7 +810,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://pecorator.ulrich.client/api/configuration/1" \
+    --get "http://front-gateway.ulrich.client/api/configuration/1" \
     --header "Authorization: Bearer 1|c96jDUWBogbtZRsU6Oo9ZbzL3ZB5ry2spd3PC5RHd9464644" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -818,7 +818,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.ulrich.client/api/configuration/1"
+    "http://front-gateway.ulrich.client/api/configuration/1"
 );
 
 const headers = {
@@ -951,7 +951,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://pecorator.ulrich.client/api/configuration" \
+    "http://front-gateway.ulrich.client/api/configuration" \
     --header "Authorization: Bearer 1|c96jDUWBogbtZRsU6Oo9ZbzL3ZB5ry2spd3PC5RHd9464644" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -964,7 +964,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.ulrich.client/api/configuration"
+    "http://front-gateway.ulrich.client/api/configuration"
 );
 
 const headers = {
@@ -1114,7 +1114,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://pecorator.ulrich.client/api/configuration/1" \
+    "http://front-gateway.ulrich.client/api/configuration/1" \
     --header "Authorization: Bearer 1|c96jDUWBogbtZRsU6Oo9ZbzL3ZB5ry2spd3PC5RHd9464644" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -1126,7 +1126,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.ulrich.client/api/configuration/1"
+    "http://front-gateway.ulrich.client/api/configuration/1"
 );
 
 const headers = {
@@ -1276,7 +1276,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://pecorator.ulrich.client/api/configuration/1" \
+    "http://front-gateway.ulrich.client/api/configuration/1" \
     --header "Authorization: Bearer 1|c96jDUWBogbtZRsU6Oo9ZbzL3ZB5ry2spd3PC5RHd9464644" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -1284,7 +1284,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.ulrich.client/api/configuration/1"
+    "http://front-gateway.ulrich.client/api/configuration/1"
 );
 
 const headers = {
@@ -1421,7 +1421,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://pecorator.ulrich.client/api/decor?with_event=false&amp;with_promoter=false&amp;paginate=false" \
+    --get "http://front-gateway.ulrich.client/api/decor?with_event=false&amp;with_promoter=false&amp;paginate=false" \
     --header "Authorization: Bearer 1|c96jDUWBogbtZRsU6Oo9ZbzL3ZB5ry2spd3PC5RHd9464644" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -1429,7 +1429,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.ulrich.client/api/decor"
+    "http://front-gateway.ulrich.client/api/decor"
 );
 
 const params = {
@@ -1596,7 +1596,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="query">
     <br>
-<p>Créateur.</p>
+<p>Créateur.<br />
+j</p>
             </div>
                                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>with_event</code></b>&nbsp;&nbsp;
@@ -1647,7 +1648,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://pecorator.ulrich.client/api/decor/1?with_event=false&amp;with_user=false" \
+    --get "http://front-gateway.ulrich.client/api/decor/1?with_event=false&amp;with_user=false" \
     --header "Authorization: Bearer 1|c96jDUWBogbtZRsU6Oo9ZbzL3ZB5ry2spd3PC5RHd9464644" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -1655,7 +1656,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.ulrich.client/api/decor/1"
+    "http://front-gateway.ulrich.client/api/decor/1"
 );
 
 const params = {
@@ -1818,7 +1819,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://pecorator.ulrich.client/api/decor" \
+    "http://front-gateway.ulrich.client/api/decor" \
     --header "Authorization: Bearer 1|c96jDUWBogbtZRsU6Oo9ZbzL3ZB5ry2spd3PC5RHd9464644" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -1834,7 +1835,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.ulrich.client/api/decor"
+    "http://front-gateway.ulrich.client/api/decor"
 );
 
 const headers = {
@@ -2020,7 +2021,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://pecorator.ulrich.client/api/decor/change-validation/1" \
+    "http://front-gateway.ulrich.client/api/decor/change-validation/1" \
     --header "Authorization: Bearer 1|c96jDUWBogbtZRsU6Oo9ZbzL3ZB5ry2spd3PC5RHd9464644" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -2032,7 +2033,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.ulrich.client/api/decor/change-validation/1"
+    "http://front-gateway.ulrich.client/api/decor/change-validation/1"
 );
 
 const headers = {
@@ -2182,7 +2183,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://pecorator.ulrich.client/api/decor/use/1" \
+    "http://front-gateway.ulrich.client/api/decor/use/1" \
     --header "Authorization: Bearer 1|c96jDUWBogbtZRsU6Oo9ZbzL3ZB5ry2spd3PC5RHd9464644" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -2194,7 +2195,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.ulrich.client/api/decor/use/1"
+    "http://front-gateway.ulrich.client/api/decor/use/1"
 );
 
 const headers = {
@@ -2344,7 +2345,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://pecorator.ulrich.client/api/decor/1" \
+    "http://front-gateway.ulrich.client/api/decor/1" \
     --header "Authorization: Bearer 1|c96jDUWBogbtZRsU6Oo9ZbzL3ZB5ry2spd3PC5RHd9464644" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -2360,7 +2361,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.ulrich.client/api/decor/1"
+    "http://front-gateway.ulrich.client/api/decor/1"
 );
 
 const headers = {
@@ -2558,7 +2559,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://pecorator.ulrich.client/api/decor/1" \
+    "http://front-gateway.ulrich.client/api/decor/1" \
     --header "Authorization: Bearer 1|c96jDUWBogbtZRsU6Oo9ZbzL3ZB5ry2spd3PC5RHd9464644" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -2566,7 +2567,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.ulrich.client/api/decor/1"
+    "http://front-gateway.ulrich.client/api/decor/1"
 );
 
 const headers = {
@@ -2703,23 +2704,23 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://pecorator.ulrich.client/api/manage-project" \
+    "http://front-gateway.ulrich.client/api/manage-project" \
     --header "Authorization: Bearer 1|c96jDUWBogbtZRsU6Oo9ZbzL3ZB5ry2spd3PC5RHd9464644" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
     \"action\": \"download\",
-    \"project_path\": \"culpa\",
-    \"target_server\": \"qui\",
-    \"target_path\": \"possimus\",
-    \"target_port\": \"ex\"
+    \"project_path\": \"velit\",
+    \"target_server\": \"ut\",
+    \"target_path\": \"totam\",
+    \"target_port\": \"pariatur\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.ulrich.client/api/manage-project"
+    "http://front-gateway.ulrich.client/api/manage-project"
 );
 
 const headers = {
@@ -2730,10 +2731,10 @@ const headers = {
 
 let body = {
     "action": "download",
-    "project_path": "culpa",
-    "target_server": "qui",
-    "target_path": "possimus",
-    "target_port": "ex"
+    "project_path": "velit",
+    "target_server": "ut",
+    "target_path": "totam",
+    "target_port": "pariatur"
 };
 
 fetch(url, {
@@ -2846,10 +2847,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="project_path"                data-endpoint="POSTapi-manage-project"
-               value="culpa"
+               value="velit"
                data-component="body">
     <br>
-<p>Example: <code>culpa</code></p>
+<p>Example: <code>velit</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>target_server</code></b>&nbsp;&nbsp;
@@ -2857,10 +2858,10 @@ Must be one of:
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="target_server"                data-endpoint="POSTapi-manage-project"
-               value="qui"
+               value="ut"
                data-component="body">
     <br>
-<p>Example: <code>qui</code></p>
+<p>Example: <code>ut</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>target_path</code></b>&nbsp;&nbsp;
@@ -2868,10 +2869,10 @@ Must be one of:
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="target_path"                data-endpoint="POSTapi-manage-project"
-               value="possimus"
+               value="totam"
                data-component="body">
     <br>
-<p>Example: <code>possimus</code></p>
+<p>Example: <code>totam</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>target_port</code></b>&nbsp;&nbsp;
@@ -2879,10 +2880,10 @@ Must be one of:
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="target_port"                data-endpoint="POSTapi-manage-project"
-               value="ex"
+               value="pariatur"
                data-component="body">
     <br>
-<p>Example: <code>ex</code></p>
+<p>Example: <code>pariatur</code></p>
         </div>
         </form>
 
@@ -2904,7 +2905,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://pecorator.ulrich.client/api/event?with_promoter=false&amp;paginate=false" \
+    --get "http://front-gateway.ulrich.client/api/event?with_promoter=false&amp;paginate=false" \
     --header "Authorization: Bearer 1|c96jDUWBogbtZRsU6Oo9ZbzL3ZB5ry2spd3PC5RHd9464644" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -2912,7 +2913,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.ulrich.client/api/event"
+    "http://front-gateway.ulrich.client/api/event"
 );
 
 const params = {
@@ -3195,7 +3196,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://pecorator.ulrich.client/api/event/1?with_promoter=false" \
+    --get "http://front-gateway.ulrich.client/api/event/1?with_promoter=false" \
     --header "Authorization: Bearer 1|c96jDUWBogbtZRsU6Oo9ZbzL3ZB5ry2spd3PC5RHd9464644" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -3203,7 +3204,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.ulrich.client/api/event/1"
+    "http://front-gateway.ulrich.client/api/event/1"
 );
 
 const params = {
@@ -3354,7 +3355,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://pecorator.ulrich.client/api/event" \
+    "http://front-gateway.ulrich.client/api/event" \
     --header "Authorization: Bearer 1|c96jDUWBogbtZRsU6Oo9ZbzL3ZB5ry2spd3PC5RHd9464644" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -3377,7 +3378,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.ulrich.client/api/event"
+    "http://front-gateway.ulrich.client/api/event"
 );
 
 const headers = {
@@ -3647,7 +3648,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://pecorator.ulrich.client/api/event/1" \
+    "http://front-gateway.ulrich.client/api/event/1" \
     --header "Authorization: Bearer 1|c96jDUWBogbtZRsU6Oo9ZbzL3ZB5ry2spd3PC5RHd9464644" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -3670,7 +3671,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.ulrich.client/api/event/1"
+    "http://front-gateway.ulrich.client/api/event/1"
 );
 
 const headers = {
@@ -3952,7 +3953,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://pecorator.ulrich.client/api/event/change-validation/1" \
+    "http://front-gateway.ulrich.client/api/event/change-validation/1" \
     --header "Authorization: Bearer 1|c96jDUWBogbtZRsU6Oo9ZbzL3ZB5ry2spd3PC5RHd9464644" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -3964,7 +3965,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.ulrich.client/api/event/change-validation/1"
+    "http://front-gateway.ulrich.client/api/event/change-validation/1"
 );
 
 const headers = {
@@ -4114,7 +4115,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://pecorator.ulrich.client/api/event/1" \
+    "http://front-gateway.ulrich.client/api/event/1" \
     --header "Authorization: Bearer 1|c96jDUWBogbtZRsU6Oo9ZbzL3ZB5ry2spd3PC5RHd9464644" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -4122,7 +4123,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.ulrich.client/api/event/1"
+    "http://front-gateway.ulrich.client/api/event/1"
 );
 
 const headers = {
@@ -4259,7 +4260,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://pecorator.ulrich.client/api/payment?with_user=false&amp;paginate=false" \
+    --get "http://front-gateway.ulrich.client/api/payment?with_user=false&amp;paginate=false" \
     --header "Authorization: Bearer 1|c96jDUWBogbtZRsU6Oo9ZbzL3ZB5ry2spd3PC5RHd9464644" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -4267,7 +4268,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.ulrich.client/api/payment"
+    "http://front-gateway.ulrich.client/api/payment"
 );
 
 const params = {
@@ -4484,7 +4485,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://pecorator.ulrich.client/api/payment/1?with_user=false" \
+    --get "http://front-gateway.ulrich.client/api/payment/1?with_user=false" \
     --header "Authorization: Bearer 1|c96jDUWBogbtZRsU6Oo9ZbzL3ZB5ry2spd3PC5RHd9464644" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -4492,7 +4493,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.ulrich.client/api/payment/1"
+    "http://front-gateway.ulrich.client/api/payment/1"
 );
 
 const params = {
@@ -4643,7 +4644,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://pecorator.ulrich.client/api/payment/callback" \
+    "http://front-gateway.ulrich.client/api/payment/callback" \
     --header "Authorization: Bearer 1|c96jDUWBogbtZRsU6Oo9ZbzL3ZB5ry2spd3PC5RHd9464644" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -4651,7 +4652,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.ulrich.client/api/payment/callback"
+    "http://front-gateway.ulrich.client/api/payment/callback"
 );
 
 const headers = {
@@ -4765,7 +4766,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://pecorator.ulrich.client/api/payment" \
+    "http://front-gateway.ulrich.client/api/payment" \
     --header "Authorization: Bearer 1|c96jDUWBogbtZRsU6Oo9ZbzL3ZB5ry2spd3PC5RHd9464644" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -4779,7 +4780,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.ulrich.client/api/payment"
+    "http://front-gateway.ulrich.client/api/payment"
 );
 
 const headers = {
@@ -4945,7 +4946,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://pecorator.ulrich.client/api/user?with_events=false&amp;with_decors=false&amp;with_payments=false&amp;paginate=false" \
+    --get "http://front-gateway.ulrich.client/api/user?with_events=false&amp;with_decors=false&amp;with_payments=false&amp;paginate=false" \
     --header "Authorization: Bearer 1|c96jDUWBogbtZRsU6Oo9ZbzL3ZB5ry2spd3PC5RHd9464644" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -4953,7 +4954,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.ulrich.client/api/user"
+    "http://front-gateway.ulrich.client/api/user"
 );
 
 const params = {
@@ -5161,7 +5162,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://pecorator.ulrich.client/api/user/1?with_events=false&amp;with_decors=false&amp;with_payments=false" \
+    --get "http://front-gateway.ulrich.client/api/user/1?with_events=false&amp;with_decors=false&amp;with_payments=false" \
     --header "Authorization: Bearer 1|c96jDUWBogbtZRsU6Oo9ZbzL3ZB5ry2spd3PC5RHd9464644" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -5169,7 +5170,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.ulrich.client/api/user/1"
+    "http://front-gateway.ulrich.client/api/user/1"
 );
 
 const params = {
@@ -5344,7 +5345,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://pecorator.ulrich.client/api/user" \
+    "http://front-gateway.ulrich.client/api/user" \
     --header "Authorization: Bearer 1|c96jDUWBogbtZRsU6Oo9ZbzL3ZB5ry2spd3PC5RHd9464644" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -5361,7 +5362,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.ulrich.client/api/user"
+    "http://front-gateway.ulrich.client/api/user"
 );
 
 const headers = {
@@ -5559,21 +5560,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://pecorator.ulrich.client/api/user/update-password" \
+    "http://front-gateway.ulrich.client/api/user/update-password" \
     --header "Authorization: Bearer 1|c96jDUWBogbtZRsU6Oo9ZbzL3ZB5ry2spd3PC5RHd9464644" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"old_password\": \"amet\",
-    \"new_password\": \"illum\",
-    \"new_password_confirmation\": \"quidem\"
+    \"old_password\": \"modi\",
+    \"new_password\": \"quas\",
+    \"new_password_confirmation\": \"quas\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.ulrich.client/api/user/update-password"
+    "http://front-gateway.ulrich.client/api/user/update-password"
 );
 
 const headers = {
@@ -5583,9 +5584,9 @@ const headers = {
 };
 
 let body = {
-    "old_password": "amet",
-    "new_password": "illum",
-    "new_password_confirmation": "quidem"
+    "old_password": "modi",
+    "new_password": "quas",
+    "new_password_confirmation": "quas"
 };
 
 fetch(url, {
@@ -5692,10 +5693,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="old_password"                data-endpoint="PUTapi-user-update-password"
-               value="amet"
+               value="modi"
                data-component="body">
     <br>
-<p>L'ancien mot de passe de l'utilisateur. Example: <code>amet</code></p>
+<p>L'ancien mot de passe de l'utilisateur. Example: <code>modi</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>new_password</code></b>&nbsp;&nbsp;
@@ -5703,10 +5704,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="new_password"                data-endpoint="PUTapi-user-update-password"
-               value="illum"
+               value="quas"
                data-component="body">
     <br>
-<p>Le nouveau mot de passe de l'utilisateur. Example: <code>illum</code></p>
+<p>Le nouveau mot de passe de l'utilisateur. Example: <code>quas</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>new_password_confirmation</code></b>&nbsp;&nbsp;
@@ -5714,10 +5715,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="new_password_confirmation"                data-endpoint="PUTapi-user-update-password"
-               value="quidem"
+               value="quas"
                data-component="body">
     <br>
-<p>La confirmation du nouveau mot de passe de l'utilisateur. Example: <code>quidem</code></p>
+<p>La confirmation du nouveau mot de passe de l'utilisateur. Example: <code>quas</code></p>
         </div>
         </form>
 
@@ -5735,7 +5736,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://pecorator.ulrich.client/api/user/1" \
+    "http://front-gateway.ulrich.client/api/user/1" \
     --header "Authorization: Bearer 1|c96jDUWBogbtZRsU6Oo9ZbzL3ZB5ry2spd3PC5RHd9464644" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -5752,7 +5753,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.ulrich.client/api/user/1"
+    "http://front-gateway.ulrich.client/api/user/1"
 );
 
 const headers = {
@@ -5962,7 +5963,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://pecorator.ulrich.client/api/user/1" \
+    "http://front-gateway.ulrich.client/api/user/1" \
     --header "Authorization: Bearer 1|c96jDUWBogbtZRsU6Oo9ZbzL3ZB5ry2spd3PC5RHd9464644" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -5970,7 +5971,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://pecorator.ulrich.client/api/user/1"
+    "http://front-gateway.ulrich.client/api/user/1"
 );
 
 const headers = {

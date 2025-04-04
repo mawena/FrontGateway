@@ -25,7 +25,7 @@ class UserController extends Controller
 	 *
 	 * @queryParam  name										string			Filtrer par nom de l'utilisateur.													 No-example
 	 * @queryParam  email										string			Filtrer par email de l'utilisateur.												 	 No-example
-	 * @queryParam  profile										string			Filtrer par profile de l'utilisateur.												 No-example
+	 * @queryParam  profile										string			Filtrer par profile de l'utilisateur.											 	 No-example
 	 * 
 	 * @queryParam  with_events									string			Afficher les evenements.															Example: false
 	 * @queryParam  with_decors									string			Afficher les décors.																Example: false
@@ -84,11 +84,10 @@ class UserController extends Controller
 			'email' => 'required|unique:users',
 			"password" => "required|min:8",
 			"activated" => "required|boolean",
-			"profile" => "required|in:admin,supervisor,promoter,money_manager,event_planner,visitor",
 			"picture" => "nullable"
 		];
 		$this->storeManualValidationsFunction = function ($requestData) {
-			if ($requestData["profile"] == "promoter") {
+			if (isset($requestData["profile"]) && $requestData["profile"] == "promoter") {
 				$validator = Validator::make($requestData, [
 					"promoter.structure" => "required|min:2",
 					"promoter.phone_number" => "required|min:2",
@@ -114,13 +113,14 @@ class UserController extends Controller
 		$this->storeBeforeCreateFunction = function ($requestData, $data) {
 			$requestData["password"] = Hash::make($requestData["password"]);
 			$requestData["picture_path"] = isset($data["picture_path"]) ? $data["picture_path"] : "defaults/user.png";
+			$requestData["profile"] = "admin";
 			return $requestData;
 		};
 		$this->storeBeforeCommitFunction = function ($model, $requestData) {
 			if ($requestData["profile"] == "promoter") {
 				$requestData["promoter"]["user_id"] = $model->id;
 				Promoter::create($requestData["promoter"]);
-				
+
 				$conf = [
 					"unit_price" => Configuration::where('id', 1)->first(),
 					"api_token" => Configuration::where('id', 2)->first(),
@@ -173,12 +173,11 @@ class UserController extends Controller
 				"email" => "required|unique:users,email," . $id,
 				"password" => "nullable|min:8",
 				"activated" => "required|boolean",
-				"profile" => "required|in:admin,supervisor,promoter,money_manager,event_planner,visitor",
 				"picture" => "nullable"
 			];
 		};
 		$this->updateManualValidationsFunction = function ($requestData, $model) {
-			if ($requestData["profile"] == "promoter") {
+			if (isset($requestData["profile"]) && $requestData["profile"] == "promoter") {
 				$validator = Validator::make($requestData, [
 					"promoter.structure" => "required|min:2",
 					"promoter.phone_number" => "required|min:2",
@@ -214,7 +213,7 @@ class UserController extends Controller
 				unset($requestData["picture_path"]);
 			}
 
-			if ($requestData["profile"] == "promoter") {
+			if (isset($requestData["profile"]) && $requestData["profile"] == "promoter") {
 				if ($model->promoter) {
 					$promoter = Promoter::find($model->promoter->id);
 					$promoter->update($requestData["promoter"]);
