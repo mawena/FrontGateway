@@ -10,7 +10,7 @@ definePage({
 import { VDataTableServer } from 'vuetify/labs/VDataTable'
 import { paginationMeta } from '@api-utils/paginationMeta'
 import { $api } from '@/utils/api';
-
+import { useAxios } from '@vueuse/integrations/useAxios'
 
 const searchQuery = ref('')
 const loadings = ref([])
@@ -29,15 +29,15 @@ const activatedFilter = ref(null)
 const headers = [
 	{
 		title: 'Nom',
-		key: 'name'
+		key: 'nom'
 	},
 	{
 		title: 'Email',
-		key: 'email'
+		key: 'prenom'
 	},
 	{
-		title: 'Activation',
-		key: 'activated'
+		title: 'email',
+		key: 'email'
 	},
 	{
 		title: 'Actions',
@@ -46,15 +46,28 @@ const headers = [
 		sortable: false,
 	},
 ]
+
 const {
 	data: userListData,
-	execute: fetchUserList,
-} = await useApi(createUrl('/user', {
-	query: {
-		search: searchQuery,
-		page: page,
-	},
-}))
+	isLoading,
+	error,
+	execute: fetchUserList
+} = useAxios('http://localhost:8888/SERVICE-CLIENTS/clients', {
+	immediate: false, // on ne fait pas la requête tout de suite
+})
+
+
+// const {
+// 	data: userListData,
+// 	execute: fetchUserList,
+// } = await useApiE(createUrl('/SERVICE-CLIENTS/clients', {
+// 	query: {
+// 		search: searchQuery,console.log(userListData.value)
+
+// 		page: page,
+// 	},
+// }))
+
 
 const load = i => {
 	loadings.value[i] = true
@@ -69,37 +82,40 @@ const updateOptions = options => {
 
 
 const apiDelete = async id => {
-	const response = await $api(`user/${id}`, {
-		method: 'DELETE'
+	const response = await useAxios(`http://localhost:8888/SERVICE-CLIENTS/clients/${id}`, {
+		method: 'DELETE',
+		immediate: false, // on ne fait pas la requête tout de suite
 	})
-	if (response.status == 200) {
-		isSnackbarScrollReverseVisible.value = true
-		snackbarCollor.value = "success"
-		actionComment.value = ""
-		snackbarMessage.value = ""
-		snackbarMessage.value = "Utilisateur Supprimé"
-	} else {
-		snackbarCollor.value = "error"
-		isSnackbarScrollReverseVisible.value = true
-		snackbarMessage.value = ""
-		for (const key in response.errors) {
-			response.errors[key].forEach(message => {
-				snackbarMessage.value += "" + message + "<br>";
-			})
-		}
-	}
+	console.log(response)
+	// if (response.status == 200) {
+	// 	isSnackbarScrollReverseVisible.value = true
+	// 	snackbarCollor.value = "success"
+	// 	actionComment.value = ""
+	// 	snackbarMessage.value = ""
+	// 	snackbarMessage.value = "Utilisateur Supprimé"
+	// } else {
+	// 	snackbarCollor.value = "error"
+	// 	isSnackbarScrollReverseVisible.value = true
+	// 	snackbarMessage.value = ""
+	// 	for (const key in response.errors) {
+	// 		response.errors[key].forEach(message => {
+	// 			snackbarMessage.value += "" + message + "<br>";
+	// 		})
+	// 	}
+	// }
 	await fetchUserList();
 	isSnackbarScrollReverseVisible.value = true
 }
 
 
-const totalTransfer = computed(() => userListData.value.total)
-const lastPage = computed(() => userListData.value.last_page)
+const totalTransfer = 10000
+const lastPage = 1
 // Math.min(Math.ceil(totalTransfer / itemsPerPage), 5)
 const isSnackbarScrollReverseVisible = ref(false)
 const snackbarMessage = ref("")
 const snackbarCollor = ref("success")
-const userList = computed(() => userListData.value.data)
+const userList = computed(() => userListData.value)
+
 console.log(userList.value)
 
 const localUserData = useCookie('userData').value

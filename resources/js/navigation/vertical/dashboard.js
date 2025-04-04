@@ -11,9 +11,9 @@ export default [
 			icon: 'tabler-creative-commons-by'
 		},
 		title: 'Clients',
-		subject: 'user',
+		subject: 'client',
 		action: 'read',
-		to: 'user',
+		to: 'client',
 	},
 	{
 		icon: { icon: 'tabler-shopping-bag' },
