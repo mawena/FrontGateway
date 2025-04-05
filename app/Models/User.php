@@ -16,7 +16,7 @@ class User extends Authenticatable
 	/** @use HasFactory<\Database\Factories\UserFactory> */
 	use HasApiTokens, HasFactory, Notifiable;
 
-	protected $appends = ['ability_rules', 'profile_fr', 'nb_decor_payed', 'nb_decor_used', 'nb_decor_not_used', 'profiles_can_create'];
+	protected $appends = ['ability_rules', 'profile_fr'];
 
 
 	/**
@@ -80,19 +80,6 @@ class User extends Authenticatable
 		$data["activated"] = (bool) $data["activated"];
 		$data["picture_path"] = ($data["picture_path"]) ?? "pictures/users/default.png";
 		return $data;
-	}
-
-	public function getNbDecorPayedAttribute()
-	{
-		return Payment::where("user_id", $this->id)->where("status", "validated")->sum("nb_uses");
-	}
-	public function getNbDecorUsedAttribute()
-	{
-		return Decor::where("user_id", $this->id)->sum("nb_use");
-	}
-	public function getNbDecorNotUsedAttribute()
-	{
-		return $this->nb_decor_payed - $this->nb_decor_used;
 	}
 	public function getProfileFrAttribute()
 	{
@@ -234,26 +221,6 @@ class User extends Authenticatable
 					'subject' => ['event', 'decor']
 				],
 			],
-		][$this->profile];
-	}
-
-	public function getProfilesCanCreateAttribute()
-	{
-		$profileList = [
-			'admin' => ['key' => 'admin', "name" => "Super Admin"],
-			'supervisor' => ['key' => 'supervisor', "name" => "Superviseur"],
-			'money_manager' => ['key' => 'money_manager', "name" => "Gestionnaire de paiement"],
-			'event_planner' => ['key' => 'event_planner', "name" => "Planificateur d'evenement"],
-			'promoter' => ['key' => 'promoter', "name" => "Organisateur"],
-			'visitor' => ['key' => 'visitor', "name" => "Visiteur"],
-		];
-		return [
-			"admin" => [$profileList["admin"], $profileList["supervisor"], $profileList["money_manager"], $profileList["event_planner"], $profileList["visitor"]],
-			"supervisor" => [$profileList["money_manager"], $profileList["event_planner"], $profileList["visitor"]],
-			"money_manager" => [],
-			"event_planner" => [],
-			"promoter" => [],
-			"visitor" => [],
 		][$this->profile];
 	}
 }

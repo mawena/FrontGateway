@@ -4,7 +4,7 @@
 definePage({
 	meta: {
 		action: 'read',
-		subject: 'client',
+		subject: 'product',
 	},
 })
 import { VDataTableServer } from 'vuetify/labs/VDataTable'
@@ -32,12 +32,8 @@ const headers = [
 		key: 'nom'
 	},
 	{
-		title: 'Prenom',
-		key: 'prenom'
-	},
-	{
-		title: 'Email',
-		key: 'email'
+		title: 'Prix',
+		key: 'prix'
 	},
 	{
 		title: 'Actions',
@@ -48,21 +44,21 @@ const headers = [
 ]
 
 const {
-	data: clientListData,
+	data: productListData,
 	isLoading,
 	error,
 	execute: fetchClientList
-} = await useAxios('/api/GATEWAY/SERVICE-CLIENTS/clients', {
+} = await useAxios('/api/GATEWAY/SERVICE-PRODUIT/produits', {
 	immediate: false, // on ne fait pas la requête tout de suite
 })
 
 
 // const {
-// 	data: clientListData,
+// 	data: productListData,
 // 	execute: fetchClientList,
-// } = await useApiE(createUrl('/SERVICE-CLIENTS/clients', {
+// } = await useApiE(createUrl('/SERVICE-PRODUIT/produits', {
 // 	query: {
-// 		search: searchQuery,console.log(clientListData.value)
+// 		search: searchQuery,console.log(productListData.value)
 
 // 		page: page,
 // 	},
@@ -82,7 +78,7 @@ const updateOptions = options => {
 
 
 const apiDelete = async id => {
-	const response = await useAxios(`/api/GATEWAY/SERVICE-CLIENTS/clients/${id}`, {
+	const response = await useAxios(`/api/GATEWAY/SERVICE-PRODUIT/produits/${id}`, {
 		method: 'DELETE',
 		immediate: false, // on ne fait pas la requête tout de suite
 	})
@@ -115,7 +111,7 @@ const lastPage = 1
 const isSnackbarScrollReverseVisible = ref(false)
 const snackbarMessage = ref("")
 const snackbarCollor = ref("success")
-const clientList = computed(() => clientListData.value)
+const productList = computed(() => productListData.value)
 
 const localUserData = useCookie('userData').value
 </script>
@@ -128,7 +124,7 @@ const localUserData = useCookie('userData').value
 				<VRow>
 					<VCardText>
 						<h2>
-							Liste des Clients
+							Liste des Produits
 						</h2>
 					</VCardText>
 				</VRow>
@@ -144,8 +140,8 @@ const localUserData = useCookie('userData').value
 
 				<!-- Boutons "Nouveau" et "Recharger" -->
 				<div class="d-flex gap-4">
-					<VBtn v-if="$can('create', 'client')" color="primary" prepend-icon="tabler-plus"
-						:to="{ name: 'client-add' }">
+					<VBtn v-if="$can('create', 'product')" color="primary" prepend-icon="tabler-plus"
+						:to="{ name: 'product-add' }">
 						Nouveau
 					</VBtn>
 					<VBtn :loading="loadings[3]" :disabled="loadings[3]" prepend-icon="tabler-refresh"
@@ -165,7 +161,7 @@ const localUserData = useCookie('userData').value
 
 			<!-- 👉 Datatable  -->
 			<VDataTableServer v-model:items-per-page="itemsPerPage" v-model:page="page" :headers="headers"
-				:items="clientList" :items-length="totalTransfer" class="text-no-wrap" @update:options="updateOptions">
+				:items="productList" :items-length="totalTransfer" class="text-no-wrap" @update:options="updateOptions">
 
 				<template #item.activated="{ item }">
 					<VAvatar variant="tonal" :color="{ true: 'success', false: 'error' }[item.activated]" class="me-4"
@@ -181,14 +177,14 @@ const localUserData = useCookie('userData').value
 				<template #item.actions="{ item }">
 					<div class="text-center">
 						<div>
-							<IconBtn v-if="$can('update', 'client')"
-								:to="{ name: 'client-edit-id', params: { id: item.id } }">
+							<IconBtn v-if="$can('update', 'product')"
+								:to="{ name: 'product-edit-id', params: { id: item.id } }">
 								<VTooltip activator="parent" transition="scroll-x-transition" location="top">Modifier
 								</VTooltip>
 								<VIcon icon=" tabler-edit" />
 							</IconBtn>
-							<IconBtn v-if="$can('delete', 'client')" @click="selectedItemId = item.id; actionTitle = 'Supprimer le client',
-								actionText = 'Voulez vous vraiment supprimer ce client?', actionFunction = apiDelete;
+							<IconBtn v-if="$can('delete', 'product')" @click="selectedItemId = item.id; actionTitle = 'Supprimer le product',
+								actionText = 'Voulez vous vraiment supprimer ce product?', actionFunction = apiDelete;
 							actionButtonText = 'Supprimer'; commentPresence = false; isActionDialogVisible = true;">
 								<VTooltip activator="parent" transition="scroll-x-transition" location="end">Supprimer
 								</VTooltip>

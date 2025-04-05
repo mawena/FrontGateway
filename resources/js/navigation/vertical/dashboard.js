@@ -18,9 +18,9 @@ export default [
 	{
 		icon: { icon: 'tabler-shopping-bag' },
 		title: 'Produits',
-		subject: 'user',
+		subject: 'product',
 		action: 'read',
-		to: 'user',
+		to: 'product',
 	},
 	{
 		icon: { icon: 'tabler-receipt' },

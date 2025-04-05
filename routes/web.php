@@ -14,21 +14,3 @@ use Illuminate\Support\Facades\Route;
 Route::get('{any?}', function () {
 	return view('application');
 })->where('any', '.*');
-
-
-use Illuminate\Support\Facades\Http;
-use Illuminate\Http\Request;
-
-Route::any('/SERVICE/{any}', function (Request $request, $any) {
-	$url = "http://localhost:8888/{$any}";
-	// Requête vers le vrai backend
-	$response = Http::withoutVerifying() // utile si certificat SSL invalide
-		->withHeaders($request->headers->all())
-		->send($request->method(), $url, [
-			'query' => $request->query(),
-			'body' => $request->getContent(),
-		]);
-
-	return response($response->body(), $response->status())
-		->withHeaders($response->headers());
-})->where('any', '.*');

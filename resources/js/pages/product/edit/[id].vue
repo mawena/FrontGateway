@@ -17,7 +17,7 @@ const {
 	isLoading,
 	error,
 	execute: fetchUser
-} = await useAxios(`/api/GATEWAY/SERVICE-CLIENTS/clients/${route.params.id}`, {
+} = await useAxios(`/api/GATEWAY/SERVICE-PRODUIT/produits/${route.params.id}`, {
 	immediate: true, // on ne fait pas la requête tout de suite
 })
 
@@ -30,12 +30,11 @@ const refForm = ref()
 const onSubmit = () => {
 	refForm.value?.validate().then(async ({ valid }) => {
 		if (valid) {
-			const { response, data, error } = await useAxios(`/api/GATEWAY/SERVICE-CLIENTS/clients/${route.params.id}`, {
+			const { response, data, error } = await useAxios(`/api/GATEWAY/SERVICE-PRODUIT/produits/${route.params.id}`, {
 				method: 'PUT',
 				data: {
 					nom: item.value.nom,
-					prenom: item.value.prenom,
-					email: item.value.email,
+					prix: item.value.prix,
 				},
 			})
 
@@ -87,17 +86,14 @@ watch(itemData, (newVal) => {
 				<VRow>
 					<VCol md="12">
 						<!-- 👉 creditCard Information -->
-						<VCard class="mb-6" title="Modification du client">
+						<VCard class="mb-6" title="Modification du produit">
 							<VCardText>
 								<VRow>
 									<VCol cols="12" md="12" lg="12">
 										<VTextField v-model="item.nom" label="Nom" />
 									</VCol>
 									<VCol cols="12" md="12" lg="12">
-										<VTextField v-model="item.prenom" label="Prenom" />
-									</VCol>
-									<VCol cols="12" md="12" lg="12">
-										<VTextField type="number" v-model="item.email" label="Email" />
+										<VTextField type="number" v-model="item.prix" label="Prix" />
 									</VCol>
 								</VRow>
 							</VCardText>
@@ -107,8 +103,8 @@ watch(itemData, (newVal) => {
 					<VCol cols="12">
 						<div class="d-flex flex-wrap justify-start justify-sm-space-between gap-y-4 gap-x-6 mb-6">
 							<div class="d-flex flex-column justify-center">
-								<VBtn :to="{ name: 'client' }">
-									Clients
+								<VBtn :to="{ name: 'product' }">
+									Produits
 								</VBtn>
 							</div>
 							<div class="d-flex gap-4 align-center flex-wrap">

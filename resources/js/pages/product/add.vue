@@ -3,25 +3,24 @@
 definePage({
 	meta: {
 		action: 'create',
-		subject: 'client',
+		subject: 'product',
 	},
 })
 import { ref } from 'vue'
 import { useAxios } from '@vueuse/integrations/useAxios'
 
 const router = useRouter()
-const nextRoute = { name: 'client' }
+const nextRoute = { name: 'product' }
 const itemData = ref({
 	nom: "",
-	prenom: "",
-	email: "",
+	prix: "",
 })
 
 
 const getResetTransferError = () => {
 	return {
 		nom: "",
-		email: "",
+		prix: "",
 	}
 }
 const itemError = ref(getResetTransferError())
@@ -36,8 +35,7 @@ const onSubmit = () => {
 				method: 'POST',
 				data: {
 					nom: itemData.value.nom,
-					prennom: itemData.value.prennom,
-					email: itemData.value.email,
+					prix: itemData.value.prix,
 				},
 			})
 
@@ -73,26 +71,23 @@ const localUserData = useCookie('userData').value
 		<div class="d-flex flex-wrap justify-start justify-sm-space-between gap-y-4 gap-x-6 mb-6">
 			<div class="d-flex flex-column justify-center">
 				<h4 class="text-h4 font-weight-medium">
-					Ajouter un client
+					Ajouter un produit
 				</h4>
-				<span>Informations sur le client</span>
+				<span>Informations sur le produit</span>
 			</div>
 		</div>
 		<VForm ref="refForm" @submit.prevent="onSubmit">
 			<VRow>
 				<VCol md="12">
 					<!-- 👉 PV Information -->
-					<VCard class="mb-6" title="Informations du client">
+					<VCard class="mb-6" title="Informations du produit">
 						<VCardText>
 							<VRow>
 								<VCol cols="12" md="12" lg="12">
 									<VTextField v-model="itemData.nom" label="Nom" />
 								</VCol>
 								<VCol cols="12" md="12" lg="12">
-									<VTextField v-model="itemData.prenom" label="Prenom" />
-								</VCol>
-								<VCol cols="12" md="12" lg="12">
-									<VTextField type="number" v-model="itemData.email" label="Email" />
+									<VTextField type="number" v-model="itemData.prix" label="Prix" />
 								</VCol>
 							</VRow>
 						</VCardText>
@@ -101,8 +96,8 @@ const localUserData = useCookie('userData').value
 				<VCol cols="12">
 					<div class="d-flex flex-wrap justify-start justify-sm-space-between gap-y-4 gap-x-6 mb-6">
 						<div class="d-flex flex-column justify-center">
-							<VBtn :to="{ name: 'client' }">
-								Clients
+							<VBtn :to="{ name: 'product' }">
+								Produits
 							</VBtn>
 						</div>
 						<div class="d-flex gap-4 align-center flex-wrap">
