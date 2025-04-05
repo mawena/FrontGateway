@@ -685,7 +685,7 @@
   },
   "resources/images/logo.png": {
     "file": "assets/logo-ece85fe0.png",
-    "src": "resources/images/pages/auth-v2-login-illustration-light.png"
+    "src": "resources/images/pages/auth-v2-login-illustration-bordered-dark.png"
   },
   "resources/images/pages/401.png": {
     "file": "assets/401-30d2f70f.png",
@@ -721,19 +721,19 @@
   },
   "resources/images/pages/auth-v2-login-illustration-bordered-dark.png": {
     "file": "assets/logo-ece85fe0.png",
-    "src": "resources/images/pages/auth-v2-login-illustration-light.png"
+    "src": "resources/images/pages/auth-v2-login-illustration-bordered-dark.png"
   },
   "resources/images/pages/auth-v2-login-illustration-bordered-light.png": {
     "file": "assets/logo-ece85fe0.png",
-    "src": "resources/images/pages/auth-v2-login-illustration-light.png"
+    "src": "resources/images/pages/auth-v2-login-illustration-bordered-dark.png"
   },
   "resources/images/pages/auth-v2-login-illustration-dark.png": {
     "file": "assets/logo-ece85fe0.png",
-    "src": "resources/images/pages/auth-v2-login-illustration-light.png"
+    "src": "resources/images/pages/auth-v2-login-illustration-bordered-dark.png"
   },
   "resources/images/pages/auth-v2-login-illustration-light.png": {
     "file": "assets/logo-ece85fe0.png",
-    "src": "resources/images/pages/auth-v2-login-illustration-light.png"
+    "src": "resources/images/pages/auth-v2-login-illustration-bordered-dark.png"
   },
   "resources/images/pages/misc-mask-dark.png": {
     "file": "assets/misc-mask-dark-d10426f0.png",
