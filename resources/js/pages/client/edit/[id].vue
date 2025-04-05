@@ -97,7 +97,7 @@ watch(itemData, (newVal) => {
 										<VTextField v-model="item.prenom" label="Prenom" />
 									</VCol>
 									<VCol cols="12" md="12" lg="12">
-										<VTextField type="number" v-model="item.email" label="Email" />
+										<VTextField type="email" v-model="item.email" label="Email" />
 									</VCol>
 								</VRow>
 							</VCardText>

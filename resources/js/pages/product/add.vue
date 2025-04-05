@@ -31,13 +31,15 @@ const refForm = ref()
 const onSubmit = () => {
 	refForm.value?.validate().then(async ({ valid }) => {
 		if (valid) {
-			const { response, data, error } = await useAxios(`/api/GATEWAY/SERVICE-PRODUIT/produits/`, {
+			const { response, data, error } = await useAxios(`/api/GATEWAY/SERVICE-PRODUIT/produits`, {
 				method: 'POST',
 				data: {
 					nom: itemData.value.nom,
 					prix: itemData.value.prix,
 				},
 			})
+
+			console.log("storeData", data);
 
 			if (response.value) {
 				if (response.value.status == 200) {

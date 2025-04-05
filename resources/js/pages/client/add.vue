@@ -32,14 +32,16 @@ const refForm = ref()
 const onSubmit = () => {
 	refForm.value?.validate().then(async ({ valid }) => {
 		if (valid) {
-			const { response, data, error } = await useAxios(`/api/GATEWAY/SERVICE-PRODUIT/produits/`, {
+			const { response, data, error } = await useAxios(`/api/GATEWAY/SERVICE-CLIENTS/clients`, {
 				method: 'POST',
 				data: {
 					nom: itemData.value.nom,
-					prennom: itemData.value.prennom,
+					prenom: itemData.value.prenom,
 					email: itemData.value.email,
 				},
 			})
+
+			console.log("storeData", data);
 
 			if (response.value) {
 				if (response.value.status == 200) {
@@ -92,7 +94,7 @@ const localUserData = useCookie('userData').value
 									<VTextField v-model="itemData.prenom" label="Prenom" />
 								</VCol>
 								<VCol cols="12" md="12" lg="12">
-									<VTextField type="number" v-model="itemData.email" label="Email" />
+									<VTextField type="email" v-model="itemData.email" label="Email" />
 								</VCol>
 							</VRow>
 						</VCardText>
